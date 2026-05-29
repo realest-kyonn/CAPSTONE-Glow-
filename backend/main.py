@@ -63,3 +63,34 @@ if __name__ == "__main__":
             print()
         else:
             print(f"TIP: {details}\n")
+
+import json
+
+def export_recommendations_json():
+    """
+    Exports all possible recommendations to a JSON file
+    for Member 2 to use in Flutter
+    """
+    skin_tones = ["warm", "cool", "neutral"]
+    face_shapes = ["oval", "round", "square", "heart", "oblong"]
+    
+    all_recommendations = {}
+    
+    for tone in skin_tones:
+        all_recommendations[tone] = {}
+        for shape in face_shapes:
+            result = get_makeup_recommendation(tone, shape)
+            all_recommendations[tone][shape] = result
+    
+    # Save to JSON file
+    output_path = r"C:\Users\Kean_2\Documents\GitHub\CAPSTONE (Glow)\backend\recommendations.json"
+    
+    with open(output_path, "w") as f:
+        json.dump(all_recommendations, f, indent=4)
+    
+    print("✅ recommendations.json exported successfully!")
+    print(f"📁 Saved to: {output_path}")
+
+
+# Add this at the bottom of your if __name__ == "__main__": block
+export_recommendations_json()
