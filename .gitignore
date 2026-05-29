@@ -9,6 +9,3 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
-
-# Data files (too large for GitHub)
-data/images/
