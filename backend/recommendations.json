@@ -1,428 +1,2141 @@
 {
+  "_meta": {
+    "version": "3.0",
+    "description": "Glow recommendations.json \u2014 3 undertones x 15 styles. Face shape and eye shape handled separately in placement/technique modules.",
+    "undertones": [
+      "warm",
+      "cool",
+      "neutral"
+    ],
+    "face_shapes": [
+      "oval",
+      "round",
+      "square",
+      "heart",
+      "oblong"
+    ],
+    "eye_shapes": [
+      "almond",
+      "round",
+      "monolid",
+      "hooded",
+      "downturned",
+      "close_set"
+    ],
+    "styles": [
+      "clean_girl",
+      "no_makeup",
+      "fresh_dewy",
+      "soft_glam",
+      "korean_daily",
+      "peach_makeup",
+      "soft_contour",
+      "lifted_makeup",
+      "snatched",
+      "igari",
+      "douyin",
+      "strawberry",
+      "office",
+      "neutral_glam",
+      "corporate_clean"
+    ],
+    "total_combinations": "3 undertones x 15 styles = 45 combinations"
+  },
+  "styles_info": {
+    "clean_girl": {
+      "label": "Clean Girl",
+      "description": "Fresh, minimal, effortless skin-focused look with glowy skin and natural features."
+    },
+    "no_makeup": {
+      "label": "No-Makeup Makeup",
+      "description": "Barely-there coverage that perfects the skin while looking completely natural."
+    },
+    "fresh_dewy": {
+      "label": "Fresh Dewy",
+      "description": "Hydrated, glass-skin glow with soft color and a lit-from-within radiance."
+    },
+    "soft_glam": {
+      "label": "Soft Glam",
+      "description": "Polished and put-together with soft neutral tones and defined but not dramatic features."
+    },
+    "korean_daily": {
+      "label": "Korean Daily",
+      "description": "Youthful and fresh K-beauty inspired look with soft blush, BB cream, and lip tint."
+    },
+    "peach_makeup": {
+      "label": "Peach Makeup",
+      "description": "Warm peachy monochromatic look with matching blush, eyeshadow, and lip gloss."
+    },
+    "soft_contour": {
+      "label": "Soft Contour",
+      "description": "Subtly sculpted face with soft blending, natural glow, and defined structure."
+    },
+    "lifted_makeup": {
+      "label": "Lifted Makeup",
+      "description": "Eye-lifting techniques with blush and highlight placement to create an uplifted effect."
+    },
+    "snatched": {
+      "label": "Snatched",
+      "description": "Full face with defined contour, bold highlight, and strong features for a sculpted look."
+    },
+    "igari": {
+      "label": "Igari",
+      "description": "Japanese-style 'hangover blush' look with flushed cheeks and minimal eye makeup."
+    },
+    "douyin": {
+      "label": "Douyin",
+      "description": "Viral Chinese social media look with porcelain skin, straight brows, and puppy eyes."
+    },
+    "strawberry": {
+      "label": "Strawberry Girl",
+      "description": "Rosy, berry-toned monochromatic look with flushed cheeks and glossy pink lips."
+    },
+    "office": {
+      "label": "Office Makeup",
+      "description": "Professional and polished with neutral tones, clean liner, and a structured finish."
+    },
+    "neutral_glam": {
+      "label": "Neutral Glam",
+      "description": "Warm neutral tones taken to a glamorous level with defined contour and bold lip."
+    },
+    "corporate_clean": {
+      "label": "Corporate Clean",
+      "description": "Minimal, clean, and professional \u2014 foundation finish with subtle features for the workplace."
+    }
+  },
+  "shades": {
     "warm": {
-        "oval": {
-            "foundation": {
-                "shade": "Golden Beige or Honey",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your warm skin has golden or yellow undertones. Golden Beige matches these undertones seamlessly so your foundation blends naturally without looking ashy or too pink."
-            },
-            "blush": {
-                "shade": "Peach or Coral",
-                "finish": "Cream blush",
-                "why": "Peach and coral shades share warm undertones with your skin, creating a natural healthy flush. These shades enhance your golden glow without clashing with your complexion."
-            },
-            "eyeshadow": {
-                "shade": "Soft Bronze or Warm Brown",
-                "finish": "Matte or subtle shimmer",
-                "why": "Bronze and warm brown shades share the same golden undertones as your skin, creating a harmonious look. These earthy tones enhance your eyes without overpowering your warm complexion."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Tinted lip balm or Nude Pink gloss",
-                "finish": "Glossy or sheer",
-                "why": "Oval face shape is the most balanced and versatile. A simple tinted lip balm keeps your look effortlessly casual and lets your natural features shine without overcomplicating the look."
-            },
-            "face_tip": "Your oval face shape is the most versatile! Almost any makeup style works well for you."
-        },
-        "round": {
-            "foundation": {
-                "shade": "Golden Beige or Honey",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your warm skin has golden or yellow undertones. Golden Beige matches these undertones seamlessly so your foundation blends naturally without looking ashy or too pink."
-            },
-            "blush": {
-                "shade": "Peach or Coral",
-                "finish": "Cream blush",
-                "why": "Peach and coral shades share warm undertones with your skin, creating a natural healthy flush. These shades enhance your golden glow without clashing with your complexion."
-            },
-            "eyeshadow": {
-                "shade": "Soft Bronze or Warm Brown",
-                "finish": "Matte or subtle shimmer",
-                "why": "Bronze and warm brown shades share the same golden undertones as your skin, creating a harmonious look. These earthy tones enhance your eyes without overpowering your warm complexion."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Soft Berry or Muted Rose lip tint",
-                "finish": "Matte or satin",
-                "why": "A slightly deeper lip color draws attention to the center of your face and adds subtle definition. This creates an elongating effect that balances a round face shape for everyday wear."
-            },
-            "face_tip": "For your round face, focus on adding subtle definition with slightly deeper lip shades."
-        },
-        "square": {
-            "foundation": {
-                "shade": "Golden Beige or Honey",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your warm skin has golden or yellow undertones. Golden Beige matches these undertones seamlessly so your foundation blends naturally without looking ashy or too pink."
-            },
-            "blush": {
-                "shade": "Peach or Coral",
-                "finish": "Cream blush",
-                "why": "Peach and coral shades share warm undertones with your skin, creating a natural healthy flush. These shades enhance your golden glow without clashing with your complexion."
-            },
-            "eyeshadow": {
-                "shade": "Soft Bronze or Warm Brown",
-                "finish": "Matte or subtle shimmer",
-                "why": "Bronze and warm brown shades share the same golden undertones as your skin, creating a harmonious look. These earthy tones enhance your eyes without overpowering your warm complexion."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Nude Pink or Peachy lip gloss",
-                "finish": "Glossy",
-                "why": "Soft glossy lip colors soften the appearance of a strong angular jawline. Light and neutral shades keep the focus balanced across your face for a natural casual look."
-            },
-            "face_tip": "For your square face, soft and rounded makeup choices help balance your strong features."
-        },
-        "heart": {
-            "foundation": {
-                "shade": "Golden Beige or Honey",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your warm skin has golden or yellow undertones. Golden Beige matches these undertones seamlessly so your foundation blends naturally without looking ashy or too pink."
-            },
-            "blush": {
-                "shade": "Peach or Coral",
-                "finish": "Cream blush",
-                "why": "Peach and coral shades share warm undertones with your skin, creating a natural healthy flush. These shades enhance your golden glow without clashing with your complexion."
-            },
-            "eyeshadow": {
-                "shade": "Soft Bronze or Warm Brown",
-                "finish": "Matte or subtle shimmer",
-                "why": "Bronze and warm brown shades share the same golden undertones as your skin, creating a harmonious look. These earthy tones enhance your eyes without overpowering your warm complexion."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Rose tinted lip balm or Sheer Mauve",
-                "finish": "Sheer or glossy",
-                "why": "Sheer lip colors draw the eye downward to your lips and chin, balancing a wider forehead. Light rose and mauve shades complement most skin tones for a simple everyday look."
-            },
-            "face_tip": "For your heart face shape, keep lips light and eyes soft to balance your wider forehead."
-        },
-        "oblong": {
-            "foundation": {
-                "shade": "Golden Beige or Honey",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your warm skin has golden or yellow undertones. Golden Beige matches these undertones seamlessly so your foundation blends naturally without looking ashy or too pink."
-            },
-            "blush": {
-                "shade": "Peach or Coral",
-                "finish": "Cream blush",
-                "why": "Peach and coral shades share warm undertones with your skin, creating a natural healthy flush. These shades enhance your golden glow without clashing with your complexion."
-            },
-            "eyeshadow": {
-                "shade": "Soft Bronze or Warm Brown",
-                "finish": "Matte or subtle shimmer",
-                "why": "Bronze and warm brown shades share the same golden undertones as your skin, creating a harmonious look. These earthy tones enhance your eyes without overpowering your warm complexion."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Coral lip tint or Warm Nude gloss",
-                "finish": "Glossy",
-                "why": "Warm glossy lip shades add visual width to the lips, helping to balance a longer face shape. Coral and warm nude tones are bright enough to draw attention without being overdone for casual wear."
-            },
-            "face_tip": "For your oblong face, bold lips and horizontal emphasis help create a balanced look."
-        }
+      "foundation": "Golden Beige",
+      "concealer": "Warm Ivory",
+      "blush": "Peach",
+      "bronzer": "Warm Tan",
+      "highlighter": "Champagne Gold",
+      "eyeshadow_base": "Warm Taupe",
+      "eyeshadow_lid": "Soft Bronze",
+      "eyeliner": "Brown or Soft Black",
+      "mascara": "Black or Dark Brown",
+      "brow_product": "Warm Brown",
+      "lip_liner": "Nude Peach",
+      "lipstick": "Coral or Peachy Nude",
+      "lip_gloss": "Peachy Pink Gloss",
+      "lip_oil": "Peach Tinted Lip Oil",
+      "lip_tint": "Warm Rose Tint",
+      "setting_powder": "Translucent or Warm Beige",
+      "setting_spray": "Dewy Finish Spray",
+      "primer": "Luminous Hydrating Primer",
+      "skin_tint": "Golden Beige Skin Tint",
+      "bb_cream": "Warm Beige BB Cream"
     },
     "cool": {
-        "oval": {
-            "foundation": {
-                "shade": "Rose Beige or Cool Ivory",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your cool skin has pink or rosy undertones. Rose Beige complements these undertones so your foundation looks natural and even without appearing orange or muddy."
-            },
-            "blush": {
-                "shade": "Soft Pink or Light Rose",
-                "finish": "Cream blush",
-                "why": "Soft pink and rose shades complement the cool pink undertones in your skin. These shades mimic a natural flush and enhance your cool complexion beautifully."
-            },
-            "eyeshadow": {
-                "shade": "Taupe or Soft Mauve",
-                "finish": "Matte",
-                "why": "Taupe and mauve have cool undertones that complement your skin's pink or rosy base. These shades add subtle definition to your eyes while staying harmonious with your cool complexion."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Tinted lip balm or Nude Pink gloss",
-                "finish": "Glossy or sheer",
-                "why": "Oval face shape is the most balanced and versatile. A simple tinted lip balm keeps your look effortlessly casual and lets your natural features shine without overcomplicating the look."
-            },
-            "face_tip": "Your oval face shape is the most versatile! Almost any makeup style works well for you."
-        },
-        "round": {
-            "foundation": {
-                "shade": "Rose Beige or Cool Ivory",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your cool skin has pink or rosy undertones. Rose Beige complements these undertones so your foundation looks natural and even without appearing orange or muddy."
-            },
-            "blush": {
-                "shade": "Soft Pink or Light Rose",
-                "finish": "Cream blush",
-                "why": "Soft pink and rose shades complement the cool pink undertones in your skin. These shades mimic a natural flush and enhance your cool complexion beautifully."
-            },
-            "eyeshadow": {
-                "shade": "Taupe or Soft Mauve",
-                "finish": "Matte",
-                "why": "Taupe and mauve have cool undertones that complement your skin's pink or rosy base. These shades add subtle definition to your eyes while staying harmonious with your cool complexion."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Soft Berry or Muted Rose lip tint",
-                "finish": "Matte or satin",
-                "why": "A slightly deeper lip color draws attention to the center of your face and adds subtle definition. This creates an elongating effect that balances a round face shape for everyday wear."
-            },
-            "face_tip": "For your round face, focus on adding subtle definition with slightly deeper lip shades."
-        },
-        "square": {
-            "foundation": {
-                "shade": "Rose Beige or Cool Ivory",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your cool skin has pink or rosy undertones. Rose Beige complements these undertones so your foundation looks natural and even without appearing orange or muddy."
-            },
-            "blush": {
-                "shade": "Soft Pink or Light Rose",
-                "finish": "Cream blush",
-                "why": "Soft pink and rose shades complement the cool pink undertones in your skin. These shades mimic a natural flush and enhance your cool complexion beautifully."
-            },
-            "eyeshadow": {
-                "shade": "Taupe or Soft Mauve",
-                "finish": "Matte",
-                "why": "Taupe and mauve have cool undertones that complement your skin's pink or rosy base. These shades add subtle definition to your eyes while staying harmonious with your cool complexion."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Nude Pink or Peachy lip gloss",
-                "finish": "Glossy",
-                "why": "Soft glossy lip colors soften the appearance of a strong angular jawline. Light and neutral shades keep the focus balanced across your face for a natural casual look."
-            },
-            "face_tip": "For your square face, soft and rounded makeup choices help balance your strong features."
-        },
-        "heart": {
-            "foundation": {
-                "shade": "Rose Beige or Cool Ivory",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your cool skin has pink or rosy undertones. Rose Beige complements these undertones so your foundation looks natural and even without appearing orange or muddy."
-            },
-            "blush": {
-                "shade": "Soft Pink or Light Rose",
-                "finish": "Cream blush",
-                "why": "Soft pink and rose shades complement the cool pink undertones in your skin. These shades mimic a natural flush and enhance your cool complexion beautifully."
-            },
-            "eyeshadow": {
-                "shade": "Taupe or Soft Mauve",
-                "finish": "Matte",
-                "why": "Taupe and mauve have cool undertones that complement your skin's pink or rosy base. These shades add subtle definition to your eyes while staying harmonious with your cool complexion."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Rose tinted lip balm or Sheer Mauve",
-                "finish": "Sheer or glossy",
-                "why": "Sheer lip colors draw the eye downward to your lips and chin, balancing a wider forehead. Light rose and mauve shades complement most skin tones for a simple everyday look."
-            },
-            "face_tip": "For your heart face shape, keep lips light and eyes soft to balance your wider forehead."
-        },
-        "oblong": {
-            "foundation": {
-                "shade": "Rose Beige or Cool Ivory",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your cool skin has pink or rosy undertones. Rose Beige complements these undertones so your foundation looks natural and even without appearing orange or muddy."
-            },
-            "blush": {
-                "shade": "Soft Pink or Light Rose",
-                "finish": "Cream blush",
-                "why": "Soft pink and rose shades complement the cool pink undertones in your skin. These shades mimic a natural flush and enhance your cool complexion beautifully."
-            },
-            "eyeshadow": {
-                "shade": "Taupe or Soft Mauve",
-                "finish": "Matte",
-                "why": "Taupe and mauve have cool undertones that complement your skin's pink or rosy base. These shades add subtle definition to your eyes while staying harmonious with your cool complexion."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Coral lip tint or Warm Nude gloss",
-                "finish": "Glossy",
-                "why": "Warm glossy lip shades add visual width to the lips, helping to balance a longer face shape. Coral and warm nude tones are bright enough to draw attention without being overdone for casual wear."
-            },
-            "face_tip": "For your oblong face, bold lips and horizontal emphasis help create a balanced look."
-        }
+      "foundation": "Rose Beige",
+      "concealer": "Cool Ivory",
+      "blush": "Soft Pink",
+      "bronzer": "Cool Bronze",
+      "highlighter": "Pearl or Icy Pink",
+      "eyeshadow_base": "Cool Taupe",
+      "eyeshadow_lid": "Soft Mauve",
+      "eyeliner": "Black or Dark Gray",
+      "mascara": "Black",
+      "brow_product": "Cool Ash Brown",
+      "lip_liner": "Mauve Pink",
+      "lipstick": "Berry or Mauve",
+      "lip_gloss": "Pink Gloss",
+      "lip_oil": "Pink Tinted Lip Oil",
+      "lip_tint": "Rose Tint",
+      "setting_powder": "Translucent or Lavender-toned",
+      "setting_spray": "Natural Finish Spray",
+      "primer": "Pore-minimizing Primer",
+      "skin_tint": "Rose Beige Skin Tint",
+      "bb_cream": "Cool Beige BB Cream"
     },
     "neutral": {
-        "oval": {
-            "foundation": {
-                "shade": "Neutral Beige or Buff",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your neutral skin has a balance of warm and cool undertones. Neutral Beige works with both undertones so your foundation looks naturally seamless on your skin."
-            },
-            "blush": {
-                "shade": "Dusty Rose or Soft Peach",
-                "finish": "Cream blush",
-                "why": "Dusty rose and soft peach are balanced shades that work with both warm and cool undertones. They give your neutral skin a healthy natural glow without being too warm or too cool."
-            },
-            "eyeshadow": {
-                "shade": "Warm Taupe or Rose Brown",
-                "finish": "Matte or subtle shimmer",
-                "why": "Taupe and rose brown are versatile neutral shades that flatter both warm and cool undertones. They add dimension to your eyes without leaning too warm or too cool."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Tinted lip balm or Nude Pink gloss",
-                "finish": "Glossy or sheer",
-                "why": "Oval face shape is the most balanced and versatile. A simple tinted lip balm keeps your look effortlessly casual and lets your natural features shine without overcomplicating the look."
-            },
-            "face_tip": "Your oval face shape is the most versatile! Almost any makeup style works well for you."
-        },
-        "round": {
-            "foundation": {
-                "shade": "Neutral Beige or Buff",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your neutral skin has a balance of warm and cool undertones. Neutral Beige works with both undertones so your foundation looks naturally seamless on your skin."
-            },
-            "blush": {
-                "shade": "Dusty Rose or Soft Peach",
-                "finish": "Cream blush",
-                "why": "Dusty rose and soft peach are balanced shades that work with both warm and cool undertones. They give your neutral skin a healthy natural glow without being too warm or too cool."
-            },
-            "eyeshadow": {
-                "shade": "Warm Taupe or Rose Brown",
-                "finish": "Matte or subtle shimmer",
-                "why": "Taupe and rose brown are versatile neutral shades that flatter both warm and cool undertones. They add dimension to your eyes without leaning too warm or too cool."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Soft Berry or Muted Rose lip tint",
-                "finish": "Matte or satin",
-                "why": "A slightly deeper lip color draws attention to the center of your face and adds subtle definition. This creates an elongating effect that balances a round face shape for everyday wear."
-            },
-            "face_tip": "For your round face, focus on adding subtle definition with slightly deeper lip shades."
-        },
-        "square": {
-            "foundation": {
-                "shade": "Neutral Beige or Buff",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your neutral skin has a balance of warm and cool undertones. Neutral Beige works with both undertones so your foundation looks naturally seamless on your skin."
-            },
-            "blush": {
-                "shade": "Dusty Rose or Soft Peach",
-                "finish": "Cream blush",
-                "why": "Dusty rose and soft peach are balanced shades that work with both warm and cool undertones. They give your neutral skin a healthy natural glow without being too warm or too cool."
-            },
-            "eyeshadow": {
-                "shade": "Warm Taupe or Rose Brown",
-                "finish": "Matte or subtle shimmer",
-                "why": "Taupe and rose brown are versatile neutral shades that flatter both warm and cool undertones. They add dimension to your eyes without leaning too warm or too cool."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Nude Pink or Peachy lip gloss",
-                "finish": "Glossy",
-                "why": "Soft glossy lip colors soften the appearance of a strong angular jawline. Light and neutral shades keep the focus balanced across your face for a natural casual look."
-            },
-            "face_tip": "For your square face, soft and rounded makeup choices help balance your strong features."
-        },
-        "heart": {
-            "foundation": {
-                "shade": "Neutral Beige or Buff",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your neutral skin has a balance of warm and cool undertones. Neutral Beige works with both undertones so your foundation looks naturally seamless on your skin."
-            },
-            "blush": {
-                "shade": "Dusty Rose or Soft Peach",
-                "finish": "Cream blush",
-                "why": "Dusty rose and soft peach are balanced shades that work with both warm and cool undertones. They give your neutral skin a healthy natural glow without being too warm or too cool."
-            },
-            "eyeshadow": {
-                "shade": "Warm Taupe or Rose Brown",
-                "finish": "Matte or subtle shimmer",
-                "why": "Taupe and rose brown are versatile neutral shades that flatter both warm and cool undertones. They add dimension to your eyes without leaning too warm or too cool."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Rose tinted lip balm or Sheer Mauve",
-                "finish": "Sheer or glossy",
-                "why": "Sheer lip colors draw the eye downward to your lips and chin, balancing a wider forehead. Light rose and mauve shades complement most skin tones for a simple everyday look."
-            },
-            "face_tip": "For your heart face shape, keep lips light and eyes soft to balance your wider forehead."
-        },
-        "oblong": {
-            "foundation": {
-                "shade": "Neutral Beige or Buff",
-                "finish": "Lightweight tinted moisturizer",
-                "why": "Your neutral skin has a balance of warm and cool undertones. Neutral Beige works with both undertones so your foundation looks naturally seamless on your skin."
-            },
-            "blush": {
-                "shade": "Dusty Rose or Soft Peach",
-                "finish": "Cream blush",
-                "why": "Dusty rose and soft peach are balanced shades that work with both warm and cool undertones. They give your neutral skin a healthy natural glow without being too warm or too cool."
-            },
-            "eyeshadow": {
-                "shade": "Warm Taupe or Rose Brown",
-                "finish": "Matte or subtle shimmer",
-                "why": "Taupe and rose brown are versatile neutral shades that flatter both warm and cool undertones. They add dimension to your eyes without leaning too warm or too cool."
-            },
-            "mascara": {
-                "shade": "Black or Dark Brown",
-                "finish": "Lengthening or volumizing",
-                "why": "Mascara defines and opens up your eyes for any casual everyday look. Black suits all skin tones while dark brown gives a softer more natural effect for daytime wear."
-            },
-            "lipstick": {
-                "shade": "Coral lip tint or Warm Nude gloss",
-                "finish": "Glossy",
-                "why": "Warm glossy lip shades add visual width to the lips, helping to balance a longer face shape. Coral and warm nude tones are bright enough to draw attention without being overdone for casual wear."
-            },
-            "face_tip": "For your oblong face, bold lips and horizontal emphasis help create a balanced look."
-        }
+      "foundation": "Neutral Beige",
+      "concealer": "Neutral Ivory",
+      "blush": "Dusty Rose",
+      "bronzer": "Neutral Bronze",
+      "highlighter": "Rose Gold",
+      "eyeshadow_base": "Neutral Taupe",
+      "eyeshadow_lid": "Rose Brown",
+      "eyeliner": "Brown or Soft Black",
+      "mascara": "Black or Dark Brown",
+      "brow_product": "Medium Brown",
+      "lip_liner": "Neutral Nude",
+      "lipstick": "Dusty Rose or Soft Coral",
+      "lip_gloss": "Neutral Pink Gloss",
+      "lip_oil": "Sheer Tinted Lip Oil",
+      "lip_tint": "Neutral Rose Tint",
+      "setting_powder": "Translucent",
+      "setting_spray": "Hydrating Finish Spray",
+      "primer": "Hydrating Primer",
+      "skin_tint": "Neutral Beige Skin Tint",
+      "bb_cream": "Neutral Beige BB Cream"
     }
+  },
+  "recommendations": {
+    "warm": {
+      "clean_girl": {
+        "style_label": "Clean Girl",
+        "description": "Fresh, minimal, effortless skin-focused look with glowy skin and natural features.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Golden Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Clear Brow Gel",
+            "shade": "[TBD \u2014 leader researching]"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Oil",
+            "shade": "Peach Tinted Lip Oil"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "no_makeup": {
+        "style_label": "No-Makeup Makeup",
+        "description": "Barely-there coverage that perfects the skin while looking completely natural.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Golden Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Tinted Lip Balm",
+            "shade": "Warm Rose Tint"
+          },
+          {
+            "product": "Clear Brow Gel",
+            "shade": "[TBD \u2014 leader researching]"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          }
+        ]
+      },
+      "fresh_dewy": {
+        "style_label": "Fresh Dewy",
+        "description": "Hydrated, glass-skin glow with soft color and a lit-from-within radiance.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Golden Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Champagne Gold"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Gloss",
+            "shade": "Peachy Pink Gloss"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "soft_glam": {
+        "style_label": "Soft Glam",
+        "description": "Polished and put-together with soft neutral tones and defined but not dramatic features.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Golden Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Bronzer",
+            "shade": "Warm Tan"
+          },
+          {
+            "product": "Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Bronze"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Champagne Gold"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Coral or Peachy Nude"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Warm Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Warm Beige"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "korean_daily": {
+        "style_label": "Korean Daily",
+        "description": "Youthful and fresh K-beauty inspired look with soft blush, BB cream, and lip tint.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "BB Cream",
+            "shade": "Warm Beige BB Cream"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Bronze"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Tint",
+            "shade": "Warm Rose Tint"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Warm Brown"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "peach_makeup": {
+        "style_label": "Peach Makeup",
+        "description": "Warm peachy monochromatic look with matching blush, eyeshadow, and lip gloss.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Golden Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Peach Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Peach Eyeshadow",
+            "shade": "Soft Bronze"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Peach Lip Gloss",
+            "shade": "Peachy Pink Gloss"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Champagne Gold"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "soft_contour": {
+        "style_label": "Soft Contour",
+        "description": "Subtly sculpted face with soft blending, natural glow, and defined structure.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Golden Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Contour",
+            "shade": "Warm Tan"
+          },
+          {
+            "product": "Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Champagne Gold"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Warm Taupe"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Tint",
+            "shade": "Warm Rose Tint"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Warm Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Warm Beige"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "lifted_makeup": {
+        "style_label": "Lifted Makeup",
+        "description": "Eye-lifting techniques with blush and highlight placement to create an uplifted effect.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Golden Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Bronze"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Champagne Gold"
+          },
+          {
+            "product": "Lip Gloss",
+            "shade": "Peachy Pink Gloss"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Warm Brown"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "snatched": {
+        "style_label": "Snatched",
+        "description": "Full face with defined contour, bold highlight, and strong features for a sculpted look.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Golden Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Contour",
+            "shade": "Warm Tan"
+          },
+          {
+            "product": "Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Champagne Gold"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Bronze"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Coral or Peachy Nude"
+          },
+          {
+            "product": "Lip Liner",
+            "shade": "Nude Peach"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Warm Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Warm Beige"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "igari": {
+        "style_label": "Igari",
+        "description": "Japanese-style 'hangover blush' look with flushed cheeks and minimal eye makeup.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Golden Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Gloss",
+            "shade": "Peachy Pink Gloss"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "douyin": {
+        "style_label": "Douyin",
+        "description": "Viral Chinese social media look with porcelain skin, straight brows, and puppy eyes.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Golden Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Bronze"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Tint",
+            "shade": "Warm Rose Tint"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Warm Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Warm Beige"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "strawberry": {
+        "style_label": "Strawberry Girl",
+        "description": "Rosy, berry-toned monochromatic look with flushed cheeks and glossy pink lips.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Golden Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Rosy Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Pink Eyeshadow",
+            "shade": "Soft Bronze"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Berry Lip Gloss",
+            "shade": "Peachy Pink Gloss"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Champagne Gold"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "office": {
+        "style_label": "Office Makeup",
+        "description": "Professional and polished with neutral tones, clean liner, and a structured finish.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Golden Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Warm Taupe"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Coral or Peachy Nude"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Warm Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Warm Beige"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "neutral_glam": {
+        "style_label": "Neutral Glam",
+        "description": "Warm neutral tones taken to a glamorous level with defined contour and bold lip.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Golden Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Contour",
+            "shade": "Warm Tan"
+          },
+          {
+            "product": "Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Champagne Gold"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Bronze"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Coral or Peachy Nude"
+          },
+          {
+            "product": "Lip Liner",
+            "shade": "Nude Peach"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Warm Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Warm Beige"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      },
+      "corporate_clean": {
+        "style_label": "Corporate Clean",
+        "description": "Minimal, clean, and professional \u2014 foundation finish with subtle features for the workplace.",
+        "undertone": "warm",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Golden Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Warm Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Peach"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Warm Taupe"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Coral or Peachy Nude"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Warm Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Warm Beige"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Dewy Finish Spray"
+          }
+        ]
+      }
+    },
+    "cool": {
+      "clean_girl": {
+        "style_label": "Clean Girl",
+        "description": "Fresh, minimal, effortless skin-focused look with glowy skin and natural features.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Rose Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Clear Brow Gel",
+            "shade": "[TBD \u2014 leader researching]"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Lip Oil",
+            "shade": "Pink Tinted Lip Oil"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "no_makeup": {
+        "style_label": "No-Makeup Makeup",
+        "description": "Barely-there coverage that perfects the skin while looking completely natural.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Rose Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Tinted Lip Balm",
+            "shade": "Rose Tint"
+          },
+          {
+            "product": "Clear Brow Gel",
+            "shade": "[TBD \u2014 leader researching]"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          }
+        ]
+      },
+      "fresh_dewy": {
+        "style_label": "Fresh Dewy",
+        "description": "Hydrated, glass-skin glow with soft color and a lit-from-within radiance.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Rose Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Pearl or Icy Pink"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Lip Gloss",
+            "shade": "Pink Gloss"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "soft_glam": {
+        "style_label": "Soft Glam",
+        "description": "Polished and put-together with soft neutral tones and defined but not dramatic features.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Rose Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Bronzer",
+            "shade": "Cool Bronze"
+          },
+          {
+            "product": "Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Mauve"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Black or Dark Gray"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Pearl or Icy Pink"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Berry or Mauve"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Cool Ash Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Lavender-toned"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "korean_daily": {
+        "style_label": "Korean Daily",
+        "description": "Youthful and fresh K-beauty inspired look with soft blush, BB cream, and lip tint.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "BB Cream",
+            "shade": "Cool Beige BB Cream"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Mauve"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Lip Tint",
+            "shade": "Rose Tint"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Cool Ash Brown"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "peach_makeup": {
+        "style_label": "Peach Makeup",
+        "description": "Warm peachy monochromatic look with matching blush, eyeshadow, and lip gloss.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Rose Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Peach Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Peach Eyeshadow",
+            "shade": "Soft Mauve"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Peach Lip Gloss",
+            "shade": "Pink Gloss"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Pearl or Icy Pink"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "soft_contour": {
+        "style_label": "Soft Contour",
+        "description": "Subtly sculpted face with soft blending, natural glow, and defined structure.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Rose Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Contour",
+            "shade": "Cool Bronze"
+          },
+          {
+            "product": "Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Pearl or Icy Pink"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Cool Taupe"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Lip Tint",
+            "shade": "Rose Tint"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Cool Ash Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Lavender-toned"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "lifted_makeup": {
+        "style_label": "Lifted Makeup",
+        "description": "Eye-lifting techniques with blush and highlight placement to create an uplifted effect.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Rose Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Mauve"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Black or Dark Gray"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Pearl or Icy Pink"
+          },
+          {
+            "product": "Lip Gloss",
+            "shade": "Pink Gloss"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Cool Ash Brown"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "snatched": {
+        "style_label": "Snatched",
+        "description": "Full face with defined contour, bold highlight, and strong features for a sculpted look.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Rose Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Contour",
+            "shade": "Cool Bronze"
+          },
+          {
+            "product": "Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Pearl or Icy Pink"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Mauve"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Black or Dark Gray"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Berry or Mauve"
+          },
+          {
+            "product": "Lip Liner",
+            "shade": "Mauve Pink"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Cool Ash Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Lavender-toned"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "igari": {
+        "style_label": "Igari",
+        "description": "Japanese-style 'hangover blush' look with flushed cheeks and minimal eye makeup.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Rose Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Lip Gloss",
+            "shade": "Pink Gloss"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "douyin": {
+        "style_label": "Douyin",
+        "description": "Viral Chinese social media look with porcelain skin, straight brows, and puppy eyes.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Rose Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Mauve"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Black or Dark Gray"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Lip Tint",
+            "shade": "Rose Tint"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Cool Ash Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Lavender-toned"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "strawberry": {
+        "style_label": "Strawberry Girl",
+        "description": "Rosy, berry-toned monochromatic look with flushed cheeks and glossy pink lips.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Rose Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Rosy Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Pink Eyeshadow",
+            "shade": "Soft Mauve"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Berry Lip Gloss",
+            "shade": "Pink Gloss"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Pearl or Icy Pink"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "office": {
+        "style_label": "Office Makeup",
+        "description": "Professional and polished with neutral tones, clean liner, and a structured finish.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Rose Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Cool Taupe"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Black or Dark Gray"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Berry or Mauve"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Cool Ash Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Lavender-toned"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "neutral_glam": {
+        "style_label": "Neutral Glam",
+        "description": "Warm neutral tones taken to a glamorous level with defined contour and bold lip.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Rose Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Contour",
+            "shade": "Cool Bronze"
+          },
+          {
+            "product": "Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Pearl or Icy Pink"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Soft Mauve"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Black or Dark Gray"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Berry or Mauve"
+          },
+          {
+            "product": "Lip Liner",
+            "shade": "Mauve Pink"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Cool Ash Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Lavender-toned"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      },
+      "corporate_clean": {
+        "style_label": "Corporate Clean",
+        "description": "Minimal, clean, and professional \u2014 foundation finish with subtle features for the workplace.",
+        "undertone": "cool",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Rose Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Cool Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Soft Pink"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Cool Taupe"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Berry or Mauve"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Cool Ash Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent or Lavender-toned"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Natural Finish Spray"
+          }
+        ]
+      }
+    },
+    "neutral": {
+      "clean_girl": {
+        "style_label": "Clean Girl",
+        "description": "Fresh, minimal, effortless skin-focused look with glowy skin and natural features.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Neutral Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Clear Brow Gel",
+            "shade": "[TBD \u2014 leader researching]"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Oil",
+            "shade": "Sheer Tinted Lip Oil"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "no_makeup": {
+        "style_label": "No-Makeup Makeup",
+        "description": "Barely-there coverage that perfects the skin while looking completely natural.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Neutral Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Tinted Lip Balm",
+            "shade": "Neutral Rose Tint"
+          },
+          {
+            "product": "Clear Brow Gel",
+            "shade": "[TBD \u2014 leader researching]"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          }
+        ]
+      },
+      "fresh_dewy": {
+        "style_label": "Fresh Dewy",
+        "description": "Hydrated, glass-skin glow with soft color and a lit-from-within radiance.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Neutral Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Rose Gold"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Gloss",
+            "shade": "Neutral Pink Gloss"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "soft_glam": {
+        "style_label": "Soft Glam",
+        "description": "Polished and put-together with soft neutral tones and defined but not dramatic features.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Neutral Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Bronzer",
+            "shade": "Neutral Bronze"
+          },
+          {
+            "product": "Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Rose Brown"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Rose Gold"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Dusty Rose or Soft Coral"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Medium Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "korean_daily": {
+        "style_label": "Korean Daily",
+        "description": "Youthful and fresh K-beauty inspired look with soft blush, BB cream, and lip tint.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "BB Cream",
+            "shade": "Neutral Beige BB Cream"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Rose Brown"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Tint",
+            "shade": "Neutral Rose Tint"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Medium Brown"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "peach_makeup": {
+        "style_label": "Peach Makeup",
+        "description": "Warm peachy monochromatic look with matching blush, eyeshadow, and lip gloss.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Neutral Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Peach Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Peach Eyeshadow",
+            "shade": "Rose Brown"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Peach Lip Gloss",
+            "shade": "Neutral Pink Gloss"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Rose Gold"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "soft_contour": {
+        "style_label": "Soft Contour",
+        "description": "Subtly sculpted face with soft blending, natural glow, and defined structure.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Neutral Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Contour",
+            "shade": "Neutral Bronze"
+          },
+          {
+            "product": "Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Rose Gold"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Neutral Taupe"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Tint",
+            "shade": "Neutral Rose Tint"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Medium Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "lifted_makeup": {
+        "style_label": "Lifted Makeup",
+        "description": "Eye-lifting techniques with blush and highlight placement to create an uplifted effect.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Neutral Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Rose Brown"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Rose Gold"
+          },
+          {
+            "product": "Lip Gloss",
+            "shade": "Neutral Pink Gloss"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Medium Brown"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "snatched": {
+        "style_label": "Snatched",
+        "description": "Full face with defined contour, bold highlight, and strong features for a sculpted look.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Neutral Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Contour",
+            "shade": "Neutral Bronze"
+          },
+          {
+            "product": "Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Rose Gold"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Rose Brown"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Dusty Rose or Soft Coral"
+          },
+          {
+            "product": "Lip Liner",
+            "shade": "Neutral Nude"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Medium Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "igari": {
+        "style_label": "Igari",
+        "description": "Japanese-style 'hangover blush' look with flushed cheeks and minimal eye makeup.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Neutral Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Cream Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Gloss",
+            "shade": "Neutral Pink Gloss"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "douyin": {
+        "style_label": "Douyin",
+        "description": "Viral Chinese social media look with porcelain skin, straight brows, and puppy eyes.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Neutral Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Rose Brown"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lip Tint",
+            "shade": "Neutral Rose Tint"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Medium Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "strawberry": {
+        "style_label": "Strawberry Girl",
+        "description": "Rosy, berry-toned monochromatic look with flushed cheeks and glossy pink lips.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Skin Tint",
+            "shade": "Neutral Beige Skin Tint"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Rosy Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Pink Eyeshadow",
+            "shade": "Rose Brown"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Berry Lip Gloss",
+            "shade": "Neutral Pink Gloss"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Rose Gold"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "office": {
+        "style_label": "Office Makeup",
+        "description": "Professional and polished with neutral tones, clean liner, and a structured finish.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Neutral Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Neutral Taupe"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Dusty Rose or Soft Coral"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Medium Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "neutral_glam": {
+        "style_label": "Neutral Glam",
+        "description": "Warm neutral tones taken to a glamorous level with defined contour and bold lip.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Neutral Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Contour",
+            "shade": "Neutral Bronze"
+          },
+          {
+            "product": "Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Highlighter",
+            "shade": "Rose Gold"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Rose Brown"
+          },
+          {
+            "product": "Eyeliner",
+            "shade": "Brown or Soft Black"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Dusty Rose or Soft Coral"
+          },
+          {
+            "product": "Lip Liner",
+            "shade": "Neutral Nude"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Medium Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      },
+      "corporate_clean": {
+        "style_label": "Corporate Clean",
+        "description": "Minimal, clean, and professional \u2014 foundation finish with subtle features for the workplace.",
+        "undertone": "neutral",
+        "products": [
+          {
+            "product": "Foundation",
+            "shade": "Neutral Beige"
+          },
+          {
+            "product": "Concealer",
+            "shade": "Neutral Ivory"
+          },
+          {
+            "product": "Blush",
+            "shade": "Dusty Rose"
+          },
+          {
+            "product": "Eyeshadow",
+            "shade": "Neutral Taupe"
+          },
+          {
+            "product": "Mascara",
+            "shade": "Black or Dark Brown"
+          },
+          {
+            "product": "Lipstick",
+            "shade": "Dusty Rose or Soft Coral"
+          },
+          {
+            "product": "Brow Pencil",
+            "shade": "Medium Brown"
+          },
+          {
+            "product": "Setting Powder",
+            "shade": "Translucent"
+          },
+          {
+            "product": "Setting Spray",
+            "shade": "Hydrating Finish Spray"
+          }
+        ]
+      }
+    }
+  }
 }
