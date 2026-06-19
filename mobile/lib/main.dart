@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(const GlowApp());
@@ -17,57 +18,106 @@ class GlowApp extends StatelessWidget {
   }
 }
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _raysAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
+
+    _raysAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    );
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // Get screen size
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    // Scale everything based on screen size
+    final sunSize = screenWidth * 0.32;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(),
-              const Icon(
-                Icons.wb_sunny_rounded,
-                size: 100,
-                color: Color(0xFFFF6EB4),
+
+              // Sun illustration
+              AnimatedBuilder(
+                animation: _raysAnimation,
+                builder: (context, child) {
+                  return CustomPaint(
+                    size: Size(sunSize, sunSize),
+                    painter: SunPainter(_raysAnimation.value),
+                  );
+                },
               ),
-              const SizedBox(height: 24),
-              const Text(
+
+              SizedBox(height: screenHeight * 0.03),
+
+              Text(
                 'GLOW',
                 style: TextStyle(
-                  fontSize: 48,
+                  fontSize: screenWidth * 0.13,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFFFF6EB4),
+                  color: const Color(0xFFFF6EB4),
                   letterSpacing: 8,
                 ),
               ),
-              const Text(
-                'skincare',
+
+              Text(
+                'facial analysis',
                 style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFFFF6EB4),
+                  fontSize: screenWidth * 0.04,
+                  color: const Color(0xFFFF6EB4),
                   letterSpacing: 4,
                 ),
               ),
-              const SizedBox(height: 16),
-              const Text(
+
+              SizedBox(height: screenHeight * 0.02),
+
+              Text(
                 'Discover your perfect aesthetic based on your unique features.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 13,
+                  fontSize: screenWidth * 0.034,
                   fontStyle: FontStyle.italic,
                   color: Colors.grey,
                 ),
               ),
+
               const Spacer(),
+
               SizedBox(
                 width: double.infinity,
-                height: 52,
+                height: screenHeight * 0.065,
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
@@ -76,58 +126,75 @@ class SplashScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  child: const Text(
-                    'Start',
+                  child: Text(
+                    'Start my Journey',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: screenWidth * 0.045,
                       color: Colors.white,
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Color(0xFFFF6EB4)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                      ),
-                      child: const Text(
-                        'About',
-                        style: TextStyle(color: Color(0xFFFF6EB4)),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Color(0xFFFF6EB4)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                      ),
-                      child: const Text(
-                        'Settings',
-                        style: TextStyle(color: Color(0xFFFF6EB4)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 32),
+
+              SizedBox(height: screenHeight * 0.04),
             ],
           ),
         ),
       ),
     );
   }
+}
+
+class SunPainter extends CustomPainter {
+  final double progress;
+
+  SunPainter(this.progress);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = size.width / 2;
+
+    // Light pink ring
+    final ringPaint = Paint()
+      ..color = const Color(0xFFFFB6D9)
+      ..style = PaintingStyle.fill;
+    canvas.drawCircle(center, radius * 0.52, ringPaint);
+
+    // Pink center circle
+    final circlePaint = Paint()
+      ..color = const Color(0xFFFF6EB4)
+      ..style = PaintingStyle.fill;
+    canvas.drawCircle(center, radius * 0.34, circlePaint);
+
+    // Rays
+    final rayPaint = Paint()
+      ..color = const Color(0xFFFFB6D9)
+      ..strokeWidth = size.width * 0.04
+      ..strokeCap = StrokeCap.round;
+
+    const int numRays = 8;
+    final double rayStart = radius * 0.62;
+    final double rayMax = radius * 0.88;
+
+    for (int i = 0; i < numRays; i++) {
+      final angle = (2 * pi / numRays) * i - pi / 2;
+      final animatedEnd = rayStart + (rayMax - rayStart) * progress;
+
+      final start = Offset(
+        center.dx + rayStart * cos(angle),
+        center.dy + rayStart * sin(angle),
+      );
+      final end = Offset(
+        center.dx + animatedEnd * cos(angle),
+        center.dy + animatedEnd * sin(angle),
+      );
+
+      canvas.drawLine(start, end, rayPaint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(SunPainter oldDelegate) =>
+      oldDelegate.progress != progress;
 }
