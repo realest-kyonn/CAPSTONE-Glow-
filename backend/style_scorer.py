@@ -30,20 +30,20 @@ FACE_SHAPE_SCORES = {
 # Eye shape compatibility (✓ = compatible)
 EYE_SHAPE_SCORES = {
     "clean_girl":       ["almond", "monolid", "hooded"],
-    "no_makeup":        ["almond", "round", "monolid", "hooded", "downturned", "close_set"],
+    "no_makeup":        ["almond", "round", "monolid", "hooded", "downturned", "upturned"],
     "fresh_dewy":       ["almond", "monolid", "round"],
     "soft_glam":        ["almond", "downturned", "hooded"],
     "korean_daily":     ["monolid", "almond", "round"],
     "peach_makeup":     ["almond", "monolid", "round"],
-    "soft_contour":     ["almond", "round", "monolid", "hooded", "downturned", "close_set"],
+    "soft_contour":     ["almond", "round", "monolid", "hooded", "downturned", "upturned"],
     "lifted_makeup":    ["hooded", "downturned", "monolid"],
-    "snatched":         ["almond", "hooded", "close_set"],
+    "snatched":         ["almond", "hooded", "upturned"],
     "igari":            ["monolid", "almond", "round"],
     "douyin":           ["monolid", "almond", "round"],
     "strawberry":       ["round", "almond", "monolid"],
-    "office":           ["almond", "round", "monolid", "hooded", "downturned", "close_set"],
-    "neutral_glam":     ["almond", "downturned", "close_set"],
-    "corporate_clean":  ["almond", "round", "monolid", "hooded", "downturned", "close_set"],
+    "office":           ["almond", "round", "monolid", "hooded", "downturned", "upturned"],
+    "neutral_glam":     ["almond", "downturned", "upturned"],
+    "corporate_clean":  ["almond", "round", "monolid", "hooded", "downturned", "upturned"],
 }
 
 # Undertone compatibility
@@ -113,14 +113,14 @@ def score_styles(undertone, face_shape, eye_shape):
 
     Args:
         undertone:   String - "warm", "cool", or "neutral"
-        face_shape:  String - "oval", "round", "square", "heart", "oblong"
-        eye_shape:   String - "almond", "round", "monolid", "hooded", "downturned", "close_set"
+        face_shape:  String - "oval", "round", "square", "heart", "long"
+        eye_shape:   String - "almond", "round", "monolid", "hooded", "downturned", "upturned"
 
     Returns:
         List of top 3 styles with scores and descriptions
     """
 
-    # Normalize oblong to long (same shape, different name)
+    # Normalize long to long (same shape, different name)
     if face_shape == "oblong":
         face_shape = "long"
 
