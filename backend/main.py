@@ -129,10 +129,11 @@ def get_how_to_apply(chosen_style):
 if __name__ == "__main__":
     import os
 
-    # Build the path relative to this file so it works on any machine,
-    # regardless of username or folder structure above backend/
     BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
     test_image = os.path.join(BASE_DIR, "..", "data", "images", "img001.jpg")
+    test_image = os.path.abspath(test_image)
+
+    print(f"[DEBUG] Looking for image at: {test_image}")
 
     if not os.path.exists(test_image):
         print(f"❌ Test image not found at: {test_image}")
