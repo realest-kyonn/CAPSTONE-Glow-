@@ -121,7 +121,7 @@ def score_styles(undertone, face_shape, eye_shape):
     """
 
     # Normalize long to long (same shape, different name)
-    if face_shape == "oblong":
+    if face_shape == "Long":
         face_shape = "long"
 
     scores = {}
