@@ -1,303 +1,179 @@
 """
 Capstone Glow - Recommendation Engine (Phase 3 — What To Use)
-Returns product list + shades based on undertone and makeup style
-Shades are based on UNDERTONE (warm/cool/neutral)
-Product list varies per STYLE
-NOTE: Items marked [TBD] need leader's final research
+
+Returns the full "What To Use" payload for a chosen makeup style:
+    - Suggested shade per product (looked up by undertone + Monk scale)
+    - Prep items (no shade needed — general skincare prep)
+    - Tools (no shade needed — brushes, lash curler, tape, etc.)
+    - A general prep tip
+
+Shade lookup logic:
+    Each shaded product has 3 undertone rows (warm / neutral / cool),
+    each with 10 shades corresponding to Monk Scale M1 (lightest) -> M10 (deepest).
+
+    shade = recommendations.json["shades"][product_slug][undertone][monk_scale - 1]
+
+Data source:
+    recommendations.json (generated from the Glow Makeup Style Guide Word doc)
 """
 
-# ── SHADES BY UNDERTONE ────────────────────────────────────
-# These are the same regardless of style
-SHADES = {
-    "warm": {
-        "foundation":     "Golden Beige",
-        "concealer":      "Warm Ivory",
-        "blush":          "Peach",
-        "bronzer":        "Warm Tan",
-        "highlighter":    "Champagne Gold",
-        "eyeshadow_base": "Warm Taupe",
-        "eyeshadow_lid":  "Soft Bronze",
-        "eyeliner":       "Brown or Soft Black",
-        "mascara":        "Black or Dark Brown",
-        "brow_product":   "Warm Brown",
-        "lip_liner":      "Nude Peach",
-        "lipstick":       "Coral or Peachy Nude",
-        "lip_gloss":      "Peachy Pink Gloss",
-        "lip_oil":        "Peach Tinted Lip Oil",
-        "lip_tint":       "Warm Rose Tint",
-        "setting_powder": "Translucent or Warm Beige",
-        "setting_spray":  "Dewy Finish Spray",
-        "primer":         "Luminous Hydrating Primer",
-        "skin_tint":      "Golden Beige Skin Tint",
-        "bb_cream":       "Warm Beige BB Cream",
-    },
-    "cool": {
-        "foundation":     "Rose Beige",
-        "concealer":      "Cool Ivory",
-        "blush":          "Soft Pink",
-        "bronzer":        "Cool Bronze",
-        "highlighter":    "Pearl or Icy Pink",
-        "eyeshadow_base": "Cool Taupe",
-        "eyeshadow_lid":  "Soft Mauve",
-        "eyeliner":       "Black or Dark Gray",
-        "mascara":        "Black",
-        "brow_product":   "Cool Ash Brown",
-        "lip_liner":      "Mauve Pink",
-        "lipstick":       "Berry or Mauve",
-        "lip_gloss":      "Pink Gloss",
-        "lip_oil":        "Pink Tinted Lip Oil",
-        "lip_tint":       "Rose Tint",
-        "setting_powder": "Translucent or Lavender-toned",
-        "setting_spray":  "Natural Finish Spray",
-        "primer":         "Pore-minimizing Primer",
-        "skin_tint":      "Rose Beige Skin Tint",
-        "bb_cream":       "Cool Beige BB Cream",
-    },
-    "neutral": {
-        "foundation":     "Neutral Beige",
-        "concealer":      "Neutral Ivory",
-        "blush":          "Dusty Rose",
-        "bronzer":        "Neutral Bronze",
-        "highlighter":    "Rose Gold",
-        "eyeshadow_base": "Neutral Taupe",
-        "eyeshadow_lid":  "Rose Brown",
-        "eyeliner":       "Brown or Soft Black",
-        "mascara":        "Black or Dark Brown",
-        "brow_product":   "Medium Brown",
-        "lip_liner":      "Neutral Nude",
-        "lipstick":       "Dusty Rose or Soft Coral",
-        "lip_gloss":      "Neutral Pink Gloss",
-        "lip_oil":        "Sheer Tinted Lip Oil",
-        "lip_tint":       "Neutral Rose Tint",
-        "setting_powder": "Translucent",
-        "setting_spray":  "Hydrating Finish Spray",
-        "primer":         "Hydrating Primer",
-        "skin_tint":      "Neutral Beige Skin Tint",
-        "bb_cream":       "Neutral Beige BB Cream",
-    }
-}
+import json
+import os
 
-# ── PRODUCTS PER STYLE ─────────────────────────────────────
-# Each style has a list of products with shade keys
-# Format: { "display_name": "shade_key_from_SHADES" }
-# "[TBD]" = leader still researching
+# ── LOAD DATA ────────────────────────────────────────────────
+_DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "recommendations.json")
 
-STYLE_PRODUCTS = {
-    "clean_girl": {
-        "Skin Tint":        "skin_tint",
-        "Concealer":        "concealer",
-        "Cream Blush":      "blush",
-        "Clear Brow Gel":   "[TBD]",
-        "Mascara":          "mascara",
-        "Lip Oil":          "lip_oil",
-        "Setting Spray":    "setting_spray",
-    },
-    "no_makeup": {
-        "Skin Tint":        "skin_tint",
-        "Concealer":        "concealer",
-        "Tinted Lip Balm":  "lip_tint",
-        "Clear Brow Gel":   "[TBD]",
-        "Mascara":          "mascara",
-    },
-    "fresh_dewy": {
-        "Skin Tint":        "skin_tint",
-        "Concealer":        "concealer",
-        "Cream Blush":      "blush",
-        "Highlighter":      "highlighter",
-        "Mascara":          "mascara",
-        "Lip Gloss":        "lip_gloss",
-        "Setting Spray":    "setting_spray",
-    },
-    "soft_glam": {
-        "Foundation":       "foundation",
-        "Concealer":        "concealer",
-        "Bronzer":          "bronzer",
-        "Blush":            "blush",
-        "Eyeshadow":        "eyeshadow_lid",
-        "Eyeliner":         "eyeliner",
-        "Mascara":          "mascara",
-        "Highlighter":      "highlighter",
-        "Lipstick":         "lipstick",
-        "Brow Pencil":      "brow_product",
-        "Setting Powder":   "setting_powder",
-        "Setting Spray":    "setting_spray",
-    },
-    "korean_daily": {
-        "BB Cream":         "bb_cream",
-        "Concealer":        "concealer",
-        "Cream Blush":      "blush",
-        "Eyeshadow":        "eyeshadow_lid",
-        "Mascara":          "mascara",
-        "Lip Tint":         "lip_tint",
-        "Brow Pencil":      "brow_product",
-        "Setting Spray":    "setting_spray",
-    },
-    "peach_makeup": {
-        "Skin Tint":        "skin_tint",
-        "Concealer":        "concealer",
-        "Peach Blush":      "blush",
-        "Peach Eyeshadow":  "eyeshadow_lid",
-        "Mascara":          "mascara",
-        "Peach Lip Gloss":  "lip_gloss",
-        "Highlighter":      "highlighter",
-        "Setting Spray":    "setting_spray",
-    },
-    "soft_contour": {
-        "Foundation":       "foundation",
-        "Concealer":        "concealer",
-        "Contour":          "bronzer",
-        "Blush":            "blush",
-        "Highlighter":      "highlighter",
-        "Eyeshadow":        "eyeshadow_base",
-        "Mascara":          "mascara",
-        "Lip Tint":         "lip_tint",
-        "Brow Pencil":      "brow_product",
-        "Setting Powder":   "setting_powder",
-        "Setting Spray":    "setting_spray",
-    },
-    "lifted_makeup": {
-        "Foundation":       "foundation",
-        "Concealer":        "concealer",
-        "Blush":            "blush",
-        "Eyeshadow":        "eyeshadow_lid",
-        "Eyeliner":         "eyeliner",
-        "Mascara":          "mascara",
-        "Highlighter":      "highlighter",
-        "Lip Gloss":        "lip_gloss",
-        "Brow Pencil":      "brow_product",
-        "Setting Spray":    "setting_spray",
-    },
-    "snatched": {
-        "Foundation":       "foundation",
-        "Concealer":        "concealer",
-        "Contour":          "bronzer",
-        "Blush":            "blush",
-        "Highlighter":      "highlighter",
-        "Eyeshadow":        "eyeshadow_lid",
-        "Eyeliner":         "eyeliner",
-        "Mascara":          "mascara",
-        "Lipstick":         "lipstick",
-        "Lip Liner":        "lip_liner",
-        "Brow Pencil":      "brow_product",
-        "Setting Powder":   "setting_powder",
-        "Setting Spray":    "setting_spray",
-    },
-    "igari": {
-        "Skin Tint":        "skin_tint",
-        "Concealer":        "concealer",
-        "Cream Blush":      "blush",
-        "Mascara":          "mascara",
-        "Lip Gloss":        "lip_gloss",
-        "Setting Spray":    "setting_spray",
-    },
-    "douyin": {
-        "Foundation":       "foundation",
-        "Concealer":        "concealer",
-        "Blush":            "blush",
-        "Eyeshadow":        "eyeshadow_lid",
-        "Eyeliner":         "eyeliner",
-        "Mascara":          "mascara",
-        "Lip Tint":         "lip_tint",
-        "Brow Pencil":      "brow_product",
-        "Setting Powder":   "setting_powder",
-        "Setting Spray":    "setting_spray",
-    },
-    "strawberry": {
-        "Skin Tint":        "skin_tint",
-        "Concealer":        "concealer",
-        "Rosy Blush":       "blush",
-        "Pink Eyeshadow":   "eyeshadow_lid",
-        "Mascara":          "mascara",
-        "Berry Lip Gloss":  "lip_gloss",
-        "Highlighter":      "highlighter",
-        "Setting Spray":    "setting_spray",
-    },
-    "office": {
-        "Foundation":       "foundation",
-        "Concealer":        "concealer",
-        "Blush":            "blush",
-        "Eyeshadow":        "eyeshadow_base",
-        "Eyeliner":         "eyeliner",
-        "Mascara":          "mascara",
-        "Lipstick":         "lipstick",
-        "Brow Pencil":      "brow_product",
-        "Setting Powder":   "setting_powder",
-        "Setting Spray":    "setting_spray",
-    },
-    "neutral_glam": {
-        "Foundation":       "foundation",
-        "Concealer":        "concealer",
-        "Contour":          "bronzer",
-        "Blush":            "blush",
-        "Highlighter":      "highlighter",
-        "Eyeshadow":        "eyeshadow_lid",
-        "Eyeliner":         "eyeliner",
-        "Mascara":          "mascara",
-        "Lipstick":         "lipstick",
-        "Lip Liner":        "lip_liner",
-        "Brow Pencil":      "brow_product",
-        "Setting Powder":   "setting_powder",
-        "Setting Spray":    "setting_spray",
-    },
-    "corporate_clean": {
-        "Foundation":       "foundation",
-        "Concealer":        "concealer",
-        "Blush":            "blush",
-        "Eyeshadow":        "eyeshadow_base",
-        "Mascara":          "mascara",
-        "Lipstick":         "lipstick",
-        "Brow Pencil":      "brow_product",
-        "Setting Powder":   "setting_powder",
-        "Setting Spray":    "setting_spray",
-    },
-}
+with open(_DATA_PATH, "r", encoding="utf-8") as f:
+    _DATA = json.load(f)
+
+SHADES              = _DATA["shades"]
+PRODUCT_NAMES       = _DATA["product_display_names"]
+STYLES              = _DATA["styles"]
 
 
-# ── MAIN FUNCTION ──────────────────────────────────────────
-def get_makeup_recommendation(undertone, face_shape, eye_shape, makeup_style):
+# ── HELPERS ──────────────────────────────────────────────────
+def _get_shade(product_slug, undertone, monk_scale):
     """
-    Returns what products to use and their shades.
+    Looks up the suggested shade for a single product.
+
+    Args:
+        product_slug: internal product key, e.g. "concealer"
+        undertone:    "warm", "cool", or "neutral"
+        monk_scale:   int, 1-10
+
+    Returns:
+        str — the suggested shade name, or a fallback message if not found
+    """
+    product_shades = SHADES.get(product_slug)
+    if not product_shades:
+        return "Shade not available"
+
+    undertone_shades = product_shades.get(undertone) or product_shades.get("neutral")
+    if not undertone_shades:
+        return "Shade not available"
+
+    # Clamp monk_scale to valid 1-10 range just in case
+    index = max(1, min(10, monk_scale)) - 1
+
+    try:
+        return undertone_shades[index]
+    except (IndexError, TypeError):
+        return "Shade not available"
+
+
+# ── MAIN FUNCTION ────────────────────────────────────────────
+def get_makeup_recommendation(undertone, monk_scale, face_shape, eye_shape, makeup_style):
+    """
+    Returns the complete "What To Use" payload for a chosen makeup style.
 
     Args:
         undertone:    "warm", "cool", or "neutral"
-        face_shape:   "oval", "round", "square", "heart", "oblong"
-        eye_shape:    "almond", "round", "monolid", "hooded", "downturned", "close_set"
-        makeup_style: style key e.g. "clean_girl", "soft_glam"
+        monk_scale:   int, 1-10 (Monk Skin Tone Scale)
+        face_shape:   "oval", "round", "square", "heart", "long"
+                      (not currently used for shade selection — reserved)
+        eye_shape:    "almond", "round", "monolid", "hooded", "downturned", "upturned"
+                      (not currently used for shade selection — reserved)
+        makeup_style: style key, e.g. "clean_girl", "soft_glam"
 
     Returns:
-        List of products with shades
+        dict with:
+            style_name:    display name of the chosen style
+            products:      list of { "product": display_name, "shade": "Suggested: ..." }
+            prep_items:    list of prep items (no shade needed)
+            tools:         list of tools (no shade needed)
+            tip:           general prep tip string
     """
 
-    shades = SHADES.get(undertone, SHADES["neutral"])
-    products = STYLE_PRODUCTS.get(makeup_style, {})
+    style = STYLES.get(makeup_style)
+    if not style:
+        return {
+            "error": f"Unknown makeup style: {makeup_style}"
+        }
 
-    result = []
-    for product_name, shade_key in products.items():
-        if shade_key == "[TBD]":
-            shade = "[TBD — leader researching]"
-        else:
-            shade = shades.get(shade_key, "[TBD]")
-
-        result.append({
-            "product": product_name,
-            "shade":   shade
+    products_output = []
+    for product_slug in style["products"]:
+        display_name = PRODUCT_NAMES.get(product_slug, product_slug.replace("_", " ").title())
+        shade = _get_shade(product_slug, undertone, monk_scale)
+        products_output.append({
+            "product": display_name,
+            "shade":   f"Suggested: {shade}"
         })
 
-    return result
+    return {
+        "style_name":  style["name"],
+        "products":    products_output,
+        "prep_items":  style["prep_items"],
+        "tools":       style["tools"],
+        "tip":         style.get("general_tip", "Make sure to properly prep your face before putting on makeup.")
+    }
+
+
+# ── TUTORIAL (Phase 4 — called when user taps "Let's Start") ─
+def get_tutorial(makeup_style):
+    """
+    Returns the step-by-step tutorial for a chosen makeup style,
+    split into two labeled sections so the UI can show them as
+    separate headed groups with their own step numbering:
+
+        1. Skin Prep            (prep the face before any makeup)
+        2. Makeup Application   (the actual makeup steps)
+
+    Called separately from get_makeup_recommendation(), once the
+    user taps "Let's Start" on the "What To Use" screen.
+
+    Args:
+        makeup_style: style key, e.g. "clean_girl", "soft_glam"
+
+    Returns:
+        dict with:
+            style_name:          display name of the chosen style
+            skin_prep:           list of skin prep steps
+            makeup_application:  list of makeup application steps
+            tips:                list of style-specific tips
+    """
+
+    style = STYLES.get(makeup_style)
+    if not style:
+        return {
+            "error": f"Unknown makeup style: {makeup_style}"
+        }
+
+    tutorial = style["tutorial"]
+
+    return {
+        "style_name":         style["name"],
+        "skin_prep":          tutorial.get("skin_prep", []),
+        "makeup_application": tutorial.get("makeup_application", []),
+        "tips":               style["tips"]
+    }
 
 
 # ── TEST ───────────────────────────────────────────────────
 if __name__ == "__main__":
     result = get_makeup_recommendation(
         undertone    = "warm",
+        monk_scale   = 4,
         face_shape   = "oval",
         eye_shape    = "almond",
         makeup_style = "clean_girl"
     )
 
     print("=== Capstone Glow — What To Use ===")
-    print("Style: Clean Girl Makeup")
-    print("Undertone: Warm | Face: Oval | Eyes: Almond")
+    print(f"Style: {result['style_name']}")
+    print("Undertone: Warm | Monk Scale: 4 | Face: Oval | Eyes: Almond")
     print()
-    for item in result:
-        print(f"  {item['product']}: {item['shade']}")
+    print("For this make-up style you will need:")
+    for item in result["products"]:
+        print(f"  {item['product']:<28} {item['shade']}")
+
+    if result["prep_items"]:
+        print("\nSkin Prep (no shade needed):")
+        for item in result["prep_items"]:
+            print(f"  - {item}")
+
+    if result["tools"]:
+        print("\nTools:")
+        for item in result["tools"]:
+            print(f"  - {item}")
+
+    print(f"\nTip: {result['tip']}")

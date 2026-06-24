@@ -11,7 +11,7 @@ from skin_tone_detector import detect_skin_tone
 from eye_shape_detector import detect_eye_shape
 from face_shape_detector import detect_face_shape
 from style_scorer import score_styles
-from recommendations import get_makeup_recommendation
+from recommendations import get_makeup_recommendation, get_tutorial
 
 
 # ── PHASE 1 + 2: Analyze face and return top 3 styles ──────
@@ -68,23 +68,25 @@ def analyze_face(image_path):
 
 
 # ── PHASE 3: Get what to use based on chosen style ─────────
-def get_recommendations(undertone, face_shape, eye_shape, chosen_style):
+def get_recommendations(undertone, monk_scale, face_shape, eye_shape, chosen_style):
     """
     Takes detected features + user's chosen style
     Returns complete list of products and shades to use
 
     Args:
         undertone:     "warm", "cool", or "neutral"
+        monk_scale:    int, 1-10 (Monk Skin Tone Scale)
         face_shape:    "oval", "round", "square", "heart", "long"
         eye_shape:     "almond", "round", "monolid", "hooded", "downturned", "upturned"
         chosen_style:  style key e.g. "clean_girl", "soft_glam"
 
     Returns:
-        Dictionary with products and shades
+        Dictionary with products, shades, prep items, tools, and tip
     """
 
-    products = get_makeup_recommendation(
+    recommendation = get_makeup_recommendation(
         undertone    = undertone,
+        monk_scale   = monk_scale,
         face_shape   = face_shape,
         eye_shape    = eye_shape,
         makeup_style = chosen_style
@@ -94,15 +96,48 @@ def get_recommendations(undertone, face_shape, eye_shape, chosen_style):
         "phase":        3,
         "chosen_style": chosen_style,
         "undertone":    undertone,
+        "monk_scale":   monk_scale,
         "face_shape":   face_shape,
         "eye_shape":    eye_shape,
-        "products":     products
+        **recommendation
+    }
+
+
+# ── PHASE 4: Get step-by-step tutorial (user tapped "Let's Start") ─
+def get_how_to_apply(chosen_style):
+    """
+    Takes the user's chosen style and returns the step-by-step tutorial.
+    Called when the user taps "Let's Start" on the "What To Use" screen.
+
+    Args:
+        chosen_style: style key e.g. "clean_girl", "soft_glam"
+
+    Returns:
+        Dictionary with style name, tutorial steps, and tips
+    """
+
+    tutorial = get_tutorial(chosen_style)
+
+    return {
+        "phase":        4,
+        "chosen_style": chosen_style,
+        **tutorial
     }
 
 
 # ── TEST ───────────────────────────────────────────────────
 if __name__ == "__main__":
-    test_image = r"C:\Users\Kean_2\Documents\GitHub\CAPSTONE (Glow)\data\images\img001.jpg"
+    import os
+
+    # Build the path relative to this file so it works on any machine,
+    # regardless of username or folder structure above backend/
+    BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+    test_image = os.path.join(BASE_DIR, "..", "data", "images", "img001.jpg")
+
+    if not os.path.exists(test_image):
+        print(f"❌ Test image not found at: {test_image}")
+        print("   Update 'test_image' above to point to a real file in your data/images folder.")
+        exit()
 
     print("=" * 52)
     print("  CAPSTONE GLOW — FULL PIPELINE TEST")
@@ -135,14 +170,50 @@ if __name__ == "__main__":
     print(f"\n💄 PHASE 3 — What To Use:")
     recs = get_recommendations(
         undertone    = features["undertone"],
+        monk_scale   = features["monk_scale"],
         face_shape   = features["face_shape"],
         eye_shape    = features["eye_shape"],
         chosen_style = chosen
     )
 
+    print(f"\nFor this make-up style you will need:")
     for item in recs["products"]:
-        print(f"   {item['product']:<20} {item['shade']}")
+        print(f"   {item['product']:<28} {item['shade']}")
+
+    if recs.get("prep_items"):
+        print(f"\nSkin Prep (no shade needed):")
+        for item in recs["prep_items"]:
+            print(f"   - {item}")
+
+    if recs.get("tools"):
+        print(f"\nTools:")
+        for item in recs["tools"]:
+            print(f"   - {item}")
+
+    print(f"\nTip: {recs.get('tip', '')}")
+
+    # PHASE 4: user taps "Let's Start"
+    print("\n👆 User taps: Let's Start")
+
+    print(f"\n📖 PHASE 4 — Step-by-Step Tutorial:")
+    tutorial_result = get_how_to_apply(chosen)
+
+    if "error" in tutorial_result:
+        print(f"❌ Error: {tutorial_result['error']}")
+        exit()
+
+    print(f"\nSkin Prep:")
+    for i, step in enumerate(tutorial_result["skin_prep"], 1):
+        print(f"   {i}. {step}")
+
+    print(f"\nMakeup Application:")
+    for i, step in enumerate(tutorial_result["makeup_application"], 1):
+        print(f"   {i}. {step}")
+
+    print(f"\nTips:")
+    for tip in tutorial_result["tips"]:
+        print(f"   - {tip}")
 
     print("\n" + "=" * 52)
-    print("  Phase 4 (How To Apply) — Coming soon!")
+    print("  PIPELINE COMPLETE")
     print("=" * 52)
