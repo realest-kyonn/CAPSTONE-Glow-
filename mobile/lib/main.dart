@@ -33,12 +33,15 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
+
+    // Animation plays once when screen opens
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 900),
+      duration: const Duration(milliseconds: 1000),
     );
 
-    _raysAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+    // Rays come in from far out to normal position
+    _raysAnimation = Tween<double>(begin: 2.0, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOut),
     );
 
@@ -53,91 +56,118 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    // Get screen size
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    // Scale everything based on screen size
-    final sunSize = screenWidth * 0.32;
+    // This makes it always look like a phone screen
+    // Max width of 420 so it doesn't stretch on PC
+    final double contentWidth = screenWidth > 420 ? 420 : screenWidth;
+
+    // Sun size based on content width
+    final double sunSize = contentWidth * 0.32;
+
+    // Font sizes based on content width
+    final double titleSize = contentWidth * 0.13;
+    final double subtitleSize = contentWidth * 0.045;
+    final double taglineSize = contentWidth * 0.038;
+    final double buttonFontSize = contentWidth * 0.048;
+    final double buttonHeight = contentWidth * 0.14;
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
-          child: Column(
-            children: [
-              const Spacer(),
+      body: Center(
+        // Center the content and limit max width (for PC)
+        child: SizedBox(
+          width: contentWidth,
+          height: screenHeight,
+          child: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: contentWidth * 0.08),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Spacer(),
 
-              // Sun illustration
-              AnimatedBuilder(
-                animation: _raysAnimation,
-                builder: (context, child) {
-                  return CustomPaint(
-                    size: Size(sunSize, sunSize),
-                    painter: SunPainter(_raysAnimation.value),
-                  );
-                },
-              ),
-
-              SizedBox(height: screenHeight * 0.03),
-
-              Text(
-                'GLOW',
-                style: TextStyle(
-                  fontSize: screenWidth * 0.13,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFFFF6EB4),
-                  letterSpacing: 8,
-                ),
-              ),
-
-              Text(
-                'facial analysis',
-                style: TextStyle(
-                  fontSize: screenWidth * 0.04,
-                  color: const Color(0xFFFF6EB4),
-                  letterSpacing: 4,
-                ),
-              ),
-
-              SizedBox(height: screenHeight * 0.02),
-
-              Text(
-                'Discover your perfect aesthetic based on your unique features.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: screenWidth * 0.034,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.grey,
-                ),
-              ),
-
-              const Spacer(),
-
-              SizedBox(
-                width: double.infinity,
-                height: screenHeight * 0.065,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFFF6EB4),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
+                  // Animated sun illustration
+                  AnimatedBuilder(
+                    animation: _raysAnimation,
+                    builder: (context, child) {
+                      return CustomPaint(
+                        size: Size(sunSize, sunSize),
+                        painter: SunPainter(_raysAnimation.value),
+                      );
+                    },
                   ),
-                  child: Text(
-                    'Start my Journey',
+
+                  SizedBox(height: screenHeight * 0.03),
+
+                  // GLOW title — no letter spacing overflow
+                  Text(
+                    'GLOW',
+                    maxLines: 1,
                     style: TextStyle(
-                      fontSize: screenWidth * 0.045,
-                      color: Colors.white,
+                      fontSize: titleSize,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFFFF6EB4),
+                      letterSpacing: titleSize * 0.15,
                     ),
                   ),
-                ),
-              ),
 
-              SizedBox(height: screenHeight * 0.04),
-            ],
+                  // Subtitle
+                  Text(
+                    'facial analysis',
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontSize: subtitleSize,
+                      color: const Color(0xFFFF6EB4),
+                      letterSpacing: subtitleSize * 0.2,
+                    ),
+                  ),
+
+                  SizedBox(height: screenHeight * 0.02),
+
+                  // Tagline
+                  Text(
+                    'Discover your perfect aesthetic based on your unique features.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: taglineSize,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.grey,
+                    ),
+                  ),
+
+                  const Spacer(),
+
+                  // Start my Journey button
+                  SizedBox(
+                    width: double.infinity,
+                    height: buttonHeight,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // TODO: Navigate to Tutorial Screen
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFFF6EB4),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: Text(
+                        'Start my Journey',
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontSize: buttonFontSize,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: screenHeight * 0.04),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -145,10 +175,11 @@ class _SplashScreenState extends State<SplashScreen>
   }
 }
 
+// Custom painter for the sun with animated rays
 class SunPainter extends CustomPainter {
-  final double progress;
+  final double raysDistance;
 
-  SunPainter(this.progress);
+  SunPainter(this.raysDistance);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -161,40 +192,43 @@ class SunPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
     canvas.drawCircle(center, radius * 0.52, ringPaint);
 
-    // Pink center circle
+    // Hot pink center circle
     final circlePaint = Paint()
       ..color = const Color(0xFFFF6EB4)
       ..style = PaintingStyle.fill;
     canvas.drawCircle(center, radius * 0.34, circlePaint);
 
-    // Rays
+    // Ray styling
     final rayPaint = Paint()
       ..color = const Color(0xFFFFB6D9)
       ..strokeWidth = size.width * 0.04
       ..strokeCap = StrokeCap.round;
 
     const int numRays = 8;
-    final double rayStart = radius * 0.62;
-    final double rayMax = radius * 0.88;
+    final double rayEnd = radius * 0.88;
+
+    // raysDistance starts at 2.0 (far out) and animates to 1.0 (normal)
+    final double rayStart = radius * 0.62 * raysDistance;
 
     for (int i = 0; i < numRays; i++) {
       final angle = (2 * pi / numRays) * i - pi / 2;
-      final animatedEnd = rayStart + (rayMax - rayStart) * progress;
 
-      final start = Offset(
+      final startPoint = Offset(
         center.dx + rayStart * cos(angle),
         center.dy + rayStart * sin(angle),
       );
-      final end = Offset(
-        center.dx + animatedEnd * cos(angle),
-        center.dy + animatedEnd * sin(angle),
+      final endPoint = Offset(
+        center.dx + rayEnd * cos(angle),
+        center.dy + rayEnd * sin(angle),
       );
 
-      canvas.drawLine(start, end, rayPaint);
+      if (rayStart <= rayEnd) {
+        canvas.drawLine(startPoint, endPoint, rayPaint);
+      }
     }
   }
 
   @override
   bool shouldRepaint(SunPainter oldDelegate) =>
-      oldDelegate.progress != progress;
+      oldDelegate.raysDistance != raysDistance;
 }
