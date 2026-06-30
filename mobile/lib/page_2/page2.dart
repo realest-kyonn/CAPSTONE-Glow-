@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../page_6_camera/camera.dart';
 
 // Tutorial / Onboarding Screen — Page 2
 class TutorialScreen extends StatefulWidget {
@@ -146,7 +147,13 @@ class _TutorialScreenState extends State<TutorialScreen>
                     height: contentWidth * 0.14,
                     child: OutlinedButton(
                       onPressed: () {
-                        // TODO: Navigate to Home Dashboard (Page 3)
+                        // TEMP: Navigate directly to Camera Screen for testing
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CameraScreen(),
+                          ),
+                        );
                       },
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(
