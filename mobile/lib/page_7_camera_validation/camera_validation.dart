@@ -6,21 +6,43 @@ class ImageValidationScreen extends StatefulWidget {
   // The captured photo path passed in from the Camera Screen
   final String imagePath;
 
-  const ImageValidationScreen({super.key, required this.imagePath});
+  // Real check results passed in from the Camera Screen
+  final bool brightnessOk;
+  final bool faceDetected;
+  final bool distanceOk;
+  final bool blurOk;
+
+  const ImageValidationScreen({
+    super.key,
+    required this.imagePath,
+    required this.brightnessOk,
+    required this.faceDetected,
+    required this.distanceOk,
+    required this.blurOk,
+  });
 
   @override
   State<ImageValidationScreen> createState() => _ImageValidationScreenState();
 }
 
 class _ImageValidationScreenState extends State<ImageValidationScreen> {
-  // Validation results — TODO: replace with real checks later
-  bool _blurCheckPassed = true;
-  bool _brightnessCheckPassed = true;
-  bool _faceVisibilityPassed = true;
+  // Validation results — now driven by the real checks from camera.dart
+  late bool _blurCheckPassed;
+  late bool _brightnessCheckPassed;
+  late bool _faceVisibilityPassed;
 
   // Whether all 3 checks passed (controls if "Continue" is enabled)
   bool get _allChecksPassed =>
       _blurCheckPassed && _brightnessCheckPassed && _faceVisibilityPassed;
+
+  @override
+  void initState() {
+    super.initState();
+    _blurCheckPassed = widget.blurOk;
+    _brightnessCheckPassed = widget.brightnessOk;
+    // Face visibility = face was detected AND at the right distance
+    _faceVisibilityPassed = widget.faceDetected && widget.distanceOk;
+  }
 
   @override
   Widget build(BuildContext context) {
