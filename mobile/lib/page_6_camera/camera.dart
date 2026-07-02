@@ -299,16 +299,28 @@ class _CameraScreenState extends State<CameraScreen> {
 
   // Builds the camera preview without stretching, filling the screen
   // by scaling based on the actual screen vs camera aspect ratio.
+  // On Android, previewSize is reported in landscape orientation
+  // even when the device is in portrait — so we invert it when needed.
   Widget _buildCameraPreview() {
     final size = MediaQuery.of(context).size;
-    var scale = size.aspectRatio * _controller!.value.aspectRatio;
+    final deviceRatio = size.width / size.height;
+
+    var previewRatio = _controller!.value.aspectRatio;
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
+
+    if (isPortrait && previewRatio > 1) {
+      previewRatio = 1 / previewRatio;
+    }
+
+    var scale = deviceRatio / previewRatio;
     if (scale < 1) scale = 1 / scale;
 
     return Transform.scale(
       scale: scale,
       child: Center(
         child: AspectRatio(
-          aspectRatio: _controller!.value.aspectRatio,
+          aspectRatio: previewRatio,
           child: CameraPreview(_controller!),
         ),
       ),
