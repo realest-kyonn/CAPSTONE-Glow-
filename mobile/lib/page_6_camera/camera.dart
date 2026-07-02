@@ -224,7 +224,14 @@ class _CameraScreenState extends State<CameraScreen> {
           // Camera preview fills the screen
           if (_isCameraReady && _controller != null)
             Positioned.fill(
-              child: CameraPreview(_controller!),
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                  width: _controller!.value.previewSize!.height,
+                  height: _controller!.value.previewSize!.width,
+                  child: CameraPreview(_controller!),
+                ),
+              ),
             )
           else
             const Center(
