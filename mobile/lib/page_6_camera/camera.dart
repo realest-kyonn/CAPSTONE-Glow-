@@ -18,22 +18,21 @@ class _CameraScreenState extends State<CameraScreen> {
   List<CameraDescription>? _cameras;
   bool _isCameraReady = false;
 
+  // Face detector from ML Kit
   final FaceDetector _faceDetector = FaceDetector(
     options: FaceDetectorOptions(performanceMode: FaceDetectorMode.fast),
   );
 
+  // Prevents overlapping frame processing
   bool _isDetecting = false;
+
+  // Current guidance message shown to the user
   String _guidanceMessage = 'Position your face within the guide';
+
+  // Whether everything looks good (face centered, right distance, good light)
   bool _isReadyToCapture = false;
 
-  // Real check results to pass to validation screen
-  bool _brightnessOk = false;
-  bool _faceDetected = false;
-  bool _distanceOk = false;
-  bool _blurOk = false;
-
-  // Blur threshold — tune based on your testing (see note below)
-  static const double _blurThreshold = 6.0;
+  double _lastBrightness = 0.0;
 
   @override
   void initState() {
@@ -41,6 +40,7 @@ class _CameraScreenState extends State<CameraScreen> {
     _initCamera();
   }
 
+  // Initialize the camera (front camera preferred for face scan)
   Future<void> _initCamera() async {
     try {
       _cameras = await availableCameras();
@@ -54,6 +54,7 @@ class _CameraScreenState extends State<CameraScreen> {
         frontCamera,
         ResolutionPreset.medium,
         enableAudio: false,
+        // YUV420 format needed for ML Kit + brightness analysis
         imageFormatGroup: ImageFormatGroup.yuv420,
       );
 
@@ -63,6 +64,8 @@ class _CameraScreenState extends State<CameraScreen> {
         setState(() {
           _isCameraReady = true;
         });
+
+        // Start streaming frames for live detection
         _controller!.startImageStream(_processCameraImage);
       }
     } catch (e) {
@@ -70,44 +73,23 @@ class _CameraScreenState extends State<CameraScreen> {
     }
   }
 
-  // Runs on every camera frame — checks lighting + blur + face distance
+  // Runs on every camera frame — checks lighting + face distance
   void _processCameraImage(CameraImage image) async {
-    if (_isDetecting) return;
+    if (_isDetecting) return; // skip if still processing previous frame
     _isDetecting = true;
 
     try {
       // ── Step 1: Check brightness ──
       final brightness = _calculateAverageBrightness(image);
-      final brightnessOk = brightness >= 60;
+      _lastBrightness = brightness;
 
-      if (!brightnessOk) {
-        _updateGuidance('Too dark — find better lighting', false,
-            brightnessOk: false,
-            faceDetected: false,
-            distanceOk: false,
-            blurOk: false);
+      if (brightness < 60) {
+        _updateGuidance('Too dark — find better lighting', false);
         _isDetecting = false;
         return;
       }
 
-      // ── Step 2: Check blur (sharpness) ──
-      final blurScore = _calculateBlurScore(image);
-      final blurOk = blurScore >= _blurThreshold;
-
-      // Uncomment while calibrating to see real values on your device:
-      // debugPrint('Blur score: $blurScore');
-
-      if (!blurOk) {
-        _updateGuidance('Image too blurry — hold the camera steady', false,
-            brightnessOk: brightnessOk,
-            faceDetected: false,
-            distanceOk: false,
-            blurOk: false);
-        _isDetecting = false;
-        return;
-      }
-
-      // ── Step 3: Check face distance using ML Kit ──
+      // ── Step 2: Check face distance using ML Kit ──
       final inputImage = _convertToInputImage(image, _controller!.description);
       if (inputImage == null) {
         _isDetecting = false;
@@ -117,35 +99,21 @@ class _CameraScreenState extends State<CameraScreen> {
       final faces = await _faceDetector.processImage(inputImage);
 
       if (faces.isEmpty) {
-        _updateGuidance('No face detected', false,
-            brightnessOk: brightnessOk,
-            faceDetected: false,
-            distanceOk: false,
-            blurOk: blurOk);
+        _updateGuidance('No face detected', false);
       } else {
         final face = faces.first;
         final faceWidth = face.boundingBox.width;
         final imageWidth = image.width;
+
+        // Ratio of face width to frame width tells us distance
         final ratio = faceWidth / imageWidth;
 
         if (ratio < 0.25) {
-          _updateGuidance('Move closer', false,
-              brightnessOk: brightnessOk,
-              faceDetected: true,
-              distanceOk: false,
-              blurOk: blurOk);
+          _updateGuidance('Move closer', false);
         } else if (ratio > 0.55) {
-          _updateGuidance('Move back a bit', false,
-              brightnessOk: brightnessOk,
-              faceDetected: true,
-              distanceOk: false,
-              blurOk: blurOk);
+          _updateGuidance('Move back a bit', false);
         } else {
-          _updateGuidance('Perfect! Hold still', true,
-              brightnessOk: brightnessOk,
-              faceDetected: true,
-              distanceOk: true,
-              blurOk: blurOk);
+          _updateGuidance('Perfect! Hold still', true);
         }
       }
     } catch (e) {
@@ -155,29 +123,22 @@ class _CameraScreenState extends State<CameraScreen> {
     _isDetecting = false;
   }
 
-  void _updateGuidance(
-    String message,
-    bool ready, {
-    required bool brightnessOk,
-    required bool faceDetected,
-    required bool distanceOk,
-    required bool blurOk,
-  }) {
+  // Updates the guidance text shown on screen
+  void _updateGuidance(String message, bool ready) {
     if (mounted) {
       setState(() {
         _guidanceMessage = message;
         _isReadyToCapture = ready;
-        _brightnessOk = brightnessOk;
-        _faceDetected = faceDetected;
-        _distanceOk = distanceOk;
-        _blurOk = blurOk;
       });
     }
   }
 
+  // Calculates average brightness from the Y-plane of a YUV420 image
   double _calculateAverageBrightness(CameraImage image) {
     final Uint8List yPlane = image.planes[0].bytes;
     int sum = 0;
+
+    // Sample every 10th pixel for performance
     for (int i = 0; i < yPlane.length; i += 10) {
       sum += yPlane[i];
     }
@@ -185,46 +146,7 @@ class _CameraScreenState extends State<CameraScreen> {
     return sum / sampledCount;
   }
 
-  // Measures sharpness using variance of Laplacian on the Y-plane.
-  // Sharp images have high edge contrast (high variance);
-  // blurry/motion-blurred images look smooth (low variance).
-  double _calculateBlurScore(CameraImage image) {
-    final Uint8List yPlane = image.planes[0].bytes;
-    final int rowStride = image.planes[0].bytesPerRow;
-    final int height = image.height;
-
-    const int step = 8;
-    final List<int> laplacianValues = [];
-
-    for (int y = step; y < height - step; y += step) {
-      for (int x = step; x < rowStride - step; x += step) {
-        final int idx = y * rowStride + x;
-        if (idx - rowStride < 0 || idx + rowStride >= yPlane.length) continue;
-
-        final int center = yPlane[idx];
-        final int top = yPlane[idx - rowStride];
-        final int bottom = yPlane[idx + rowStride];
-        final int left = yPlane[idx - 1];
-        final int right = yPlane[idx + 1];
-
-        final int laplacian =
-            (4 * center - top - bottom - left - right).abs();
-        laplacianValues.add(laplacian);
-      }
-    }
-
-    if (laplacianValues.isEmpty) return 0;
-
-    final double mean =
-        laplacianValues.reduce((a, b) => a + b) / laplacianValues.length;
-    final double variance = laplacianValues
-            .map((v) => (v - mean) * (v - mean))
-            .reduce((a, b) => a + b) /
-        laplacianValues.length;
-
-    return variance;
-  }
-
+  // Converts a CameraImage into the format ML Kit needs
   InputImage? _convertToInputImage(
     CameraImage image,
     CameraDescription camera,
@@ -270,6 +192,7 @@ class _CameraScreenState extends State<CameraScreen> {
     super.dispose();
   }
 
+  // Capture the photo
   Future<void> _capturePhoto() async {
     if (_controller == null || !_controller!.value.isInitialized) return;
 
@@ -279,15 +202,13 @@ class _CameraScreenState extends State<CameraScreen> {
       debugPrint('Photo saved at: ${image.path}');
 
       if (mounted) {
+        // Navigate to Image Validation Screen, passing the photo path
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ImageValidationScreen(
               imagePath: image.path,
-              brightnessOk: _brightnessOk,
-              faceDetected: _faceDetected,
-              distanceOk: _distanceOk,
-              blurOk: _blurOk,
+              brightness: _lastBrightness,
             ),
           ),
         );
@@ -295,36 +216,6 @@ class _CameraScreenState extends State<CameraScreen> {
     } catch (e) {
       debugPrint('Capture error: $e');
     }
-  }
-
-  // Builds the camera preview without stretching, filling the screen
-  // by scaling based on the actual screen vs camera aspect ratio.
-  // On Android, previewSize is reported in landscape orientation
-  // even when the device is in portrait — so we invert it when needed.
-  Widget _buildCameraPreview() {
-    final size = MediaQuery.of(context).size;
-    final deviceRatio = size.width / size.height;
-
-    var previewRatio = _controller!.value.aspectRatio;
-    final isPortrait =
-        MediaQuery.of(context).orientation == Orientation.portrait;
-
-    if (isPortrait && previewRatio > 1) {
-      previewRatio = 1 / previewRatio;
-    }
-
-    var scale = deviceRatio / previewRatio;
-    if (scale < 1) scale = 1 / scale;
-
-    return Transform.scale(
-      scale: scale,
-      child: Center(
-        child: AspectRatio(
-          aspectRatio: previewRatio,
-          child: CameraPreview(_controller!),
-        ),
-      ),
-    );
   }
 
   @override
@@ -336,9 +227,11 @@ class _CameraScreenState extends State<CameraScreen> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // Camera preview — fills screen without stretching
+          // Camera preview fills the screen
           if (_isCameraReady && _controller != null)
-            Positioned.fill(child: _buildCameraPreview())
+            Positioned.fill(
+              child: CameraPreview(_controller!),
+            )
           else
             const Center(
               child: CircularProgressIndicator(
@@ -356,7 +249,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   border: Border.all(
                     color: _isReadyToCapture
                         ? Colors.greenAccent
-                        : Colors.white.withOpacity(0.8),
+                        : Colors.white.withOpacity(0.😎,
                     width: 3,
                   ),
                   borderRadius: BorderRadius.circular(150),
