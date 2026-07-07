@@ -101,8 +101,19 @@ def _crop_face(image_path):
 
 def _preprocess(img):
     """
-    Resize and preprocess image for VGG16.
-    Matches preprocessing used during training.
+    Resize image and return raw RGB pixels for the model.
+
+    NOTE: The exported .tflite graph already includes VGG16's
+    preprocess_input step (RGB->BGR + ImageNet mean subtraction) as
+    part of the model itself — it was traced in from train_model.py's
+    `x = tf.keras.applications.vgg16.preprocess_input(x)` call inside
+    the Keras model definition. Confirmed by inspecting the graph ops
+    (STRIDED_SLICE x3 -> PACK -> ADD right after the input tensor).
+
+    So this function must hand the model raw 0-255 RGB values.
+    Do NOT convert to BGR or subtract the mean here — the model does
+    that internally, and doing it twice silently corrupts every
+    prediction (this was happening before this fix).
     """
     img       = img.resize(IMAGE_SIZE, Image.BILINEAR)
     img_array = np.array(img, dtype=np.float32)
@@ -112,13 +123,6 @@ def _preprocess(img):
         img_array = np.stack([img_array] * 3, axis=-1)
     elif img_array.shape[-1] == 4:
         img_array = img_array[:, :, :3]
-
-    # VGG16 preprocess_input equivalent
-    # Converts RGB to BGR and subtracts ImageNet mean
-    img_array = img_array[:, :, ::-1]  # RGB to BGR
-    img_array[:, :, 0] -= 103.939      # subtract Blue mean
-    img_array[:, :, 1] -= 116.779      # subtract Green mean
-    img_array[:, :, 2] -= 123.680      # subtract Red mean
 
     return np.expand_dims(img_array, axis=0)  # add batch dimension
 
