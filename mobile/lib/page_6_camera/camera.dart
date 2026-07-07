@@ -32,6 +32,8 @@ class _CameraScreenState extends State<CameraScreen> {
   // Whether everything looks good (face centered, right distance, good light)
   bool _isReadyToCapture = false;
 
+  double _lastBrightness = 0.0;
+
   @override
   void initState() {
     super.initState();
@@ -79,6 +81,7 @@ class _CameraScreenState extends State<CameraScreen> {
     try {
       // ── Step 1: Check brightness ──
       final brightness = _calculateAverageBrightness(image);
+      _lastBrightness = brightness;
 
       if (brightness < 60) {
         _updateGuidance('Too dark — find better lighting', false);
@@ -203,7 +206,10 @@ class _CameraScreenState extends State<CameraScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ImageValidationScreen(imagePath: image.path),
+            builder: (context) => ImageValidationScreen(
+              imagePath: image.path,
+              brightness: _lastBrightness,
+            ),
           ),
         );
       }
@@ -224,14 +230,7 @@ class _CameraScreenState extends State<CameraScreen> {
           // Camera preview fills the screen
           if (_isCameraReady && _controller != null)
             Positioned.fill(
-              child: FittedBox(
-                fit: BoxFit.cover,
-                child: SizedBox(
-                  width: _controller!.value.previewSize!.height,
-                  height: _controller!.value.previewSize!.width,
-                  child: CameraPreview(_controller!),
-                ),
-              ),
+              child: CameraPreview(_controller!),
             )
           else
             const Center(
@@ -250,7 +249,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   border: Border.all(
                     color: _isReadyToCapture
                         ? Colors.greenAccent
-                        : Colors.white.withOpacity(0.8),
+                        : Colors.white.withOpacity(0.😎,
                     width: 3,
                   ),
                   borderRadius: BorderRadius.circular(150),
