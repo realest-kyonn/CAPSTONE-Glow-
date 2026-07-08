@@ -1,3 +1,11 @@
+# Flutter-related
+**/Flutter/ephemeral/
+**/Pods/
+
+# Xcode-related
+**/dgph
+**/xcuserdata/
+
 # Python cache
 __pycache__/
 *.pyc
@@ -9,3 +17,8 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Large / regeneratable files — do not commit
+backend/models/*_keras.keras
+data/images/
+data/test_images/
