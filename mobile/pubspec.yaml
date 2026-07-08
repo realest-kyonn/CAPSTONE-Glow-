@@ -43,6 +43,6 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/face_shape_model.tflite
-    - assets/face_shape_model_labels.txt
-    - assets/recommendations.json
+    # assets/face_shape_model.tflite
+    # assets/face_shape_model_labels.txt
+    # assets/recommendations.json
