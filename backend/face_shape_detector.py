@@ -138,17 +138,21 @@ def _preprocess(img):
     """
     Resize image and return raw RGB pixels for the model.
 
-    NOTE: The exported .tflite graph already includes VGG16's
-    preprocess_input step (RGB->BGR + ImageNet mean subtraction) as
-    part of the model itself — it was traced in from train_model.py's
-    `x = tf.keras.applications.vgg16.preprocess_input(x)` call inside
-    the Keras model definition. Confirmed by inspecting the graph ops
-    (STRIDED_SLICE x3 -> PACK -> ADD right after the input tensor).
+    NOTE: The exported .tflite graph already includes VGG-Face's own
+    preprocessing step as part of the model itself — RGB->BGR conversion,
+    then subtracting VGG-Face's per-channel training means (BGR order):
+        B -= 93.5940, G -= 104.7624, R -= 129.1863
+    This was traced in from train_vggface.py's `vggface_preprocess()`
+    function, applied via a `tf.keras.layers.Lambda` layer inside the
+    Keras model definition — confirmed against deepface's own source
+    (deepface/modules/preprocessing.py), not ImageNet's mean values.
 
     So this function must hand the model raw 0-255 RGB values.
-    Do NOT convert to BGR or subtract the mean here — the model does
+    Do NOT convert to BGR or subtract any mean here — the model does
     that internally, and doing it twice silently corrupts every
-    prediction (this was happening before this fix).
+    prediction (this was happening before this fix — do not reintroduce it
+    when swapping in a future model version; always check what
+    preprocessing THAT version's training script actually baked in).
     """
     img       = img.resize(IMAGE_SIZE, Image.BILINEAR)
     img_array = np.array(img, dtype=np.float32)
