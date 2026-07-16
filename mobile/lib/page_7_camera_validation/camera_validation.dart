@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
+import '../page_8_face_analyzing/face_analyzing.dart';
 
 // Image Validation Screen — Page 7
 class ImageValidationScreen extends StatefulWidget {
   // The captured photo path passed in from the Camera Screen
   final String imagePath;
 
-  // Real-time results from the Camera Screen (face check only —
-  // blur/brightness are now re-verified on the actual photo below)
+  // Real-time results from the Camera Screen
   final bool brightnessOk;
   final bool faceDetected;
   final bool distanceOk;
@@ -28,46 +28,34 @@ class ImageValidationScreen extends StatefulWidget {
 }
 
 class _ImageValidationScreenState extends State<ImageValidationScreen> {
-  // Validation results
   bool _blurCheckPassed = false;
   bool _brightnessCheckPassed = false;
   late bool _faceVisibilityPassed;
-
-  // True while we're decoding + analyzing the actual captured photo
   bool _isAnalyzing = true;
 
-  // ── Calibration thresholds ──
-  // Blur: variance of Laplacian on a downsized grayscale copy of the
-  // real photo. Higher = sharper. Tune this using the debugPrint below.
+  // Calibration thresholds
   static const double _blurThreshold = 25.0;
-
-  // Brightness: average luminance (0-255). Photo is rejected if too dark
-  // OR too bright (overexposed/washed out).
   static const double _minBrightness = 60.0;
   static const double _maxBrightness = 220.0;
 
-  // Whether all 3 checks passed (controls if "Continue" is enabled)
   bool get _allChecksPassed =>
       _blurCheckPassed && _brightnessCheckPassed && _faceVisibilityPassed;
 
   @override
   void initState() {
     super.initState();
-    // Face visibility = face was detected AND at the right distance
-    // (still comes from the live ML Kit stream — no need to redo it here)
+    // Face visibility = face detected AND at the right distance
     _faceVisibilityPassed = widget.faceDetected && widget.distanceOk;
     _analyzePhoto();
   }
 
-  // Decodes the real captured photo and runs accurate blur + brightness
-  // checks directly on it, instead of trusting the live-stream guess.
+  // Decodes the real captured photo and runs accurate blur + brightness checks
   Future<void> _analyzePhoto() async {
     try {
       final bytes = await File(widget.imagePath).readAsBytes();
       final decoded = img.decodeImage(bytes);
 
       if (decoded == null) {
-        // Couldn't decode — fail safe, force a retake
         if (mounted) {
           setState(() {
             _blurCheckPassed = false;
@@ -78,7 +66,7 @@ class _ImageValidationScreenState extends State<ImageValidationScreen> {
         return;
       }
 
-      // Downsize for fast, consistent analysis regardless of camera resolution
+      // Downsize for fast, consistent analysis
       final resized = img.copyResize(decoded, width: 300);
       final grayscale = img.grayscale(resized);
 
@@ -115,19 +103,16 @@ class _ImageValidationScreenState extends State<ImageValidationScreen> {
   double _calculateBrightness(img.Image grayscale) {
     double sum = 0;
     int count = 0;
-
     for (int y = 0; y < grayscale.height; y++) {
       for (int x = 0; x < grayscale.width; x++) {
         sum += grayscale.getPixel(x, y).luminance;
         count++;
       }
     }
-
     return count == 0 ? 0 : sum / count;
   }
 
-  // Variance of Laplacian — sharp images have high edge contrast
-  // (high variance), blurry images look smooth (low variance).
+  // Variance of Laplacian — sharp = high variance, blurry = low variance
   double _calculateBlurScore(img.Image grayscale) {
     final width = grayscale.width;
     final height = grayscale.height;
@@ -176,7 +161,7 @@ class _ImageValidationScreenState extends State<ImageValidationScreen> {
                 children: [
                   SizedBox(height: screenHeight * 0.02),
 
-                  // Title
+                  // Title changes based on state
                   Text(
                     _isAnalyzing
                         ? 'Checking your photo...'
@@ -230,9 +215,9 @@ class _ImageValidationScreenState extends State<ImageValidationScreen> {
                             padding: EdgeInsets.symmetric(
                               vertical: screenHeight * 0.02,
                             ),
-                            child: Center(
+                            child: const Center(
                               child: CircularProgressIndicator(
-                                color: const Color(0xFFFF6EB4),
+                                color: Color(0xFFFF6EB4),
                               ),
                             ),
                           )
@@ -260,14 +245,23 @@ class _ImageValidationScreenState extends State<ImageValidationScreen> {
 
                         SizedBox(height: screenHeight * 0.025),
 
-                        // Continue button — only active if all checks passed
+                        // Continue button — navigates to AI Processing Screen (Page 8)
                         SizedBox(
                           width: double.infinity,
                           height: contentWidth * 0.13,
                           child: ElevatedButton(
                             onPressed: (!_isAnalyzing && _allChecksPassed)
                                 ? () {
-                                    // TODO: Navigate to AI Processing Screen (Page 😎
+                                    // Navigate to Face Analyzing Screen (Page 8)
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            FaceAnalyzingScreen(
+                                          imagePath: widget.imagePath,
+                                        ),
+                                      ),
+                                    );
                                   }
                                 : null,
                             style: ElevatedButton.styleFrom(
@@ -289,13 +283,12 @@ class _ImageValidationScreenState extends State<ImageValidationScreen> {
 
                         SizedBox(height: screenHeight * 0.012),
 
-                        // Retake button — always available
+                        // Retake button — goes back to camera
                         SizedBox(
                           width: double.infinity,
                           height: contentWidth * 0.13,
                           child: OutlinedButton(
                             onPressed: () {
-                              // Go back to camera to retake photo
                               Navigator.pop(context);
                             },
                             style: OutlinedButton.styleFrom(
