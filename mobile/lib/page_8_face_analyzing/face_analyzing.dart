@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import '../page_9_analyzing_result/analyzing_result.dart';
 
 // ─────────────────────────────────────────────────────────────
 // AI Processing Screen — Page 8
@@ -10,8 +11,7 @@ import 'dart:math';
 // 2. Call your analysis functions here inside _startAnalysis()
 // 3. Each step (skin tone, facial features, recommendations) should
 //    update _currentStep and _overallProgress as it completes
-// 4. When all steps are done, navigate to analyzing_result.dart (Page 9)
-//    and pass the results as parameters
+// 4. When all steps are done, call _onAnalysisComplete() with real results
 // ─────────────────────────────────────────────────────────────
 
 class FaceAnalyzingScreen extends StatefulWidget {
@@ -86,16 +86,24 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
   //   1. Call the relevant backend function (skin tone, face shape, etc.)
   //   2. Update _stepProgress[stepIndex] from 0.0 to 1.0 as it processes
   //   3. Update _overallProgress accordingly
-  //   4. When all done, call _onAnalysisComplete(results)
+  //   4. When all done, call _onAnalysisComplete() with real results
+  //
+  // Example of real implementation:
+  //   Step 1: final skinResult = await SkinToneDetector.analyze(widget.imagePath);
+  //   Step 2: final faceResult = await FaceShapeDetector.analyze(widget.imagePath);
+  //   Step 3: final styles = await StyleScorer.score(skinResult, faceResult);
   // ─────────────────────────────────────────────────────────────
   Future<void> _startAnalysis() async {
     // SIMULATED: Step 1 — Detecting Skin Tone
+    // BACKEND: Replace with → SkinToneDetector.analyze(widget.imagePath)
     await _simulateStep(0);
 
     // SIMULATED: Step 2 — Analyzing Facial Features
+    // BACKEND: Replace with → FaceShapeDetector.analyze(widget.imagePath)
     await _simulateStep(1);
 
     // SIMULATED: Step 3 — Generating Recommendations
+    // BACKEND: Replace with → StyleScorer.score(skinResult, faceResult)
     await _simulateStep(2);
 
     // All steps done — navigate to results
@@ -103,6 +111,7 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
   }
 
   // Simulates a single step progressing from 0 to 100%
+  // BACKEND: Remove this method when real analysis is connected
   Future<void> _simulateStep(int stepIndex) async {
     setState(() => _currentStep = stepIndex);
 
@@ -121,34 +130,35 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
 
   // ─────────────────────────────────────────────────────────────
   // BACKEND TEAM — Call this when real analysis is complete
-  // Pass your actual results here instead of dummy data
+  // Pass your actual results inside analysisResults map
+  //
+  // Required keys:
+  //   'skinTone'          → String (from skin_tone_detector.py)
+  //   'faceShape'         → String (from face_shape_model.tflite)
+  //   'undertone'         → String (from skin_tone_detector.py)
+  //   'aiInsight'         → String (generated from combined results)
+  //   'recommendedStyles' → List<Map<String,String>> (from style_scorer.py)
   // ─────────────────────────────────────────────────────────────
   void _onAnalysisComplete() {
     if (!mounted) return;
 
-    // TODO: Replace dummy data with real backend results
-    // Example of what to pass:
-    // final results = {
-    //   'skinTone': 'Warm Medium',        // from skin_tone_detector.py
-    //   'faceShape': 'Oval',              // from face_shape_model.tflite
-    //   'undertone': 'Golden Warm',       // from skin_tone_detector.py
-    //   'recommendedStyles': [...],       // from style_scorer.py
+    // BACKEND: Replace this dummy map with real results from your analysis
+    // final Map<String, dynamic> analysisResults = {
+    //   'skinTone': skinToneResult,         // from skin_tone_detector.py
+    //   'faceShape': faceShapeResult,       // from face_shape_model.tflite
+    //   'undertone': undertoneResult,       // from skin_tone_detector.py
+    //   'aiInsight': generatedInsightText,  // combine results into a sentence
+    //   'recommendedStyles': stylesList,    // from style_scorer.py top 3
     // };
 
-    // Navigate to Results Screen (Page 9)
-    // TODO: Uncomment and pass real results when backend is ready
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => AnalyzingResultScreen(results: results),
-    //   ),
-    // );
-
-    // TEMP: Show a snackbar for now until Page 9 is connected
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Analysis complete! Page 9 coming soon.'),
-        backgroundColor: Color(0xFFFF6EB4),
+    // Navigate to Beauty Profile Results Screen (Page 9)
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const AnalyzingResultScreen(
+          // BACKEND: Pass real results here like:
+          // analysisResults: analysisResults,
+        ),
       ),
     );
   }
