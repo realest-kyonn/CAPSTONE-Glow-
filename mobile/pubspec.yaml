@@ -16,7 +16,7 @@ dependencies:
   google_mlkit_face_detection: ^0.10.0
 
   # ── AI / Model Inference ────────────────────────────────
-  tflite_flutter: ^0.10.4
+  #tflite_flutter: ^0.10.4
   image: ^4.1.7
   image_picker: ^1.0.7
 
