@@ -1,17 +1,17 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:image/image.dart' as img;
+import '../backend/mesh_provider.dart';
+import '../backend/face_shape_detector.dart';
+import '../backend/eye_shape_detector.dart' as eyes;
+import '../backend/skin_tone_detector.dart';
 import '../page_9_analyzing_result/analyzing_result.dart';
 
 // ─────────────────────────────────────────────────────────────
 // AI Processing Screen — Page 8
-// This screen shows while the backend analyzes the captured photo.
-//
-// BACKEND TEAM — HOW TO CONNECT:
-// 1. This screen receives the imagePath from ImageValidationScreen
-// 2. Call your analysis functions here inside _startAnalysis()
-// 3. Each step (skin tone, facial features, recommendations) should
-//    update _currentStep and _overallProgress as it completes
-// 4. When all steps are done, call _onAnalysisComplete() with real results
+// Runs the real detector pipeline (mesh -> face shape -> eye shape,
+// plus skin tone) on the captured photo while showing progress.
 // ─────────────────────────────────────────────────────────────
 
 class FaceAnalyzingScreen extends StatefulWidget {
@@ -76,88 +76,112 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
 
-    // Start the simulated analysis
+    // Kick off the real detector pipeline
     _startAnalysis();
   }
 
   // ─────────────────────────────────────────────────────────────
-  // BACKEND TEAM — Replace this simulated analysis with real calls
-  // Each step should:
-  //   1. Call the relevant backend function (skin tone, face shape, etc.)
-  //   2. Update _stepProgress[stepIndex] from 0.0 to 1.0 as it processes
-  //   3. Update _overallProgress accordingly
-  //   4. When all done, call _onAnalysisComplete() with real results
-  //
-  // Example of real implementation:
-  //   Step 1: final skinResult = await SkinToneDetector.analyze(widget.imagePath);
-  //   Step 2: final faceResult = await FaceShapeDetector.analyze(widget.imagePath);
-  //   Step 3: final styles = await StyleScorer.score(skinResult, faceResult);
+  // Real analysis pipeline: skin tone -> mesh/landmarks -> face shape
+  // -> eye shape. Recommendation scoring (style_scorer.py /
+  // recommendations.py) has no Dart port yet, so Step 3 is a
+  // placeholder — wire it in once that port exists.
   // ─────────────────────────────────────────────────────────────
   Future<void> _startAnalysis() async {
-    // SIMULATED: Step 1 — Detecting Skin Tone
-    // BACKEND: Replace with → SkinToneDetector.analyze(widget.imagePath)
-    await _simulateStep(0);
+    try {
+      // Step 1 — Skin Tone (undertone + Monk Scale)
+      setState(() => _currentStep = 0);
+      final skinResult = detectSkinTone(widget.imagePath);
+      _completeStep(0);
 
-    // SIMULATED: Step 2 — Analyzing Facial Features
-    // BACKEND: Replace with → FaceShapeDetector.analyze(widget.imagePath)
-    await _simulateStep(1);
+      // Step 2 — Facial Features: mesh/bounding box -> face shape -> eye shape
+      setState(() => _currentStep = 1);
+      final meshProvider = await MeshProvider.load();
+      final meshResult = await meshProvider.analyzePhoto(widget.imagePath);
 
-    // SIMULATED: Step 3 — Generating Recommendations
-    // BACKEND: Replace with → StyleScorer.score(skinResult, faceResult)
-    await _simulateStep(2);
+      // DIAGNOSTIC — checking whether mesh/face detection is silently
+      // failing on real captured photos (would explain identical results
+      // across different people via fallback paths in both detectors).
+      debugPrint('=== MESH DETECTION CHECK ===');
+      debugPrint('  hasFace: ${meshResult.hasFace}');
+      debugPrint('  boundingBox: ${meshResult.boundingBox}');
+      debugPrint('  meshLandmarks count: ${meshResult.meshLandmarks.length}');
+      debugPrint('  mesh error: ${meshResult.error}');
 
-    // All steps done — navigate to results
-    _onAnalysisComplete();
-  }
-
-  // Simulates a single step progressing from 0 to 100%
-  // BACKEND: Remove this method when real analysis is connected
-  Future<void> _simulateStep(int stepIndex) async {
-    setState(() => _currentStep = stepIndex);
-
-    for (int i = 1; i <= 20; i++) {
-      await Future.delayed(const Duration(milliseconds: 80));
-      if (mounted) {
-        setState(() {
-          _stepProgress[stepIndex] = i / 20;
-          // Overall progress = average of all step progresses
-          _overallProgress =
-              _stepProgress.reduce((a, b) => a + b) / _stepProgress.length;
-        });
+      FaceShapeResult? faceResult;
+      final bytes = await File(widget.imagePath).readAsBytes();
+      final decoded = img.decodeImage(bytes);
+      if (decoded != null) {
+        final faceShapeDetector = await FaceShapeDetector.load();
+        faceResult = faceShapeDetector.detectFaceShape(
+          decoded,
+          box: meshResult.boundingBox,
+        );
+        faceShapeDetector.dispose();
       }
+
+      final eyeResult = eyes.detectEyeShape(meshResult.meshLandmarks);
+      meshProvider.dispose();
+      _completeStep(1);
+
+      // Step 3 — Recommendations (PLACEHOLDER — not ported to Dart yet)
+      setState(() => _currentStep = 2);
+      _completeStep(2);
+
+      final Map<String, dynamic> analysisResults = {
+        'skinTone': skinResult.skinTone,
+        // Python's own main.py treats undertone as the same value as
+        // skin_tone (undertone = skin_result["skin_tone"]) — there's no
+        // separate "undertone" concept in the detector, so we mirror that
+        // here rather than inventing a value that doesn't exist upstream.
+        'undertone': skinResult.skinTone,
+        'monkScale': skinResult.monkScale,
+        'skinConfidence': skinResult.confidence,
+        'faceShape': faceResult?.faceShape,
+        'faceConfidence': faceResult?.confidence,
+        'eyeShape': eyeResult.eyeShape,
+        'eyeConfidence': eyeResult.confidence,
+        // 'recommendedStyles': TODO — needs style_scorer.py ported to Dart
+      };
+
+      // TEMPORARY — remove once Page 9 actually displays these values.
+      debugPrint('=== LIVE CAMERA ANALYSIS RESULT ===');
+      debugPrint('  skinTone: ${skinResult.skinTone}');
+      debugPrint('  monkScale: ${skinResult.monkScale}');
+      debugPrint('  faceShape: ${faceResult?.faceShape}  error: ${faceResult?.error}');
+      debugPrint('  faceShape allScores: ${faceResult?.allScores}');
+      debugPrint('  eyeShape: ${eyeResult.eyeShape}  error: ${eyeResult.error}');
+      debugPrint('  eyeShape metrics: ${eyeResult.metrics}');
+
+      _onAnalysisComplete(analysisResults);
+    } catch (e) {
+      debugPrint('Analysis pipeline error: $e');
+      _onAnalysisComplete({'error': e.toString()});
     }
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // BACKEND TEAM — Call this when real analysis is complete
-  // Pass your actual results inside analysisResults map
+  // Marks one step's progress bar complete and updates the overall bar.
+  void _completeStep(int stepIndex) {
+    if (!mounted) return;
+    setState(() {
+      _stepProgress[stepIndex] = 1.0;
+      _overallProgress =
+          _stepProgress.reduce((a, b) => a + b) / _stepProgress.length;
+    });
+  }
+
+  // Navigates to Page 9 with the real analysis results.
   //
-  // Required keys:
-  //   'skinTone'          → String (from skin_tone_detector.py)
-  //   'faceShape'         → String (from face_shape_model.tflite)
-  //   'undertone'         → String (from skin_tone_detector.py)
-  //   'aiInsight'         → String (generated from combined results)
-  //   'recommendedStyles' → List<Map<String,String>> (from style_scorer.py)
-  // ─────────────────────────────────────────────────────────────
-  void _onAnalysisComplete() {
+  // NOTE: AnalyzingResultScreen's actual constructor wasn't available when
+  // this was wired up — confirm it accepts `analysisResults` as shown below
+  // and adjust if its real signature differs.
+  void _onAnalysisComplete(Map<String, dynamic> analysisResults) {
     if (!mounted) return;
 
-    // BACKEND: Replace this dummy map with real results from your analysis
-    // final Map<String, dynamic> analysisResults = {
-    //   'skinTone': skinToneResult,         // from skin_tone_detector.py
-    //   'faceShape': faceShapeResult,       // from face_shape_model.tflite
-    //   'undertone': undertoneResult,       // from skin_tone_detector.py
-    //   'aiInsight': generatedInsightText,  // combine results into a sentence
-    //   'recommendedStyles': stylesList,    // from style_scorer.py top 3
-    // };
-
-    // Navigate to Beauty Profile Results Screen (Page 9)
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const AnalyzingResultScreen(
-          // BACKEND: Pass real results here like:
-          // analysisResults: analysisResults,
+        builder: (context) => AnalyzingResultScreen(
+          analysisResults: analysisResults,
         ),
       ),
     );
@@ -259,7 +283,7 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
             'PLEASE WAIT',
             style: TextStyle(
               fontSize: contentWidth * 0.03,
-              color: Colors.white.withOpacity(0.85),
+              color: Colors.white.withValues(alpha: 0.85),
               letterSpacing: 2,
             ),
           ),

@@ -130,7 +130,7 @@ if __name__ == "__main__":
     import os
 
     BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
-    test_image = os.path.join(BASE_DIR, "..", "data", "images", "img001.jpg")
+    test_image = os.path.join(BASE_DIR, "..", "mobile", "assets", "test", "sample_face.jpg")
     test_image = os.path.abspath(test_image)
 
     print(f"[DEBUG] Looking for image at: {test_image}")

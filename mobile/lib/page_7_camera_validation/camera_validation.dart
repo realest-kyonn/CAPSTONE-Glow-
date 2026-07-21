@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
+import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import '../page_8_face_analyzing/face_analyzing.dart';
 
 // Image Validation Screen — Page 7
@@ -8,7 +9,9 @@ class ImageValidationScreen extends StatefulWidget {
   // The captured photo path passed in from the Camera Screen
   final String imagePath;
 
-  // Real-time results from the Camera Screen
+  // Real-time results from the Camera Screen (used only as an initial
+  // guess while the real re-check below is running — never trusted
+  // on their own, see _checkFaceVisibility)
   final bool brightnessOk;
   final bool faceDetected;
   final bool distanceOk;
@@ -30,7 +33,7 @@ class ImageValidationScreen extends StatefulWidget {
 class _ImageValidationScreenState extends State<ImageValidationScreen> {
   bool _blurCheckPassed = false;
   bool _brightnessCheckPassed = false;
-  late bool _faceVisibilityPassed;
+  bool _faceVisibilityPassed = false;
   bool _isAnalyzing = true;
 
   // Calibration thresholds
@@ -44,12 +47,18 @@ class _ImageValidationScreenState extends State<ImageValidationScreen> {
   @override
   void initState() {
     super.initState();
-    // Face visibility = face detected AND at the right distance
-    _faceVisibilityPassed = widget.faceDetected && widget.distanceOk;
+    // NOTE: widget.faceDetected/distanceOk come from the live camera
+    // preview's LAST frame — captured before takePicture() actually ran.
+    // If the camera moved even slightly in that gap, that flag can be
+    // stale (e.g. says "face detected" for a photo that's actually just
+    // a wall). _analyzePhoto() below re-runs real face detection on the
+    // ACTUAL captured file instead of trusting this value.
     _analyzePhoto();
   }
 
-  // Decodes the real captured photo and runs accurate blur + brightness checks
+  // Decodes the real captured photo and runs accurate blur + brightness
+  // + face visibility checks — all three against the ACTUAL saved file,
+  // not the live camera stream's last guess.
   Future<void> _analyzePhoto() async {
     try {
       final bytes = await File(widget.imagePath).readAsBytes();
@@ -60,30 +69,33 @@ class _ImageValidationScreenState extends State<ImageValidationScreen> {
           setState(() {
             _blurCheckPassed = false;
             _brightnessCheckPassed = false;
+            _faceVisibilityPassed = false;
             _isAnalyzing = false;
           });
         }
         return;
       }
 
-      // Downsize for fast, consistent analysis
+      // Downsize for fast, consistent blur/brightness analysis
       final resized = img.copyResize(decoded, width: 300);
       final grayscale = img.grayscale(resized);
 
       final brightness = _calculateBrightness(grayscale);
       final blurScore = _calculateBlurScore(grayscale);
 
-      // Uncomment while calibrating on your device:
-      // debugPrint('Real photo — brightness: $brightness, blur: $blurScore');
-
       final brightnessOk =
           brightness >= _minBrightness && brightness <= _maxBrightness;
       final blurOk = blurScore >= _blurThreshold;
+
+      // Real face check on the actual captured file — not the stale
+      // live-preview flag from camera.dart.
+      final faceVisibilityOk = await _checkFaceVisibility();
 
       if (mounted) {
         setState(() {
           _brightnessCheckPassed = brightnessOk;
           _blurCheckPassed = blurOk;
+          _faceVisibilityPassed = faceVisibilityOk;
           _isAnalyzing = false;
         });
       }
@@ -93,9 +105,29 @@ class _ImageValidationScreenState extends State<ImageValidationScreen> {
         setState(() {
           _blurCheckPassed = false;
           _brightnessCheckPassed = false;
+          _faceVisibilityPassed = false;
           _isAnalyzing = false;
         });
       }
+    }
+  }
+
+  // Runs ML Kit face detection directly on the captured photo file.
+  // Uses accurate mode (not the 'fast' mode camera.dart uses for live
+  // guidance) since this only runs once, not per-frame.
+  Future<bool> _checkFaceVisibility() async {
+    final faceDetector = FaceDetector(
+      options: FaceDetectorOptions(performanceMode: FaceDetectorMode.accurate),
+    );
+    try {
+      final inputImage = InputImage.fromFilePath(widget.imagePath);
+      final faces = await faceDetector.processImage(inputImage);
+      return faces.isNotEmpty;
+    } catch (e) {
+      debugPrint('Face visibility check error: $e');
+      return false;
+    } finally {
+      faceDetector.close();
     }
   }
 

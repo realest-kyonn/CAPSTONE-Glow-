@@ -9,9 +9,11 @@ import 'retakephoto.dart';
 // from the AI Processing Screen (Page 8).
 //
 // Expected keys in analysisResults:
-//   'skinTone'           → String  e.g. 'Warm Medium'
+//   'skinTone'           → String  e.g. 'warm' / 'cool' / 'neutral'
 //   'faceShape'          → String  e.g. 'Oval'
-//   'undertone'          → String  e.g. 'Golden Warm'
+//   'eyeShape'            → String  e.g. 'almond'
+//   'undertone'           → String  same value as skinTone (see note below)
+//   'monkScale'          → int     1-10, shown alongside undertone
 //   'aiInsight'          → String  e.g. 'Your oval face...'
 //   'recommendedStyles'  → List<Map<String, String>>
 //     [
@@ -21,6 +23,12 @@ import 'retakephoto.dart';
 //         'description': 'Glowing, hydrated skin...',
 //       },
 //     ]
+//
+// NOTE on undertone vs skinTone: the detector pipeline (see main.py)
+// treats these as the same underlying category — there's no separate,
+// richer "undertone" value like "Golden Warm" produced anywhere upstream.
+// The Undertone card here shows that same category plus Monk Scale
+// instead, since that's the real numeric detail the pipeline provides.
 // ─────────────────────────────────────────────────────────────
 
 class AnalyzingResultScreen extends StatelessWidget {
@@ -37,8 +45,42 @@ class AnalyzingResultScreen extends StatelessWidget {
   // BACKEND: Get this from face_shape_model.tflite → shape classification
   String get _faceShape => analysisResults?['faceShape'] ?? 'Oval';
 
-  // BACKEND: Get this from skin_tone_detector.py → Monk Scale + undertone
-  String get _undertone => analysisResults?['undertone'] ?? 'Golden Warm';
+  // BACKEND: Get this from eye_shape_detector.py → eye shape classification
+  String get _eyeShape => analysisResults?['eyeShape'] ?? 'Almond';
+
+  // BACKEND: Same category as skinTone (see note at top of file) — the
+  // pipeline has no separate "undertone" concept, so this mirrors it.
+  String get _undertone => analysisResults?['undertone'] ??
+      analysisResults?['skinTone'] ??
+      'Golden Warm';
+
+  // BACKEND: Get this from skin_tone_detector.py → Monk Scale (1-10)
+  int? get _monkScale => analysisResults?['monkScale'] as int?;
+
+  // Official Monk Skin Tone Scale reference colors (M1 lightest -> M10
+  // deepest). Index 0 = Monk 01, so use (monkScale - 1) to look up.
+  static const List<Color> _monkScaleColors = [
+    Color(0xFFF6EDE4), // Monk 01
+    Color(0xFFF3E7DB), // Monk 02
+    Color(0xFFF7EAD0), // Monk 03
+    Color(0xFFEADABA), // Monk 04
+    Color(0xFFD7BD96), // Monk 05
+    Color(0xFFA07E56), // Monk 06
+    Color(0xFF825C43), // Monk 07
+    Color(0xFF604134), // Monk 08
+    Color(0xFF3A312A), // Monk 09
+    Color(0xFF292420), // Monk 10
+  ];
+
+  // Returns the real Monk Scale color for the detected value, falling
+  // back to a mid-tone default only if no monkScale was provided.
+  Color get _skinToneColor {
+    final scale = _monkScale;
+    if (scale != null && scale >= 1 && scale <= 10) {
+      return _monkScaleColors[scale - 1];
+    }
+    return const Color(0xFFD4956A);
+  }
 
   // BACKEND: Generate this insight text by combining all 3 results
   String get _aiInsight =>
@@ -73,6 +115,11 @@ class AnalyzingResultScreen extends StatelessWidget {
                   'lashes, and a satin lip. Elevated but never overdressed.',
         },
       ];
+
+  // Capitalizes the first letter — detector values come lowercase
+  // ("warm", "almond") but display should read "Warm", "Almond".
+  String _titleCase(String s) =>
+      s.isEmpty ? s : '${s[0].toUpperCase()}${s.substring(1)}';
 
   @override
   Widget build(BuildContext context) {
@@ -114,42 +161,60 @@ class AnalyzingResultScreen extends StatelessWidget {
 
                         SizedBox(height: screenHeight * 0.015),
 
-                        // 3 result cards
+                        // All 4 cards in a single row, sized down to fit.
                         Row(
                           children: [
                             // BACKEND: skinTone from skin_tone_detector.py
+                            // (Monk Scale shown here since it's a direct
+                            // output of the same skin tone analysis step)
                             Expanded(
                               child: _buildAnalysisCard(
                                 label: 'SKIN TONE',
-                                value: _skinTone,
-                                color: const Color(0xFFD4956A),
+                                value: _monkScale != null
+                                    ? '${_titleCase(_skinTone)}\nM$_monkScale'
+                                    : _titleCase(_skinTone),
+                                color: _skinToneColor,
                                 isCircle: false,
                                 contentWidth: contentWidth,
                               ),
                             ),
-                            SizedBox(width: contentWidth * 0.03),
+                            SizedBox(width: contentWidth * 0.02),
 
                             // BACKEND: faceShape from face_shape_model.tflite
                             Expanded(
                               child: _buildAnalysisCard(
                                 label: 'FACE SHAPE',
-                                value: _faceShape,
+                                value: _titleCase(_faceShape),
                                 color: const Color(0xFFFFB6D9),
-                                isCircle: true,
+                                icon: Icons.face_rounded,
                                 contentWidth: contentWidth,
                               ),
                             ),
-                            SizedBox(width: contentWidth * 0.03),
+                            SizedBox(width: contentWidth * 0.02),
 
-                            // BACKEND: undertone from skin_tone_detector.py
+                            // BACKEND: eyeShape from eye_shape_detector.py
+                            Expanded(
+                              child: _buildAnalysisCard(
+                                label: 'EYE SHAPE',
+                                value: _titleCase(_eyeShape),
+                                color: const Color(0xFFB6D9FF),
+                                icon: Icons.remove_red_eye_rounded,
+                                contentWidth: contentWidth,
+                              ),
+                            ),
+                            SizedBox(width: contentWidth * 0.02),
+
+                            // BACKEND: undertone — same category as
+                            // skinTone (see note at top of file).
                             Expanded(
                               child: _buildAnalysisCard(
                                 label: 'UNDERTONE',
-                                value: _undertone,
+                                value: _titleCase(_undertone),
                                 color: const Color(0xFFE8A855),
                                 isCircle: false,
                                 contentWidth: contentWidth,
                               ),
+
                             ),
                           ],
                         ),
@@ -269,7 +334,7 @@ class AnalyzingResultScreen extends StatelessWidget {
             'ANALYSIS COMPLETE',
             style: TextStyle(
               fontSize: contentWidth * 0.03,
-              color: Colors.white.withOpacity(0.85),
+              color: Colors.white.withValues(alpha: 0.85),
               letterSpacing: 2,
             ),
           ),
@@ -288,48 +353,64 @@ class AnalyzingResultScreen extends StatelessWidget {
     );
   }
 
-  // Analysis card — skin tone, face shape, undertone
+  // Analysis card — skin tone, face shape, eye shape, undertone.
+  // Pass `icon` for shape-based cards (renders the icon on a tinted
+  // circle background); leave it null for color-based cards (renders
+  // a solid color swatch instead) — color represents the actual
+  // detected value there, so a generic icon would be misleading.
   Widget _buildAnalysisCard({
     required String label,
     required String value,
     required Color color,
-    required bool isCircle,
+    bool isCircle = false,
+    IconData? icon,
     required double contentWidth,
   }) {
     return Container(
-      padding: EdgeInsets.all(contentWidth * 0.03),
+      padding: EdgeInsets.symmetric(
+        horizontal: contentWidth * 0.015,
+        vertical: contentWidth * 0.025,
+      ),
       decoration: BoxDecoration(
         color: const Color(0xFFFFF0F6),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Column(
         children: [
-          // Color swatch
+          // Icon (shape cards) or solid swatch (color cards)
           Container(
-            width: contentWidth * 0.12,
-            height: contentWidth * 0.12,
+            width: contentWidth * 0.11,
+            height: contentWidth * 0.11,
             decoration: BoxDecoration(
-              color: color,
-              shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
-              borderRadius: isCircle ? null : BorderRadius.circular(8),
+              color: icon != null ? color.withValues(alpha: 0.25) : color,
+              shape: (icon != null || isCircle)
+                  ? BoxShape.circle
+                  : BoxShape.rectangle,
+              borderRadius:
+                  (icon != null || isCircle) ? null : BorderRadius.circular(8),
             ),
+            child: icon != null
+                ? Icon(icon, color: color, size: contentWidth * 0.06)
+                : null,
           ),
           SizedBox(height: contentWidth * 0.02),
           Text(
             label,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: contentWidth * 0.025,
+              fontSize: contentWidth * 0.02,
               color: Colors.grey,
-              letterSpacing: 0.5,
+              letterSpacing: 0.3,
             ),
           ),
-          SizedBox(height: contentWidth * 0.01),
+          SizedBox(height: contentWidth * 0.008),
           Text(
             value,
             textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              fontSize: contentWidth * 0.035,
+              fontSize: contentWidth * 0.028,
               fontWeight: FontWeight.bold,
               color: Colors.black87,
             ),

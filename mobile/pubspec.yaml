@@ -33,6 +33,9 @@ dependencies:
 
   # ── Feedback form link ──────────────────────────────────
   url_launcher: ^6.2.5
+  face_detection_tflite: ^6.6.3
+  opencv_dart: 2.2.1+4
+  tflite_flutter: ^0.12.1
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +46,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    # assets/face_shape_model.tflite
-    # assets/face_shape_model_labels.txt
+  - assets/test/sample_face.jpg
+  - assets/face_shape_model.tflite
+  - assets/face_shape_model_labels.txt
     # assets/recommendations.json 
