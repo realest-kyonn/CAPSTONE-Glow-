@@ -13,7 +13,8 @@ class CameraScreen extends StatefulWidget {
   State<CameraScreen> createState() => _CameraScreenState();
 }
 
-class _CameraScreenState extends State<CameraScreen> {
+class _CameraScreenState extends State<CameraScreen>
+    with WidgetsBindingObserver {
   CameraController? _controller;
   List<CameraDescription>? _cameras;
   bool _isCameraReady = false;
@@ -44,13 +45,25 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   void initState() {
     super.initState();
+    // Register observer to detect app/screen lifecycle changes
+    WidgetsBinding.instance.addObserver(this);
     _initCamera();
   }
 
-  // Restart image stream when returning from validation screen (retake)
+  // Called when app lifecycle changes (resumed = screen comes back into focus)
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // Restart stream when returning from validation screen
+      _restartStreamIfNeeded();
+    } else if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused) {
+      _controller?.stopImageStream();
+    }
+  }
+
+  // Restart image stream if it was stopped (e.g. after retake)
+  void _restartStreamIfNeeded() {
     if (_isCameraReady &&
         _controller != null &&
         _controller!.value.isInitialized &&
@@ -283,6 +296,8 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   void dispose() {
+    // Remove observer and clean up camera
+    WidgetsBinding.instance.removeObserver(this);
     _controller?.stopImageStream();
     _controller?.dispose();
     _faceDetector.close();
@@ -299,7 +314,8 @@ class _CameraScreenState extends State<CameraScreen> {
       debugPrint('Photo saved at: ${image.path}');
 
       if (mounted) {
-        Navigator.push(
+        // Navigate to validation — when user retakes, stream restarts via observer
+        await Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ImageValidationScreen(
@@ -311,6 +327,9 @@ class _CameraScreenState extends State<CameraScreen> {
             ),
           ),
         );
+
+        // Restart stream when returning from validation screen
+        _restartStreamIfNeeded();
       }
     } catch (e) {
       debugPrint('Capture error: $e');
