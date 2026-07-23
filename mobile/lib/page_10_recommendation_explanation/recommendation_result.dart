@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../page_11_and_12/makeup_tutorial_and_whattouse.dart';
 
 // ─────────────────────────────────────────────────────────────
 // Recommendation Explanation Screen — Page 10
@@ -7,15 +8,24 @@ import 'package:flutter/material.dart';
 // This screen receives a single style Map from Page 9
 // when the user taps on a recommended style card.
 //
-// Expected keys in `style`:
+// Expected keys in `style` Map:
 //   'name'        → String  e.g. 'Clean Girl Makeup'
 //   'subtitle'    → String  e.g. 'Effortless, skin-first glow'
 //   'description' → String  e.g. 'Glowing, hydrated skin...'
-//   'imageUrl'    → String  (BACKEND: URL or asset path for style image)
+//   'imagePath'   → String  asset path e.g. 'assets/styles/clean_girl.jpg'
+//                           (BACKEND: add this key to recommendations.json)
+//
+// HOW IMAGE WORKS:
+// 1. Add images to assets/styles/ folder
+// 2. Register them in pubspec.yaml under assets:
+//      - assets/styles/
+// 3. In recommendations.json, add 'imagePath' key per style:
+//      { "name": "Clean Girl Makeup", "imagePath": "assets/styles/clean_girl.jpg", ... }
+// 4. Pass imagePath through the style Map from Page 9
 // ─────────────────────────────────────────────────────────────
 
 class RecommendationResultScreen extends StatelessWidget {
-  // Style data passed from analyzing_result.dart
+  // Style data passed from analyzing_result.dart (Page 9)
   final Map<String, String> style;
 
   const RecommendationResultScreen({super.key, required this.style});
@@ -36,18 +46,19 @@ class RecommendationResultScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Back button + title header
+                  // Back button header
                   _buildHeader(context, contentWidth, screenHeight),
 
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: contentWidth * 0.06,
-                      vertical: screenHeight * 0.02,
+                      vertical: screenHeight * 0.01,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Style name
+                        // BACKEND: 'name' from recommendations.json
                         Text(
                           style['name']!,
                           style: TextStyle(
@@ -60,7 +71,7 @@ class RecommendationResultScreen extends StatelessWidget {
 
                         SizedBox(height: screenHeight * 0.005),
 
-                        // Why this look was chosen
+                        // Why this look was chosen subtitle
                         Text(
                           'Why this look was chosen for you',
                           style: TextStyle(
@@ -71,7 +82,8 @@ class RecommendationResultScreen extends StatelessWidget {
 
                         SizedBox(height: screenHeight * 0.015),
 
-                        // Subtitle in italics
+                        // Style subtitle in italics
+                        // BACKEND: 'subtitle' from recommendations.json
                         Text(
                           '"${style['subtitle']!}"',
                           textAlign: TextAlign.center,
@@ -85,91 +97,25 @@ class RecommendationResultScreen extends StatelessWidget {
                         SizedBox(height: screenHeight * 0.025),
 
                         // ── STYLE IMAGE ──
-                        // BACKEND: Replace this placeholder with a real
-                        // image from recommendations.json or assets folder
-                        Container(
-                          width: double.infinity,
-                          height: screenHeight * 0.3,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFFF0F6),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.image_rounded,
-                                size: contentWidth * 0.15,
-                                color: const Color(0xFFFFB6D9),
-                              ),
-                              SizedBox(height: screenHeight * 0.01),
-                              Text(
-                                'Picture',
-                                style: TextStyle(
-                                  fontSize: contentWidth * 0.04,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              // BACKEND: Uncomment when image is available
-                              // Image.network(style['imageUrl']!)
-                              // OR
-                              // Image.asset('assets/styles/${style['name']}.jpg')
-                            ],
-                          ),
+                        // BACKEND: Pass 'imagePath' key in the style Map
+                        // pointing to an asset or network image.
+                        // Steps:
+                        //   1. Add image files to assets/styles/ folder
+                        //   2. Add - assets/styles/ in pubspec.yaml
+                        //   3. Add 'imagePath' key in recommendations.json
+                        //   4. Pass it through the style Map from Page 9
+                        _buildStyleImage(
+                          contentWidth: contentWidth,
+                          screenHeight: screenHeight,
                         ),
 
                         SizedBox(height: screenHeight * 0.025),
 
                         // ── DESCRIPTION BOX ──
-                        // BACKEND: Description comes from recommendations.json
-                        Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.all(contentWidth * 0.05),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFFF0F6),
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: contentWidth * 0.08,
-                                    height: contentWidth * 0.08,
-                                    decoration: const BoxDecoration(
-                                      color: Color(0xFFFF6EB4),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Icon(
-                                      Icons.info_rounded,
-                                      color: Colors.white,
-                                      size: contentWidth * 0.045,
-                                    ),
-                                  ),
-                                  SizedBox(width: contentWidth * 0.03),
-                                  Text(
-                                    'Description',
-                                    style: TextStyle(
-                                      fontSize: contentWidth * 0.042,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black87,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: screenHeight * 0.015),
-                              // BACKEND: description from recommendations.json
-                              Text(
-                                style['description']!,
-                                style: TextStyle(
-                                  fontSize: contentWidth * 0.035,
-                                  color: Colors.black54,
-                                  height: 1.6,
-                                ),
-                              ),
-                            ],
-                          ),
+                        // BACKEND: 'description' from recommendations.json
+                        _buildDescriptionBox(
+                          contentWidth: contentWidth,
+                          screenHeight: screenHeight,
                         ),
 
                         SizedBox(height: screenHeight * 0.03),
@@ -180,9 +126,22 @@ class RecommendationResultScreen extends StatelessWidget {
                           width: double.infinity,
                           height: contentWidth * 0.13,
                           child: ElevatedButton(
-                            onPressed: () {
-                              // TODO: Navigate to Tutorial Screen (Page 13)
-                            },
+                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MakeupTutorialScreen(
+                                  styleData: {
+                                    // Pass all style data to tutorial screen
+                                    'name': style['name']!,
+                                    'subtitle': style['subtitle']!,
+                                    'styleIndex': '1', // BACKEND: pass real index from style_scorer.py
+                                    'totalStyles': '3',
+                                  },
+                                ),
+                              ),
+                            );
+                          },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFFFF6EB4),
                               shape: RoundedRectangleBorder(
@@ -199,7 +158,7 @@ class RecommendationResultScreen extends StatelessWidget {
                           ),
                         ),
 
-                        SizedBox(height: screenHeight * 0.02),
+                        SizedBox(height: screenHeight * 0.03),
                       ],
                     ),
                   ),
@@ -208,6 +167,134 @@ class RecommendationResultScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  // ── Style image widget ──
+  // Shows asset image if 'imagePath' key exists in style Map,
+  // otherwise shows a placeholder until backend provides images.
+  Widget _buildStyleImage({
+    required double contentWidth,
+    required double screenHeight,
+  }) {
+    // BACKEND: Check if imagePath is provided in recommendations.json
+    final imagePath = style['imagePath'];
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        width: double.infinity,
+        height: screenHeight * 0.3,
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFF0F6),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: imagePath != null && imagePath.isNotEmpty
+            // BACKEND: Real image from assets/styles/ folder
+            // Add images to assets/styles/ and register in pubspec.yaml
+            ? Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  // Falls back to placeholder if image file not found
+                  return _buildImagePlaceholder(contentWidth, screenHeight);
+                },
+              )
+            // Placeholder shown until backend provides images
+            : _buildImagePlaceholder(contentWidth, screenHeight),
+      ),
+    );
+  }
+
+  // Placeholder shown when no image is available yet
+  Widget _buildImagePlaceholder(double contentWidth, double screenHeight) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.image_rounded,
+          size: contentWidth * 0.15,
+          color: const Color(0xFFFFB6D9),
+        ),
+        SizedBox(height: screenHeight * 0.01),
+        Text(
+          'Style image coming soon',
+          style: TextStyle(
+            fontSize: contentWidth * 0.035,
+            color: Colors.grey,
+          ),
+        ),
+        SizedBox(height: screenHeight * 0.005),
+        Text(
+          // Shows which image file to add
+          style['name'] != null
+              ? 'Add: assets/styles/${style['name']!.toLowerCase().replaceAll(' ', '_')}.jpg'
+              : '',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: contentWidth * 0.025,
+            color: Colors.grey.shade400,
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Description box widget
+  Widget _buildDescriptionBox({
+    required double contentWidth,
+    required double screenHeight,
+  }) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(contentWidth * 0.05),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF0F6),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              // Info icon
+              Container(
+                width: contentWidth * 0.08,
+                height: contentWidth * 0.08,
+                decoration: const BoxDecoration(
+                  color: Color(0xFFFF6EB4),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.info_rounded,
+                  color: Colors.white,
+                  size: contentWidth * 0.045,
+                ),
+              ),
+              SizedBox(width: contentWidth * 0.03),
+              Text(
+                'Description',
+                style: TextStyle(
+                  fontSize: contentWidth * 0.042,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: screenHeight * 0.015),
+          // BACKEND: 'description' key from recommendations.json
+          // This text explains why this style suits the user's features
+          Text(
+            style['description']!,
+            style: TextStyle(
+              fontSize: contentWidth * 0.035,
+              color: Colors.black54,
+              height: 1.6,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -222,7 +309,6 @@ class RecommendationResultScreen extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Back button
           CircleAvatar(
             backgroundColor: const Color(0xFFFFF0F6),
             child: IconButton(
