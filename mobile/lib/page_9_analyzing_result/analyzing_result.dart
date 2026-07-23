@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'retakephoto.dart';
+import '../page_10_recommendation_explanation/recommendation_result.dart';
 
 // ─────────────────────────────────────────────────────────────
 // Beauty Profile / Facial Analysis Results Screen — Page 9
@@ -251,6 +252,7 @@ class AnalyzingResultScreen extends StatelessWidget {
                               style: style,
                               contentWidth: contentWidth,
                               screenHeight: screenHeight,
+                              context: context,
                             ),
                           ),
                         ),
@@ -460,8 +462,19 @@ class AnalyzingResultScreen extends StatelessWidget {
     required Map<String, String> style,
     required double contentWidth,
     required double screenHeight,
+    required BuildContext context,
   }) {
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        // Navigate to Recommendation Explanation Screen (Page 10)
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RecommendationResultScreen(style: style),
+          ),
+        );
+      },
+      child: Container(
       width: double.infinity,
       padding: EdgeInsets.all(contentWidth * 0.04),
       decoration: BoxDecoration(
@@ -539,7 +552,7 @@ class AnalyzingResultScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              // Arrow — TODO: navigate to style detail page
+              // Arrow — navigates to Page 10 (whole card is tappable)
               const Icon(
                 Icons.chevron_right_rounded,
                 color: Colors.grey,
@@ -557,6 +570,7 @@ class AnalyzingResultScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }
