@@ -47,6 +47,18 @@ class _CameraScreenState extends State<CameraScreen> {
     _initCamera();
   }
 
+  // Restart image stream when returning from validation screen (retake)
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isCameraReady &&
+        _controller != null &&
+        _controller!.value.isInitialized &&
+        !_controller!.value.isStreamingImages) {
+      _controller!.startImageStream(_processCameraImage);
+    }
+  }
+
   // Initialize the camera (front camera preferred for face scan)
   Future<void> _initCamera() async {
     try {

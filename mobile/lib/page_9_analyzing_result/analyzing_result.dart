@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'retakephoto.dart';
+import '../page_10_recommendation_explanation/recommendation_result.dart';
 
 // ─────────────────────────────────────────────────────────────
 // Beauty Profile / Facial Analysis Results Screen — Page 9
@@ -11,8 +12,8 @@ import 'retakephoto.dart';
 // Expected keys in analysisResults:
 //   'skinTone'           → String  e.g. 'warm' / 'cool' / 'neutral'
 //   'faceShape'          → String  e.g. 'Oval'
-//   'eyeShape'            → String  e.g. 'almond'
-//   'undertone'           → String  same value as skinTone (see note below)
+//   'eyeShape'           → String  e.g. 'almond'
+//   'undertone'          → String  same value as skinTone (see note below)
 //   'monkScale'          → int     1-10, shown alongside undertone
 //   'aiInsight'          → String  e.g. 'Your oval face...'
 //   'recommendedStyles'  → List<Map<String, String>>
@@ -27,8 +28,6 @@ import 'retakephoto.dart';
 // NOTE on undertone vs skinTone: the detector pipeline (see main.py)
 // treats these as the same underlying category — there's no separate,
 // richer "undertone" value like "Golden Warm" produced anywhere upstream.
-// The Undertone card here shows that same category plus Monk Scale
-// instead, since that's the real numeric detail the pipeline provides.
 // ─────────────────────────────────────────────────────────────
 
 class AnalyzingResultScreen extends StatelessWidget {
@@ -39,17 +38,16 @@ class AnalyzingResultScreen extends StatelessWidget {
 
   // ── DUMMY DATA — Replace with real backend results ──
 
-  // BACKEND: Get this from skin_tone_detector.py → undertone classification
+  // BACKEND: Get this from skin_tone_detector.py
   String get _skinTone => analysisResults?['skinTone'] ?? 'Warm Medium';
 
-  // BACKEND: Get this from face_shape_model.tflite → shape classification
+  // BACKEND: Get this from face_shape_model.tflite
   String get _faceShape => analysisResults?['faceShape'] ?? 'Oval';
 
-  // BACKEND: Get this from eye_shape_detector.py → eye shape classification
+  // BACKEND: Get this from eye_shape_detector.py
   String get _eyeShape => analysisResults?['eyeShape'] ?? 'Almond';
 
-  // BACKEND: Same category as skinTone (see note at top of file) — the
-  // pipeline has no separate "undertone" concept, so this mirrors it.
+  // BACKEND: Same category as skinTone
   String get _undertone => analysisResults?['undertone'] ??
       analysisResults?['skinTone'] ??
       'Golden Warm';
@@ -57,8 +55,7 @@ class AnalyzingResultScreen extends StatelessWidget {
   // BACKEND: Get this from skin_tone_detector.py → Monk Scale (1-10)
   int? get _monkScale => analysisResults?['monkScale'] as int?;
 
-  // Official Monk Skin Tone Scale reference colors (M1 lightest -> M10
-  // deepest). Index 0 = Monk 01, so use (monkScale - 1) to look up.
+  // Official Monk Skin Tone Scale reference colors
   static const List<Color> _monkScaleColors = [
     Color(0xFFF6EDE4), // Monk 01
     Color(0xFFF3E7DB), // Monk 02
@@ -72,8 +69,6 @@ class AnalyzingResultScreen extends StatelessWidget {
     Color(0xFF292420), // Monk 10
   ];
 
-  // Returns the real Monk Scale color for the detected value, falling
-  // back to a mid-tone default only if no monkScale was provided.
   Color get _skinToneColor {
     final scale = _monkScale;
     if (scale != null && scale >= 1 && scale <= 10) {
@@ -82,14 +77,14 @@ class AnalyzingResultScreen extends StatelessWidget {
     return const Color(0xFFD4956A);
   }
 
-  // BACKEND: Generate this insight text by combining all 3 results
+  // BACKEND: Generate this insight text by combining all results
   String get _aiInsight =>
       analysisResults?['aiInsight'] ??
       'Your oval face and golden warm undertone suit peach, copper, and coral '
           'palettes beautifully. Focus on dewy skin and warm-toned products to '
           'bring out your natural radiance.';
 
-  // BACKEND: Get top 3 styles from style_scorer.py based on face+skin results
+  // BACKEND: Get top 3 styles from style_scorer.py
   List<Map<String, String>> get _recommendedStyles =>
       (analysisResults?['recommendedStyles'] as List<Map<String, String>>?) ??
       [
@@ -116,8 +111,6 @@ class AnalyzingResultScreen extends StatelessWidget {
         },
       ];
 
-  // Capitalizes the first letter — detector values come lowercase
-  // ("warm", "almond") but display should read "Warm", "Almond".
   String _titleCase(String s) =>
       s.isEmpty ? s : '${s[0].toUpperCase()}${s.substring(1)}';
 
@@ -161,12 +154,9 @@ class AnalyzingResultScreen extends StatelessWidget {
 
                         SizedBox(height: screenHeight * 0.015),
 
-                        // All 4 cards in a single row, sized down to fit.
                         Row(
                           children: [
                             // BACKEND: skinTone from skin_tone_detector.py
-                            // (Monk Scale shown here since it's a direct
-                            // output of the same skin tone analysis step)
                             Expanded(
                               child: _buildAnalysisCard(
                                 label: 'SKIN TONE',
@@ -204,8 +194,7 @@ class AnalyzingResultScreen extends StatelessWidget {
                             ),
                             SizedBox(width: contentWidth * 0.02),
 
-                            // BACKEND: undertone — same category as
-                            // skinTone (see note at top of file).
+                            // BACKEND: undertone from skin_tone_detector.py
                             Expanded(
                               child: _buildAnalysisCard(
                                 label: 'UNDERTONE',
@@ -214,7 +203,6 @@ class AnalyzingResultScreen extends StatelessWidget {
                                 isCircle: false,
                                 contentWidth: contentWidth,
                               ),
-
                             ),
                           ],
                         ),
@@ -222,8 +210,7 @@ class AnalyzingResultScreen extends StatelessWidget {
                         SizedBox(height: screenHeight * 0.02),
 
                         // ── AI INSIGHT BOX ──
-                        // BACKEND: Generate this text by combining
-                        // skinTone + faceShape + undertone results
+                        // BACKEND: Generated from skinTone + faceShape + undertone
                         _buildInsightBox(contentWidth, screenHeight),
 
                         SizedBox(height: screenHeight * 0.025),
@@ -241,8 +228,8 @@ class AnalyzingResultScreen extends StatelessWidget {
 
                         SizedBox(height: screenHeight * 0.015),
 
-                        // BACKEND: Replace dummy styles with top 3 results
-                        // from style_scorer.py based on user's features
+                        // BACKEND: Top 3 styles from style_scorer.py
+                        // Tapping each card navigates to Page 10
                         ..._recommendedStyles.map(
                           (style) => Padding(
                             padding: EdgeInsets.only(
@@ -251,6 +238,7 @@ class AnalyzingResultScreen extends StatelessWidget {
                               style: style,
                               contentWidth: contentWidth,
                               screenHeight: screenHeight,
+                              context: context,
                             ),
                           ),
                         ),
@@ -270,7 +258,7 @@ class AnalyzingResultScreen extends StatelessWidget {
                                     const RetakeScanDialog(),
                               );
 
-                              // If user confirmed, go back to home
+                              // If confirmed, go back to home
                               if (confirm == true && context.mounted) {
                                 Navigator.popUntil(
                                   context,
@@ -353,11 +341,7 @@ class AnalyzingResultScreen extends StatelessWidget {
     );
   }
 
-  // Analysis card — skin tone, face shape, eye shape, undertone.
-  // Pass `icon` for shape-based cards (renders the icon on a tinted
-  // circle background); leave it null for color-based cards (renders
-  // a solid color swatch instead) — color represents the actual
-  // detected value there, so a generic icon would be misleading.
+  // Analysis card
   Widget _buildAnalysisCard({
     required String label,
     required String value,
@@ -377,7 +361,6 @@ class AnalyzingResultScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Icon (shape cards) or solid swatch (color cards)
           Container(
             width: contentWidth * 0.11,
             height: contentWidth * 0.11,
@@ -455,81 +438,93 @@ class AnalyzingResultScreen extends StatelessWidget {
     );
   }
 
-  // Recommended style card
+  // Recommended style card — tapping navigates to Page 10
   Widget _buildStyleCard({
     required Map<String, String> style,
     required double contentWidth,
     required double screenHeight,
+    required BuildContext context,
   }) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(contentWidth * 0.04),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF0F6),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              // Style icon
-              Container(
-                width: contentWidth * 0.1,
-                height: contentWidth * 0.1,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFFE4F0),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Icon(
-                  Icons.auto_awesome_rounded,
-                  color: const Color(0xFFFF6EB4),
-                  size: contentWidth * 0.055,
-                ),
-              ),
-              SizedBox(width: contentWidth * 0.03),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // BACKEND: style name from style_scorer.py
-                    Text(
-                      style['name']!,
-                      style: TextStyle(
-                        fontSize: contentWidth * 0.042,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    // BACKEND: style subtitle from recommendations.json
-                    Text(
-                      style['subtitle']!,
-                      style: TextStyle(
-                        fontSize: contentWidth * 0.032,
-                        color: const Color(0xFFFF6EB4),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // Arrow — TODO: navigate to style detail page
-              const Icon(
-                Icons.chevron_right_rounded,
-                color: Colors.grey,
-              ),
-            ],
+    return GestureDetector(
+      onTap: () {
+        // Navigate to Recommendation Explanation Screen (Page 10)
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RecommendationResultScreen(style: style),
           ),
-          SizedBox(height: screenHeight * 0.01),
-          // BACKEND: style description from recommendations.json
-          Text(
-            style['description']!,
-            style: TextStyle(
-              fontSize: contentWidth * 0.033,
-              color: Colors.black54,
-              height: 1.4,
+        );
+      },
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(contentWidth * 0.04),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFF0F6),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                // Style icon
+                Container(
+                  width: contentWidth * 0.1,
+                  height: contentWidth * 0.1,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFFE4F0),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Icon(
+                    Icons.auto_awesome_rounded,
+                    color: const Color(0xFFFF6EB4),
+                    size: contentWidth * 0.055,
+                  ),
+                ),
+                SizedBox(width: contentWidth * 0.03),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // BACKEND: style name from style_scorer.py
+                      Text(
+                        style['name']!,
+                        style: TextStyle(
+                          fontSize: contentWidth * 0.042,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      // BACKEND: style subtitle from recommendations.json
+                      Text(
+                        style['subtitle']!,
+                        style: TextStyle(
+                          fontSize: contentWidth * 0.032,
+                          color: const Color(0xFFFF6EB4),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Arrow — navigates to Page 10
+                const Icon(
+                  Icons.chevron_right_rounded,
+                  color: Colors.grey,
+                ),
+              ],
             ),
-          ),
-        ],
+            SizedBox(height: screenHeight * 0.01),
+            // BACKEND: style description from recommendations.json
+            Text(
+              style['description']!,
+              style: TextStyle(
+                fontSize: contentWidth * 0.033,
+                color: Colors.black54,
+                height: 1.4,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
