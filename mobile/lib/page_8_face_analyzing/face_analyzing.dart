@@ -6,6 +6,7 @@ import '../backend/mesh_provider.dart';
 import '../backend/face_shape_detector.dart';
 import '../backend/eye_shape_detector.dart' as eyes;
 import '../backend/skin_tone_detector.dart';
+import '../backend/style_scorer.dart';
 import '../page_9_analyzing_result/analyzing_result.dart';
 
 // ─────────────────────────────────────────────────────────────
@@ -123,8 +124,14 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
       meshProvider.dispose();
       _completeStep(1);
 
-      // Step 3 — Recommendations (PLACEHOLDER — not ported to Dart yet)
+      // Step 3 — Recommendations: score all 15 styles against the
+      // detected features, take the top 3.
       setState(() => _currentStep = 2);
+      final topStyles = scoreStyles(
+        undertone: skinResult.skinTone ?? 'neutral',
+        faceShape: faceResult?.faceShape ?? 'Oval',
+        eyeShape: eyeResult.eyeShape,
+      );
       _completeStep(2);
 
       final Map<String, dynamic> analysisResults = {
@@ -140,13 +147,28 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
         'faceConfidence': faceResult?.confidence,
         'eyeShape': eyeResult.eyeShape,
         'eyeConfidence': eyeResult.confidence,
-        // 'recommendedStyles': TODO — needs style_scorer.py ported to Dart
+        // Mapped to the {'name', 'subtitle', 'description'} shape
+        // analyzing_result.dart's _recommendedStyles getter expects.
+        // NOTE: style_scorer.dart has no "subtitle" field of its own —
+        // reusing `description` for both is a placeholder; a real
+        // subtitle (short tagline distinct from the full description)
+        // would need to come from recommendations.json once that's
+        // ported too.
+        'recommendedStyles': topStyles
+            .map((s) => {
+                  'name': s.styleName,
+                  'subtitle': s.description,
+                  'description': s.description,
+                  'matchPct': s.matchPct.toString(),
+                })
+            .toList(),
       };
 
       // TEMPORARY — remove once Page 9 actually displays these values.
       debugPrint('=== LIVE CAMERA ANALYSIS RESULT ===');
       debugPrint('  skinTone: ${skinResult.skinTone}');
       debugPrint('  monkScale: ${skinResult.monkScale}');
+      debugPrint('  top styles: ${topStyles.map((s) => '${s.styleName} (${s.matchPct}%)').join(', ')}');
       debugPrint('  faceShape: ${faceResult?.faceShape}  error: ${faceResult?.error}');
       debugPrint('  faceShape allScores: ${faceResult?.allScores}');
       debugPrint('  eyeShape: ${eyeResult.eyeShape}  error: ${eyeResult.error}');

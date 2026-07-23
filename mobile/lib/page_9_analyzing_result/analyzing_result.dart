@@ -492,14 +492,41 @@ class AnalyzingResultScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // BACKEND: style name from style_scorer.py
-                    Text(
-                      style['name']!,
-                      style: TextStyle(
-                        fontSize: contentWidth * 0.042,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
+                    // BACKEND: style name from style_scorer.py, plus a
+                    // match % badge (style_scorer.dart's matchPct) when
+                    // available — not present on the dummy fallback data.
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            style['name']!,
+                            style: TextStyle(
+                              fontSize: contentWidth * 0.042,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                        if (style['matchPct'] != null)
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: contentWidth * 0.02,
+                              vertical: contentWidth * 0.005,
+                            ),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFFFE4F0),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text(
+                              '${style['matchPct']}% match',
+                              style: TextStyle(
+                                fontSize: contentWidth * 0.028,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFFFF6EB4),
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
                     // BACKEND: style subtitle from recommendations.json
                     Text(
