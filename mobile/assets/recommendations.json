@@ -1,0 +1,5419 @@
+{
+  "_meta": {
+    "undertones": [
+      "warm",
+      "neutral",
+      "cool"
+    ],
+    "monk_scale_range": [
+      1,
+      10
+    ],
+    "face_shapes": [
+      "oval",
+      "round",
+      "square",
+      "heart",
+      "long"
+    ],
+    "eye_shapes": [
+      "almond",
+      "round",
+      "monolid",
+      "hooded",
+      "downturned",
+      "upturned"
+    ],
+    "note": "Shades are looked up by [product][undertone][monk_scale - 1]. Monk 1 = lightest, Monk 10 = deepest."
+  },
+  "shades": {
+    "color_corrector": {
+      "warm": [
+        "Peach Sheer",
+        "Peach Light",
+        "Apricot Light",
+        "Apricot Medium",
+        "Orange-Peach",
+        "Deep Peach",
+        "Burnt Orange",
+        "Deep Apricot",
+        "Rust Orange",
+        "Deep Rust"
+      ],
+      "neutral": [
+        "Sheer Beige",
+        "Soft Beige",
+        "Light Beige Tint",
+        "Medium Beige Tint",
+        "Honey Beige Tint",
+        "Deep Beige Tint",
+        "Caramel Tint",
+        "Deep Caramel Tint",
+        "Chestnut Tint",
+        "Deep Chestnut Tint"
+      ],
+      "cool": [
+        "Pink Sheer",
+        "Soft Pink",
+        "Rose Light",
+        "Rose Medium",
+        "Mauve Pink",
+        "Deep Rose",
+        "Plum Rose",
+        "Deep Mauve",
+        "Berry Rose",
+        "Deep Berry"
+      ]
+    },
+    "concealer": {
+      "warm": [
+        "Warm Fair",
+        "Golden Light",
+        "Warm Light",
+        "Golden Nude",
+        "Honey Nude",
+        "Warm Sand",
+        "Warm Caramel",
+        "Golden Mocha",
+        "Warm Chestnut",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Neutral Fair",
+        "Neutral Light",
+        "Soft Light",
+        "Neutral Nude",
+        "Natural Nude",
+        "Neutral Sand",
+        "Neutral Caramel",
+        "Natural Mocha",
+        "Neutral Chestnut",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Fair",
+        "Rose Light",
+        "Cool Light",
+        "Rose Nude",
+        "Pink Nude",
+        "Cool Sand",
+        "Cool Caramel",
+        "Rose Mocha",
+        "Cool Chestnut",
+        "Cool Espresso"
+      ]
+    },
+    "liquid_blush": {
+      "warm": [
+        "Soft Peach Cream",
+        "Warm Peach Cream",
+        "Coral Peach Cream",
+        "Warm Coral Cream",
+        "Deep Coral Cream",
+        "Terra Coral Cream",
+        "Brick Coral Cream",
+        "Deep Terra Cream",
+        "Rich Brick Cream",
+        "Dark Terra Cream"
+      ],
+      "neutral": [
+        "Soft Apricot Cream",
+        "Neutral Peach Cream",
+        "Sandy Coral Cream",
+        "Neutral Coral Cream",
+        "Deep Neutral Coral Cream",
+        "Terracotta Cream",
+        "Deep Terracotta Cream",
+        "Deep Neutral Terra Cream",
+        "Rich Neutral Brick Cream",
+        "Dark Neutral Terra Cream"
+      ],
+      "cool": [
+        "Soft Pink Cream",
+        "Cool Pink Cream",
+        "Rose Pink Cream",
+        "Cool Rose Cream",
+        "Deep Rose Cream",
+        "Berry Rose Cream",
+        "Berry Mauve Cream",
+        "Deep Berry Cream",
+        "Rich Plum Cream",
+        "Dark Plum Cream"
+      ]
+    },
+    "powder_blush": {
+      "warm": [
+        "Soft Peach Pink",
+        "Warm Peach",
+        "Warm Rose Peach",
+        "Dusty Peach",
+        "Peachy Coral",
+        "Deep Warm Rose",
+        "Terra Rose",
+        "Brick Rose",
+        "Deep Terra",
+        "Rich Brick"
+      ],
+      "neutral": [
+        "Soft Petal Beige",
+        "Neutral Peach Pink",
+        "Soft Rose Beige",
+        "Dusty Rose Beige",
+        "Sandy Rose",
+        "Deep Neutral Rose",
+        "Terracotta Rose",
+        "Deep Terracotta Rose",
+        "Deep Neutral Brick",
+        "Rich Neutral Brick"
+      ],
+      "cool": [
+        "Soft Pink",
+        "Cool Pink",
+        "Cool Rose",
+        "Dusty Mauve Rose",
+        "Mauve Pink",
+        "Deep Cool Rose",
+        "Berry Rose",
+        "Berry Mauve",
+        "Deep Berry Mauve",
+        "Rich Plum"
+      ]
+    },
+    "setting_powder_translucent": {
+      "warm": [
+        "Translucent Sheer (Warm Cast)",
+        "Translucent Sheer (Warm Cast)",
+        "Warm Translucent",
+        "Warm Beige",
+        "Golden Beige",
+        "Warm Sand",
+        "Warm Tan",
+        "Warm Bronze",
+        "Deep Warm Bronze",
+        "Deep Warm Espresso"
+      ],
+      "neutral": [
+        "Translucent Sheer (True)",
+        "Translucent Sheer (True)",
+        "Neutral Translucent",
+        "Neutral Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Tan",
+        "Neutral Bronze",
+        "Deep Neutral Bronze",
+        "Deep Neutral Espresso"
+      ],
+      "cool": [
+        "Translucent Sheer (Cool Cast)",
+        "Translucent Sheer (Cool Cast)",
+        "Cool Translucent",
+        "Cool Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Tan",
+        "Cool Bronze",
+        "Deep Cool Bronze",
+        "Deep Cool Espresso"
+      ]
+    },
+    "bronzer_contour": {
+      "warm": [
+        "Barely Bronze",
+        "Warm Tan",
+        "Golden Tan",
+        "Honey Tan",
+        "Golden Bronze",
+        "Deep Golden Tan",
+        "Warm Mocha",
+        "Rich Warm Mocha",
+        "Deep Amber Mocha",
+        "Warm Espresso Bronze"
+      ],
+      "neutral": [
+        "Soft Bronze",
+        "Neutral Tan",
+        "Natural Tan",
+        "Soft Sand Tan",
+        "Neutral Bronze",
+        "Deep Natural Tan",
+        "Neutral Mocha",
+        "Rich Neutral Mocha",
+        "Deep Neutral Mocha",
+        "Neutral Espresso Bronze"
+      ],
+      "cool": [
+        "Soft Taupe Bronze",
+        "Cool Tan",
+        "Ashy Tan",
+        "Ashy Tan Cool",
+        "Cool Bronze",
+        "Deep Ashy Tan",
+        "Cool Mocha",
+        "Rich Cool Mocha",
+        "Deep Ash Mocha",
+        "Cool Espresso Bronze"
+      ]
+    },
+    "eyeshadow_deep_brown": {
+      "warm": [
+        "Soft Auburn",
+        "Warm Chestnut Brown",
+        "Reddish Warm Brown",
+        "Cinnamon Brown",
+        "Warm Sienna",
+        "Deep Sienna Brown",
+        "Warm Mahogany",
+        "Deep Warm Mahogany",
+        "Dark Cinnamon Espresso",
+        "Rich Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Umber",
+        "Neutral Chestnut Brown",
+        "Neutral Brown",
+        "Walnut Brown",
+        "Neutral Sienna",
+        "Deep Walnut Brown",
+        "Neutral Mahogany",
+        "Deep Neutral Mahogany",
+        "Dark Walnut Espresso",
+        "Rich Neutral Espresso"
+      ],
+      "cool": [
+        "Soft Mauve Brown",
+        "Cool Plum Brown",
+        "Cool Berry Brown",
+        "Mauve Espresso",
+        "Cool Aubergine Brown",
+        "Deep Aubergine Brown",
+        "Cool Mahogany",
+        "Deep Cool Mahogany",
+        "Dark Plum Espresso",
+        "Rich Cool Espresso"
+      ]
+    },
+    "eyeliner": {
+      "warm": [
+        "Soft Black (Warm Base)",
+        "Soft Black",
+        "Charcoal Black",
+        "Charcoal",
+        "Black",
+        "Black",
+        "Matte Black",
+        "Matte Black",
+        "Jet Black",
+        "Jet Black"
+      ],
+      "neutral": [
+        "Soft Black",
+        "Soft Black",
+        "Charcoal",
+        "Charcoal",
+        "True Black",
+        "True Black",
+        "Matte True Black",
+        "Matte True Black",
+        "Jet True Black",
+        "Jet True Black"
+      ],
+      "cool": [
+        "Cool Soft Black",
+        "Blue-Black Soft",
+        "Charcoal Cool Black",
+        "Blue Charcoal",
+        "Cool Black",
+        "Cool Black",
+        "Matte Cool Black",
+        "Matte Cool Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black"
+      ]
+    },
+    "mascara": {
+      "warm": [
+        "Warm Dark Brown",
+        "Dark Brown",
+        "Brown Black",
+        "Warm Brown Black",
+        "Black Brown",
+        "Black",
+        "Matte Black",
+        "Matte Black",
+        "Jet Black",
+        "Jet Black"
+      ],
+      "neutral": [
+        "Neutral Dark Brown",
+        "True Dark Brown",
+        "Brown-Black",
+        "Neutral Brown-Black",
+        "True Black-Brown",
+        "True Black",
+        "Matte True Black",
+        "Matte True Black",
+        "Jet True Black",
+        "Jet True Black"
+      ],
+      "cool": [
+        "Cool Dark Brown",
+        "Blue-Brown",
+        "Cool Brown Black",
+        "Cool Brown Black",
+        "Blue Black Brown",
+        "Blue-Black",
+        "Matte Blue-Black",
+        "Matte Blue-Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black"
+      ]
+    },
+    "brow_pencil_ash_toned": {
+      "warm": [
+        "Warm Blonde",
+        "Golden Ash Brown",
+        "Warm Soft Brown",
+        "Golden Warm Brown",
+        "Golden Brown",
+        "Deep Golden Brown",
+        "Warm Dark Brown",
+        "Rich Warm Brown",
+        "Deep Warm Espresso",
+        "Warm Soft Black"
+      ],
+      "neutral": [
+        "Neutral Blonde",
+        "Soft Ash Brown",
+        "Neutral Soft Brown",
+        "Neutral Brown",
+        "True Brown",
+        "Deep Neutral Brown",
+        "Neutral Dark Brown",
+        "Rich Neutral Brown",
+        "Deep Neutral Espresso",
+        "Soft True Black"
+      ],
+      "cool": [
+        "Cool Ash Blonde",
+        "Cool Ash Brown",
+        "Cool Soft Brown",
+        "Ashy Cool Brown",
+        "Cool Brown",
+        "Deep Cool Brown",
+        "Cool Dark Brown",
+        "Rich Cool Brown",
+        "Deep Cool Espresso",
+        "Cool Soft Black"
+      ]
+    },
+    "brow_gel": {
+      "warm": [
+        "Clear",
+        "Clear",
+        "Clear / Warm Light Brown",
+        "Clear / Warm Soft Brown",
+        "Warm Brown Tinted",
+        "Warm Brown Tinted",
+        "Dark Warm Brown Tinted",
+        "Dark Warm Brown Tinted",
+        "Warm Espresso Tinted",
+        "Warm Soft Black Tinted"
+      ],
+      "neutral": [
+        "Clear",
+        "Clear",
+        "Clear / Soft Light Brown",
+        "Clear / Neutral Soft Brown",
+        "Neutral Brown Tinted",
+        "Neutral Brown Tinted",
+        "Dark Neutral Brown Tinted",
+        "Dark Neutral Brown Tinted",
+        "Neutral Espresso Tinted",
+        "Soft True Black Tinted"
+      ],
+      "cool": [
+        "Clear",
+        "Clear",
+        "Clear / Ash Brown",
+        "Clear / Cool Soft Brown",
+        "Cool Brown Tinted",
+        "Cool Brown Tinted",
+        "Dark Cool Brown Tinted",
+        "Dark Cool Brown Tinted",
+        "Cool Espresso Tinted",
+        "Cool Soft Black Tinted"
+      ]
+    },
+    "highlighter": {
+      "warm": [
+        "Warm Pearl",
+        "Golden Champagne",
+        "Warm Champagne",
+        "Gold Champagne",
+        "Warm Gold",
+        "Deep Gold",
+        "Rose Gold Warm",
+        "Bronze Gold",
+        "Deep Amber Gold",
+        "Rich Warm Bronze"
+      ],
+      "neutral": [
+        "Soft Pearl",
+        "Champagne",
+        "Neutral Champagne",
+        "Soft Gold Champagne",
+        "Neutral Gold",
+        "Deep Champagne Gold",
+        "Soft Rose Gold",
+        "Bronze Champagne",
+        "Deep Neutral Bronze",
+        "Rich Neutral Bronze"
+      ],
+      "cool": [
+        "Cool Pearl White",
+        "Champagne Silver",
+        "Cool Champagne",
+        "Silver Champagne",
+        "Cool Gold",
+        "Deep Rose Silver",
+        "Rose Gold Cool",
+        "Bronze Silver",
+        "Deep Cool Bronze",
+        "Rich Cool Bronze"
+      ]
+    },
+    "lip_gloss_nude_pink": {
+      "warm": [
+        "Warm Sheer Pink",
+        "Warm Peachy Pink",
+        "Warm Peach",
+        "Coral Pink",
+        "Warm Coral",
+        "Deep Warm Peach",
+        "Terra Gloss",
+        "Warm Berry Gloss",
+        "Deep Warm Berry",
+        "Rich Warm Plum Gloss"
+      ],
+      "neutral": [
+        "Soft Sheer Pink",
+        "Neutral Peachy Pink",
+        "Neutral Peach",
+        "Sandy Pink",
+        "Neutral Coral",
+        "Deep Neutral Peach",
+        "Terracotta Gloss",
+        "Neutral Berry Gloss",
+        "Deep Neutral Berry",
+        "Rich Neutral Plum Gloss"
+      ],
+      "cool": [
+        "Cool Sheer Pink",
+        "Cool Pink",
+        "Cool Rose Pink",
+        "Cool Rose",
+        "Cool Mauve",
+        "Deep Cool Rose",
+        "Plum Gloss",
+        "Cool Berry Gloss",
+        "Deep Cool Berry",
+        "Rich Cool Plum Gloss"
+      ]
+    },
+    "tinted_sunscreen": {
+      "warm": [
+        "Warm Porcelain",
+        "Golden Ivory",
+        "Warm Ivory",
+        "Golden Beige",
+        "Honey Gold",
+        "Warm Sand",
+        "Warm Caramel",
+        "Golden Mocha",
+        "Warm Chestnut",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Neutral Porcelain",
+        "Neutral Ivory",
+        "Soft Ivory",
+        "Neutral Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Caramel",
+        "Natural Mocha",
+        "Neutral Chestnut",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Porcelain",
+        "Rose Ivory",
+        "Cool Ivory",
+        "Rose Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Caramel",
+        "Rose Mocha",
+        "Cool Chestnut",
+        "Cool Espresso"
+      ]
+    },
+    "cream_blush": {
+      "warm": [
+        "Soft Peach Cream",
+        "Warm Peach Cream",
+        "Coral Peach Cream",
+        "Warm Coral Cream",
+        "Deep Coral Cream",
+        "Terra Coral Cream",
+        "Brick Coral Cream",
+        "Deep Terra Cream",
+        "Rich Brick Cream",
+        "Dark Terra Cream"
+      ],
+      "neutral": [
+        "Soft Apricot Cream",
+        "Neutral Peach Cream",
+        "Sandy Coral Cream",
+        "Neutral Coral Cream",
+        "Deep Neutral Coral Cream",
+        "Terracotta Cream",
+        "Deep Terracotta Cream",
+        "Deep Neutral Terra Cream",
+        "Rich Neutral Brick Cream",
+        "Dark Neutral Terra Cream"
+      ],
+      "cool": [
+        "Soft Pink Cream",
+        "Cool Pink Cream",
+        "Rose Pink Cream",
+        "Cool Rose Cream",
+        "Deep Rose Cream",
+        "Berry Rose Cream",
+        "Berry Mauve Cream",
+        "Deep Berry Cream",
+        "Rich Plum Cream",
+        "Dark Plum Cream"
+      ]
+    },
+    "loose_powder": {
+      "warm": [
+        "Warm Sheer Loose",
+        "Warm Sheer Loose",
+        "Warm Translucent Loose",
+        "Warm Beige Loose",
+        "Golden Beige Loose",
+        "Warm Sand Loose",
+        "Warm Tan Loose",
+        "Warm Bronze Loose",
+        "Deep Warm Bronze Loose",
+        "Deep Warm Espresso Loose"
+      ],
+      "neutral": [
+        "Neutral Sheer Loose",
+        "Neutral Sheer Loose",
+        "Neutral Translucent Loose",
+        "Neutral Beige Loose",
+        "Natural Beige Loose",
+        "Neutral Sand Loose",
+        "Neutral Tan Loose",
+        "Neutral Bronze Loose",
+        "Deep Neutral Bronze Loose",
+        "Deep Neutral Espresso Loose"
+      ],
+      "cool": [
+        "Cool Sheer Loose",
+        "Cool Sheer Loose",
+        "Cool Translucent Loose",
+        "Cool Beige Loose",
+        "Pink Beige Loose",
+        "Cool Sand Loose",
+        "Cool Tan Loose",
+        "Cool Bronze Loose",
+        "Deep Cool Bronze Loose",
+        "Deep Cool Espresso Loose"
+      ]
+    },
+    "contour_light": {
+      "warm": [
+        "Faint Warm Shadow",
+        "Soft Warm Tan",
+        "Warm Tan",
+        "Natural Warm Tan",
+        "Golden Tan",
+        "Deep Golden Tan",
+        "Warm Mocha Tan",
+        "Rich Warm Mocha",
+        "Deep Warm Mocha",
+        "Warm Espresso Bronze"
+      ],
+      "neutral": [
+        "Faint Neutral Shadow",
+        "Soft Neutral Tan",
+        "Neutral Tan",
+        "Natural Sand Tan",
+        "Sandy Tan",
+        "Deep Sandy Tan",
+        "Neutral Mocha Tan",
+        "Rich Neutral Mocha",
+        "Deep Neutral Mocha",
+        "Neutral Espresso Bronze"
+      ],
+      "cool": [
+        "Faint Cool Shadow",
+        "Soft Cool Tan",
+        "Cool Tan",
+        "Natural Cool Tan",
+        "Ashy Tan",
+        "Deep Ashy Tan",
+        "Cool Mocha Tan",
+        "Rich Cool Mocha",
+        "Deep Cool Mocha",
+        "Cool Espresso Bronze"
+      ]
+    },
+    "brow_pencil": {
+      "warm": [
+        "Warm Blonde",
+        "Golden Ash Brown",
+        "Warm Soft Brown",
+        "Golden Warm Brown",
+        "Golden Brown",
+        "Deep Golden Brown",
+        "Warm Dark Brown",
+        "Rich Warm Brown",
+        "Deep Warm Espresso",
+        "Warm Soft Black"
+      ],
+      "neutral": [
+        "Neutral Blonde",
+        "Soft Ash Brown",
+        "Neutral Soft Brown",
+        "Neutral Brown",
+        "True Brown",
+        "Deep Neutral Brown",
+        "Neutral Dark Brown",
+        "Rich Neutral Brown",
+        "Deep Neutral Espresso",
+        "Soft True Black"
+      ],
+      "cool": [
+        "Cool Ash Blonde",
+        "Cool Ash Brown",
+        "Cool Soft Brown",
+        "Ashy Cool Brown",
+        "Cool Brown",
+        "Deep Cool Brown",
+        "Cool Dark Brown",
+        "Rich Cool Brown",
+        "Deep Cool Espresso",
+        "Cool Soft Black"
+      ]
+    },
+    "eyeshadow_light_brown": {
+      "warm": [
+        "Warm Nude Pearl",
+        "Warm Beige",
+        "Golden Nude",
+        "Warm Rose Brown",
+        "Warm Rose",
+        "Dusty Warm Rose Brown",
+        "Warm Taupe Rose",
+        "Deep Warm Rose Brown",
+        "Dark Warm Brown",
+        "Rich Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Nude Pearl",
+        "Neutral Beige",
+        "Soft Nude",
+        "Neutral Rose Brown",
+        "Soft Neutral Rose",
+        "Dusty Neutral Brown",
+        "Neutral Taupe Rose",
+        "Deep Neutral Rose Brown",
+        "Dark Neutral Brown",
+        "Rich Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Nude Pearl",
+        "Cool Beige",
+        "Ashy Nude",
+        "Cool Rose Brown",
+        "Cool Mauve Rose",
+        "Dusty Cool Rose Brown",
+        "Cool Taupe Rose",
+        "Deep Cool Rose Brown",
+        "Dark Cool Brown",
+        "Rich Cool Espresso"
+      ]
+    },
+    "lip_liner": {
+      "warm": [
+        "Warm Soft Pink",
+        "Warm Dusty Rose",
+        "Warm Mauve Pink",
+        "Warm Berry Pink",
+        "Warm Deep Berry",
+        "Warm Wine Mauve",
+        "Rich Warm Berry",
+        "Dark Warm Berry",
+        "Deep Warm Plum",
+        "Dark Warm Plum"
+      ],
+      "neutral": [
+        "Soft Pink",
+        "Neutral Dusty Rose",
+        "Neutral Mauve Pink",
+        "Neutral Berry Pink",
+        "Neutral Deep Berry",
+        "Neutral Wine Mauve",
+        "Rich Neutral Berry",
+        "Dark Neutral Berry",
+        "Deep Neutral Plum",
+        "Dark Neutral Plum"
+      ],
+      "cool": [
+        "Cool Soft Pink",
+        "Cool Dusty Rose",
+        "Cool Mauve Pink",
+        "Cool Berry Pink",
+        "Cool Deep Berry",
+        "Cool Wine Mauve",
+        "Rich Cool Berry",
+        "Dark Cool Berry",
+        "Deep Cool Plum",
+        "Dark Cool Plum"
+      ]
+    },
+    "lip_tint_gloss": {
+      "warm": [
+        "Warm Baby Pink",
+        "Soft Peach",
+        "Warm Rose",
+        "Coral Rose",
+        "Warm Berry",
+        "Deep Warm Rose",
+        "Terra Tint",
+        "Deep Warm Berry",
+        "Rich Warm Berry",
+        "Dark Warm Berry"
+      ],
+      "neutral": [
+        "Soft Petal Pink",
+        "Soft Apricot",
+        "Neutral Rose",
+        "Sandy Rose",
+        "Neutral Berry",
+        "Deep Neutral Rose",
+        "Terracotta Tint",
+        "Deep Neutral Berry",
+        "Rich Neutral Berry",
+        "Dark Neutral Berry"
+      ],
+      "cool": [
+        "Cool Baby Pink",
+        "Cool Soft Pink",
+        "Cool Rose",
+        "Mauve Rose",
+        "Cool Berry",
+        "Deep Cool Rose",
+        "Plum Tint",
+        "Deep Cool Berry",
+        "Rich Cool Berry",
+        "Dark Cool Berry"
+      ]
+    },
+    "illuminating_primer_serum": {
+      "warm": [
+        "Luminous Hydrating",
+        "Luminous Hydrating",
+        "Hydrating Glow",
+        "Hydrating Glow",
+        "Pore-Smoothing",
+        "Pore-Smoothing",
+        "Longwear",
+        "Longwear Matte",
+        "Longwear Matte",
+        "Longwear Matte"
+      ],
+      "neutral": [
+        "Luminous Hydrating",
+        "Luminous Hydrating",
+        "Hydrating Glow",
+        "Hydrating Glow",
+        "Pore-Smoothing",
+        "Pore-Smoothing",
+        "Longwear",
+        "Longwear Matte",
+        "Longwear Matte",
+        "Longwear Matte"
+      ],
+      "cool": [
+        "Luminous Hydrating",
+        "Luminous Hydrating",
+        "Hydrating Glow",
+        "Hydrating Glow",
+        "Pore-Smoothing",
+        "Pore-Smoothing",
+        "Longwear",
+        "Longwear Matte",
+        "Longwear Matte",
+        "Longwear Matte"
+      ]
+    },
+    "liquid_glow_enhancer": {
+      "warm": [
+        "Warm Pearl",
+        "Golden Champagne",
+        "Warm Champagne",
+        "Gold Champagne",
+        "Warm Gold",
+        "Deep Gold",
+        "Rose Gold Warm",
+        "Bronze Gold",
+        "Deep Amber Gold",
+        "Rich Warm Bronze"
+      ],
+      "neutral": [
+        "Soft Pearl",
+        "Champagne",
+        "Neutral Champagne",
+        "Soft Gold Champagne",
+        "Neutral Gold",
+        "Deep Champagne Gold",
+        "Soft Rose Gold",
+        "Bronze Champagne",
+        "Deep Neutral Bronze",
+        "Rich Neutral Bronze"
+      ],
+      "cool": [
+        "Cool Pearl White",
+        "Champagne Silver",
+        "Cool Champagne",
+        "Silver Champagne",
+        "Cool Gold",
+        "Deep Rose Silver",
+        "Rose Gold Cool",
+        "Bronze Silver",
+        "Deep Cool Bronze",
+        "Rich Cool Bronze"
+      ]
+    },
+    "foundation_dewy": {
+      "warm": [
+        "Warm Porcelain",
+        "Golden Ivory",
+        "Warm Ivory",
+        "Golden Beige",
+        "Honey Gold",
+        "Warm Sand",
+        "Warm Caramel",
+        "Golden Mocha",
+        "Warm Chestnut",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Neutral Porcelain",
+        "Neutral Ivory",
+        "Soft Ivory",
+        "Neutral Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Caramel",
+        "Natural Mocha",
+        "Neutral Chestnut",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Porcelain",
+        "Rose Ivory",
+        "Cool Ivory",
+        "Rose Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Caramel",
+        "Rose Mocha",
+        "Cool Chestnut",
+        "Cool Espresso"
+      ]
+    },
+    "eyeshadow_peachy_base": {
+      "warm": [
+        "Light Peach Cream",
+        "Soft Peach Brown",
+        "Warm Peach Brown",
+        "Honey Peach Brown",
+        "Caramel Peach",
+        "Deep Peach Brown",
+        "Terra Peach Brown",
+        "Brick Peach Brown",
+        "Deep Cinnamon Peach",
+        "Rich Warm Sienna"
+      ],
+      "neutral": [
+        "Light Sand Cream",
+        "Soft Sand Brown",
+        "Neutral Sand Brown",
+        "Natural Sand Brown",
+        "Caramel Sand",
+        "Deep Sand Brown",
+        "Terracotta Brown",
+        "Deep Terracotta Brown",
+        "Deep Cinnamon Brown",
+        "Rich Neutral Sienna"
+      ],
+      "cool": [
+        "Light Mauve Taupe",
+        "Soft Rosy Taupe",
+        "Cool Rosy Brown",
+        "Muted Mauve Brown",
+        "Cool Taupe Rose",
+        "Deep Mauve Taupe",
+        "Cool Rosy Brown Deep",
+        "Berry Taupe Brown",
+        "Deep Plum Taupe",
+        "Rich Cool Espresso"
+      ]
+    },
+    "eyeshadow_brown_outer_lid": {
+      "warm": [
+        "Soft Auburn",
+        "Warm Chestnut Brown",
+        "Reddish Warm Brown",
+        "Cinnamon Brown",
+        "Warm Sienna",
+        "Deep Sienna Brown",
+        "Warm Mahogany",
+        "Deep Warm Mahogany",
+        "Dark Cinnamon Espresso",
+        "Rich Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Umber",
+        "Neutral Chestnut Brown",
+        "Neutral Brown",
+        "Walnut Brown",
+        "Neutral Sienna",
+        "Deep Walnut Brown",
+        "Neutral Mahogany",
+        "Deep Neutral Mahogany",
+        "Dark Walnut Espresso",
+        "Rich Neutral Espresso"
+      ],
+      "cool": [
+        "Soft Mauve Brown",
+        "Cool Plum Brown",
+        "Cool Berry Brown",
+        "Mauve Espresso",
+        "Cool Aubergine Brown",
+        "Deep Aubergine Brown",
+        "Cool Mahogany",
+        "Deep Cool Mahogany",
+        "Dark Plum Espresso",
+        "Rich Cool Espresso"
+      ]
+    },
+    "eyeliner_pencil_under_eye": {
+      "warm": [
+        "Warm Light Brown",
+        "Golden Soft Brown",
+        "Warm Brown",
+        "Warm Medium Brown",
+        "Deep Warm Brown",
+        "Rich Warm Brown",
+        "Dark Warm Brown",
+        "Warm Espresso Brown",
+        "Deep Warm Espresso",
+        "Jet Warm Brown"
+      ],
+      "neutral": [
+        "Neutral Light Brown",
+        "Soft Brown",
+        "Neutral Brown",
+        "Neutral Medium Brown",
+        "Deep Neutral Brown",
+        "Rich Neutral Brown",
+        "Dark Neutral Brown",
+        "Neutral Espresso Brown",
+        "Deep Neutral Espresso",
+        "Jet Neutral Brown"
+      ],
+      "cool": [
+        "Cool Light Brown",
+        "Ashy Soft Brown",
+        "Cool Brown",
+        "Cool Medium Brown",
+        "Deep Cool Brown",
+        "Rich Cool Brown",
+        "Dark Cool Brown",
+        "Cool Espresso Brown",
+        "Deep Cool Espresso",
+        "Jet Cool Brown"
+      ]
+    },
+    "brown_mascara": {
+      "warm": [
+        "Warm Dark Brown",
+        "Dark Brown",
+        "Brown Black",
+        "Warm Brown Black",
+        "Black Brown",
+        "Black",
+        "Matte Black",
+        "Matte Black",
+        "Jet Black",
+        "Jet Black"
+      ],
+      "neutral": [
+        "Neutral Dark Brown",
+        "True Dark Brown",
+        "Brown-Black",
+        "Neutral Brown-Black",
+        "True Black-Brown",
+        "True Black",
+        "Matte True Black",
+        "Matte True Black",
+        "Jet True Black",
+        "Jet True Black"
+      ],
+      "cool": [
+        "Cool Dark Brown",
+        "Blue-Brown",
+        "Cool Brown Black",
+        "Cool Brown Black",
+        "Blue Black Brown",
+        "Blue-Black",
+        "Matte Blue-Black",
+        "Matte Blue-Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black"
+      ]
+    },
+    "cream_liquid_blush": {
+      "warm": [
+        "Soft Peach Cream",
+        "Warm Peach Cream",
+        "Coral Peach Cream",
+        "Warm Coral Cream",
+        "Deep Coral Cream",
+        "Terra Coral Cream",
+        "Brick Coral Cream",
+        "Deep Terra Cream",
+        "Rich Brick Cream",
+        "Dark Terra Cream"
+      ],
+      "neutral": [
+        "Soft Apricot Cream",
+        "Neutral Peach Cream",
+        "Sandy Coral Cream",
+        "Neutral Coral Cream",
+        "Deep Neutral Coral Cream",
+        "Terracotta Cream",
+        "Deep Terracotta Cream",
+        "Deep Neutral Terra Cream",
+        "Rich Neutral Brick Cream",
+        "Dark Neutral Terra Cream"
+      ],
+      "cool": [
+        "Soft Pink Cream",
+        "Cool Pink Cream",
+        "Rose Pink Cream",
+        "Cool Rose Cream",
+        "Deep Rose Cream",
+        "Berry Rose Cream",
+        "Berry Mauve Cream",
+        "Deep Berry Cream",
+        "Rich Plum Cream",
+        "Dark Plum Cream"
+      ]
+    },
+    "lip_balm_glossy": {
+      "warm": [
+        "Warm Honey Balm",
+        "Warm Peach Balm",
+        "Warm Coral Balm",
+        "Warm Rose Balm",
+        "Warm Terra Balm",
+        "Deep Warm Terra Balm",
+        "Warm Brick Balm",
+        "Deep Warm Brick Balm",
+        "Rich Warm Cocoa Balm",
+        "Dark Warm Cocoa Balm"
+      ],
+      "neutral": [
+        "Soft Honey Balm",
+        "Neutral Peach Balm",
+        "Neutral Coral Balm",
+        "Neutral Rose Balm",
+        "Neutral Terra Balm",
+        "Deep Neutral Terra Balm",
+        "Neutral Brick Balm",
+        "Deep Neutral Brick Balm",
+        "Rich Neutral Cocoa Balm",
+        "Dark Neutral Cocoa Balm"
+      ],
+      "cool": [
+        "Cool Sheer Balm",
+        "Cool Pink Balm",
+        "Cool Rose Balm",
+        "Cool Mauve Balm",
+        "Cool Berry Balm",
+        "Deep Cool Berry Balm",
+        "Cool Plum Balm",
+        "Deep Cool Plum Balm",
+        "Rich Cool Wine Balm",
+        "Dark Cool Wine Balm"
+      ]
+    },
+    "powder_contour": {
+      "warm": [
+        "Barely Bronze",
+        "Warm Tan",
+        "Golden Tan",
+        "Honey Tan",
+        "Golden Bronze",
+        "Deep Golden Tan",
+        "Warm Mocha",
+        "Rich Warm Mocha",
+        "Deep Amber Mocha",
+        "Warm Espresso Bronze"
+      ],
+      "neutral": [
+        "Soft Bronze",
+        "Neutral Tan",
+        "Natural Tan",
+        "Soft Sand Tan",
+        "Neutral Bronze",
+        "Deep Natural Tan",
+        "Neutral Mocha",
+        "Rich Neutral Mocha",
+        "Deep Neutral Mocha",
+        "Neutral Espresso Bronze"
+      ],
+      "cool": [
+        "Soft Taupe Bronze",
+        "Cool Tan",
+        "Ashy Tan",
+        "Ashy Tan Cool",
+        "Cool Bronze",
+        "Deep Ashy Tan",
+        "Cool Mocha",
+        "Rich Cool Mocha",
+        "Deep Ash Mocha",
+        "Cool Espresso Bronze"
+      ]
+    },
+    "glow_balm_highlighter": {
+      "warm": [
+        "Warm Pearl",
+        "Golden Champagne",
+        "Warm Champagne",
+        "Gold Champagne",
+        "Warm Gold",
+        "Deep Gold",
+        "Rose Gold Warm",
+        "Bronze Gold",
+        "Deep Amber Gold",
+        "Rich Warm Bronze"
+      ],
+      "neutral": [
+        "Soft Pearl",
+        "Champagne",
+        "Neutral Champagne",
+        "Soft Gold Champagne",
+        "Neutral Gold",
+        "Deep Champagne Gold",
+        "Soft Rose Gold",
+        "Bronze Champagne",
+        "Deep Neutral Bronze",
+        "Rich Neutral Bronze"
+      ],
+      "cool": [
+        "Cool Pearl White",
+        "Champagne Silver",
+        "Cool Champagne",
+        "Silver Champagne",
+        "Cool Gold",
+        "Deep Rose Silver",
+        "Rose Gold Cool",
+        "Bronze Silver",
+        "Deep Cool Bronze",
+        "Rich Cool Bronze"
+      ]
+    },
+    "foundation_liquid_filter": {
+      "warm": [
+        "Warm Porcelain",
+        "Golden Ivory",
+        "Warm Ivory",
+        "Golden Beige",
+        "Honey Gold",
+        "Warm Sand",
+        "Warm Caramel",
+        "Golden Mocha",
+        "Warm Chestnut",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Neutral Porcelain",
+        "Neutral Ivory",
+        "Soft Ivory",
+        "Neutral Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Caramel",
+        "Natural Mocha",
+        "Neutral Chestnut",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Porcelain",
+        "Rose Ivory",
+        "Cool Ivory",
+        "Rose Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Caramel",
+        "Rose Mocha",
+        "Cool Chestnut",
+        "Cool Espresso"
+      ]
+    },
+    "cream_contour": {
+      "warm": [
+        "Faint Warm Shadow",
+        "Soft Warm Tan",
+        "Warm Tan",
+        "Natural Warm Tan",
+        "Golden Tan",
+        "Deep Golden Tan",
+        "Warm Mocha Tan",
+        "Rich Warm Mocha",
+        "Deep Warm Mocha",
+        "Warm Espresso Bronze"
+      ],
+      "neutral": [
+        "Faint Neutral Shadow",
+        "Soft Neutral Tan",
+        "Neutral Tan",
+        "Natural Sand Tan",
+        "Sandy Tan",
+        "Deep Sandy Tan",
+        "Neutral Mocha Tan",
+        "Rich Neutral Mocha",
+        "Deep Neutral Mocha",
+        "Neutral Espresso Bronze"
+      ],
+      "cool": [
+        "Faint Cool Shadow",
+        "Soft Cool Tan",
+        "Cool Tan",
+        "Natural Cool Tan",
+        "Ashy Tan",
+        "Deep Ashy Tan",
+        "Cool Mocha Tan",
+        "Rich Cool Mocha",
+        "Deep Cool Mocha",
+        "Cool Espresso Bronze"
+      ]
+    },
+    "powder_bronzer": {
+      "warm": [
+        "Barely Bronze",
+        "Warm Tan",
+        "Golden Tan",
+        "Honey Tan",
+        "Golden Bronze",
+        "Deep Golden Tan",
+        "Warm Mocha",
+        "Rich Warm Mocha",
+        "Deep Amber Mocha",
+        "Warm Espresso Bronze"
+      ],
+      "neutral": [
+        "Soft Bronze",
+        "Neutral Tan",
+        "Natural Tan",
+        "Soft Sand Tan",
+        "Neutral Bronze",
+        "Deep Natural Tan",
+        "Neutral Mocha",
+        "Rich Neutral Mocha",
+        "Deep Neutral Mocha",
+        "Neutral Espresso Bronze"
+      ],
+      "cool": [
+        "Soft Taupe Bronze",
+        "Cool Tan",
+        "Ashy Tan",
+        "Ashy Tan Cool",
+        "Cool Bronze",
+        "Deep Ashy Tan",
+        "Cool Mocha",
+        "Rich Cool Mocha",
+        "Deep Ash Mocha",
+        "Cool Espresso Bronze"
+      ]
+    },
+    "eyeshadow_warm_brown_crease": {
+      "warm": [
+        "Warm Vanilla",
+        "Warm Taupe",
+        "Golden Taupe",
+        "Honey Taupe",
+        "Sand Taupe",
+        "Golden Caramel Taupe",
+        "Warm Brown",
+        "Medium Warm Brown",
+        "Deep Warm Brown",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Vanilla",
+        "Neutral Taupe",
+        "Natural Taupe",
+        "Soft Sand Taupe",
+        "Sand Beige Taupe",
+        "Caramel Taupe",
+        "Neutral Brown",
+        "Medium Neutral Brown",
+        "Deep Neutral Brown",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Vanilla",
+        "Cool Taupe",
+        "Ashy Taupe",
+        "Soft Grey Taupe",
+        "Cool Sand Taupe",
+        "Cool Caramel Taupe",
+        "Cool Brown",
+        "Medium Cool Brown",
+        "Deep Cool Brown",
+        "Cool Espresso"
+      ]
+    },
+    "eyeshadow_soft_pink_lid": {
+      "warm": [
+        "Warm Nude Pearl",
+        "Warm Beige",
+        "Golden Nude",
+        "Warm Rose Brown",
+        "Warm Rose",
+        "Dusty Warm Rose Brown",
+        "Warm Taupe Rose",
+        "Deep Warm Rose Brown",
+        "Dark Warm Brown",
+        "Rich Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Nude Pearl",
+        "Neutral Beige",
+        "Soft Nude",
+        "Neutral Rose Brown",
+        "Soft Neutral Rose",
+        "Dusty Neutral Brown",
+        "Neutral Taupe Rose",
+        "Deep Neutral Rose Brown",
+        "Dark Neutral Brown",
+        "Rich Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Nude Pearl",
+        "Cool Beige",
+        "Ashy Nude",
+        "Cool Rose Brown",
+        "Cool Mauve Rose",
+        "Dusty Cool Rose Brown",
+        "Cool Taupe Rose",
+        "Deep Cool Rose Brown",
+        "Dark Cool Brown",
+        "Rich Cool Espresso"
+      ]
+    },
+    "eyeshadow_shimmer_inner_corner": {
+      "warm": [
+        "Warm Icy White",
+        "Golden Pearl Pink",
+        "Champagne Gold",
+        "Warm Gold",
+        "Golden Pink",
+        "Deep Gold",
+        "Warm Rose Gold",
+        "Bronze Glow",
+        "Deep Bronze Gold",
+        "Rich Warm Gold"
+      ],
+      "neutral": [
+        "Soft Icy White",
+        "Pearl Champagne",
+        "Champagne",
+        "Neutral Gold",
+        "Soft Gold Pink",
+        "Deep Champagne Gold",
+        "Soft Rose Gold",
+        "Bronze Champagne Glow",
+        "Deep Neutral Bronze Gold",
+        "Rich Neutral Gold"
+      ],
+      "cool": [
+        "Cool Icy White",
+        "Pearl Pink",
+        "Champagne Silver Pink",
+        "Silver Rose",
+        "Cool Pink Champagne",
+        "Deep Silver Rose",
+        "Cool Rose Gold",
+        "Bronze Silver Glow",
+        "Deep Cool Bronze",
+        "Rich Cool Silver"
+      ]
+    },
+    "strip_lashes": {
+      "warm": [
+        "Natural Brown-Black",
+        "Natural Brown-Black",
+        "Soft Black",
+        "Soft Black",
+        "Black",
+        "Black",
+        "Black",
+        "Jet Black",
+        "Jet Black",
+        "Jet Black"
+      ],
+      "neutral": [
+        "Natural Black",
+        "Natural Black",
+        "Soft True Black",
+        "Soft True Black",
+        "True Black",
+        "True Black",
+        "True Black",
+        "Jet True Black",
+        "Jet True Black",
+        "Jet True Black"
+      ],
+      "cool": [
+        "Natural Blue-Black",
+        "Natural Blue-Black",
+        "Cool Soft Black",
+        "Cool Soft Black",
+        "Cool Black",
+        "Cool Black",
+        "Cool Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black"
+      ]
+    },
+    "lip_liner_matte": {
+      "warm": [
+        "Warm Soft Pink",
+        "Warm Dusty Rose",
+        "Warm Mauve Pink",
+        "Warm Berry Pink",
+        "Warm Deep Berry",
+        "Warm Wine Mauve",
+        "Rich Warm Berry",
+        "Dark Warm Berry",
+        "Deep Warm Plum",
+        "Dark Warm Plum"
+      ],
+      "neutral": [
+        "Soft Pink",
+        "Neutral Dusty Rose",
+        "Neutral Mauve Pink",
+        "Neutral Berry Pink",
+        "Neutral Deep Berry",
+        "Neutral Wine Mauve",
+        "Rich Neutral Berry",
+        "Dark Neutral Berry",
+        "Deep Neutral Plum",
+        "Dark Neutral Plum"
+      ],
+      "cool": [
+        "Cool Soft Pink",
+        "Cool Dusty Rose",
+        "Cool Mauve Pink",
+        "Cool Berry Pink",
+        "Cool Deep Berry",
+        "Cool Wine Mauve",
+        "Rich Cool Berry",
+        "Dark Cool Berry",
+        "Deep Cool Plum",
+        "Dark Cool Plum"
+      ]
+    },
+    "lipstick_matte": {
+      "warm": [
+        "Warm Sheer Blush",
+        "Warm Nude Pink",
+        "Warm Nude",
+        "Warm Natural Nude",
+        "Peachy Nude",
+        "Warm Caramel Nude",
+        "Caramel Nude",
+        "Deep Warm Nude",
+        "Rich Warm Brown Nude",
+        "Dark Warm Nude"
+      ],
+      "neutral": [
+        "Soft Sheer Blush",
+        "Neutral Nude Pink",
+        "Neutral Nude",
+        "True Natural Nude",
+        "Sandy Nude",
+        "Neutral Caramel Nude",
+        "True Caramel Nude",
+        "Deep Neutral Nude",
+        "Rich Neutral Brown Nude",
+        "Dark Neutral Nude"
+      ],
+      "cool": [
+        "Cool Sheer Blush",
+        "Cool Nude Pink",
+        "Cool Nude",
+        "Cool Natural Nude",
+        "Rosy Nude",
+        "Cool Mauve Nude",
+        "Mauve Nude",
+        "Deep Cool Nude",
+        "Rich Cool Brown Nude",
+        "Dark Cool Nude"
+      ]
+    },
+    "lip_oil": {
+      "warm": [
+        "Clear / Warm Honey Tint",
+        "Clear / Warm Peach Tint",
+        "Warm Coral Tint",
+        "Warm Rose Tint",
+        "Warm Terra Tint",
+        "Deep Warm Terra Tint",
+        "Warm Brick Tint",
+        "Deep Warm Brick Tint",
+        "Rich Warm Cocoa Tint",
+        "Cherry-Warm Tint"
+      ],
+      "neutral": [
+        "Clear / Soft Honey Tint",
+        "Clear / Neutral Peach Tint",
+        "Neutral Coral Tint",
+        "Neutral Rose Tint",
+        "Neutral Terra Tint",
+        "Deep Neutral Terra Tint",
+        "Neutral Brick Tint",
+        "Deep Neutral Brick Tint",
+        "Rich Neutral Cocoa Tint",
+        "Cherry-Neutral Tint"
+      ],
+      "cool": [
+        "Clear / Cool Pink Tint",
+        "Clear / Cool Rose Tint",
+        "Cool Rose Tint",
+        "Cool Mauve Tint",
+        "Cool Berry Tint",
+        "Deep Cool Berry Tint",
+        "Cool Plum Tint",
+        "Deep Cool Plum Tint",
+        "Rich Cool Wine Tint",
+        "Cherry-Cool Tint"
+      ]
+    },
+    "skin_tint_bb_cream": {
+      "warm": [
+        "Warm Porcelain",
+        "Golden Ivory",
+        "Warm Ivory",
+        "Golden Beige",
+        "Honey Gold",
+        "Warm Sand",
+        "Warm Caramel",
+        "Golden Mocha",
+        "Warm Chestnut",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Neutral Porcelain",
+        "Neutral Ivory",
+        "Soft Ivory",
+        "Neutral Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Caramel",
+        "Natural Mocha",
+        "Neutral Chestnut",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Porcelain",
+        "Rose Ivory",
+        "Cool Ivory",
+        "Rose Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Caramel",
+        "Rose Mocha",
+        "Cool Chestnut",
+        "Cool Espresso"
+      ]
+    },
+    "blush_peach_coral": {
+      "warm": [
+        "Baby Peach",
+        "Soft Peach",
+        "Warm Peach",
+        "Peachy Coral",
+        "Warm Coral",
+        "Deep Peach",
+        "Terra Peach",
+        "Brick Peach",
+        "Deep Coral",
+        "Rich Terra"
+      ],
+      "neutral": [
+        "Soft Apricot",
+        "Apricot",
+        "Neutral Peach",
+        "Sandy Coral",
+        "Neutral Coral",
+        "Deep Apricot",
+        "Terracotta",
+        "Deep Terracotta",
+        "Deep Brick Coral",
+        "Rich Brick"
+      ],
+      "cool": [
+        "Baby Pink",
+        "Soft Pink",
+        "Rose Petal",
+        "Dusty Rose",
+        "Mauve Rose",
+        "Deep Rose",
+        "Berry Rose",
+        "Berry Mauve",
+        "Deep Berry",
+        "Wine Berry"
+      ]
+    },
+    "eyeliner_nude_waterline": {
+      "warm": [
+        "Warm Cream White",
+        "Warm Ivory Nude",
+        "Golden Nude",
+        "Warm Nude Beige",
+        "Honey Beige",
+        "Warm Sand",
+        "Caramel Nude",
+        "Warm Mocha Nude",
+        "Deep Warm Nude",
+        "Rich Warm Espresso Nude"
+      ],
+      "neutral": [
+        "Soft Cream White",
+        "Neutral Ivory Nude",
+        "Soft Nude",
+        "Neutral Nude Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Caramel Nude",
+        "Neutral Mocha Nude",
+        "Deep Neutral Nude",
+        "Rich Neutral Espresso Nude"
+      ],
+      "cool": [
+        "Cool Cream White",
+        "Cool Ivory Nude",
+        "Ashy Nude",
+        "Cool Nude Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Caramel Nude",
+        "Cool Mocha Nude",
+        "Deep Cool Nude",
+        "Rich Cool Espresso Nude"
+      ]
+    },
+    "brow_gel_clear_tinted": {
+      "warm": [
+        "Clear",
+        "Clear",
+        "Clear / Warm Light Brown",
+        "Clear / Warm Soft Brown",
+        "Warm Brown Tinted",
+        "Warm Brown Tinted",
+        "Dark Warm Brown Tinted",
+        "Dark Warm Brown Tinted",
+        "Warm Espresso Tinted",
+        "Warm Soft Black Tinted"
+      ],
+      "neutral": [
+        "Clear",
+        "Clear",
+        "Clear / Soft Light Brown",
+        "Clear / Neutral Soft Brown",
+        "Neutral Brown Tinted",
+        "Neutral Brown Tinted",
+        "Dark Neutral Brown Tinted",
+        "Dark Neutral Brown Tinted",
+        "Neutral Espresso Tinted",
+        "Soft True Black Tinted"
+      ],
+      "cool": [
+        "Clear",
+        "Clear",
+        "Clear / Ash Brown",
+        "Clear / Cool Soft Brown",
+        "Cool Brown Tinted",
+        "Cool Brown Tinted",
+        "Dark Cool Brown Tinted",
+        "Dark Cool Brown Tinted",
+        "Cool Espresso Tinted",
+        "Cool Soft Black Tinted"
+      ]
+    },
+    "brow_product": {
+      "warm": [
+        "Warm Blonde",
+        "Golden Ash Brown",
+        "Warm Soft Brown",
+        "Golden Warm Brown",
+        "Golden Brown",
+        "Deep Golden Brown",
+        "Warm Dark Brown",
+        "Rich Warm Brown",
+        "Deep Warm Espresso",
+        "Warm Soft Black"
+      ],
+      "neutral": [
+        "Neutral Blonde",
+        "Soft Ash Brown",
+        "Neutral Soft Brown",
+        "Neutral Brown",
+        "True Brown",
+        "Deep Neutral Brown",
+        "Neutral Dark Brown",
+        "Rich Neutral Brown",
+        "Deep Neutral Espresso",
+        "Soft True Black"
+      ],
+      "cool": [
+        "Cool Ash Blonde",
+        "Cool Ash Brown",
+        "Cool Soft Brown",
+        "Ashy Cool Brown",
+        "Cool Brown",
+        "Deep Cool Brown",
+        "Cool Dark Brown",
+        "Rich Cool Brown",
+        "Deep Cool Espresso",
+        "Cool Soft Black"
+      ]
+    },
+    "lip_tint_gradient": {
+      "warm": [
+        "Warm Baby Pink",
+        "Soft Peach",
+        "Warm Rose",
+        "Coral Rose",
+        "Warm Berry",
+        "Deep Warm Rose",
+        "Terra Tint",
+        "Deep Warm Berry",
+        "Rich Warm Berry",
+        "Dark Warm Berry"
+      ],
+      "neutral": [
+        "Soft Petal Pink",
+        "Soft Apricot",
+        "Neutral Rose",
+        "Sandy Rose",
+        "Neutral Berry",
+        "Deep Neutral Rose",
+        "Terracotta Tint",
+        "Deep Neutral Berry",
+        "Rich Neutral Berry",
+        "Dark Neutral Berry"
+      ],
+      "cool": [
+        "Cool Baby Pink",
+        "Cool Soft Pink",
+        "Cool Rose",
+        "Mauve Rose",
+        "Cool Berry",
+        "Deep Cool Rose",
+        "Plum Tint",
+        "Deep Cool Berry",
+        "Rich Cool Berry",
+        "Dark Cool Berry"
+      ]
+    },
+    "setting_spray": {
+      "warm": [
+        "Dewy Finish",
+        "Dewy Finish",
+        "Dewy Finish",
+        "Natural Finish",
+        "Natural Finish",
+        "Natural Finish",
+        "Natural Finish",
+        "Longwear Finish",
+        "Longwear Finish",
+        "Longwear Finish"
+      ],
+      "neutral": [
+        "Dewy Finish",
+        "Dewy Finish",
+        "Dewy Finish",
+        "Natural Finish",
+        "Natural Finish",
+        "Natural Finish",
+        "Natural Finish",
+        "Longwear Finish",
+        "Longwear Finish",
+        "Longwear Finish"
+      ],
+      "cool": [
+        "Dewy Finish",
+        "Dewy Finish",
+        "Dewy Finish",
+        "Natural Finish",
+        "Natural Finish",
+        "Natural Finish",
+        "Natural Finish",
+        "Longwear Finish",
+        "Longwear Finish",
+        "Longwear Finish"
+      ]
+    },
+    "color_corrector_peach_pink": {
+      "warm": [
+        "Peach Sheer",
+        "Peach Light",
+        "Apricot Light",
+        "Apricot Medium",
+        "Orange-Peach",
+        "Deep Peach",
+        "Burnt Orange",
+        "Deep Apricot",
+        "Rust Orange",
+        "Deep Rust"
+      ],
+      "neutral": [
+        "Sheer Beige",
+        "Soft Beige",
+        "Light Beige Tint",
+        "Medium Beige Tint",
+        "Honey Beige Tint",
+        "Deep Beige Tint",
+        "Caramel Tint",
+        "Deep Caramel Tint",
+        "Chestnut Tint",
+        "Deep Chestnut Tint"
+      ],
+      "cool": [
+        "Pink Sheer",
+        "Soft Pink",
+        "Rose Light",
+        "Rose Medium",
+        "Mauve Pink",
+        "Deep Rose",
+        "Plum Rose",
+        "Deep Mauve",
+        "Berry Rose",
+        "Deep Berry"
+      ]
+    },
+    "skin_tint": {
+      "warm": [
+        "Warm Porcelain",
+        "Golden Ivory",
+        "Warm Ivory",
+        "Golden Beige",
+        "Honey Gold",
+        "Warm Sand",
+        "Warm Caramel",
+        "Golden Mocha",
+        "Warm Chestnut",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Neutral Porcelain",
+        "Neutral Ivory",
+        "Soft Ivory",
+        "Neutral Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Caramel",
+        "Natural Mocha",
+        "Neutral Chestnut",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Porcelain",
+        "Rose Ivory",
+        "Cool Ivory",
+        "Rose Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Caramel",
+        "Rose Mocha",
+        "Cool Chestnut",
+        "Cool Espresso"
+      ]
+    },
+    "eyeshadow_peach_brown_base": {
+      "warm": [
+        "Light Peach Cream",
+        "Soft Peach Brown",
+        "Warm Peach Brown",
+        "Honey Peach Brown",
+        "Caramel Peach",
+        "Deep Peach Brown",
+        "Terra Peach Brown",
+        "Brick Peach Brown",
+        "Deep Cinnamon Peach",
+        "Rich Warm Sienna"
+      ],
+      "neutral": [
+        "Light Sand Cream",
+        "Soft Sand Brown",
+        "Neutral Sand Brown",
+        "Natural Sand Brown",
+        "Caramel Sand",
+        "Deep Sand Brown",
+        "Terracotta Brown",
+        "Deep Terracotta Brown",
+        "Deep Cinnamon Brown",
+        "Rich Neutral Sienna"
+      ],
+      "cool": [
+        "Light Mauve Taupe",
+        "Soft Rosy Taupe",
+        "Cool Rosy Brown",
+        "Muted Mauve Brown",
+        "Cool Taupe Rose",
+        "Deep Mauve Taupe",
+        "Cool Rosy Brown Deep",
+        "Berry Taupe Brown",
+        "Deep Plum Taupe",
+        "Rich Cool Espresso"
+      ]
+    },
+    "eyeshadow_reddish_brown_outer": {
+      "warm": [
+        "Soft Auburn",
+        "Warm Chestnut Brown",
+        "Reddish Warm Brown",
+        "Cinnamon Brown",
+        "Warm Sienna",
+        "Deep Sienna Brown",
+        "Warm Mahogany",
+        "Deep Warm Mahogany",
+        "Dark Cinnamon Espresso",
+        "Rich Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Umber",
+        "Neutral Chestnut Brown",
+        "Neutral Brown",
+        "Walnut Brown",
+        "Neutral Sienna",
+        "Deep Walnut Brown",
+        "Neutral Mahogany",
+        "Deep Neutral Mahogany",
+        "Dark Walnut Espresso",
+        "Rich Neutral Espresso"
+      ],
+      "cool": [
+        "Soft Mauve Brown",
+        "Cool Plum Brown",
+        "Cool Berry Brown",
+        "Mauve Espresso",
+        "Cool Aubergine Brown",
+        "Deep Aubergine Brown",
+        "Cool Mahogany",
+        "Deep Cool Mahogany",
+        "Dark Plum Espresso",
+        "Rich Cool Espresso"
+      ]
+    },
+    "eyeshadow_light_peach_inner_corner": {
+      "warm": [
+        "Warm Icy White",
+        "Golden Pearl Pink",
+        "Champagne Gold",
+        "Warm Gold",
+        "Golden Pink",
+        "Deep Gold",
+        "Warm Rose Gold",
+        "Bronze Glow",
+        "Deep Bronze Gold",
+        "Rich Warm Gold"
+      ],
+      "neutral": [
+        "Soft Icy White",
+        "Pearl Champagne",
+        "Champagne",
+        "Neutral Gold",
+        "Soft Gold Pink",
+        "Deep Champagne Gold",
+        "Soft Rose Gold",
+        "Bronze Champagne Glow",
+        "Deep Neutral Bronze Gold",
+        "Rich Neutral Gold"
+      ],
+      "cool": [
+        "Cool Icy White",
+        "Pearl Pink",
+        "Champagne Silver Pink",
+        "Silver Rose",
+        "Cool Pink Champagne",
+        "Deep Silver Rose",
+        "Cool Rose Gold",
+        "Bronze Silver Glow",
+        "Deep Cool Bronze",
+        "Rich Cool Silver"
+      ]
+    },
+    "brow_pencil_eyeliner_tightline": {
+      "warm": [
+        "Warm Light Brown",
+        "Golden Soft Brown",
+        "Warm Brown",
+        "Warm Medium Brown",
+        "Deep Warm Brown",
+        "Rich Warm Brown",
+        "Dark Warm Brown",
+        "Warm Espresso Brown",
+        "Deep Warm Espresso",
+        "Jet Warm Brown"
+      ],
+      "neutral": [
+        "Neutral Light Brown",
+        "Soft Brown",
+        "Neutral Brown",
+        "Neutral Medium Brown",
+        "Deep Neutral Brown",
+        "Rich Neutral Brown",
+        "Dark Neutral Brown",
+        "Neutral Espresso Brown",
+        "Deep Neutral Espresso",
+        "Jet Neutral Brown"
+      ],
+      "cool": [
+        "Cool Light Brown",
+        "Ashy Soft Brown",
+        "Cool Brown",
+        "Cool Medium Brown",
+        "Deep Cool Brown",
+        "Rich Cool Brown",
+        "Dark Cool Brown",
+        "Cool Espresso Brown",
+        "Deep Cool Espresso",
+        "Jet Cool Brown"
+      ]
+    },
+    "mascara_volumizing_lengthening": {
+      "warm": [
+        "Warm Dark Brown",
+        "Dark Brown",
+        "Brown Black",
+        "Warm Brown Black",
+        "Black Brown",
+        "Black",
+        "Matte Black",
+        "Matte Black",
+        "Jet Black",
+        "Jet Black"
+      ],
+      "neutral": [
+        "Neutral Dark Brown",
+        "True Dark Brown",
+        "Brown-Black",
+        "Neutral Brown-Black",
+        "True Black-Brown",
+        "True Black",
+        "Matte True Black",
+        "Matte True Black",
+        "Jet True Black",
+        "Jet True Black"
+      ],
+      "cool": [
+        "Cool Dark Brown",
+        "Blue-Brown",
+        "Cool Brown Black",
+        "Cool Brown Black",
+        "Blue Black Brown",
+        "Blue-Black",
+        "Matte Blue-Black",
+        "Matte Blue-Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black"
+      ]
+    },
+    "bronzer": {
+      "warm": [
+        "Barely Bronze",
+        "Warm Tan",
+        "Golden Tan",
+        "Honey Tan",
+        "Golden Bronze",
+        "Deep Golden Tan",
+        "Warm Mocha",
+        "Rich Warm Mocha",
+        "Deep Amber Mocha",
+        "Warm Espresso Bronze"
+      ],
+      "neutral": [
+        "Soft Bronze",
+        "Neutral Tan",
+        "Natural Tan",
+        "Soft Sand Tan",
+        "Neutral Bronze",
+        "Deep Natural Tan",
+        "Neutral Mocha",
+        "Rich Neutral Mocha",
+        "Deep Neutral Mocha",
+        "Neutral Espresso Bronze"
+      ],
+      "cool": [
+        "Soft Taupe Bronze",
+        "Cool Tan",
+        "Ashy Tan",
+        "Ashy Tan Cool",
+        "Cool Bronze",
+        "Deep Ashy Tan",
+        "Cool Mocha",
+        "Rich Cool Mocha",
+        "Deep Ash Mocha",
+        "Cool Espresso Bronze"
+      ]
+    },
+    "blush_peach": {
+      "warm": [
+        "Baby Peach",
+        "Soft Peach",
+        "Warm Peach",
+        "Peachy Coral",
+        "Warm Coral",
+        "Deep Peach",
+        "Terra Peach",
+        "Brick Peach",
+        "Deep Coral",
+        "Rich Terra"
+      ],
+      "neutral": [
+        "Soft Apricot",
+        "Apricot",
+        "Neutral Peach",
+        "Sandy Coral",
+        "Neutral Coral",
+        "Deep Apricot",
+        "Terracotta",
+        "Deep Terracotta",
+        "Deep Brick Coral",
+        "Rich Brick"
+      ],
+      "cool": [
+        "Baby Pink",
+        "Soft Pink",
+        "Rose Petal",
+        "Dusty Rose",
+        "Mauve Rose",
+        "Deep Rose",
+        "Berry Rose",
+        "Berry Mauve",
+        "Deep Berry",
+        "Wine Berry"
+      ]
+    },
+    "lip_liner_peach_matte": {
+      "warm": [
+        "Warm Soft Pink",
+        "Warm Dusty Rose",
+        "Warm Mauve Pink",
+        "Warm Berry Pink",
+        "Warm Deep Berry",
+        "Warm Wine Mauve",
+        "Rich Warm Berry",
+        "Dark Warm Berry",
+        "Deep Warm Plum",
+        "Dark Warm Plum"
+      ],
+      "neutral": [
+        "Soft Pink",
+        "Neutral Dusty Rose",
+        "Neutral Mauve Pink",
+        "Neutral Berry Pink",
+        "Neutral Deep Berry",
+        "Neutral Wine Mauve",
+        "Rich Neutral Berry",
+        "Dark Neutral Berry",
+        "Deep Neutral Plum",
+        "Dark Neutral Plum"
+      ],
+      "cool": [
+        "Cool Soft Pink",
+        "Cool Dusty Rose",
+        "Cool Mauve Pink",
+        "Cool Berry Pink",
+        "Cool Deep Berry",
+        "Cool Wine Mauve",
+        "Rich Cool Berry",
+        "Dark Cool Berry",
+        "Deep Cool Plum",
+        "Dark Cool Plum"
+      ]
+    },
+    "foundation": {
+      "warm": [
+        "Warm Porcelain",
+        "Golden Ivory",
+        "Warm Ivory",
+        "Golden Beige",
+        "Honey Gold",
+        "Warm Sand",
+        "Warm Caramel",
+        "Golden Mocha",
+        "Warm Chestnut",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Neutral Porcelain",
+        "Neutral Ivory",
+        "Soft Ivory",
+        "Neutral Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Caramel",
+        "Natural Mocha",
+        "Neutral Chestnut",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Porcelain",
+        "Rose Ivory",
+        "Cool Ivory",
+        "Rose Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Caramel",
+        "Rose Mocha",
+        "Cool Chestnut",
+        "Cool Espresso"
+      ]
+    },
+    "blush_neutral": {
+      "warm": [
+        "Soft Peach Pink",
+        "Warm Peach",
+        "Warm Rose Peach",
+        "Dusty Peach",
+        "Peachy Coral",
+        "Deep Warm Rose",
+        "Terra Rose",
+        "Brick Rose",
+        "Deep Terra",
+        "Rich Brick"
+      ],
+      "neutral": [
+        "Soft Petal Beige",
+        "Neutral Peach Pink",
+        "Soft Rose Beige",
+        "Dusty Rose Beige",
+        "Sandy Rose",
+        "Deep Neutral Rose",
+        "Terracotta Rose",
+        "Deep Terracotta Rose",
+        "Deep Neutral Brick",
+        "Rich Neutral Brick"
+      ],
+      "cool": [
+        "Soft Pink",
+        "Cool Pink",
+        "Cool Rose",
+        "Dusty Mauve Rose",
+        "Mauve Pink",
+        "Deep Cool Rose",
+        "Berry Rose",
+        "Berry Mauve",
+        "Deep Berry Mauve",
+        "Rich Plum"
+      ]
+    },
+    "eyeshadow_base_transition": {
+      "warm": [
+        "Warm Vanilla",
+        "Warm Taupe",
+        "Golden Taupe",
+        "Honey Taupe",
+        "Sand Taupe",
+        "Golden Caramel Taupe",
+        "Warm Brown",
+        "Medium Warm Brown",
+        "Deep Warm Brown",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Vanilla",
+        "Neutral Taupe",
+        "Natural Taupe",
+        "Soft Sand Taupe",
+        "Sand Beige Taupe",
+        "Caramel Taupe",
+        "Neutral Brown",
+        "Medium Neutral Brown",
+        "Deep Neutral Brown",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Vanilla",
+        "Cool Taupe",
+        "Ashy Taupe",
+        "Soft Grey Taupe",
+        "Cool Sand Taupe",
+        "Cool Caramel Taupe",
+        "Cool Brown",
+        "Medium Cool Brown",
+        "Deep Cool Brown",
+        "Cool Espresso"
+      ]
+    },
+    "lipstick_nude_satin": {
+      "warm": [
+        "Warm Sheer Blush",
+        "Warm Nude Pink",
+        "Warm Nude",
+        "Warm Natural Nude",
+        "Peachy Nude",
+        "Warm Caramel Nude",
+        "Caramel Nude",
+        "Deep Warm Nude",
+        "Rich Warm Brown Nude",
+        "Dark Warm Nude"
+      ],
+      "neutral": [
+        "Soft Sheer Blush",
+        "Neutral Nude Pink",
+        "Neutral Nude",
+        "True Natural Nude",
+        "Sandy Nude",
+        "Neutral Caramel Nude",
+        "True Caramel Nude",
+        "Deep Neutral Nude",
+        "Rich Neutral Brown Nude",
+        "Dark Neutral Nude"
+      ],
+      "cool": [
+        "Cool Sheer Blush",
+        "Cool Nude Pink",
+        "Cool Nude",
+        "Cool Natural Nude",
+        "Rosy Nude",
+        "Cool Mauve Nude",
+        "Mauve Nude",
+        "Deep Cool Nude",
+        "Rich Cool Brown Nude",
+        "Dark Cool Nude"
+      ]
+    },
+    "setting_powder": {
+      "warm": [
+        "Translucent Sheer (Warm Cast)",
+        "Translucent Sheer (Warm Cast)",
+        "Warm Translucent",
+        "Warm Beige",
+        "Golden Beige",
+        "Warm Sand",
+        "Warm Tan",
+        "Warm Bronze",
+        "Deep Warm Bronze",
+        "Deep Warm Espresso"
+      ],
+      "neutral": [
+        "Translucent Sheer (True)",
+        "Translucent Sheer (True)",
+        "Neutral Translucent",
+        "Neutral Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Tan",
+        "Neutral Bronze",
+        "Deep Neutral Bronze",
+        "Deep Neutral Espresso"
+      ],
+      "cool": [
+        "Translucent Sheer (Cool Cast)",
+        "Translucent Sheer (Cool Cast)",
+        "Cool Translucent",
+        "Cool Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Tan",
+        "Cool Bronze",
+        "Deep Cool Bronze",
+        "Deep Cool Espresso"
+      ]
+    },
+    "primer_eye_face": {
+      "warm": [
+        "Luminous Hydrating",
+        "Luminous Hydrating",
+        "Hydrating Glow",
+        "Hydrating Glow",
+        "Pore-Smoothing",
+        "Pore-Smoothing",
+        "Longwear",
+        "Longwear Matte",
+        "Longwear Matte",
+        "Longwear Matte"
+      ],
+      "neutral": [
+        "Luminous Hydrating",
+        "Luminous Hydrating",
+        "Hydrating Glow",
+        "Hydrating Glow",
+        "Pore-Smoothing",
+        "Pore-Smoothing",
+        "Longwear",
+        "Longwear Matte",
+        "Longwear Matte",
+        "Longwear Matte"
+      ],
+      "cool": [
+        "Luminous Hydrating",
+        "Luminous Hydrating",
+        "Hydrating Glow",
+        "Hydrating Glow",
+        "Pore-Smoothing",
+        "Pore-Smoothing",
+        "Longwear",
+        "Longwear Matte",
+        "Longwear Matte",
+        "Longwear Matte"
+      ]
+    },
+    "blush_warm_peach": {
+      "warm": [
+        "Baby Peach",
+        "Soft Peach",
+        "Warm Peach",
+        "Peachy Coral",
+        "Warm Coral",
+        "Deep Peach",
+        "Terra Peach",
+        "Brick Peach",
+        "Deep Coral",
+        "Rich Terra"
+      ],
+      "neutral": [
+        "Soft Apricot",
+        "Apricot",
+        "Neutral Peach",
+        "Sandy Coral",
+        "Neutral Coral",
+        "Deep Apricot",
+        "Terracotta",
+        "Deep Terracotta",
+        "Deep Brick Coral",
+        "Rich Brick"
+      ],
+      "cool": [
+        "Baby Pink",
+        "Soft Pink",
+        "Rose Petal",
+        "Dusty Rose",
+        "Mauve Rose",
+        "Deep Rose",
+        "Berry Rose",
+        "Berry Mauve",
+        "Deep Berry",
+        "Wine Berry"
+      ]
+    },
+    "eyeshadow_lid_neutral_brown": {
+      "warm": [
+        "Warm Nude Pearl",
+        "Warm Beige",
+        "Golden Nude",
+        "Warm Rose Brown",
+        "Warm Rose",
+        "Dusty Warm Rose Brown",
+        "Warm Taupe Rose",
+        "Deep Warm Rose Brown",
+        "Dark Warm Brown",
+        "Rich Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Nude Pearl",
+        "Neutral Beige",
+        "Soft Nude",
+        "Neutral Rose Brown",
+        "Soft Neutral Rose",
+        "Dusty Neutral Brown",
+        "Neutral Taupe Rose",
+        "Deep Neutral Rose Brown",
+        "Dark Neutral Brown",
+        "Rich Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Nude Pearl",
+        "Cool Beige",
+        "Ashy Nude",
+        "Cool Rose Brown",
+        "Cool Mauve Rose",
+        "Dusty Cool Rose Brown",
+        "Cool Taupe Rose",
+        "Deep Cool Rose Brown",
+        "Dark Cool Brown",
+        "Rich Cool Espresso"
+      ]
+    },
+    "eyeliner_black_gel": {
+      "warm": [
+        "Soft Black (Warm Base)",
+        "Soft Black",
+        "Charcoal Black",
+        "Charcoal",
+        "Black",
+        "Black",
+        "Matte Black",
+        "Matte Black",
+        "Jet Black",
+        "Jet Black"
+      ],
+      "neutral": [
+        "Soft Black",
+        "Soft Black",
+        "Charcoal",
+        "Charcoal",
+        "True Black",
+        "True Black",
+        "Matte True Black",
+        "Matte True Black",
+        "Jet True Black",
+        "Jet True Black"
+      ],
+      "cool": [
+        "Cool Soft Black",
+        "Blue-Black Soft",
+        "Charcoal Cool Black",
+        "Blue Charcoal",
+        "Cool Black",
+        "Cool Black",
+        "Matte Cool Black",
+        "Matte Cool Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black"
+      ]
+    },
+    "lip_gloss": {
+      "warm": [
+        "Warm Sheer Pink",
+        "Warm Peachy Pink",
+        "Warm Peach",
+        "Coral Pink",
+        "Warm Coral",
+        "Deep Warm Peach",
+        "Terra Gloss",
+        "Warm Berry Gloss",
+        "Deep Warm Berry",
+        "Rich Warm Plum Gloss"
+      ],
+      "neutral": [
+        "Soft Sheer Pink",
+        "Neutral Peachy Pink",
+        "Neutral Peach",
+        "Sandy Pink",
+        "Neutral Coral",
+        "Deep Neutral Peach",
+        "Terracotta Gloss",
+        "Neutral Berry Gloss",
+        "Deep Neutral Berry",
+        "Rich Neutral Plum Gloss"
+      ],
+      "cool": [
+        "Cool Sheer Pink",
+        "Cool Pink",
+        "Cool Rose Pink",
+        "Cool Rose",
+        "Cool Mauve",
+        "Deep Cool Rose",
+        "Plum Gloss",
+        "Cool Berry Gloss",
+        "Deep Cool Berry",
+        "Rich Cool Plum Gloss"
+      ]
+    },
+    "skin_tint_glow_base": {
+      "warm": [
+        "Warm Porcelain",
+        "Golden Ivory",
+        "Warm Ivory",
+        "Golden Beige",
+        "Honey Gold",
+        "Warm Sand",
+        "Warm Caramel",
+        "Golden Mocha",
+        "Warm Chestnut",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Neutral Porcelain",
+        "Neutral Ivory",
+        "Soft Ivory",
+        "Neutral Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Caramel",
+        "Natural Mocha",
+        "Neutral Chestnut",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Porcelain",
+        "Rose Ivory",
+        "Cool Ivory",
+        "Rose Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Caramel",
+        "Rose Mocha",
+        "Cool Chestnut",
+        "Cool Espresso"
+      ]
+    },
+    "brow_gel_wax": {
+      "warm": [
+        "Clear",
+        "Clear",
+        "Clear / Warm Light Brown",
+        "Clear / Warm Soft Brown",
+        "Warm Brown Tinted",
+        "Warm Brown Tinted",
+        "Dark Warm Brown Tinted",
+        "Dark Warm Brown Tinted",
+        "Warm Espresso Tinted",
+        "Warm Soft Black Tinted"
+      ],
+      "neutral": [
+        "Clear",
+        "Clear",
+        "Clear / Soft Light Brown",
+        "Clear / Neutral Soft Brown",
+        "Neutral Brown Tinted",
+        "Neutral Brown Tinted",
+        "Dark Neutral Brown Tinted",
+        "Dark Neutral Brown Tinted",
+        "Neutral Espresso Tinted",
+        "Soft True Black Tinted"
+      ],
+      "cool": [
+        "Clear",
+        "Clear",
+        "Clear / Ash Brown",
+        "Clear / Cool Soft Brown",
+        "Cool Brown Tinted",
+        "Cool Brown Tinted",
+        "Dark Cool Brown Tinted",
+        "Dark Cool Brown Tinted",
+        "Cool Espresso Tinted",
+        "Cool Soft Black Tinted"
+      ]
+    },
+    "eyeshadow_transition": {
+      "warm": [
+        "Warm Vanilla",
+        "Warm Taupe",
+        "Golden Taupe",
+        "Honey Taupe",
+        "Sand Taupe",
+        "Golden Caramel Taupe",
+        "Warm Brown",
+        "Medium Warm Brown",
+        "Deep Warm Brown",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Vanilla",
+        "Neutral Taupe",
+        "Natural Taupe",
+        "Soft Sand Taupe",
+        "Sand Beige Taupe",
+        "Caramel Taupe",
+        "Neutral Brown",
+        "Medium Neutral Brown",
+        "Deep Neutral Brown",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Vanilla",
+        "Cool Taupe",
+        "Ashy Taupe",
+        "Soft Grey Taupe",
+        "Cool Sand Taupe",
+        "Cool Caramel Taupe",
+        "Cool Brown",
+        "Medium Cool Brown",
+        "Deep Cool Brown",
+        "Cool Espresso"
+      ]
+    },
+    "eyeshadow_outer_corner_deep": {
+      "warm": [
+        "Deep Reddish Auburn",
+        "Rich Chestnut Brown",
+        "Deep Reddish Brown",
+        "Rich Cinnamon Brown",
+        "Deep Warm Sienna",
+        "Rich Sienna Brown",
+        "Deep Warm Mahogany",
+        "Dark Warm Mahogany",
+        "Deep Cinnamon Espresso",
+        "Darkest Warm Espresso"
+      ],
+      "neutral": [
+        "Deep Umber",
+        "Rich Chestnut Brown",
+        "Deep Neutral Brown",
+        "Rich Walnut Brown",
+        "Deep Neutral Sienna",
+        "Rich Walnut Brown Deep",
+        "Deep Neutral Mahogany",
+        "Dark Neutral Mahogany",
+        "Deep Walnut Espresso",
+        "Darkest Neutral Espresso"
+      ],
+      "cool": [
+        "Deep Mauve Brown",
+        "Rich Plum Brown",
+        "Deep Berry Brown",
+        "Rich Mauve Espresso",
+        "Deep Aubergine Brown",
+        "Rich Aubergine Brown",
+        "Deep Cool Mahogany",
+        "Dark Cool Mahogany",
+        "Deep Plum Espresso",
+        "Darkest Cool Espresso"
+      ]
+    },
+    "eyeshadow_highlight_shade": {
+      "warm": [
+        "Warm Icy White",
+        "Golden Pearl Pink",
+        "Champagne Gold",
+        "Warm Gold",
+        "Golden Pink",
+        "Deep Gold",
+        "Warm Rose Gold",
+        "Bronze Glow",
+        "Deep Bronze Gold",
+        "Rich Warm Gold"
+      ],
+      "neutral": [
+        "Soft Icy White",
+        "Pearl Champagne",
+        "Champagne",
+        "Neutral Gold",
+        "Soft Gold Pink",
+        "Deep Champagne Gold",
+        "Soft Rose Gold",
+        "Bronze Champagne Glow",
+        "Deep Neutral Bronze Gold",
+        "Rich Neutral Gold"
+      ],
+      "cool": [
+        "Cool Icy White",
+        "Pearl Pink",
+        "Champagne Silver Pink",
+        "Silver Rose",
+        "Cool Pink Champagne",
+        "Deep Silver Rose",
+        "Cool Rose Gold",
+        "Bronze Silver Glow",
+        "Deep Cool Bronze",
+        "Rich Cool Silver"
+      ]
+    },
+    "eyeliner_winged": {
+      "warm": [
+        "Soft Black (Warm Base)",
+        "Soft Black",
+        "Charcoal Black",
+        "Charcoal",
+        "Black",
+        "Black",
+        "Matte Black",
+        "Matte Black",
+        "Jet Black",
+        "Jet Black"
+      ],
+      "neutral": [
+        "Soft Black",
+        "Soft Black",
+        "Charcoal",
+        "Charcoal",
+        "True Black",
+        "True Black",
+        "Matte True Black",
+        "Matte True Black",
+        "Jet True Black",
+        "Jet True Black"
+      ],
+      "cool": [
+        "Cool Soft Black",
+        "Blue-Black Soft",
+        "Charcoal Cool Black",
+        "Blue Charcoal",
+        "Cool Black",
+        "Cool Black",
+        "Matte Cool Black",
+        "Matte Cool Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black"
+      ]
+    },
+    "blush": {
+      "warm": [
+        "Soft Peach Pink",
+        "Warm Peach",
+        "Warm Rose Peach",
+        "Dusty Peach",
+        "Peachy Coral",
+        "Deep Warm Rose",
+        "Terra Rose",
+        "Brick Rose",
+        "Deep Terra",
+        "Rich Brick"
+      ],
+      "neutral": [
+        "Soft Petal Beige",
+        "Neutral Peach Pink",
+        "Soft Rose Beige",
+        "Dusty Rose Beige",
+        "Sandy Rose",
+        "Deep Neutral Rose",
+        "Terracotta Rose",
+        "Deep Terracotta Rose",
+        "Deep Neutral Brick",
+        "Rich Neutral Brick"
+      ],
+      "cool": [
+        "Soft Pink",
+        "Cool Pink",
+        "Cool Rose",
+        "Dusty Mauve Rose",
+        "Mauve Pink",
+        "Deep Cool Rose",
+        "Berry Rose",
+        "Berry Mauve",
+        "Deep Berry Mauve",
+        "Rich Plum"
+      ]
+    },
+    "primer": {
+      "warm": [
+        "Luminous Hydrating",
+        "Luminous Hydrating",
+        "Hydrating Glow",
+        "Hydrating Glow",
+        "Pore-Smoothing",
+        "Pore-Smoothing",
+        "Longwear",
+        "Longwear Matte",
+        "Longwear Matte",
+        "Longwear Matte"
+      ],
+      "neutral": [
+        "Luminous Hydrating",
+        "Luminous Hydrating",
+        "Hydrating Glow",
+        "Hydrating Glow",
+        "Pore-Smoothing",
+        "Pore-Smoothing",
+        "Longwear",
+        "Longwear Matte",
+        "Longwear Matte",
+        "Longwear Matte"
+      ],
+      "cool": [
+        "Luminous Hydrating",
+        "Luminous Hydrating",
+        "Hydrating Glow",
+        "Hydrating Glow",
+        "Pore-Smoothing",
+        "Pore-Smoothing",
+        "Longwear",
+        "Longwear Matte",
+        "Longwear Matte",
+        "Longwear Matte"
+      ]
+    },
+    "eyeshadow_neutral_base": {
+      "warm": [
+        "Warm Vanilla",
+        "Warm Taupe",
+        "Golden Taupe",
+        "Honey Taupe",
+        "Sand Taupe",
+        "Golden Caramel Taupe",
+        "Warm Brown",
+        "Medium Warm Brown",
+        "Deep Warm Brown",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Vanilla",
+        "Neutral Taupe",
+        "Natural Taupe",
+        "Soft Sand Taupe",
+        "Sand Beige Taupe",
+        "Caramel Taupe",
+        "Neutral Brown",
+        "Medium Neutral Brown",
+        "Deep Neutral Brown",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Vanilla",
+        "Cool Taupe",
+        "Ashy Taupe",
+        "Soft Grey Taupe",
+        "Cool Sand Taupe",
+        "Cool Caramel Taupe",
+        "Cool Brown",
+        "Medium Cool Brown",
+        "Deep Cool Brown",
+        "Cool Espresso"
+      ]
+    },
+    "eyeshadow_blush_toned": {
+      "warm": [
+        "Warm Nude Pearl",
+        "Warm Beige",
+        "Golden Nude",
+        "Warm Rose Brown",
+        "Warm Rose",
+        "Dusty Warm Rose Brown",
+        "Warm Taupe Rose",
+        "Deep Warm Rose Brown",
+        "Dark Warm Brown",
+        "Rich Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Nude Pearl",
+        "Neutral Beige",
+        "Soft Nude",
+        "Neutral Rose Brown",
+        "Soft Neutral Rose",
+        "Dusty Neutral Brown",
+        "Neutral Taupe Rose",
+        "Deep Neutral Rose Brown",
+        "Dark Neutral Brown",
+        "Rich Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Nude Pearl",
+        "Cool Beige",
+        "Ashy Nude",
+        "Cool Rose Brown",
+        "Cool Mauve Rose",
+        "Dusty Cool Rose Brown",
+        "Cool Taupe Rose",
+        "Deep Cool Rose Brown",
+        "Dark Cool Brown",
+        "Rich Cool Espresso"
+      ]
+    },
+    "eyeliner_pencil_liquid": {
+      "warm": [
+        "Warm Light Brown",
+        "Golden Soft Brown",
+        "Warm Brown",
+        "Warm Medium Brown",
+        "Deep Warm Brown",
+        "Rich Warm Brown",
+        "Dark Warm Brown",
+        "Warm Espresso Brown",
+        "Deep Warm Espresso",
+        "Jet Warm Brown"
+      ],
+      "neutral": [
+        "Neutral Light Brown",
+        "Soft Brown",
+        "Neutral Brown",
+        "Neutral Medium Brown",
+        "Deep Neutral Brown",
+        "Rich Neutral Brown",
+        "Dark Neutral Brown",
+        "Neutral Espresso Brown",
+        "Deep Neutral Espresso",
+        "Jet Neutral Brown"
+      ],
+      "cool": [
+        "Cool Light Brown",
+        "Ashy Soft Brown",
+        "Cool Brown",
+        "Cool Medium Brown",
+        "Deep Cool Brown",
+        "Rich Cool Brown",
+        "Dark Cool Brown",
+        "Cool Espresso Brown",
+        "Deep Cool Espresso",
+        "Jet Cool Brown"
+      ]
+    },
+    "blush_stick": {
+      "warm": [
+        "Soft Peach Stick",
+        "Warm Peach Stick",
+        "Coral Peach Stick",
+        "Warm Coral Stick",
+        "Deep Coral Stick",
+        "Terra Coral Stick",
+        "Brick Coral Stick",
+        "Deep Terra Stick",
+        "Rich Brick Stick",
+        "Dark Terra Stick"
+      ],
+      "neutral": [
+        "Soft Apricot Stick",
+        "Neutral Peach Stick",
+        "Sandy Coral Stick",
+        "Neutral Coral Stick",
+        "Deep Neutral Coral Stick",
+        "Terracotta Stick",
+        "Deep Terracotta Stick",
+        "Deep Neutral Terra Stick",
+        "Rich Neutral Brick Stick",
+        "Dark Neutral Terra Stick"
+      ],
+      "cool": [
+        "Soft Pink Stick",
+        "Cool Pink Stick",
+        "Rose Pink Stick",
+        "Cool Rose Stick",
+        "Deep Rose Stick",
+        "Berry Rose Stick",
+        "Berry Mauve Stick",
+        "Deep Berry Stick",
+        "Rich Plum Stick",
+        "Dark Plum Stick"
+      ]
+    },
+    "lip_tint_liquid_lipstick_velvet": {
+      "warm": [
+        "Warm Sheer Blush",
+        "Warm Nude Pink",
+        "Warm Nude",
+        "Warm Natural Nude",
+        "Peachy Nude",
+        "Warm Caramel Nude",
+        "Caramel Nude",
+        "Deep Warm Nude",
+        "Rich Warm Brown Nude",
+        "Dark Warm Nude"
+      ],
+      "neutral": [
+        "Soft Sheer Blush",
+        "Neutral Nude Pink",
+        "Neutral Nude",
+        "True Natural Nude",
+        "Sandy Nude",
+        "Neutral Caramel Nude",
+        "True Caramel Nude",
+        "Deep Neutral Nude",
+        "Rich Neutral Brown Nude",
+        "Dark Neutral Nude"
+      ],
+      "cool": [
+        "Cool Sheer Blush",
+        "Cool Nude Pink",
+        "Cool Nude",
+        "Cool Natural Nude",
+        "Rosy Nude",
+        "Cool Mauve Nude",
+        "Mauve Nude",
+        "Deep Cool Nude",
+        "Rich Cool Brown Nude",
+        "Dark Cool Nude"
+      ]
+    },
+    "brow_powder": {
+      "warm": [
+        "Warm Blonde",
+        "Golden Ash Brown",
+        "Warm Soft Brown",
+        "Golden Warm Brown",
+        "Golden Brown",
+        "Deep Golden Brown",
+        "Warm Dark Brown",
+        "Rich Warm Brown",
+        "Deep Warm Espresso",
+        "Warm Soft Black"
+      ],
+      "neutral": [
+        "Neutral Blonde",
+        "Soft Ash Brown",
+        "Neutral Soft Brown",
+        "Neutral Brown",
+        "True Brown",
+        "Deep Neutral Brown",
+        "Neutral Dark Brown",
+        "Rich Neutral Brown",
+        "Deep Neutral Espresso",
+        "Soft True Black"
+      ],
+      "cool": [
+        "Cool Ash Blonde",
+        "Cool Ash Brown",
+        "Cool Soft Brown",
+        "Ashy Cool Brown",
+        "Cool Brown",
+        "Deep Cool Brown",
+        "Cool Dark Brown",
+        "Rich Cool Brown",
+        "Deep Cool Espresso",
+        "Cool Soft Black"
+      ]
+    },
+    "contour_powder_cream": {
+      "warm": [
+        "Barely Bronze",
+        "Warm Tan",
+        "Golden Tan",
+        "Honey Tan",
+        "Golden Bronze",
+        "Deep Golden Tan",
+        "Warm Mocha",
+        "Rich Warm Mocha",
+        "Deep Amber Mocha",
+        "Warm Espresso Bronze"
+      ],
+      "neutral": [
+        "Soft Bronze",
+        "Neutral Tan",
+        "Natural Tan",
+        "Soft Sand Tan",
+        "Neutral Bronze",
+        "Deep Natural Tan",
+        "Neutral Mocha",
+        "Rich Neutral Mocha",
+        "Deep Neutral Mocha",
+        "Neutral Espresso Bronze"
+      ],
+      "cool": [
+        "Soft Taupe Bronze",
+        "Cool Tan",
+        "Ashy Tan",
+        "Ashy Tan Cool",
+        "Cool Bronze",
+        "Deep Ashy Tan",
+        "Cool Mocha",
+        "Rich Cool Mocha",
+        "Deep Ash Mocha",
+        "Cool Espresso Bronze"
+      ]
+    },
+    "highlighter_nose": {
+      "warm": [
+        "Warm Pearl",
+        "Golden Champagne",
+        "Warm Champagne",
+        "Gold Champagne",
+        "Warm Gold",
+        "Deep Gold",
+        "Rose Gold Warm",
+        "Bronze Gold",
+        "Deep Amber Gold",
+        "Rich Warm Bronze"
+      ],
+      "neutral": [
+        "Soft Pearl",
+        "Champagne",
+        "Neutral Champagne",
+        "Soft Gold Champagne",
+        "Neutral Gold",
+        "Deep Champagne Gold",
+        "Soft Rose Gold",
+        "Bronze Champagne",
+        "Deep Neutral Bronze",
+        "Rich Neutral Bronze"
+      ],
+      "cool": [
+        "Cool Pearl White",
+        "Champagne Silver",
+        "Cool Champagne",
+        "Silver Champagne",
+        "Cool Gold",
+        "Deep Rose Silver",
+        "Rose Gold Cool",
+        "Bronze Silver",
+        "Deep Cool Bronze",
+        "Rich Cool Bronze"
+      ]
+    },
+    "eyeshadow_base": {
+      "warm": [
+        "Warm Vanilla",
+        "Warm Taupe",
+        "Golden Taupe",
+        "Honey Taupe",
+        "Sand Taupe",
+        "Golden Caramel Taupe",
+        "Warm Brown",
+        "Medium Warm Brown",
+        "Deep Warm Brown",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Vanilla",
+        "Neutral Taupe",
+        "Natural Taupe",
+        "Soft Sand Taupe",
+        "Sand Beige Taupe",
+        "Caramel Taupe",
+        "Neutral Brown",
+        "Medium Neutral Brown",
+        "Deep Neutral Brown",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Vanilla",
+        "Cool Taupe",
+        "Ashy Taupe",
+        "Soft Grey Taupe",
+        "Cool Sand Taupe",
+        "Cool Caramel Taupe",
+        "Cool Brown",
+        "Medium Cool Brown",
+        "Deep Cool Brown",
+        "Cool Espresso"
+      ]
+    },
+    "eyeshadow_outer_corner_darker": {
+      "warm": [
+        "Soft Auburn",
+        "Warm Chestnut Brown",
+        "Reddish Warm Brown",
+        "Cinnamon Brown",
+        "Warm Sienna",
+        "Deep Sienna Brown",
+        "Warm Mahogany",
+        "Deep Warm Mahogany",
+        "Dark Cinnamon Espresso",
+        "Rich Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Umber",
+        "Neutral Chestnut Brown",
+        "Neutral Brown",
+        "Walnut Brown",
+        "Neutral Sienna",
+        "Deep Walnut Brown",
+        "Neutral Mahogany",
+        "Deep Neutral Mahogany",
+        "Dark Walnut Espresso",
+        "Rich Neutral Espresso"
+      ],
+      "cool": [
+        "Soft Mauve Brown",
+        "Cool Plum Brown",
+        "Cool Berry Brown",
+        "Mauve Espresso",
+        "Cool Aubergine Brown",
+        "Deep Aubergine Brown",
+        "Cool Mahogany",
+        "Deep Cool Mahogany",
+        "Dark Plum Espresso",
+        "Rich Cool Espresso"
+      ]
+    },
+    "eyeshadow_shimmer": {
+      "warm": [
+        "Warm Icy White",
+        "Golden Pearl Pink",
+        "Champagne Gold",
+        "Warm Gold",
+        "Golden Pink",
+        "Deep Gold",
+        "Warm Rose Gold",
+        "Bronze Glow",
+        "Deep Bronze Gold",
+        "Rich Warm Gold"
+      ],
+      "neutral": [
+        "Soft Icy White",
+        "Pearl Champagne",
+        "Champagne",
+        "Neutral Gold",
+        "Soft Gold Pink",
+        "Deep Champagne Gold",
+        "Soft Rose Gold",
+        "Bronze Champagne Glow",
+        "Deep Neutral Bronze Gold",
+        "Rich Neutral Gold"
+      ],
+      "cool": [
+        "Cool Icy White",
+        "Pearl Pink",
+        "Champagne Silver Pink",
+        "Silver Rose",
+        "Cool Pink Champagne",
+        "Deep Silver Rose",
+        "Cool Rose Gold",
+        "Bronze Silver Glow",
+        "Deep Cool Bronze",
+        "Rich Cool Silver"
+      ]
+    },
+    "eyeliner_pencil_under_eye_line": {
+      "warm": [
+        "Warm Light Brown",
+        "Golden Soft Brown",
+        "Warm Brown",
+        "Warm Medium Brown",
+        "Deep Warm Brown",
+        "Rich Warm Brown",
+        "Dark Warm Brown",
+        "Warm Espresso Brown",
+        "Deep Warm Espresso",
+        "Jet Warm Brown"
+      ],
+      "neutral": [
+        "Neutral Light Brown",
+        "Soft Brown",
+        "Neutral Brown",
+        "Neutral Medium Brown",
+        "Deep Neutral Brown",
+        "Rich Neutral Brown",
+        "Dark Neutral Brown",
+        "Neutral Espresso Brown",
+        "Deep Neutral Espresso",
+        "Jet Neutral Brown"
+      ],
+      "cool": [
+        "Cool Light Brown",
+        "Ashy Soft Brown",
+        "Cool Brown",
+        "Cool Medium Brown",
+        "Deep Cool Brown",
+        "Rich Cool Brown",
+        "Dark Cool Brown",
+        "Cool Espresso Brown",
+        "Deep Cool Espresso",
+        "Jet Cool Brown"
+      ]
+    },
+    "eyeliner_upper_lash_line": {
+      "warm": [
+        "Soft Black (Warm Base)",
+        "Soft Black",
+        "Charcoal Black",
+        "Charcoal",
+        "Black",
+        "Black",
+        "Matte Black",
+        "Matte Black",
+        "Jet Black",
+        "Jet Black"
+      ],
+      "neutral": [
+        "Soft Black",
+        "Soft Black",
+        "Charcoal",
+        "Charcoal",
+        "True Black",
+        "True Black",
+        "Matte True Black",
+        "Matte True Black",
+        "Jet True Black",
+        "Jet True Black"
+      ],
+      "cool": [
+        "Cool Soft Black",
+        "Blue-Black Soft",
+        "Charcoal Cool Black",
+        "Blue Charcoal",
+        "Cool Black",
+        "Cool Black",
+        "Matte Cool Black",
+        "Matte Cool Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black"
+      ]
+    },
+    "false_lashes": {
+      "warm": [
+        "Natural Brown-Black",
+        "Natural Brown-Black",
+        "Soft Black",
+        "Soft Black",
+        "Black",
+        "Black",
+        "Black",
+        "Jet Black",
+        "Jet Black",
+        "Jet Black"
+      ],
+      "neutral": [
+        "Natural Black",
+        "Natural Black",
+        "Soft True Black",
+        "Soft True Black",
+        "True Black",
+        "True Black",
+        "True Black",
+        "Jet True Black",
+        "Jet True Black",
+        "Jet True Black"
+      ],
+      "cool": [
+        "Natural Blue-Black",
+        "Natural Blue-Black",
+        "Cool Soft Black",
+        "Cool Soft Black",
+        "Cool Black",
+        "Cool Black",
+        "Cool Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black"
+      ]
+    },
+    "lip_tint": {
+      "warm": [
+        "Warm Baby Pink",
+        "Soft Peach",
+        "Warm Rose",
+        "Coral Rose",
+        "Warm Berry",
+        "Deep Warm Rose",
+        "Terra Tint",
+        "Deep Warm Berry",
+        "Rich Warm Berry",
+        "Dark Warm Berry"
+      ],
+      "neutral": [
+        "Soft Petal Pink",
+        "Soft Apricot",
+        "Neutral Rose",
+        "Sandy Rose",
+        "Neutral Berry",
+        "Deep Neutral Rose",
+        "Terracotta Tint",
+        "Deep Neutral Berry",
+        "Rich Neutral Berry",
+        "Dark Neutral Berry"
+      ],
+      "cool": [
+        "Cool Baby Pink",
+        "Cool Soft Pink",
+        "Cool Rose",
+        "Mauve Rose",
+        "Cool Berry",
+        "Deep Cool Rose",
+        "Plum Tint",
+        "Deep Cool Berry",
+        "Rich Cool Berry",
+        "Dark Cool Berry"
+      ]
+    },
+    "concealer_hydrating": {
+      "warm": [
+        "Warm Fair",
+        "Golden Light",
+        "Warm Light",
+        "Golden Nude",
+        "Honey Nude",
+        "Warm Sand",
+        "Warm Caramel",
+        "Golden Mocha",
+        "Warm Chestnut",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Neutral Fair",
+        "Neutral Light",
+        "Soft Light",
+        "Neutral Nude",
+        "Natural Nude",
+        "Neutral Sand",
+        "Neutral Caramel",
+        "Natural Mocha",
+        "Neutral Chestnut",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Fair",
+        "Rose Light",
+        "Cool Light",
+        "Rose Nude",
+        "Pink Nude",
+        "Cool Sand",
+        "Cool Caramel",
+        "Rose Mocha",
+        "Cool Chestnut",
+        "Cool Espresso"
+      ]
+    },
+    "eyeshadow_neutral_soft_toned": {
+      "warm": [
+        "Warm Vanilla",
+        "Warm Taupe",
+        "Golden Taupe",
+        "Honey Taupe",
+        "Sand Taupe",
+        "Golden Caramel Taupe",
+        "Warm Brown",
+        "Medium Warm Brown",
+        "Deep Warm Brown",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Vanilla",
+        "Neutral Taupe",
+        "Natural Taupe",
+        "Soft Sand Taupe",
+        "Sand Beige Taupe",
+        "Caramel Taupe",
+        "Neutral Brown",
+        "Medium Neutral Brown",
+        "Deep Neutral Brown",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Vanilla",
+        "Cool Taupe",
+        "Ashy Taupe",
+        "Soft Grey Taupe",
+        "Cool Sand Taupe",
+        "Cool Caramel Taupe",
+        "Cool Brown",
+        "Medium Cool Brown",
+        "Deep Cool Brown",
+        "Cool Espresso"
+      ]
+    },
+    "eyeliner_brown_liquid": {
+      "warm": [
+        "Warm Honey Brown",
+        "Warm Toffee Brown",
+        "Warm Chestnut Brown",
+        "Deep Warm Chestnut",
+        "Warm Espresso Brown",
+        "Rich Warm Espresso",
+        "Dark Warm Cocoa",
+        "Deep Cocoa Brown",
+        "Espresso Warm Black-Brown",
+        "Jet Warm Black-Brown"
+      ],
+      "neutral": [
+        "Neutral Honey Brown",
+        "Neutral Toffee Brown",
+        "Neutral Chestnut Brown",
+        "Deep Neutral Chestnut",
+        "Neutral Espresso Brown",
+        "Rich Neutral Espresso",
+        "Dark Neutral Cocoa",
+        "Deep Neutral Cocoa",
+        "Espresso Neutral Black-Brown",
+        "Jet Neutral Black-Brown"
+      ],
+      "cool": [
+        "Cool Taupe Brown",
+        "Cool Cocoa Brown",
+        "Cool Chestnut Brown",
+        "Deep Cool Chestnut",
+        "Cool Espresso Brown",
+        "Rich Cool Espresso",
+        "Dark Cool Cocoa",
+        "Deep Cool Cocoa",
+        "Espresso Cool Black-Brown",
+        "Jet Cool Black-Brown"
+      ]
+    },
+    "mascara_volumizing": {
+      "warm": [
+        "Warm Dark Brown",
+        "Dark Brown",
+        "Brown Black",
+        "Warm Brown Black",
+        "Black Brown",
+        "Black",
+        "Matte Black",
+        "Matte Black",
+        "Jet Black",
+        "Jet Black"
+      ],
+      "neutral": [
+        "Neutral Dark Brown",
+        "True Dark Brown",
+        "Brown-Black",
+        "Neutral Brown-Black",
+        "True Black-Brown",
+        "True Black",
+        "Matte True Black",
+        "Matte True Black",
+        "Jet True Black",
+        "Jet True Black"
+      ],
+      "cool": [
+        "Cool Dark Brown",
+        "Blue-Brown",
+        "Cool Brown Black",
+        "Cool Brown Black",
+        "Blue Black Brown",
+        "Blue-Black",
+        "Matte Blue-Black",
+        "Matte Blue-Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black"
+      ]
+    },
+    "bronzer_neutral": {
+      "warm": [
+        "Barely Bronze",
+        "Warm Tan",
+        "Golden Tan",
+        "Honey Tan",
+        "Golden Bronze",
+        "Deep Golden Tan",
+        "Warm Mocha",
+        "Rich Warm Mocha",
+        "Deep Amber Mocha",
+        "Warm Espresso Bronze"
+      ],
+      "neutral": [
+        "Soft Bronze",
+        "Neutral Tan",
+        "Natural Tan",
+        "Soft Sand Tan",
+        "Neutral Bronze",
+        "Deep Natural Tan",
+        "Neutral Mocha",
+        "Rich Neutral Mocha",
+        "Deep Neutral Mocha",
+        "Neutral Espresso Bronze"
+      ],
+      "cool": [
+        "Soft Taupe Bronze",
+        "Cool Tan",
+        "Ashy Tan",
+        "Ashy Tan Cool",
+        "Cool Bronze",
+        "Deep Ashy Tan",
+        "Cool Mocha",
+        "Rich Cool Mocha",
+        "Deep Ash Mocha",
+        "Cool Espresso Bronze"
+      ]
+    },
+    "powder_blush_top_up": {
+      "warm": [
+        "Soft Peach Pink",
+        "Warm Peach",
+        "Warm Rose Peach",
+        "Dusty Peach",
+        "Peachy Coral",
+        "Deep Warm Rose",
+        "Terra Rose",
+        "Brick Rose",
+        "Deep Terra",
+        "Rich Brick"
+      ],
+      "neutral": [
+        "Soft Petal Beige",
+        "Neutral Peach Pink",
+        "Soft Rose Beige",
+        "Dusty Rose Beige",
+        "Sandy Rose",
+        "Deep Neutral Rose",
+        "Terracotta Rose",
+        "Deep Terracotta Rose",
+        "Deep Neutral Brick",
+        "Rich Neutral Brick"
+      ],
+      "cool": [
+        "Soft Pink",
+        "Cool Pink",
+        "Cool Rose",
+        "Dusty Mauve Rose",
+        "Mauve Pink",
+        "Deep Cool Rose",
+        "Berry Rose",
+        "Berry Mauve",
+        "Deep Berry Mauve",
+        "Rich Plum"
+      ]
+    },
+    "lip_tint_deep_red_berry": {
+      "warm": [
+        "Warm Baby Pink",
+        "Soft Peach",
+        "Warm Rose",
+        "Coral Rose",
+        "Warm Berry",
+        "Deep Warm Rose",
+        "Terra Tint",
+        "Deep Warm Berry",
+        "Rich Warm Berry",
+        "Dark Warm Berry"
+      ],
+      "neutral": [
+        "Soft Petal Pink",
+        "Soft Apricot",
+        "Neutral Rose",
+        "Sandy Rose",
+        "Neutral Berry",
+        "Deep Neutral Rose",
+        "Terracotta Tint",
+        "Deep Neutral Berry",
+        "Rich Neutral Berry",
+        "Dark Neutral Berry"
+      ],
+      "cool": [
+        "Cool Baby Pink",
+        "Cool Soft Pink",
+        "Cool Rose",
+        "Mauve Rose",
+        "Cool Berry",
+        "Deep Cool Rose",
+        "Plum Tint",
+        "Deep Cool Berry",
+        "Rich Cool Berry",
+        "Dark Cool Berry"
+      ]
+    },
+    "blush_cool_rose": {
+      "warm": [
+        "Soft Peach Pink",
+        "Warm Peach",
+        "Warm Rose Peach",
+        "Dusty Peach",
+        "Peachy Coral",
+        "Deep Warm Rose",
+        "Terra Rose",
+        "Brick Rose",
+        "Deep Terra",
+        "Rich Brick"
+      ],
+      "neutral": [
+        "Soft Petal Beige",
+        "Neutral Peach Pink",
+        "Soft Rose Beige",
+        "Dusty Rose Beige",
+        "Sandy Rose",
+        "Deep Neutral Rose",
+        "Terracotta Rose",
+        "Deep Terracotta Rose",
+        "Deep Neutral Brick",
+        "Rich Neutral Brick"
+      ],
+      "cool": [
+        "Soft Pink",
+        "Cool Pink",
+        "Cool Rose",
+        "Dusty Mauve Rose",
+        "Mauve Pink",
+        "Deep Cool Rose",
+        "Berry Rose",
+        "Berry Mauve",
+        "Deep Berry Mauve",
+        "Rich Plum"
+      ]
+    },
+    "eyeliner_brown": {
+      "warm": [
+        "Warm Light Brown",
+        "Golden Soft Brown",
+        "Warm Brown",
+        "Warm Medium Brown",
+        "Deep Warm Brown",
+        "Rich Warm Brown",
+        "Dark Warm Brown",
+        "Warm Espresso Brown",
+        "Deep Warm Espresso",
+        "Jet Warm Brown"
+      ],
+      "neutral": [
+        "Neutral Light Brown",
+        "Soft Brown",
+        "Neutral Brown",
+        "Neutral Medium Brown",
+        "Deep Neutral Brown",
+        "Rich Neutral Brown",
+        "Dark Neutral Brown",
+        "Neutral Espresso Brown",
+        "Deep Neutral Espresso",
+        "Jet Neutral Brown"
+      ],
+      "cool": [
+        "Cool Light Brown",
+        "Ashy Soft Brown",
+        "Cool Brown",
+        "Cool Medium Brown",
+        "Deep Cool Brown",
+        "Rich Cool Brown",
+        "Dark Cool Brown",
+        "Cool Espresso Brown",
+        "Deep Cool Espresso",
+        "Jet Cool Brown"
+      ]
+    },
+    "lip_liner_mauve_berry": {
+      "warm": [
+        "Warm Soft Pink",
+        "Warm Dusty Rose",
+        "Warm Mauve Pink",
+        "Warm Berry Pink",
+        "Warm Deep Berry",
+        "Warm Wine Mauve",
+        "Rich Warm Berry",
+        "Dark Warm Berry",
+        "Deep Warm Plum",
+        "Dark Warm Plum"
+      ],
+      "neutral": [
+        "Soft Pink",
+        "Neutral Dusty Rose",
+        "Neutral Mauve Pink",
+        "Neutral Berry Pink",
+        "Neutral Deep Berry",
+        "Neutral Wine Mauve",
+        "Rich Neutral Berry",
+        "Dark Neutral Berry",
+        "Deep Neutral Plum",
+        "Dark Neutral Plum"
+      ],
+      "cool": [
+        "Cool Soft Pink",
+        "Cool Dusty Rose",
+        "Cool Mauve Pink",
+        "Cool Berry Pink",
+        "Cool Deep Berry",
+        "Cool Wine Mauve",
+        "Rich Cool Berry",
+        "Dark Cool Berry",
+        "Deep Cool Plum",
+        "Dark Cool Plum"
+      ]
+    },
+    "foundation_skin_tint": {
+      "warm": [
+        "Warm Porcelain",
+        "Golden Ivory",
+        "Warm Ivory",
+        "Golden Beige",
+        "Honey Gold",
+        "Warm Sand",
+        "Warm Caramel",
+        "Golden Mocha",
+        "Warm Chestnut",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Neutral Porcelain",
+        "Neutral Ivory",
+        "Soft Ivory",
+        "Neutral Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Caramel",
+        "Natural Mocha",
+        "Neutral Chestnut",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Porcelain",
+        "Rose Ivory",
+        "Cool Ivory",
+        "Rose Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Caramel",
+        "Rose Mocha",
+        "Cool Chestnut",
+        "Cool Espresso"
+      ]
+    },
+    "cream_color_cheeks": {
+      "warm": [
+        "Warm Petal Cream",
+        "Warm Peach Cream",
+        "Warm Coral Cream",
+        "Warm Rose Cream",
+        "Warm Terra Cream",
+        "Deep Warm Terra Cream",
+        "Warm Brick Cream",
+        "Deep Warm Brick Cream",
+        "Rich Warm Cream",
+        "Dark Warm Cream"
+      ],
+      "neutral": [
+        "Soft Petal Cream",
+        "Neutral Peach Cream",
+        "Neutral Coral Cream",
+        "Neutral Rose Cream",
+        "Neutral Terra Cream",
+        "Deep Neutral Terra Cream",
+        "Neutral Brick Cream",
+        "Deep Neutral Brick Cream",
+        "Rich Neutral Cream",
+        "Dark Neutral Cream"
+      ],
+      "cool": [
+        "Cool Petal Cream",
+        "Cool Pink Cream",
+        "Cool Rose Cream",
+        "Cool Mauve Cream",
+        "Cool Berry Cream",
+        "Deep Cool Berry Cream",
+        "Cool Plum Cream",
+        "Deep Cool Plum Cream",
+        "Rich Cool Cream",
+        "Dark Cool Cream"
+      ]
+    },
+    "brow_gel_clear": {
+      "warm": [
+        "Clear",
+        "Clear",
+        "Clear / Warm Light Brown",
+        "Clear / Warm Soft Brown",
+        "Warm Brown Tinted",
+        "Warm Brown Tinted",
+        "Dark Warm Brown Tinted",
+        "Dark Warm Brown Tinted",
+        "Warm Espresso Tinted",
+        "Warm Soft Black Tinted"
+      ],
+      "neutral": [
+        "Clear",
+        "Clear",
+        "Clear / Soft Light Brown",
+        "Clear / Neutral Soft Brown",
+        "Neutral Brown Tinted",
+        "Neutral Brown Tinted",
+        "Dark Neutral Brown Tinted",
+        "Dark Neutral Brown Tinted",
+        "Neutral Espresso Tinted",
+        "Soft True Black Tinted"
+      ],
+      "cool": [
+        "Clear",
+        "Clear",
+        "Clear / Ash Brown",
+        "Clear / Cool Soft Brown",
+        "Cool Brown Tinted",
+        "Cool Brown Tinted",
+        "Dark Cool Brown Tinted",
+        "Dark Cool Brown Tinted",
+        "Cool Espresso Tinted",
+        "Cool Soft Black Tinted"
+      ]
+    },
+    "eyeshadow_matte_base": {
+      "warm": [
+        "Warm Vanilla",
+        "Warm Taupe",
+        "Golden Taupe",
+        "Honey Taupe",
+        "Sand Taupe",
+        "Golden Caramel Taupe",
+        "Warm Brown",
+        "Medium Warm Brown",
+        "Deep Warm Brown",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Vanilla",
+        "Neutral Taupe",
+        "Natural Taupe",
+        "Soft Sand Taupe",
+        "Sand Beige Taupe",
+        "Caramel Taupe",
+        "Neutral Brown",
+        "Medium Neutral Brown",
+        "Deep Neutral Brown",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Vanilla",
+        "Cool Taupe",
+        "Ashy Taupe",
+        "Soft Grey Taupe",
+        "Cool Sand Taupe",
+        "Cool Caramel Taupe",
+        "Cool Brown",
+        "Medium Cool Brown",
+        "Deep Cool Brown",
+        "Cool Espresso"
+      ]
+    },
+    "eyeshadow_warm_crease_shade": {
+      "warm": [
+        "Soft Auburn",
+        "Warm Chestnut Brown",
+        "Reddish Warm Brown",
+        "Cinnamon Brown",
+        "Warm Sienna",
+        "Deep Sienna Brown",
+        "Warm Mahogany",
+        "Deep Warm Mahogany",
+        "Dark Cinnamon Espresso",
+        "Rich Warm Espresso"
+      ],
+      "neutral": [
+        "Soft Umber",
+        "Neutral Chestnut Brown",
+        "Neutral Brown",
+        "Walnut Brown",
+        "Neutral Sienna",
+        "Deep Walnut Brown",
+        "Neutral Mahogany",
+        "Deep Neutral Mahogany",
+        "Dark Walnut Espresso",
+        "Rich Neutral Espresso"
+      ],
+      "cool": [
+        "Soft Mauve Brown",
+        "Cool Plum Brown",
+        "Cool Berry Brown",
+        "Mauve Espresso",
+        "Cool Aubergine Brown",
+        "Deep Aubergine Brown",
+        "Cool Mahogany",
+        "Deep Cool Mahogany",
+        "Dark Plum Espresso",
+        "Rich Cool Espresso"
+      ]
+    },
+    "eyeshadow_shimmer_lid_center": {
+      "warm": [
+        "Warm Icy White",
+        "Golden Pearl Pink",
+        "Champagne Gold",
+        "Warm Gold",
+        "Golden Pink",
+        "Deep Gold",
+        "Warm Rose Gold",
+        "Bronze Glow",
+        "Deep Bronze Gold",
+        "Rich Warm Gold"
+      ],
+      "neutral": [
+        "Soft Icy White",
+        "Pearl Champagne",
+        "Champagne",
+        "Neutral Gold",
+        "Soft Gold Pink",
+        "Deep Champagne Gold",
+        "Soft Rose Gold",
+        "Bronze Champagne Glow",
+        "Deep Neutral Bronze Gold",
+        "Rich Neutral Gold"
+      ],
+      "cool": [
+        "Cool Icy White",
+        "Pearl Pink",
+        "Champagne Silver Pink",
+        "Silver Rose",
+        "Cool Pink Champagne",
+        "Deep Silver Rose",
+        "Cool Rose Gold",
+        "Bronze Silver Glow",
+        "Deep Cool Bronze",
+        "Rich Cool Silver"
+      ]
+    },
+    "lip_color_nude": {
+      "warm": [
+        "Warm Sheer Nude",
+        "Warm Nude Pink",
+        "Warm Nude",
+        "Warm Natural Nude",
+        "Peachy Warm Nude",
+        "Warm Caramel Nude",
+        "Caramel Nude",
+        "Deep Warm Nude",
+        "Rich Warm Brown Nude",
+        "Dark Warm Nude"
+      ],
+      "neutral": [
+        "Soft Sheer Nude",
+        "Neutral Nude Pink",
+        "Neutral Nude",
+        "True Natural Nude",
+        "Sandy Neutral Nude",
+        "Neutral Caramel Nude",
+        "True Caramel Nude",
+        "Deep Neutral Nude",
+        "Rich Neutral Brown Nude",
+        "Dark Neutral Nude"
+      ],
+      "cool": [
+        "Cool Sheer Nude",
+        "Cool Nude Pink",
+        "Cool Nude",
+        "Cool Natural Nude",
+        "Rosy Cool Nude",
+        "Cool Mauve Nude",
+        "Mauve Nude",
+        "Deep Cool Nude",
+        "Rich Cool Brown Nude",
+        "Dark Cool Nude"
+      ]
+    },
+    "lip_cream_warm_toned_layer": {
+      "warm": [
+        "Warm Champagne Cream",
+        "Warm Toffee Cream",
+        "Warm Caramel Cream",
+        "Warm Terracotta Cream",
+        "Deep Warm Terracotta",
+        "Warm Brick Cream",
+        "Deep Warm Brick Cream",
+        "Rich Warm Cocoa Cream",
+        "Dark Warm Cocoa Cream",
+        "Darkest Warm Cocoa Cream"
+      ],
+      "neutral": [
+        "Neutral Champagne Cream",
+        "Neutral Toffee Cream",
+        "Neutral Caramel Cream",
+        "Neutral Terracotta Cream",
+        "Deep Neutral Terracotta",
+        "Neutral Brick Cream",
+        "Deep Neutral Brick Cream",
+        "Rich Neutral Cocoa Cream",
+        "Dark Neutral Cocoa Cream",
+        "Darkest Neutral Cocoa Cream"
+      ],
+      "cool": [
+        "Cool Champagne Cream",
+        "Cool Mauve Cream",
+        "Cool Rose Cream",
+        "Cool Berry Cream",
+        "Deep Cool Berry Cream",
+        "Cool Plum Cream",
+        "Deep Cool Plum Cream",
+        "Rich Cool Wine Cream",
+        "Dark Cool Wine Cream",
+        "Darkest Cool Wine Cream"
+      ]
+    },
+    "skin_tint_tinted_sunscreen": {
+      "warm": [
+        "Warm Porcelain",
+        "Golden Ivory",
+        "Warm Ivory",
+        "Golden Beige",
+        "Honey Gold",
+        "Warm Sand",
+        "Warm Caramel",
+        "Golden Mocha",
+        "Warm Chestnut",
+        "Warm Espresso"
+      ],
+      "neutral": [
+        "Neutral Porcelain",
+        "Neutral Ivory",
+        "Soft Ivory",
+        "Neutral Beige",
+        "Natural Beige",
+        "Neutral Sand",
+        "Neutral Caramel",
+        "Natural Mocha",
+        "Neutral Chestnut",
+        "Neutral Espresso"
+      ],
+      "cool": [
+        "Cool Porcelain",
+        "Rose Ivory",
+        "Cool Ivory",
+        "Rose Beige",
+        "Pink Beige",
+        "Cool Sand",
+        "Cool Caramel",
+        "Rose Mocha",
+        "Cool Chestnut",
+        "Cool Espresso"
+      ]
+    },
+    "setting_powder_invisible": {
+      "warm": [
+        "Invisible Sheer (Warm)",
+        "Invisible Sheer (Warm)",
+        "Invisible Warm Translucent",
+        "Invisible Warm Beige",
+        "Invisible Golden Beige",
+        "Invisible Warm Sand",
+        "Invisible Warm Tan",
+        "Invisible Warm Bronze",
+        "Invisible Deep Warm Bronze",
+        "Invisible Deep Warm Espresso"
+      ],
+      "neutral": [
+        "Invisible Sheer (True)",
+        "Invisible Sheer (True)",
+        "Invisible Neutral Translucent",
+        "Invisible Neutral Beige",
+        "Invisible Natural Beige",
+        "Invisible Neutral Sand",
+        "Invisible Neutral Tan",
+        "Invisible Neutral Bronze",
+        "Invisible Deep Neutral Bronze",
+        "Invisible Deep Neutral Espresso"
+      ],
+      "cool": [
+        "Invisible Sheer (Cool)",
+        "Invisible Sheer (Cool)",
+        "Invisible Cool Translucent",
+        "Invisible Cool Beige",
+        "Invisible Pink Beige",
+        "Invisible Cool Sand",
+        "Invisible Cool Tan",
+        "Invisible Cool Bronze",
+        "Invisible Deep Cool Bronze",
+        "Invisible Deep Cool Espresso"
+      ]
+    },
+    "contour_powder": {
+      "warm": [
+        "Barely Bronze",
+        "Warm Tan",
+        "Golden Tan",
+        "Honey Tan",
+        "Golden Bronze",
+        "Deep Golden Tan",
+        "Warm Mocha",
+        "Rich Warm Mocha",
+        "Deep Amber Mocha",
+        "Warm Espresso Bronze"
+      ],
+      "neutral": [
+        "Soft Bronze",
+        "Neutral Tan",
+        "Natural Tan",
+        "Soft Sand Tan",
+        "Neutral Bronze",
+        "Deep Natural Tan",
+        "Neutral Mocha",
+        "Rich Neutral Mocha",
+        "Deep Neutral Mocha",
+        "Neutral Espresso Bronze"
+      ],
+      "cool": [
+        "Soft Taupe Bronze",
+        "Cool Tan",
+        "Ashy Tan",
+        "Ashy Tan Cool",
+        "Cool Bronze",
+        "Deep Ashy Tan",
+        "Cool Mocha",
+        "Rich Cool Mocha",
+        "Deep Ash Mocha",
+        "Cool Espresso Bronze"
+      ]
+    },
+    "brow_pen": {
+      "warm": [
+        "Warm Blonde",
+        "Golden Ash Brown",
+        "Warm Soft Brown",
+        "Golden Warm Brown",
+        "Golden Brown",
+        "Deep Golden Brown",
+        "Warm Dark Brown",
+        "Rich Warm Brown",
+        "Deep Warm Espresso",
+        "Warm Soft Black"
+      ],
+      "neutral": [
+        "Neutral Blonde",
+        "Soft Ash Brown",
+        "Neutral Soft Brown",
+        "Neutral Brown",
+        "True Brown",
+        "Deep Neutral Brown",
+        "Neutral Dark Brown",
+        "Rich Neutral Brown",
+        "Deep Neutral Espresso",
+        "Soft True Black"
+      ],
+      "cool": [
+        "Cool Ash Blonde",
+        "Cool Ash Brown",
+        "Cool Soft Brown",
+        "Ashy Cool Brown",
+        "Cool Brown",
+        "Deep Cool Brown",
+        "Cool Dark Brown",
+        "Rich Cool Brown",
+        "Deep Cool Espresso",
+        "Cool Soft Black"
+      ]
+    },
+    "highlighter_metallic": {
+      "warm": [
+        "Warm Pearl",
+        "Golden Champagne",
+        "Warm Champagne",
+        "Gold Champagne",
+        "Warm Gold",
+        "Deep Gold",
+        "Rose Gold Warm",
+        "Bronze Gold",
+        "Deep Amber Gold",
+        "Rich Warm Bronze"
+      ],
+      "neutral": [
+        "Soft Pearl",
+        "Champagne",
+        "Neutral Champagne",
+        "Soft Gold Champagne",
+        "Neutral Gold",
+        "Deep Champagne Gold",
+        "Soft Rose Gold",
+        "Bronze Champagne",
+        "Deep Neutral Bronze",
+        "Rich Neutral Bronze"
+      ],
+      "cool": [
+        "Cool Pearl White",
+        "Champagne Silver",
+        "Cool Champagne",
+        "Silver Champagne",
+        "Cool Gold",
+        "Deep Rose Silver",
+        "Rose Gold Cool",
+        "Bronze Silver",
+        "Deep Cool Bronze",
+        "Rich Cool Bronze"
+      ]
+    },
+    "mascara_waterproof": {
+      "warm": [
+        "Warm Dark Brown",
+        "Dark Brown",
+        "Brown Black",
+        "Warm Brown Black",
+        "Black Brown",
+        "Black",
+        "Matte Black",
+        "Matte Black",
+        "Jet Black",
+        "Jet Black"
+      ],
+      "neutral": [
+        "Neutral Dark Brown",
+        "True Dark Brown",
+        "Brown-Black",
+        "Neutral Brown-Black",
+        "True Black-Brown",
+        "True Black",
+        "Matte True Black",
+        "Matte True Black",
+        "Jet True Black",
+        "Jet True Black"
+      ],
+      "cool": [
+        "Cool Dark Brown",
+        "Blue-Brown",
+        "Cool Brown Black",
+        "Cool Brown Black",
+        "Blue Black Brown",
+        "Blue-Black",
+        "Matte Blue-Black",
+        "Matte Blue-Black",
+        "Jet Blue-Black",
+        "Jet Blue-Black"
+      ]
+    },
+    "lipstick_lip_tint": {
+      "warm": [
+        "Warm Sheer Blush",
+        "Warm Nude Pink",
+        "Warm Nude",
+        "Warm Natural Nude",
+        "Peachy Nude",
+        "Warm Caramel Nude",
+        "Caramel Nude",
+        "Deep Warm Nude",
+        "Rich Warm Brown Nude",
+        "Dark Warm Nude"
+      ],
+      "neutral": [
+        "Soft Sheer Blush",
+        "Neutral Nude Pink",
+        "Neutral Nude",
+        "True Natural Nude",
+        "Sandy Nude",
+        "Neutral Caramel Nude",
+        "True Caramel Nude",
+        "Deep Neutral Nude",
+        "Rich Neutral Brown Nude",
+        "Dark Neutral Nude"
+      ],
+      "cool": [
+        "Cool Sheer Blush",
+        "Cool Nude Pink",
+        "Cool Nude",
+        "Cool Natural Nude",
+        "Rosy Nude",
+        "Cool Mauve Nude",
+        "Mauve Nude",
+        "Deep Cool Nude",
+        "Rich Cool Brown Nude",
+        "Dark Cool Nude"
+      ]
+    }
+  },
+  "product_display_names": {
+    "color_corrector": "Color Corrector",
+    "concealer": "Concealer",
+    "liquid_blush": "Liquid Blush",
+    "powder_blush": "Powder Blush",
+    "setting_powder_translucent": "Setting Powder (Translucent)",
+    "bronzer_contour": "Bronzer/Contour",
+    "eyeshadow_deep_brown": "Eyeshadow (Deep Brown)",
+    "eyeliner": "Eyeliner",
+    "mascara": "Mascara",
+    "brow_pencil_ash_toned": "Brow Pencil (Ash-Toned)",
+    "brow_gel": "Brow Gel",
+    "highlighter": "Highlighter",
+    "lip_gloss_nude_pink": "Lip Gloss (Nude Pink)",
+    "tinted_sunscreen": "Tinted Sunscreen",
+    "cream_blush": "Cream Blush",
+    "loose_powder": "Loose Powder",
+    "contour_light": "Contour (Light)",
+    "brow_pencil": "Brow Pencil",
+    "eyeshadow_light_brown": "Eyeshadow (Light Brown)",
+    "lip_liner": "Lip Liner",
+    "lip_tint_gloss": "Lip Tint/Gloss",
+    "illuminating_primer_serum": "Illuminating Primer/Serum",
+    "liquid_glow_enhancer": "Liquid Glow Enhancer",
+    "foundation_dewy": "Foundation (Dewy)",
+    "eyeshadow_peachy_base": "Eyeshadow (Peachy Base)",
+    "eyeshadow_brown_outer_lid": "Eyeshadow (Brown — Outer Lid)",
+    "eyeliner_pencil_under_eye": "Eyeliner Pencil (Under-Eye)",
+    "brown_mascara": "Brown Mascara",
+    "cream_liquid_blush": "Cream/Liquid Blush",
+    "lip_balm_glossy": "Lip Balm (Glossy)",
+    "powder_contour": "Powder Contour",
+    "glow_balm_highlighter": "Glow Balm/Highlighter",
+    "foundation_liquid_filter": "Foundation (Liquid Filter)",
+    "cream_contour": "Cream Contour",
+    "powder_bronzer": "Powder Bronzer",
+    "eyeshadow_warm_brown_crease": "Eyeshadow (Warm Brown — Crease)",
+    "eyeshadow_soft_pink_lid": "Eyeshadow (Soft Pink — Lid)",
+    "eyeshadow_shimmer_inner_corner": "Eyeshadow (Shimmer — Inner Corner)",
+    "strip_lashes": "Strip Lashes",
+    "lip_liner_matte": "Lip Liner (Matte)",
+    "lipstick_matte": "Lipstick (Matte)",
+    "lip_oil": "Lip Oil",
+    "skin_tint_bb_cream": "Skin Tint / BB Cream",
+    "blush_peach_coral": "Blush (Peach/Coral)",
+    "eyeliner_nude_waterline": "Eyeliner (Nude — Waterline)",
+    "brow_gel_clear_tinted": "Brow Gel (Clear/Tinted)",
+    "brow_product": "Brow Product",
+    "lip_tint_gradient": "Lip Tint / Gradient",
+    "setting_spray": "Setting Spray",
+    "color_corrector_peach_pink": "Color Corrector (Peach/Pink)",
+    "skin_tint": "Skin Tint",
+    "eyeshadow_peach_brown_base": "Eyeshadow (Peach-Brown Base)",
+    "eyeshadow_reddish_brown_outer": "Eyeshadow (Reddish-Brown — Outer)",
+    "eyeshadow_light_peach_inner_corner": "Eyeshadow (Light Peach — Inner Corner)",
+    "brow_pencil_eyeliner_tightline": "Brow Pencil/Eyeliner (Tightline)",
+    "mascara_volumizing_lengthening": "Mascara (Volumizing/Lengthening)",
+    "bronzer": "Bronzer",
+    "blush_peach": "Blush (Peach)",
+    "lip_liner_peach_matte": "Lip Liner (Peach Matte)",
+    "foundation": "Foundation",
+    "blush_neutral": "Blush (Neutral)",
+    "eyeshadow_base_transition": "Eyeshadow (Base/Transition)",
+    "lipstick_nude_satin": "Lipstick (Nude/Satin)",
+    "setting_powder": "Setting Powder",
+    "primer_eye_face": "Primer (Eye/Face)",
+    "blush_warm_peach": "Blush (Warm/Peach)",
+    "eyeshadow_lid_neutral_brown": "Eyeshadow (Lid — Neutral Brown)",
+    "eyeliner_black_gel": "Eyeliner (Black/Gel)",
+    "lip_gloss": "Lip Gloss",
+    "skin_tint_glow_base": "Skin Tint / Glow Base",
+    "brow_gel_wax": "Brow Gel/Wax",
+    "eyeshadow_transition": "Eyeshadow (Transition)",
+    "eyeshadow_outer_corner_deep": "Eyeshadow (Outer Corner — Deep)",
+    "eyeshadow_highlight_shade": "Eyeshadow (Highlight Shade)",
+    "eyeliner_winged": "Eyeliner (Winged)",
+    "blush": "Blush",
+    "primer": "Primer",
+    "eyeshadow_neutral_base": "Eyeshadow (Neutral Base)",
+    "eyeshadow_blush_toned": "Eyeshadow (Blush-Toned)",
+    "eyeliner_pencil_liquid": "Eyeliner (Pencil/Liquid)",
+    "blush_stick": "Blush Stick",
+    "lip_tint_liquid_lipstick_velvet": "Lip Tint / Liquid Lipstick (Velvet)",
+    "brow_powder": "Brow Powder",
+    "contour_powder_cream": "Contour Powder/Cream",
+    "highlighter_nose": "Highlighter (Nose)",
+    "eyeshadow_base": "Eyeshadow (Base)",
+    "eyeshadow_outer_corner_darker": "Eyeshadow (Outer Corner — Darker)",
+    "eyeshadow_shimmer": "Eyeshadow (Shimmer)",
+    "eyeliner_pencil_under_eye_line": "Eyeliner Pencil (Under-Eye Line)",
+    "eyeliner_upper_lash_line": "Eyeliner (Upper Lash Line)",
+    "false_lashes": "False Lashes",
+    "lip_tint": "Lip Tint",
+    "concealer_hydrating": "Concealer (Hydrating)",
+    "eyeshadow_neutral_soft_toned": "Eyeshadow (Neutral Soft-Toned)",
+    "eyeliner_brown_liquid": "Eyeliner (Brown Liquid)",
+    "mascara_volumizing": "Mascara (Volumizing)",
+    "bronzer_neutral": "Bronzer (Neutral)",
+    "powder_blush_top_up": "Powder Blush (Top-up)",
+    "lip_tint_deep_red_berry": "Lip Tint (Deep Red/Berry)",
+    "blush_cool_rose": "Blush (Cool/Rose)",
+    "eyeliner_brown": "Eyeliner (Brown)",
+    "lip_liner_mauve_berry": "Lip Liner (Mauve/Berry)",
+    "foundation_skin_tint": "Foundation / Skin Tint",
+    "cream_color_cheeks": "Cream Color (Cheeks)",
+    "brow_gel_clear": "Brow Gel (Clear)",
+    "eyeshadow_matte_base": "Eyeshadow (Matte Base)",
+    "eyeshadow_warm_crease_shade": "Eyeshadow (Warm Crease Shade)",
+    "eyeshadow_shimmer_lid_center": "Eyeshadow (Shimmer — Lid Center)",
+    "lip_color_nude": "Lip Color (Nude)",
+    "lip_cream_warm_toned_layer": "Lip Cream (Warm-Toned Layer)",
+    "skin_tint_tinted_sunscreen": "Skin Tint / Tinted Sunscreen",
+    "setting_powder_invisible": "Setting Powder (Invisible)",
+    "contour_powder": "Contour Powder",
+    "brow_pen": "Brow Pen",
+    "highlighter_metallic": "Highlighter (Metallic)",
+    "mascara_waterproof": "Mascara (Waterproof)",
+    "lipstick_lip_tint": "Lipstick / Lip Tint"
+  },
+  "styles": {
+    "clean_girl": {
+      "name": "Clean Girl Makeup",
+      "tagline": "Effortless, skin-first glow",
+      "description": "Clean Girl Makeup is all about looking like the best, most polished version of your bare face. Popularized on social media, this trend champions glowing, hydrated skin, groomed brows, and barely-there color — as if you woke up naturally radiant. Think glass skin, fluffy brows, and a subtle flush.",
+      "tutorial": {
+        "skin_prep": [
+          "Start by soaking a cotton pad with a gentle toner and gently swipe it over your face to hydrate and prep your skin.",
+          "Apply a few layers of a hydrating serum to give your skin a rich, plump-looking moisture boost. Follow up with a single, even layer of moisturizer to lock in that hydration.",
+          "Smooth on a mineral sunscreen to protect your skin and create a silky, slightly blurred base for your makeup."
+        ],
+        "makeup_application": [
+          "Use a small, targeted amount of color corrector to neutralize any specific areas of discoloration.",
+          "Dab a concealer onto spots you want to cover, blending the edges carefully until it sits invisibly on the skin.",
+          "Apply a tiny amount of liquid blush to the apples of your cheeks and blend it upward for a soft, natural rosy flush.",
+          "Gently tap a matching powder blush over the liquid blush to set the color, which ensures it stays vibrant and long-lasting.",
+          "Use a soft brush to lightly dust a translucent setting powder only on areas that tend to get shiny or oily.",
+          "With a neutral contour or bronzer shade, lightly sweep the color into the crease of your eyelids to add subtle, natural dimension.",
+          "Use a deep brown eyeshadow to draw a soft wing, and if you want more intensity, carefully tight-line your lash base with a fine-tip eyeliner.",
+          "Apply your favorite mascara by wiggling the wand from the root to the tip of your lashes to lengthen them.",
+          "Fill in your brows with an ash-toned brow pencil using light, hair-like strokes, then comb through with a brow gel to set them in place.",
+          "Lightly sweep a warm-toned bronzer around the perimeter of your face to add a natural, sun-kissed warmth.",
+          "Gently tap a light golden highlighter onto your cheekbones using a soft brush for a natural, sophisticated glow.",
+          "Finish the look with a coat of nude pink lip gloss for a natural, plump, and shiny lip finish."
+        ]
+      },
+      "tips": [
+        "Skin prep is the most important step — exfoliate the night before.",
+        "Choose cream or liquid products over powders to maintain dewiness.",
+        "Less is more: build coverage only where you truly need it."
+      ],
+      "products": [
+        "color_corrector",
+        "concealer",
+        "liquid_blush",
+        "powder_blush",
+        "setting_powder_translucent",
+        "bronzer_contour",
+        "eyeshadow_deep_brown",
+        "eyeliner",
+        "mascara",
+        "brow_pencil_ash_toned",
+        "brow_gel",
+        "highlighter",
+        "lip_gloss_nude_pink"
+      ],
+      "prep_items": [
+        "Gentle Toner",
+        "Hydrating Serum",
+        "Moisturizer",
+        "Mineral Sunscreen (SPF)"
+      ],
+      "tools": [
+        "Cotton Pad",
+        "Soft Blush/Bronzer/Highlighter Brush"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "no_makeup": {
+      "name": "No-Makeup Makeup",
+      "tagline": "Invisible enhancement — look done without looking done up",
+      "description": "No-Makeup Makeup is the art of looking completely natural while subtly correcting and enhancing your features. The goal is for no one to be able to tell you're wearing anything — just a better, more even version of you.",
+      "tutorial": {
+        "skin_prep": [
+          "Start with a tone-up or tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use your fingers to spread it evenly across your face."
+        ],
+        "makeup_application": [
+          "Identify small spots or areas that need extra coverage. Apply a tiny amount of concealer and use your finger to gently dab (tap) it into the skin. Dabbing provides higher coverage than dragging. Leave it to dry slightly before blending further. For under-eyes, apply it just slightly below the actual under-eye area to prevent the product from settling into lines or creasing.",
+          "Apply a small amount of blush to your cheeks. If the product is highly pigmented, dot it on the back of your hand first, then pick it up to apply. Blend using your fingers by gently tapping or using a soft puff to diffuse the color so it looks seamless and natural.",
+          "To prevent looking oily, take a light amount of loose powder on your hand and gently pat it over your face. Focus on areas that tend to get shiny.",
+          "Use a light-colored contour product to subtly redefine your features. Apply it where you want gentle shadows, keeping the application light to maintain a natural look.",
+          "Use an eyebrow pencil to lightly fill in the ends of your brows. Avoid touching the front of the brow to keep it looking soft and not \"blocky.\" Use a spoolie brush to comb through the hairs; this softens any harsh pencil lines. Finish with a brow gel (colored or clear) to lift and set the hairs in place.",
+          "Curl your lashes first to open up your eyes. If you want more definition, take a light brown shadow and apply it to the under-eye area to make your eyes pop. For a subtle \"flick,\" use a thin brush with brown shadow to follow your natural lash line, extending it slightly outward, then connect it back to the lash line to blend it seamlessly.",
+          "Follow your natural lip line with a lip liner. For the bottom lip, draw slightly upwards into the lip line rather than directly on it to create a fuller, natural appearance. Blend the liner inward.",
+          "Apply a \"my lips but better\" shade (a nudy pink or soft neutral). If you prefer, add a touch of lip oil or gloss on top for a healthy, hydrated finish"
+        ]
+      },
+      "tips": [
+        "The key to this look is blending — there should be no harsh lines anywhere.",
+        "Choose products in your exact skin tone, not lighter or darker.",
+        "A brown eyeliner always looks more natural than black."
+      ],
+      "products": [
+        "tinted_sunscreen",
+        "concealer",
+        "cream_blush",
+        "loose_powder",
+        "contour_light",
+        "brow_pencil",
+        "brow_gel",
+        "eyeshadow_light_brown",
+        "lip_liner",
+        "lip_tint_gloss"
+      ],
+      "prep_items": [
+        "Tone-Up / Tinted Sunscreen (as base)"
+      ],
+      "tools": [
+        "Fingers / Soft Puff (for blending)",
+        "Small Brush (for blush diffusing)"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "fresh_dewy": {
+      "name": "Fresh Dewy Makeup",
+      "tagline": "Glass skin, flushed cheeks, lit-from-within radiance",
+      "description": "Fresh Dewy Makeup turns up the glow dial several notches. It's a full-coverage-meets-glassy-skin look where luminosity is the star. Every product amplifies light reflection — from a glowing foundation to cream blush to a dab of highlighter.",
+      "tutorial": {
+        "skin_prep": [
+          "Hydrate the skin: Use a hydrating skin pack or a generous layer of moisturizer. Leave it on for about 10–15 minutes to allow the moisture to fully absorb into your skin.",
+          "Gently exfoliate: If you’re using the skin pack, after removing i, use your fingers to gently rub your skin in circular motions. This helps lift away any dead skin flakes, creating a smooth canvas.",
+          "Apply a glow-boosting serum/primer: Pat a lightweight, illuminating serum or primer over your face. This provides a subtle radiance that acts as the foundation for your \"glowy\" look."
+        ],
+        "makeup_application": [
+          "Apply a glow enhancer: Use a liquid glow enhancer on your cheekbones, bridge of the nose, and chin. Blend this out with a brush to highlight the specific high points of your face before applying foundation.",
+          "Apply foundation: Use a light-to-medium coverage, dewy-finish foundation. Using a large foundation brush, buff the product onto the skin in thin layers. Avoid applying too much product on the nose and under the eyes to prevent caking.",
+          "Set the eye structure: Apply a neutral, peachy eyeshadow as a base, then use a slightly darker brown shade on the outer half of the lids to add dimension. Finish by using a dark brown shadow to softly outline your wing.",
+          "Define the eyes: Use a long-wear pencil to gently draw a small line under the eyes to emphasize the \"aegyo-sal\" (the fatty under-eye area). Use a brown mascara to define your lashes without creating harsh, black, clumpy lines.",
+          "Fill in brows: Use an eyebrow pencil to fill in gaps with soft, short strokes. Keep the color light and natural, matching the softness of your eye makeup.",
+          "Add color with blush: Use a liquid or cream blush. Apply it in small dots just under the eyes and blend upward toward the temples to create a youthful, dewy \"flushed\" look.",
+          "Define the lips: Use a lip liner to slightly overline the lips for fullness, then apply a glossy, melting-style lip balm to the center, blending outward with your fingers for a soft gradient effect.",
+          "Contour and mattify: Use a powder contour on the nose bridge and jawline to add shadow. Crucially, use a translucent setting powder only on the T-zone and smile lines to ensure the glow stays on the cheeks while keeping the rest of the face from looking oily.",
+          "Final touch: If you want extra intensity, tap a small amount of a multi-purpose glow balm onto the very top of your cheekbones and the inner corners of your eyes."
+        ]
+      },
+      "tips": [
+        "This look photographs beautifully — perfect for natural light settings.",
+        "Avoid powder blush; it deadens the dewy effect.",
+        "Layer your glow: one highlight product is pretty, two or three layered strategically is stunning."
+      ],
+      "products": [
+        "illuminating_primer_serum",
+        "liquid_glow_enhancer",
+        "foundation_dewy",
+        "eyeshadow_peachy_base",
+        "eyeshadow_brown_outer_lid",
+        "eyeliner_pencil_under_eye",
+        "brown_mascara",
+        "brow_pencil",
+        "cream_liquid_blush",
+        "lip_liner",
+        "lip_balm_glossy",
+        "powder_contour",
+        "setting_powder_translucent",
+        "glow_balm_highlighter"
+      ],
+      "prep_items": [
+        "Hydrating Skin Pack or Moisturizer",
+        "Gentle Exfoliator",
+        "Illuminating Serum / Primer"
+      ],
+      "tools": [
+        "Foundation Brush (large)",
+        "Eyeshadow Brush",
+        "Long-Wear Eyeliner Pencil (under-eye)"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "soft_glam": {
+      "name": "Soft Glam Everyday",
+      "tagline": "Polished, wearable glam for any occasion",
+      "description": "Soft Glam Everyday bridges the gap between natural and glamorous — a subtle smoky eye in neutral tones, defined lashes, a sculpted cheek, and a satin lip. It elevates a daily look without feeling overdressed.",
+      "tutorial": {
+        "skin_prep": [
+          "Cleanse: Start with a clean canvas by washing your face with a gentle cleanser to remove any impurities or residual oils.",
+          "Moisturize: Apply a lightweight moisturizer suitable for your skin type. This ensures your skin is hydrated and prevents makeup from looking cakey.",
+          "Prime: Apply a thin layer of primer based on your skin concerns (e.g., smoothing for texture or hydrating for dryness) to help your makeup last longer and apply more smoothly."
+        ],
+        "makeup_application": [
+          "Base: Start with a glow-enhancing liquid filter or a light coverage foundation. Using a damp blending sponge, gently tap the product onto your face to create an even, lightweight base that looks like skin.",
+          "Conceal: Apply a creamy concealer under your eyes, on your forehead, down the bridge of your nose, and on any blemishes. Use a brush to blend it out for full coverage, then lightly pat with a sponge to ensure a seamless finish.",
+          "Contour: Using a cream contour, apply lines along your cheekbones and the top of your forehead. Use a designated contour brush to blend the product upward and outward to add dimension to your face.",
+          "Nose Contour: With the remaining product left on your contour brush, gently trace two lines down the bridge of your nose to define its shape, then blend well with your sponge.",
+          "Blush: Apply liquid blush to the high points of your cheekbones and blend upward toward the temples to add a healthy pop of color and a lifted appearance.",
+          "Set: To lock your makeup in place, press a translucent setting powder onto the back of your hand, then use a puff or brush to gently apply it to your face, focusing especially on your T-zone to control oil.",
+          "Bronze: Use a powder bronzer to lightly sweep over the areas where you previously applied cream contour, adding extra warmth and depth to your complexion.",
+          "Bake (Optional): Apply a generous amount of powder under your cheekbones and let it sit for a few moments before dusting it off; this creates a sharp, defined line for a polished effect.",
+          "Eyes: Start by applying a warm, neutral brown shade into your crease to create depth. Follow with a soft pink or muted shade on the lid and outer corners. Use a precise brush to highlight the inner corners of your eyes with a shimmering shade for brightness.",
+          "Lashes: Curl your lashes and apply lengthening mascara. For an extra glam look, apply strip lashes specifically toward the outer edges of the eyes for a winged, cat-eye effect.",
+          "Lips: Outline your lips with a matte liner to define your shape, then fill in the center with a coordinating matte lipstick. Finish with a clear or lightly tinted lip oil for hydration and shine."
+        ]
+      },
+      "tips": [
+        "Blend, blend, blend — the difference between glam and soft glam is seamless blending.",
+        "Neutral tones in the eye look keep it work and day-appropriate.",
+        "A satin lip formula sits between matte and gloss, perfect for this look's tone."
+      ],
+      "products": [
+        "foundation_liquid_filter",
+        "concealer",
+        "cream_contour",
+        "liquid_blush",
+        "setting_powder_translucent",
+        "powder_bronzer",
+        "eyeshadow_warm_brown_crease",
+        "eyeshadow_soft_pink_lid",
+        "eyeshadow_shimmer_inner_corner",
+        "mascara",
+        "strip_lashes",
+        "lip_liner_matte",
+        "lipstick_matte",
+        "lip_oil"
+      ],
+      "prep_items": [
+        "Gentle Cleanser",
+        "Lightweight Moisturizer",
+        "Face Primer"
+      ],
+      "tools": [
+        "Damp Blending Sponge",
+        "Concealer Brush",
+        "Contour Brush",
+        "Powder Puff/Brush",
+        "Precise Eyeshadow Brush",
+        "Strip Lashes",
+        "Lash Curler"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "korean_daily": {
+      "name": "Korean Daily Makeup",
+      "tagline": "Youthful, dewy, and effortlessly cute",
+      "description": "Korean Daily Makeup (K-Beauty everyday) is defined by cushion-soft skin, straight or softly rounded brows, a gradient lip, and a focus on eye-brightening. It values a youthful, natural freshness with carefully chosen pops of color.",
+      "tutorial": {
+        "skin_prep": [
+          "Apply an essence or light serum, then a hydrating moisturizer and SPF."
+        ],
+        "makeup_application": [
+          "Use a cushion foundation or light skin tint, blending with your fingers or a cushion puff.",
+          "Pat a peach-toned or skin-tone concealer under the eyes.",
+          "Apply a very light, barely-there blush on the cheeks and the tip of the nose.",
+          "Use an eyebrow pencil to draw short, hair-like strokes in a straight or mildly arched brow shape.",
+          "Brush brows into place with a spoolie or clear brow gel.",
+          "Apply a light champagne or peachy shimmer on the inner corner and center of the lid.",
+          "Line the inner waterline with a white or peach eyeliner to open and brighten the eyes.",
+          "Apply one coat of a curling or waterproof mascara, focusing on the roots.",
+          "Create a gradient lip: blot lips first, then dab a rosy or coral tint on the center only and blend outward."
+        ]
+      },
+      "tips": [
+        "Straight brows are the single biggest step in achieving the K-beauty look.",
+        "The gradient (ombre) lip is key — avoid a fully filled-in lip.",
+        "Inner corner highlight dramatically opens and brightens monolid and almond eyes."
+      ],
+      "products": [
+        "skin_tint_bb_cream",
+        "concealer",
+        "blush_peach_coral",
+        "eyeshadow_shimmer_inner_corner",
+        "eyeliner_nude_waterline",
+        "brow_gel_clear_tinted",
+        "brow_product",
+        "mascara",
+        "lip_tint_gradient",
+        "setting_spray"
+      ],
+      "prep_items": [
+        "Essence or Light Serum",
+        "Hydrating Moisturizer",
+        "SPF / Sunscreen"
+      ],
+      "tools": [
+        "Cushion Puff or Fingers"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "peach_makeup": {
+      "name": "Peach Makeup",
+      "tagline": "Warm, sun-kissed, and peachy-sweet",
+      "description": "Peach Makeup is a monochromatic warm look that ties everything together in soft peach, coral, and golden tones. Eyes, cheeks, and lips all speak the same warm language, creating a cohesive, sun-kissed flush.",
+      "tutorial": {
+        "skin_prep": [
+          "Start by thoroughly cleansing your face to remove any impurities.",
+          "Apply a moisturizer suited for your skin type to ensure a smooth, hydrated canvas.",
+          "Apply an eyeshadow primer across your eyelids and along your lower lash lines to prevent creasing and help your colorful shadows stay vibrant all day."
+        ],
+        "makeup_application": [
+          "Start with a peach or pink-tinted color corrector to address any dark circles under your eyes. This helps neutralize discoloration and makes your complexion appear healthier.",
+          "Apply a lightweight skin tint as your base. This provides a natural, breathable finish that evens out your skin tone without the heaviness of traditional foundation. Use your fingers to tap and blend it evenly across your face.",
+          "Use a high-coverage concealer for any remaining blemishes or spots. Apply it precisely to the affected areas using a small concealer brush, then blend the edges with your fingertips or small sponge.",
+          "Apply a light peach-brown eyeshadow all over your lids using a fluffy brush. This serves as your base color for the peach-inspired look.",
+          "Deepen the look by applying a reddish-brown shade to the outer corners of your eyes, blending it well to create depth and dimension.",
+          "Add a light peach shade to the inner corners of your eyes to instantly brighten your expression.",
+          "Use a brown eyebrow or eye pencil to tightline your upper lash line. This defines your eyes more naturally than traditional eyeliner.",
+          "Apply a volumizing mascara to your upper lashes and a precise, lengthening mascara to your lower lashes for a wide-eyed look.",
+          "Fill in your brows using a light brown eyeshadow for a soft, natural shape. If needed, use an eyebrow pencil to draw faint, hair-like strokes in sparse areas, then finish with a clear or tinted brow gel to keep them in place.",
+          "Add warmth to your complexion with a bronzer that has a neutral finish. Apply it lightly to your cheekbones and forehead to blend seamlessly with your skin tone.",
+          "Apply a peach-toned blush to the apples of your cheeks for a fresh, spring-inspired pop of color.",
+          "Add a subtle highlighter to the tops of your cheekbones and the bridge of your nose for a soft, luminous glow.",
+          "Define your lips with a peach-toned matte lip liner. Outline your lips and gently blend the lines with your fingers to ensure a natural, soft-edged finish."
+        ]
+      },
+      "tips": [
+        "Monochromatic makeup is the most harmonious — use shades from the same warm family.",
+        "This look works best with a light base to let the warm tones shine.",
+        "Brown or bronze mascara keeps the warmth consistent — black can feel jarring here."
+      ],
+      "products": [
+        "color_corrector_peach_pink",
+        "skin_tint",
+        "concealer",
+        "eyeshadow_peach_brown_base",
+        "eyeshadow_reddish_brown_outer",
+        "eyeshadow_light_peach_inner_corner",
+        "brow_pencil_eyeliner_tightline",
+        "mascara_volumizing_lengthening",
+        "brow_product",
+        "brow_gel",
+        "bronzer",
+        "blush_peach",
+        "highlighter",
+        "lip_liner_peach_matte"
+      ],
+      "prep_items": [
+        "Facial Cleanser",
+        "Moisturizer (per skin type)",
+        "Eyeshadow Primer"
+      ],
+      "tools": [
+        "Small Concealer Brush",
+        "Fluffy Eyeshadow Brush",
+        "Spoolie Brush"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "soft_contour": {
+      "name": "Soft Contour Makeup",
+      "tagline": "Subtle reshaping with a natural finish",
+      "description": "Soft Contour Makeup focuses on dimensionality without drama. Unlike full contouring, soft contour uses slightly deeper and lighter shades to add structure where the face naturally has shadows and light.",
+      "tutorial": {
+        "skin_prep": [
+          "Oily Skin: Prioritize an oil-free, mattifying moisturizer and a pore-blurring primer to control shine and create a smooth canvas.",
+          "Dry Skin: Use a rich, hydrating moisturizer followed by a luminous, dewy primer to prevent the makeup from clinging to dry patches.",
+          "Combination Skin: Apply a hydrating moisturizer all over, but use a mattifying primer only on the T-zone (forehead, nose, and chin) to balance the skin."
+        ],
+        "makeup_application": [
+          "Apply a full-coverage or medium-coverage foundation and blend thoroughly.",
+          "Conceal and brighten under the eyes in an inverted triangle shape — blend upward.",
+          "Use a contour powder or cream 1-2 shades deeper than your skin tone along the hollows beneath the cheekbones, sides of the forehead, and jawline.",
+          "Blend contour thoroughly — use circular motions with a fluffy brush so no harsh lines remain.",
+          "Apply a subtle contour on the sides of the nose by blending two thin lines downward from the inner brow.",
+          "Apply a blush on top of or just above the contour on the cheeks in a circular or sweeping motion.",
+          "Add a subtle highlight on the tops of cheekbones, the center of the forehead, bridge of the nose, and cupid's bow.",
+          "Highlight the inner corner of the eyes and brow bone.",
+          "Complete with your chosen eye look, defined brows, and a neutral to medium-toned lip."
+        ]
+      },
+      "tips": [
+        "Soft contour should enhance natural shadows, not create new ones — study your face in natural light.",
+        "Less product applied more times beats more product at once.",
+        "Always blend contour upward and outward — never straight down."
+      ],
+      "products": [
+        "foundation",
+        "concealer",
+        "bronzer_contour",
+        "blush_neutral",
+        "highlighter",
+        "eyeshadow_base_transition",
+        "brow_gel_clear_tinted",
+        "brow_product",
+        "mascara",
+        "lipstick_nude_satin",
+        "setting_powder",
+        "setting_spray"
+      ],
+      "prep_items": [
+        "Moisturizer (per skin type)",
+        "Face Primer (per skin type)"
+      ],
+      "tools": [
+        "Fluffy Contour Brush",
+        "Blending Brush (general)"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "lifted_makeup": {
+      "name": "Lifted Makeup",
+      "tagline": "Visually lift and elongate the eyes",
+      "description": "Lifted Makeup is a technique-focused style specifically designed to create the visual illusion of eyes that are lifted, elongated, and upturned. It works by extending liner and shadow upward at the outer corner.",
+      "tutorial": {
+        "skin_prep": [
+          "Oily Skin: Prioritize an oil-free, mattifying moisturizer and a pore-blurring primer to control shine and create a smooth canvas.",
+          "Dry Skin: Use a rich, hydrating moisturizer followed by a luminous, dewy primer to prevent the makeup from clinging to dry patches.",
+          "Combination Skin: Apply a hydrating moisturizer all over, but use a mattifying primer only on the T-zone (forehead, nose, and chin) to balance the skin."
+        ],
+        "makeup_application": [
+          "Apply skin-tone concealer on the lid to create a clean, even canvas.",
+          "Apply a matte transition shade slightly above the natural crease, angling it upward toward the tail of the brow.",
+          "Apply your mid-tone shadow on the lid, taking the outer edge upward diagonally — not horizontally.",
+          "Deepen the outer corner with a darker shadow, focusing the color pointing up and out.",
+          "Line the upper lash line starting from the inner corner, getting thicker toward the outer corner and flicking upward in an elongated wing.",
+          "Avoid dark liner on the lower waterline — use a nude or white liner instead to open and brighten.",
+          "If lining the lower lash line, line only the outer third and angle the liner up to meet the upper wing.",
+          "Curl lashes well, especially at the outer corners. Apply mascara focusing on outer lashes.",
+          "Apply a small dot of highlighter on the inner corner and brow bone to enhance the lifted effect.",
+          "Keep brows slightly lifted at the tail with a brow gel. Keep the rest of face simple — flushed cheek and neutral lip."
+        ]
+      },
+      "tips": [
+        "The outer wing angle is everything — always point upward, never horizontally.",
+        "Tightlining (inner lash line) thickens the lash line without dragging the lid downward.",
+        "Use tape as a guide for a perfectly angled wing when starting out."
+      ],
+      "products": [
+        "foundation",
+        "concealer",
+        "primer_eye_face",
+        "blush_warm_peach",
+        "eyeshadow_base_transition",
+        "eyeshadow_lid_neutral_brown",
+        "eyeliner_black_gel",
+        "eyeliner_nude_waterline",
+        "highlighter",
+        "mascara",
+        "brow_product",
+        "brow_gel_clear_tinted",
+        "lip_gloss",
+        "setting_powder",
+        "setting_spray"
+      ],
+      "prep_items": [
+        "Moisturizer (per skin type)",
+        "Face Primer (per skin type)"
+      ],
+      "tools": [
+        "Eyeliner Brush (for transition/wing)",
+        "Lash Curler",
+        "Tape (winged-liner guide)"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "snatched": {
+      "name": "Snatched Everyday Makeup",
+      "tagline": "Defined, sculpted, and effortlessly sharp",
+      "description": "Snatched Everyday Makeup combines a full, even base with sculpted contour, defined brows, striking eyes, and a prominent lip — but keeps the execution clean enough to wear to work, school, or brunch.",
+      "tutorial": {
+        "skin_prep": [
+          "Oily Skin: Prioritize an oil-free, mattifying moisturizer and a pore-blurring primer to control shine and create a smooth canvas.",
+          "Dry Skin: Use a rich, hydrating moisturizer followed by a luminous, dewy primer to prevent the makeup from clinging to dry patches.",
+          "Combination Skin: Apply a hydrating moisturizer all over, but use a mattifying primer only on the T-zone (forehead, nose, and chin) to balance the skin."
+        ],
+        "makeup_application": [
+          "Prepare your skin: Complete your full skincare routine, ensuring your face is hydrated and primed for your specific skin type to ensure the makeup lasts and sits smoothly.",
+          "Shape your brows: Brush your eyebrow hairs upward and outward. Use a brow gel or wax to lock them in this lifted position, then use small, hair-like strokes with a brow pencil to fill in any sparse areas for a defined, swooped look.",
+          "Create the guide: Place a small piece of tape at the outer corner of your eye, angling it upward toward the tail of your eyebrow. This acts as a guide to keep your eyeshadow and liner sharp and lifted.",
+          "Apply base eyeshadow: Using a neutral mid-tone transition shade, blend it across your eyelid. Keep the movement focused on sweeping the color outward to maintain the lifted shape.",
+          "Deepen the outer corner: Take a darker shade and lightly apply it only to the outer third of your eyelid. Focus on blending this color upward into the crease, ensuring you do not bring the dark pigment past the center of the pupil.",
+          "Highlight: Apply a lighter, shimmery shade or a bright matte powder to the center of your lid and the brow bone to brighten the eye and add dimension.",
+          "Define with liner: Draw a winged eyeliner starting from the outer corner of your eye, using the edge of the tape as your guide. Keep the line thin and angled upward.",
+          "Apply mascara: Curl your lashes, then apply mascara by pulling the brush upward and toward the outer corners of your eyes to achieve a cat-eye effect.",
+          "Even the complexion: Apply a lightweight skin tint or a glow-enhancing base product to even out your skin tone. If you have specific areas that need more coverage, use a small amount of concealer to spot-correct. Make sure you don’t use too much, just light.",
+          "Sculpt the face: Apply concealer in small dots under the eyes, moving toward the temples. Blend this upward and outward to lift the cheekbones.",
+          "Bronze and blush: Apply bronzer first and then blush to the high points of your cheekbones, rather than the apples of your cheeks. Blend everything in an upward, diagonal motion toward your hairline.",
+          "Set the look: Use a light dusting of translucent powder specifically under the eyes and on areas where you tend to get oily, leaving the rest of the face radiant.",
+          "Add finishing touches: Optionally, add small faux beauty marks using a brown pencil to create a natural, seamless look. Set your entire face with a setting spray to lock the look in place.",
+          "Finish with gloss: Complete the look with your favorite lip gloss for a fresh, hydrated finish."
+        ]
+      },
+      "tips": [
+        "Baking creates that sharp, flawless undereye.",
+        "Overlining the lips is the easiest way to achieve the snatched lip.",
+        "Defined brows are 50% of this look — don't skip them."
+      ],
+      "products": [
+        "skin_tint_glow_base",
+        "concealer",
+        "brow_gel_wax",
+        "brow_pencil",
+        "eyeshadow_transition",
+        "eyeshadow_outer_corner_deep",
+        "eyeshadow_highlight_shade",
+        "eyeliner_winged",
+        "mascara",
+        "bronzer",
+        "blush",
+        "setting_powder_translucent",
+        "setting_spray",
+        "lip_gloss"
+      ],
+      "prep_items": [
+        "Full Skincare Routine (cleanser, moisturizer, primer per skin type)"
+      ],
+      "tools": [
+        "Tape (winged-liner guide)",
+        "Brow Brush/Spoolie",
+        "Eyeliner Brush",
+        "Lash Curler"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "igari": {
+      "name": "Igari-Inspired Makeup",
+      "tagline": "The Japanese hangover blush — effortlessly dreamy",
+      "description": "Igari makeup (from Japanese meaning hangover) is characterized by its distinctive blushy nose-bridge and under-eye area — mimicking flushed, rosy skin. Named after Japanese makeup artist Igari Shinobu, it's youthful, romantic, and playful.",
+      "tutorial": {
+        "skin_prep": [
+          "Start by cleansing your face with a gentle cleanser to remove excess oil and impurities, then pat your skin dry with a clean towel.",
+          "Apply a moisturizer suitable for your skin type to ensure your face is hydrated and ready for makeup. Allow it to absorb for a minute before proceeding.",
+          "Apply a broad-spectrum sunscreen to protect your skin from UV rays. This is essential regardless of skin type or tone."
+        ],
+        "makeup_application": [
+          "Apply a primer suitable for your skin type to smooth out your skin texture and help your makeup adhere better. Use your fingertips to gently massage it into the skin, focusing on areas where your makeup tends to fade.",
+          "Apply a tone-up or tinted sunscreen to act as your base. This will even out your complexion without the heavy coverage of foundation. Use your fingers or a dampened makeup sponge to spread it evenly across your face.",
+          "Apply an eyeshadow base or a neutral-toned eyeshadow to your lids to create a clean, uniform canvas.",
+          "Take a soft, blush-toned eyeshadow and blend it across the center of your eyelids and slightly outward to define the eye shape while keeping the look soft and cohesive.",
+          "Use an eyeliner pencil or liquid liner to draw a thin line along your upper lash line to define your eyes. You can flick the end slightly for a subtle wing if desired.",
+          "Curl your eyelashes using an eyelash curler, then apply a coat of mascara to lengthen and darken your lashes. Wiggle the wand at the roots to ensure even coverage.",
+          "Apply a blush stick to the apples of your cheeks. For an Igari (or 'hangover') look, blend the product slightly higher, just under your eyes and across the bridge of your nose, to create a natural, flushed appearance.",
+          "Finish with a velvet-finish liquid lipstick or a tinted lip gloss. Apply it to the center of your lips and blend it outward with your finger for a soft, diffused, and natural-looking stain."
+        ]
+      },
+      "tips": [
+        "The blush must look diffused and unconstructed — blend in circular motions to avoid a sharp flush line.",
+        "Apply blush before setting powder for a more natural, melted-in effect.",
+        "Avoid heavy eye looks — the eyes should be bright and open, not dramatized."
+      ],
+      "products": [
+        "primer",
+        "tinted_sunscreen",
+        "eyeshadow_neutral_base",
+        "eyeshadow_blush_toned",
+        "eyeliner_pencil_liquid",
+        "mascara",
+        "blush_stick",
+        "lip_tint_liquid_lipstick_velvet"
+      ],
+      "prep_items": [
+        "Gentle Cleanser",
+        "Moisturizer",
+        "Broad-Spectrum Sunscreen",
+        "Face Primer"
+      ],
+      "tools": [
+        "Makeup Sponge (damp)",
+        "Eyelash Curler",
+        "Thin Eyeshadow/Liner Brush"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "douyin": {
+      "name": "Douyin Natural Makeup",
+      "tagline": "Chinese social media beauty — porcelain skin meets soft detail",
+      "description": "Douyin Makeup features flawlessly smooth, porcelain-like skin, straight brows, soft feathered lashes, a carefully shaped bow-shaped lip, and subtle color. It balances precision with a soft, dreamy quality.",
+      "tutorial": {
+        "skin_prep": [
+          "Cleanse: Start with a gentle cleanser to remove impurities from the skin.",
+          "Moisturize: Apply a moisturizer appropriate for your skin type to create a smooth canvas."
+        ],
+        "makeup_application": [
+          "Base: Start with a tone-up or tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use your fingers to spread it evenly across your face.",
+          "Conceal: Apply a small amount of concealer under the eyes, on the T-zone, and on any areas with redness or blemishes. Dab it into the skin using your ring finger or a damp sponge to ensure a seamless blend.",
+          "Brows: Brush your eyebrows upward and outward. Use an eyebrow pencil to fill in any sparse areas with light, hair-like strokes, then use an eyebrow powder to lock the color in place.",
+          "Cream Blush: Apply a cream blush to the apples of your cheeks and lightly dab a small amount on the tip of your nose and chin for a fresh, flushed look. Blend well with your fingers or a brush.",
+          "Set: Use a translucent setting powder to dust over your entire face, focusing specifically on your T-zone to lock in your base and prevent unwanted shine throughout the day.",
+          "Contour: Using a contour powder or cream, draw a soft \"C\" shape starting from the top of your temple down to your cheekbone, then add a small amount along your jawline. Blend thoroughly to create soft, natural-looking shadows.",
+          "Nose Contour: Apply a small amount of contour shade down the sides of the bridge of your nose to define its shape. Use a highlighter on the center of the bridge and the tip of the nose to brighten.",
+          "Eyeshadow: Apply a light, base-colored eyeshadow over your eyelids. Use a slightly darker shade starting from the outer corner, blending inward to create depth. Add a shimmer shade to the center of your eyelids for brightness.",
+          "Aegyo-sal: To create the under-eye puffiness, smile slightly and draw a very thin, light brown line beneath your lower lash line. Blend it gently, then apply a bit of highlighter or shimmer directly above that line.",
+          "Eyeliner: Apply a thin line of eyeliner along your upper lash line, extending just slightly at the outer corner for definition.",
+          "Mascara: Curl your eyelashes and apply mascara to both your upper and lower lashes to open up your eyes.",
+          "Falsies: Optionally, apply natural-looking false eyelashes to complete the soft, expressive eye look.",
+          "Final Blush: Add a light layer of powder blush over the center of your cheeks and forehead to harmonize your complexion.",
+          "Lips: Apply a lip tint to the center of your lips, blending it outward, and finish with a clear or tinted lip gloss for a hydrated, polished appearance."
+        ]
+      },
+      "tips": [
+        "Skin texture matters most — smooth, flawless skin is the entire base of this look.",
+        "The straight brow is non-negotiable for the authentic Douyin look.",
+        "The lip shape is meticulously drawn — take time with the cupid's bow."
+      ],
+      "products": [
+        "tinted_sunscreen",
+        "concealer",
+        "brow_pencil",
+        "brow_powder",
+        "cream_blush",
+        "setting_powder_translucent",
+        "contour_powder_cream",
+        "highlighter_nose",
+        "eyeshadow_base",
+        "eyeshadow_outer_corner_darker",
+        "eyeshadow_shimmer",
+        "eyeliner_pencil_under_eye_line",
+        "eyeliner_upper_lash_line",
+        "mascara",
+        "false_lashes",
+        "powder_blush",
+        "lip_tint",
+        "lip_gloss"
+      ],
+      "prep_items": [
+        "Gentle Cleanser",
+        "Moisturizer"
+      ],
+      "tools": [
+        "Damp Sponge",
+        "Brow Brush",
+        "Highlighter Brush",
+        "False Lashes (optional)"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "strawberry": {
+      "name": "Strawberry Makeup",
+      "tagline": "Red-toned, rosy, and sweetly flushed",
+      "description": "Strawberry Makeup is inspired by the colors of the fruit — red-tinged cheeks, rosy lips, peachy-warm eyes, and optionally faux freckles. Everything leans red and pink rather than cool or neutral.",
+      "tutorial": {
+        "skin_prep": [
+          "Oily Skin: Use a lightweight, oil-free moisturizer and a matte-finish or oil-control sunscreen to manage shine throughout the day.",
+          "Dry Skin: Opt for a richer, hydrating moisturizer or a hydrating serum before applying your sunscreen to ensure a dewy, non-flaky canvas.",
+          "Combination Skin: Apply a hydrating moisturizer on dry areas (typically cheeks) and a lighter, oil-free moisturizer on the T-zone (forehead, nose, and chin). Use a balanced, non-greasy sunscreen."
+        ],
+        "makeup_application": [
+          "Start with a tone-up or tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use your fingers to spread it evenly across your face.",
+          "Apply a color corrector to your under-eye dark circles and around the corners of your lips. This step is more efficient than concealer for brightening the face instantly without adding thick layers.",
+          "Use a lightweight, hydrating concealer only on specific areas that need extra coverage. Dab it gently with your fingertip or a small brush to keep the look natural and breathable.",
+          "Apply a cream or liquid blush generously across your cheeks and blend it lightly over the bridge of your nose for a sun-kissed, youthful effect.",
+          "If your skin is prone to excess shine, lightly dust a translucent setting powder over your T-zone or any areas where you will apply later powder products to ensure a smooth application and prevent a muddy finish.",
+          "For the eyes, apply a neutral, soft-toned eyeshadow across your eyelids and along the lower lash line to create a subtle, cohesive depth that matches your blush.",
+          "Use a thin eyeshadow brush to draw a faint guideline for a winged liner. Follow this by using a brown liquid eyeliner pen to create a soft, defined cat-eye shape, starting by tightlining and then extending the line slightly upward.",
+          "Apply a volumizing mascara to your upper lashes for definition, and use a mascara with a thinner wand to carefully coat your lower lashes.",
+          "Fill in your eyebrows using a brow powder that complements your hair color. Brush your brow hairs upward using a clear or tinted brow gel to create a fresh, lifted, and bushy appearance.",
+          "Add a neutral-toned bronzer to define the face. Since bronzer can sometimes soften the effect of your cream blush, re-apply a light layer of powder blush on top to ensure the pigment remains vibrant and lasts longer.",
+          "Use a lip liner to define the shape of your lips by following your natural lip line. You do not need to overline significantly; just focus on defining the edges.",
+          "Finish the look by applying a deep red or berry-toned lip tint. Blend the color with your fingertip for a soft, stained effect, and top it off with a clear or cherry-tinted lip oil to add a juicy, glossy shine."
+        ]
+      },
+      "tips": [
+        "Red blush applied with confidence is the whole look — don't be shy with it.",
+        "For faux freckles, a lighter hand and varied dot sizes look most natural.",
+        "Keeping the skin dewy prevents the warm tones from looking heavy or muddy."
+      ],
+      "products": [
+        "tinted_sunscreen",
+        "color_corrector",
+        "concealer_hydrating",
+        "cream_liquid_blush",
+        "setting_powder_translucent",
+        "eyeshadow_neutral_soft_toned",
+        "eyeliner_brown_liquid",
+        "mascara_volumizing",
+        "brow_powder",
+        "brow_gel",
+        "bronzer_neutral",
+        "powder_blush_top_up",
+        "lip_liner",
+        "lip_tint_deep_red_berry",
+        "lip_oil"
+      ],
+      "prep_items": [
+        "Moisturizer (per skin type)",
+        "Sunscreen (per skin type)"
+      ],
+      "tools": [
+        "Small Concealer Brush",
+        "Thin Eyeshadow Brush (winged guide)",
+        "Lip Brush (optional)"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "office": {
+      "name": "Office Makeup",
+      "tagline": "Professional, polished, and appropriate for the workplace",
+      "description": "Office Makeup is defined by being neat, appropriate, and confidence-boosting without being distracting. It favors polished neutral tones, well-groomed features, and a clean base.",
+      "tutorial": {
+        "skin_prep": [
+          "Apply a primer to smooth the skin and extend wear throughout the workday."
+        ],
+        "makeup_application": [
+          "Apply a medium-to-full coverage longwear foundation in your exact skin tone and blend well.",
+          "Conceal under eyes and any blemishes. Set with a light-to-medium press of powder.",
+          "Apply a matte or satin bronzer to warm up the complexion.",
+          "Sweep a natural rose, mauve, or nude-pink blush on the cheeks.",
+          "Add a subtle highlight on the cheekbones only — avoid very glittery formulas.",
+          "Fill brows neatly with a brow pencil. Keep them defined but not overdone.",
+          "Apply a neutral eyeshadow in taupe, beige, or soft brown tones across the lid.",
+          "Apply a thin, clean line of brown or soft black eyeliner on the upper lash line.",
+          "Apply one to two coats of black mascara.",
+          "Line and fill lips with a neutral-toned lip liner and apply a matte or satin lipstick.",
+          "Lock everything in with a longwear setting spray."
+        ]
+      },
+      "tips": [
+        "Longwear formulas are your best friend — this look needs to last from 9am to 5pm.",
+        "Neutral does not mean boring — a well-chosen mauve lip or subtle liner elevates the whole look.",
+        "Setting spray locks makeup in place through meetings and outdoor commutes."
+      ],
+      "products": [
+        "primer_eye_face",
+        "foundation",
+        "concealer",
+        "bronzer_contour",
+        "blush_cool_rose",
+        "highlighter",
+        "eyeshadow_base_transition",
+        "eyeliner_brown",
+        "mascara",
+        "brow_product",
+        "brow_gel_clear_tinted",
+        "lip_liner_mauve_berry",
+        "lipstick_nude_satin",
+        "setting_powder",
+        "setting_spray"
+      ],
+      "prep_items": [
+        "Face Primer"
+      ],
+      "tools": [
+        "Powder Puff/Brush"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "neutral_glam": {
+      "name": "Neutral Glam",
+      "tagline": "Understated glamour in a timeless palette",
+      "description": "Neutral Glam is the elevated cousin of Soft Glam — still wearable, but with more intention and drama. It lives in the world of nudes, taupes, browns, and warm champagnes.",
+      "tutorial": {
+        "skin_prep": [
+          "Before applying makeup, ensure your skin is prepped to help products last and blend smoothly:",
+          "For Oily Skin: Use a lightweight, oil-free moisturizer followed by a mattifying primer to control shine and smooth out pores.",
+          "For Dry Skin: Use a rich, hydrating moisturizer or a facial oil to prevent makeup from clinging to dry patches. A hydrating primer is also recommended.",
+          "For Combination Skin: Apply a hydrating moisturizer to your cheeks and a mattifying primer or oil-control product specifically on your T-zone (forehead, nose, and chin)."
+        ],
+        "makeup_application": [
+          "Base: Begin with a lightweight foundation or a skin tint that matches your complexion. Use a damp makeup sponge to bounce the product onto your skin for an even, natural-looking finish.",
+          "Conceal: Apply a small amount of concealer under the eyes and on any blemishes or areas needing extra coverage. Gently blend the edges with a tapping motion using your finger or a small brush until it seamlessly merges with your base.",
+          "Cream Color: Add warmth and dimension by applying a cream-based tint to your cheekbones and the high points of your face. Use your fingertips to blend it upward and outward to mimic a natural flush.",
+          "Set: Lightly dust a translucent or loose powder over your T-zone and under-eye area using a fluffy brush to lock everything in place without adding heavy layers.",
+          "Brows: Groom your eyebrows using a clear brow gel. Brush the hairs in an upward motion to create a defined but natural, feathery look.",
+          "Bronze: Use a powder bronzer to gently sweep warmth across your forehead, temples, and the hollows of your cheeks. Ensure you blend well to avoid any harsh lines.",
+          "Blush: Apply a powder blush to the apples of your cheeks. Blend it slightly back toward your temples to lift the face and create a soft, healthy glow.",
+          "Eyeshadow: Apply a soft, neutral-toned matte eyeshadow over your eyelids as a base. Follow this by blending a slightly darker, warm-toned shade into the outer corner and crease to add depth. Finish by dabbing a shimmery, light-reflecting shadow in the center of the lid for a pop of light.",
+          "Lashes: Use an eyelash curler to gently lift your lashes. Apply a lengthening or volumizing mascara from the root to the tip of your lashes, wiggling the wand to ensure even distribution.",
+          "Lips: Start with a moisturizing lip product in a natural, nude-like shade. For a polished finish, you can layer a slightly darker, warm-toned lip cream just in the center of your lips and blend it outward for a subtle, soft-gradient effect."
+        ]
+      },
+      "tips": [
+        "The key difference from everyday looks is the lashes — they make neutral glam feel glamorous.",
+        "Warm and cool tones can be mixed carefully: cool contour + warm blush is the classic formula.",
+        "Take time on the lip liner — a precise outline elevates the entire look."
+      ],
+      "products": [
+        "foundation_skin_tint",
+        "concealer",
+        "cream_color_cheeks",
+        "setting_powder_translucent",
+        "brow_gel_clear",
+        "powder_bronzer",
+        "powder_blush",
+        "eyeshadow_matte_base",
+        "eyeshadow_warm_crease_shade",
+        "eyeshadow_shimmer_lid_center",
+        "mascara",
+        "lip_color_nude",
+        "lip_cream_warm_toned_layer"
+      ],
+      "prep_items": [
+        "Moisturizer (per skin type)",
+        "Face Primer / Facial Oil (per skin type)"
+      ],
+      "tools": [
+        "Damp Makeup Sponge",
+        "Fluffy Powder Brush",
+        "Eyelash Curler"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    },
+    "corporate_clean": {
+      "name": "Corporate Clean Makeup",
+      "tagline": "Minimalist, refined, and quietly powerful",
+      "description": "Corporate Clean Makeup is the most stripped-back professional look. It is about precision, immaculate skin, and quiet confidence. Every product is purposeful and nothing is excessive.",
+      "tutorial": {
+        "skin_prep": [
+          "Cleanse and Hydrate: Start with a clean face. Apply your appropriate serum to address your skin's specific needs (hydrating or soothing).",
+          "Mist: Use a refreshing facial mist to prime the skin and lock in moisture, creating a smooth surface for your makeup."
+        ],
+        "makeup_application": [
+          "Apply Base: Use a skin tint or a tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use a damp microfiber sponge or your fingers to press and spread it evenly across your face for a skin-like finish.",
+          "Conceal: Apply a small amount of concealer under your eyes and on any specific blemishes. Use your ring finger or a makeup sponge to blend it gently, ensuring you blend upwards to give your face a lifted, refreshed appearance.",
+          "Define with Cream Contour: Take a cream contour product and apply it lightly to your cheekbones, temples, and jawline. Blend thoroughly using a brush or sponge, moving in an upward motion to sculpt the face naturally.",
+          "Set the T-Zone: Lightly dust an invisible setting powder over your T-zone (forehead, nose, and chin) and under the eyes to lock your cream products in place. Avoid over-powdering to maintain a natural glow.",
+          "Add Structure: Using a contour powder, lightly set your cream contour areas. You can also use a small brush to gently contour the sides of your nose for added dimension.",
+          "Fill Brows: Use a precision brow pen to fill in sparse areas with light, hair-like strokes. Focus on the tails and follow your natural growth pattern to keep them looking soft and realistic.",
+          "Add Color: Apply a cream blush to the high points of your cheeks, closer to your temples, to create a lifted effect. You can also dab a tiny amount on the bridge of your nose for a sun-kissed look.",
+          "Highlight and Shimmer: Dab a subtle metallic highlighter on your eyelids for a simple, shimmer-focused eye look. Then, apply the same highlighter to the high points of your face—the cheekbones, bridge of the nose, and cupid's bow.",
+          "Define Lashes: Use an eyelash curler to lift your lashes, then apply a coat of waterproof mascara. Don't forget to define your lower lashes to make your eyes look wider and more awake.",
+          "Set and Finish: Finish the look with a setting spray to keep everything in place, then complete the application with your favorite lipstick or lip tint."
+        ]
+      },
+      "tips": [
+        "This look is defined by what you leave out — resist the urge to add more.",
+        "Immaculate brows are the most important feature in this look.",
+        "A setting spray or blotting powder in your bag for touch-ups keeps this polished all day."
+      ],
+      "products": [
+        "skin_tint_tinted_sunscreen",
+        "concealer",
+        "cream_contour",
+        "setting_powder_invisible",
+        "contour_powder",
+        "brow_pen",
+        "cream_blush",
+        "highlighter_metallic",
+        "mascara_waterproof",
+        "setting_spray",
+        "lipstick_lip_tint"
+      ],
+      "prep_items": [
+        "Cleanser",
+        "Serum (per skin type)",
+        "Facial Mist",
+        "Moisturizer (per skin type)"
+      ],
+      "tools": [
+        "Damp Microfiber Sponge",
+        "Contour Brush",
+        "Precision Brow Pen Applicator",
+        "Eyelash Curler"
+      ],
+      "general_tip": "Make sure to properly prep your face before putting on makeup."
+    }
+  }
+}

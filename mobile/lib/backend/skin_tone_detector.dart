@@ -6,6 +6,7 @@
 /// because the monk_scale thresholds below (avg_L > 180, > 160, etc.) were
 /// tuned against OpenCV's specific 8-bit LAB encoding. A different LAB
 /// formula would shift every threshold and silently break the mapping.
+library;
 import 'dart:io';
 import 'package:opencv_dart/opencv_dart.dart' as cv;
 

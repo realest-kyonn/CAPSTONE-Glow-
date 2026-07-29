@@ -156,6 +156,7 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
         // ported too.
         'recommendedStyles': topStyles
             .map((s) => {
+                  'styleKey': s.styleKey,
                   'name': s.styleName,
                   'subtitle': s.description,
                   'description': s.description,
@@ -205,6 +206,7 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
         builder: (context) => AnalyzingResultScreen(
           analysisResults: analysisResults,
         ),
+        settings: const RouteSettings(name: '/beauty-profile'),
       ),
     );
   }

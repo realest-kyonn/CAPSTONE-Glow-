@@ -22,7 +22,7 @@
 ///     all — avoids this breaking again on a future version bump.
 ///   - detectFaces() takes raw image bytes (e.g. JPEG), not a decoded
 ///     img.Image or a file path directly
-library mesh_provider;
+library;
 
 import 'dart:io';
 import 'dart:typed_data';

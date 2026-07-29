@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../page_5/page5.dart';
+import '../page_14_favorites/favorites.dart';
 
 class HomeDashboard extends StatelessWidget {
   const HomeDashboard({super.key});
@@ -135,7 +136,7 @@ class HomeDashboard extends StatelessWidget {
             'A free face scan, matched to your tone and features.',
             style: TextStyle(
               fontSize: contentWidth * 0.038,
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.white.withValues(alpha: 0.9),
               height: 1.5,
             ),
           ),
@@ -154,7 +155,7 @@ class HomeDashboard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.pink.withOpacity(0.08),
+            color: Colors.pink.withValues(alpha: 0.08),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -446,7 +447,15 @@ class HomeDashboard extends StatelessWidget {
             ),
           ],
           onTap: (index) {
-            if (index == 2) {
+            if (index == 1) {
+              // Favorite button — navigate to Saved Results (Page 15)
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FavoritesScreen(),
+                ),
+              );
+            } else if (index == 2) {
               // Camera button — navigate to Scan Prep Screen (Page 5)
               Navigator.push(
                 context,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../backend/recommendation_data.dart';
 import '../page_11_and_12/makeup_tutorial_and_whattouse.dart';
 
 // ─────────────────────────────────────────────────────────────
@@ -121,23 +122,57 @@ class RecommendationResultScreen extends StatelessWidget {
                         SizedBox(height: screenHeight * 0.03),
 
                         // Start Tutorial button
-                        // TODO: Navigate to Step-by-Step Tutorial (Page 13)
                         SizedBox(
                           width: double.infinity,
                           height: contentWidth * 0.13,
                           child: ElevatedButton(
-                           onPressed: () {
+                           onPressed: () async {
+                            final styleKey = style['styleKey'];
+                            Map<String, dynamic> styleData;
+
+                            if (styleKey != null) {
+                              // Real per-style tutorial/product data,
+                              // shades resolved to the user's detected
+                              // undertone + Monk Scale.
+                              styleData = await RecommendationData.buildStyleData(
+                                styleKey: styleKey,
+                                undertone: style['undertone'] ?? 'neutral',
+                                monkScale:
+                                    int.tryParse(style['monkScale'] ?? '') ?? 5,
+                                styleIndex:
+                                    int.tryParse(style['styleIndex'] ?? '') ?? 1,
+                              );
+                              // Carried through so the tutorial screen can
+                              // save this exact result (styleKey/undertone/
+                              // monkScale are what's needed to re-derive it
+                              // later — see favorites.dart).
+                              styleData = {
+                                ...styleData,
+                                'styleKey': styleKey,
+                                'undertone': style['undertone'] ?? 'neutral',
+                                'monkScale': style['monkScale'] ?? '5',
+                                'matchPct': style['matchPct'],
+                                'skinTone': style['skinTone'],
+                                'faceShape': style['faceShape'],
+                                'eyeShape': style['eyeShape'],
+                              };
+                            } else {
+                              // No styleKey available (e.g. dummy fallback
+                              // path) — fall back to just name/subtitle.
+                              styleData = {
+                                'name': style['name']!,
+                                'subtitle': style['subtitle']!,
+                                'styleIndex': style['styleIndex'] ?? '1',
+                                'totalStyles': '3',
+                              };
+                            }
+
+                            if (!context.mounted) return;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => MakeupTutorialScreen(
-                                  styleData: {
-                                    // Pass all style data to tutorial screen
-                                    'name': style['name']!,
-                                    'subtitle': style['subtitle']!,
-                                    'styleIndex': '1', // BACKEND: pass real index from style_scorer.py
-                                    'totalStyles': '3',
-                                  },
+                                  styleData: styleData,
                                 ),
                               ),
                             );

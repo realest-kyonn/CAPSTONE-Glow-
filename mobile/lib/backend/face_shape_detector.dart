@@ -18,7 +18,7 @@
 ///   Python face_shape_detector.py's IMAGE_SIZE. Mismatched size will NOT
 ///   crash — it will silently corrupt every prediction. Check this against
 ///   whichever .tflite file you actually bundle.
-library face_shape_detector;
+library;
 
 import 'dart:typed_data';
 import 'package:flutter/services.dart' show rootBundle;

@@ -374,7 +374,7 @@ class _CameraScreenState extends State<CameraScreen>
                   border: Border.all(
                     color: _isReadyToCapture
                         ? Colors.greenAccent
-                        : Colors.white.withOpacity(0.8),
+                        : Colors.white.withValues(alpha: 0.8),
                     width: 3,
                   ),
                   borderRadius: BorderRadius.circular(150),
@@ -393,7 +393,7 @@ class _CameraScreenState extends State<CameraScreen>
                 vertical: 10,
               ),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.6),
+                color: Colors.black.withValues(alpha: 0.6),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
@@ -415,7 +415,7 @@ class _CameraScreenState extends State<CameraScreen>
             top: screenHeight * 0.05,
             left: screenWidth * 0.05,
             child: CircleAvatar(
-              backgroundColor: Colors.black.withOpacity(0.4),
+              backgroundColor: Colors.black.withValues(alpha: 0.4),
               child: IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.white),
                 onPressed: () => Navigator.pop(context),

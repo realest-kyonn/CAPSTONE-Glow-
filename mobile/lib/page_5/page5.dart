@@ -105,6 +105,7 @@ class ScanPrepScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const CameraScreen(),
+                                  settings: const RouteSettings(name: '/camera'),
                                 ),
                               );
                             },
@@ -165,7 +166,7 @@ class ScanPrepScreen extends StatelessWidget {
             'BEFORE YOU SCAN',
             style: TextStyle(
               fontSize: contentWidth * 0.032,
-              color: Colors.white.withOpacity(0.85),
+              color: Colors.white.withValues(alpha: 0.85),
               letterSpacing: 2,
             ),
           ),

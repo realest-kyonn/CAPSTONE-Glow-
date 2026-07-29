@@ -140,7 +140,7 @@ class _ImageValidationScreenState extends State<ImageValidationScreen> {
     int count = 0;
     for (int y = 0; y < grayscale.height; y++) {
       for (int x = 0; x < grayscale.width; x++) {
-        sum += grayscale.getPixel(x, y).luminance;
+        sum += grayscale.getPixel(x, y).luminanceNormalized;
         count++;
       }
     }

@@ -13,7 +13,7 @@
 /// the asset bundle. So this test first copies the asset's bytes out to
 /// a real temporary file at runtime, then uses THAT file's path for
 /// everything else (mesh detection, face shape, skin tone, etc).
-library test_full_pipeline;
+library;
 
 import 'dart:io';
 import 'package:flutter/material.dart';

@@ -140,6 +140,7 @@ class _TutorialScreenState extends State<TutorialScreen>
                           context,
                           MaterialPageRoute(
                             builder: (context) => const HomeDashboard(), // ← changed
+                            settings: const RouteSettings(name: '/home'),
                           ),
                         );
                       },

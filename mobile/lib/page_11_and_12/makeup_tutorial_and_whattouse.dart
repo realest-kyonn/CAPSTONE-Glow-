@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../page_14_favorites/favorites.dart';
+import '../page_14_favorites/save_confirmation_dialog.dart';
+import '../page_14_favorites/save_name_dialog.dart';
 
 // ─────────────────────────────────────────────────────────────
 // Makeup Tutorial + What To Use Screen — Page 11 & 12
@@ -59,6 +62,72 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
 
   // BACKEND: 'totalStyles' always 3
   String get _totalStyles => widget.styleData['totalStyles'] ?? '3';
+
+  // General tips for the whole style (from recommendations.json's
+  // 'tips' + 'general_tip') — shown as one block above the steps,
+  // since the real data has 3-4 general tips rather than one per step.
+  List<String> get _tips =>
+      (widget.styleData['tips'] as List?)?.cast<String>() ?? const [];
+
+  // Fields needed to save this result — only present when this screen
+  // was reached via real per-style data (see recommendation_result.dart).
+  // Null styleKey means there's nothing to reconstruct later, so saving
+  // is disabled rather than saving something that can't be revisited.
+  String? get _styleKey => widget.styleData['styleKey'] as String?;
+  String get _saveUndertone =>
+      widget.styleData['undertone'] as String? ?? 'neutral';
+  int get _saveMonkScale =>
+      int.tryParse('${widget.styleData['monkScale']}') ?? 5;
+  String? get _matchPct => widget.styleData['matchPct'] as String?;
+  String get _saveSkinTone => widget.styleData['skinTone'] as String? ?? '';
+  String get _saveFaceShape => widget.styleData['faceShape'] as String? ?? '';
+  String get _saveEyeShape => widget.styleData['eyeShape'] as String? ?? '';
+
+  Future<void> _onSaveTutorial() async {
+    final styleKey = _styleKey;
+    if (styleKey == null) return;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => SaveLookDialog(
+        styleName: widget.styleData['name'] as String? ?? 'This look',
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+
+    final existing = await SavedResultsStore.getAll();
+    if (!mounted) return;
+
+    final name = await showDialog<String>(
+      context: context,
+      builder: (context) => SaveNameDialog(
+        existingNames: existing.map((r) => r.savedName).toList(),
+      ),
+    );
+    if (name == null || !mounted) return;
+
+    await SavedResultsStore.add(SavedResult(
+      savedName: name,
+      savedAt: DateTime.now(),
+      skinTone: _saveSkinTone,
+      faceShape: _saveFaceShape,
+      eyeShape: _saveEyeShape,
+      undertone: _saveUndertone,
+      monkScale: _saveMonkScale,
+      styleKey: styleKey,
+      styleName: widget.styleData['name'] as String? ?? '',
+      styleIndex: int.tryParse(_styleIndex) ?? 1,
+      matchPct: _matchPct,
+    ));
+
+    if (!mounted) return;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const FavoritesScreen(cameFromSave: true),
+      ),
+    );
+  }
 
   // BACKEND: 'steps' from recommendations.json
   // Each step has instruction, tip, and imagePath
@@ -252,7 +321,7 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
               children: [
                 // Back button
                 CircleAvatar(
-                  backgroundColor: Colors.white.withOpacity(0.3),
+                  backgroundColor: Colors.white.withValues(alpha: 0.3),
                   radius: contentWidth * 0.045,
                   child: IconButton(
                     icon: const Icon(Icons.arrow_back_rounded,
@@ -272,7 +341,7 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
             'STYLE $_styleIndex OF $_totalStyles',
             style: TextStyle(
               fontSize: contentWidth * 0.03,
-              color: Colors.white.withOpacity(0.85),
+              color: Colors.white.withValues(alpha: 0.85),
               letterSpacing: 1.5,
             ),
           ),
@@ -299,7 +368,7 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
             padding: EdgeInsets.symmetric(horizontal: contentWidth * 0.06),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(30),
               ),
               child: TabBar(
@@ -359,6 +428,59 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
 
           SizedBox(height: screenHeight * 0.01),
 
+          // General tips block — from recommendations.json's 'tips' +
+          // 'general_tip'. Only shown when real tip data was passed in.
+          if (_tips.isNotEmpty) ...[
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(contentWidth * 0.04),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'TIPS',
+                    style: TextStyle(
+                      fontSize: contentWidth * 0.038,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFFFF6EB4),
+                      letterSpacing: 1.5,
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.01),
+                  ..._tips.map((tip) => Padding(
+                        padding: EdgeInsets.only(bottom: screenHeight * 0.008),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.tips_and_updates_rounded,
+                              color: const Color(0xFFFF6EB4),
+                              size: contentWidth * 0.045,
+                            ),
+                            SizedBox(width: contentWidth * 0.02),
+                            Expanded(
+                              child: Text(
+                                tip,
+                                style: TextStyle(
+                                  fontSize: contentWidth * 0.034,
+                                  color: Colors.black54,
+                                  height: 1.4,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
+                ],
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.02),
+          ],
+
           // STEPS label
           Text(
             'STEPS',
@@ -388,7 +510,34 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
             );
           }),
 
-          // TODO: Add Save Tutorial button here (Page 14 feature)
+          SizedBox(height: screenHeight * 0.01),
+
+          // Save Tutorial button — disabled when there's no styleKey
+          // to reconstruct this result from later.
+          SizedBox(
+            width: double.infinity,
+            height: contentWidth * 0.13,
+            child: ElevatedButton.icon(
+              onPressed: _styleKey == null ? null : _onSaveTutorial,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFFF6EB4),
+                disabledBackgroundColor: Colors.grey.shade300,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              icon: const Icon(Icons.favorite_border_rounded,
+                  color: Colors.white, size: 18),
+              label: Text(
+                'Save Tutorial',
+                style: TextStyle(
+                  fontSize: contentWidth * 0.045,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+
           SizedBox(height: screenHeight * 0.02),
         ],
       ),
@@ -470,32 +619,33 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
                 : _buildStepImagePlaceholder(contentWidth),
           ),
 
-          SizedBox(height: screenHeight * 0.012),
-
-          // Tip
-          // BACKEND: 'tip' from recommendations.json
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Icon(
-                Icons.tips_and_updates_rounded,
-                color: const Color(0xFFFF6EB4),
-                size: contentWidth * 0.045,
-              ),
-              SizedBox(width: contentWidth * 0.02),
-              Expanded(
-                child: Text(
-                  step['tip']!,
-                  style: TextStyle(
-                    fontSize: contentWidth * 0.032,
-                    color: Colors.black54,
-                    fontStyle: FontStyle.italic,
-                    height: 1.4,
+          // Tip — only real dummy-fallback steps carry a per-step tip;
+          // real per-style steps use the TIPS block above instead.
+          if (step['tip'] != null && step['tip']!.isNotEmpty) ...[
+            SizedBox(height: screenHeight * 0.012),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.tips_and_updates_rounded,
+                  color: const Color(0xFFFF6EB4),
+                  size: contentWidth * 0.045,
+                ),
+                SizedBox(width: contentWidth * 0.02),
+                Expanded(
+                  child: Text(
+                    step['tip']!,
+                    style: TextStyle(
+                      fontSize: contentWidth * 0.032,
+                      color: Colors.black54,
+                      fontStyle: FontStyle.italic,
+                      height: 1.4,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
         ],
       ),
     );
@@ -548,7 +698,7 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
           // Subtitle
           // BACKEND: skin tone match comes from monkScale + undertone
           Text(
-            'Shades matched to your detected skin tone',
+            'Suggested shades to your detected skintone',
             style: TextStyle(
               fontSize: contentWidth * 0.034,
               color: Colors.black54,

@@ -29,7 +29,7 @@
 /// pixel coordinates. Do not normalize them, and do not multiply them
 /// by image dimensions again — that would be a second, inverse version
 /// of the same double-preprocessing bug already fixed once in Python.
-library eye_shape_detector;
+library;
 
 import 'dart:math' as math;
 

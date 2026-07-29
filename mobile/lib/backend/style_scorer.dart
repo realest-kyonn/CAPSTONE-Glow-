@@ -7,7 +7,7 @@
 /// source Python's version was built from. Scoring weights (face shape=3,
 /// eye shape=2, undertone=1) and all compatibility lists below are a
 /// direct line-for-line port of style_scorer.py — not re-derived.
-library style_scorer;
+library;
 
 class StyleResult {
   final String styleKey;
