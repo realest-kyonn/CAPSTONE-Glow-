@@ -29,14 +29,27 @@
 /// Dependency: landmarks extracted by face_detection_tflite — see
 /// mesh_provider.dart. Verified against the installed 6.6.3 source.
 ///
-/// STILL UNVERIFIED: the mesh indices below (33, 133, 159, 145, ...) assume
-/// this package orders its 468 mesh points using the standard MediaPipe
-/// topology. The package describes itself as a port of that model, and the
-/// iris layout matched its documented constants exactly, but the mesh
-/// ordering has NOT been confirmed empirically. Before trusting mobile eye
-/// results, draw landmarks 33 and 263 on a real photo and confirm they land
-/// on the outer eye corners. If they do not, every measurement here is
-/// invalid regardless of the fixes above.
+/// MESH ORDERING — VERIFIED, do not re-litigate. The indices below (33,
+/// 133, 159, 145, ...) rely on this package ordering its 468 mesh points
+/// using standard MediaPipe topology. Confirmed two independent ways
+/// against the installed 6.6.3:
+///
+///   1. The bundled models are Google's unmodified originals, not
+///      re-exports: face_landmark.tflite is 192x192x3 in / 1404 out
+///      (= 468 x 3), and iris_landmark.tflite carries Google's own output
+///      tensor names, "output_eyes_contours_and_brows" (213 = 71 x 3) and
+///      "output_iris" (15 = 5 x 3). Point order is a property of the
+///      model, so an unmodified model means unmodified ordering.
+///
+///   2. The package itself depends on these exact indices. In
+///      face_detector_core.dart the iris ROI is built from
+///      fromCorners(33, 133) and fromCorners(362, 263) — i.e. it treats
+///      33/133 and 362/263 as the eye corners, the same as we do. If they
+///      were anything else its iris stage would crop empty regions and
+///      fail, and iris detection demonstrably works.
+///
+/// test_full_main_pipeline still logs landmark 33 and 263 positions, which
+/// is a cheap regression check if this package is ever upgraded.
 ///
 /// IMPORTANT — COORDINATE SPACE (confirmed against the real installed
 /// package example, not assumed):

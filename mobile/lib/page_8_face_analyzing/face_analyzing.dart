@@ -88,6 +88,14 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
   // placeholder — wire it in once that port exists.
   // ─────────────────────────────────────────────────────────────
   Future<void> _startAnalysis() async {
+    // Hoisted out of the try so the finally below can release them even if
+    // analysis throws part-way. Previously both dispose() calls sat inline
+    // in the happy path, so any exception (the catch below swallows them)
+    // leaked a 130MB interpreter plus a detector and its isolate, for the
+    // remaining life of the process.
+    MeshProvider? meshProvider;
+    FaceShapeDetector? faceShapeDetector;
+
     try {
       // Step 1 — Skin Tone (undertone + Monk Scale)
       setState(() => _currentStep = 0);
@@ -96,7 +104,7 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
 
       // Step 2 — Facial Features: mesh/bounding box -> face shape -> eye shape
       setState(() => _currentStep = 1);
-      final meshProvider = await MeshProvider.load();
+      meshProvider = await MeshProvider.load();
       final meshResult = await meshProvider.analyzePhoto(widget.imagePath);
 
       // DIAGNOSTIC — checking whether mesh/face detection is silently
@@ -112,12 +120,11 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
       final bytes = await File(widget.imagePath).readAsBytes();
       final decoded = img.decodeImage(bytes);
       if (decoded != null) {
-        final faceShapeDetector = await FaceShapeDetector.load();
+        faceShapeDetector = await FaceShapeDetector.load();
         faceResult = faceShapeDetector.detectFaceShape(
           decoded,
           box: meshResult.boundingBox,
         );
-        faceShapeDetector.dispose();
       }
 
       // Iris points are passed separately — this package keeps them out of
@@ -127,7 +134,6 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
         meshResult.meshLandmarks,
         irisLandmarks: meshResult.irisLandmarks,
       );
-      meshProvider.dispose();
       _completeStep(1);
 
       // Step 3 — Recommendations: score all 15 styles against the
@@ -185,6 +191,13 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
     } catch (e) {
       debugPrint('Analysis pipeline error: $e');
       _onAnalysisComplete({'error': e.toString()});
+    } finally {
+      // Runs on every path, including the catch above. Both of these hold
+      // native resources Dart's GC will not reclaim: the face shape
+      // interpreter is ~130MB, and MeshProvider owns a detector plus a
+      // background isolate.
+      faceShapeDetector?.dispose();
+      await meshProvider?.dispose();
     }
   }
 

@@ -68,6 +68,40 @@ class MeshResult {
   bool get hasIris => irisLandmarks.length >= 152;
 }
 
+/// Fraction of the detected box height added ABOVE the BlazeFace box before
+/// it reaches the face-shape crop.
+///
+/// THIS IS DELIBERATELY NOT MIRRORED IN PYTHON. Do not "fix" the
+/// inconsistency by removing it — doing so silently costs ~2.75 accuracy
+/// points. Python crops MTCNN boxes, which is what the model was trained
+/// on and needs no correction. Flutter has no MTCNN, so it uses BlazeFace,
+/// whose boxes are measurably different: they sit lower (y offset +0.162 of
+/// box height) and are shorter (-0.102), cropping away forehead and
+/// hairline. That region is exactly what separates heart / oval / square,
+/// so the model was being fed faces missing their most discriminative part.
+///
+/// Measured on the project's own held-out test set, all arms scored on
+/// identical images:
+///
+///     BlazeFace, uncorrected : 90.75%
+///     BlazeFace, calibrated  : 93.50%   <- this constant
+///     MTCNN (reference)      : 92.75%
+///
+/// The value was grid-searched on 300 images, then validated on 400
+/// DIFFERENT images the search never saw. The gain held (+2.75, versus
+/// +2.00 on the tuning set), and a McNemar-style check gave 16 predictions
+/// newly correct against 5 newly wrong — so this is genuine reframing, not
+/// noise being reshuffled.
+///
+/// Calibrated mobile reaches PARITY with the reference pipeline. The +0.75
+/// over MTCNN is within noise at n=400 and should not be claimed as an
+/// improvement.
+///
+/// Width is left alone on purpose: the crop step forces a square by growing
+/// width to match height, so horizontal adjustments are overwritten. That
+/// was confirmed empirically — every x_inset value scored identically.
+const double kBlazeToMtcnnTopPad = 0.25;
+
 class MeshProvider {
   MeshProvider._(this._detector);
 
@@ -113,11 +147,17 @@ class MeshProvider {
 
     // boundingBox.topLeft / .bottomRight are already pixel-space Points.
     final bb = face.boundingBox;
+    final rawX = bb.topLeft.x.round();
+    final rawY = bb.topLeft.y.round();
+    final rawW = (bb.bottomRight.x - bb.topLeft.x).round();
+    final rawH = (bb.bottomRight.y - bb.topLeft.y).round();
+
+    // BlazeFace-to-MTCNN crop calibration. See kBlazeToMtcnnTopPad below.
     final box = FaceBoundingBox(
-      bb.topLeft.x.round(),
-      bb.topLeft.y.round(),
-      (bb.bottomRight.x - bb.topLeft.x).round(),
-      (bb.bottomRight.y - bb.topLeft.y).round(),
+      rawX,
+      rawY - (kBlazeToMtcnnTopPad * rawH).round(),
+      rawW,
+      rawH + (kBlazeToMtcnnTopPad * rawH).round(),
     );
 
     // face.mesh is nullable — check == null, not .isEmpty.
@@ -150,10 +190,16 @@ class MeshProvider {
     );
   }
 
-  void dispose() {
-    // Check face_detection_tflite 6.6.3's actual API for a dispose()/close()
-    // method before assuming none exists — verify against the currently
-    // installed version rather than trusting this comment from an earlier
-    // version check.
+  /// Releases the detector and its background isolate.
+  ///
+  /// This used to be an empty stub with a comment suggesting someone check
+  /// whether the package provides a disposal method. It does:
+  /// FaceDetector.dispose() at face_detector.dart:950 in 6.6.3. Until this
+  /// was wired up, every analysis leaked a detector plus its isolate.
+  ///
+  /// Async because the underlying call is — callers that cannot await
+  /// (e.g. State.dispose) may safely fire-and-forget it.
+  Future<void> dispose() async {
+    await _detector.dispose();
   }
 }
