@@ -120,7 +120,13 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
         faceShapeDetector.dispose();
       }
 
-      final eyeResult = eyes.detectEyeShape(meshResult.meshLandmarks);
+      // Iris points are passed separately — this package keeps them out of
+      // the mesh, unlike Python's MediaPipe. Without them the hooding test
+      // is skipped (see eye_shape_detector.dart).
+      final eyeResult = eyes.detectEyeShape(
+        meshResult.meshLandmarks,
+        irisLandmarks: meshResult.irisLandmarks,
+      );
       meshProvider.dispose();
       _completeStep(1);
 

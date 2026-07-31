@@ -34,6 +34,21 @@ import 'face_shape_detector.dart' show FaceBoundingBox;
 class MeshResult {
   final FaceBoundingBox? boundingBox;
   final List<eyes.Landmark> meshLandmarks;
+
+  /// Iris landmarks, kept SEPARATE from meshLandmarks because this package
+  /// structures them differently from Python's MediaPipe.
+  ///
+  /// Python's face_landmarker.task returns 478 points with the iris living
+  /// inside the mesh at indices 468-477. This package returns a 468-point
+  /// mesh and a separate 152-point iris list (76 per eye: 71 eye-contour
+  /// points then 5 iris keypoints). Confirmed against the installed 6.6.3
+  /// source, not assumed — see _kLeftIrisStart/_kRightIrisStart in the
+  /// package's face_detector.dart.
+  ///
+  /// Empty when the detector ran without iris data (FaceDetectionMode below
+  /// must be .full) — eye_shape_detector degrades gracefully in that case.
+  final List<eyes.Landmark> irisLandmarks;
+
   final int imgWidth;
   final int imgHeight;
   final String? error;
@@ -41,12 +56,16 @@ class MeshResult {
   const MeshResult({
     this.boundingBox,
     this.meshLandmarks = const [],
+    this.irisLandmarks = const [],
     required this.imgWidth,
     required this.imgHeight,
     this.error,
   });
 
   bool get hasFace => boundingBox != null;
+
+  /// True when iris data is usable for the hooding measure.
+  bool get hasIris => irisLandmarks.length >= 152;
 }
 
 class MeshProvider {
@@ -111,9 +130,20 @@ class MeshProvider {
       }
     }
 
+    // Iris points come back as their OWN list, not folded into the mesh —
+    // this is the key structural difference from Python's MediaPipe, where
+    // the iris occupies mesh indices 468-477 of a 478-point array. Here the
+    // mesh stays 468 points and face.irisPoints holds 152 (76 per eye).
+    // Requires FaceDetectionMode.full above; empty otherwise.
+    final irisPoints = <eyes.Landmark>[];
+    for (final p in face.irisPoints) {
+      irisPoints.add(eyes.Landmark(p.x, p.y));
+    }
+
     return MeshResult(
       boundingBox: box,
       meshLandmarks: meshPoints,
+      irisLandmarks: irisPoints,
       imgWidth: size.width.toInt(),
       imgHeight: size.height.toInt(),
       error: faceMesh == null ? "Face detected but no mesh returned" : null,

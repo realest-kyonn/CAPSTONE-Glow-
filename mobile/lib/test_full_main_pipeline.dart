@@ -155,12 +155,35 @@ class _TestRunnerState extends State<TestRunner> {
 
     setState(() => _status = "Step 4/4: Running eye shape classification...");
     log("--- Step 4/4: Eye Shape ---");
-    final eyeShapeResult = eyes.detectEyeShape(meshResult.meshLandmarks);
+    // Iris points must be passed explicitly — this package keeps them in a
+    // separate list rather than inside the mesh (unlike Python's MediaPipe).
+    // Omitting them silently skips the hooding test, which would make this
+    // harness disagree with backend/main.py for no visible reason.
+    log("Iris points available: ${meshResult.irisLandmarks.length} (need 152)");
+    final eyeShapeResult = eyes.detectEyeShape(
+      meshResult.meshLandmarks,
+      irisLandmarks: meshResult.irisLandmarks,
+    );
     log("Predicted: ${eyeShapeResult.eyeShape}");
     log("Confidence: ${eyeShapeResult.confidence}");
     log("Metrics: ${eyeShapeResult.metrics}");
     if (eyeShapeResult.error != null) {
       log("Note: ${eyeShapeResult.error}");
+    }
+
+    // SANITY CHECK for the one assumption this port still rests on: that
+    // face_detection_tflite orders its 468 mesh points using the standard
+    // MediaPipe topology. 33 and 263 should be the OUTER corners of the left
+    // and right eye, so they should sit near the far edges of the face and
+    // roughly level with each other. If these land somewhere else, every eye
+    // measurement is invalid regardless of the threshold fixes.
+    if (meshResult.meshLandmarks.length > 263) {
+      final l = meshResult.meshLandmarks[33];
+      final r = meshResult.meshLandmarks[263];
+      log("Landmark 33  (expect LEFT outer eye corner) : (${l.x.toStringAsFixed(1)}, ${l.y.toStringAsFixed(1)})");
+      log("Landmark 263 (expect RIGHT outer eye corner): (${r.x.toStringAsFixed(1)}, ${r.y.toStringAsFixed(1)})");
+      log("  -> they should be horizontally apart and at similar height.");
+      log("  -> image is ${meshResult.imgWidth}x${meshResult.imgHeight}");
     }
     log("Step 4/4 done.");
 
