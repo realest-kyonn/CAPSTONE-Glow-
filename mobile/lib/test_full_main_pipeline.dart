@@ -142,7 +142,13 @@ class _TestRunnerState extends State<TestRunner> {
     // instead of nothing printing at all.
     setState(() => _status = "Step 3/4: Scanning pixels for skin tone (this may take a while on a large photo)...");
     log("--- Step 3/4: Skin Tone (pixel-by-pixel scan — may be slow) ---");
-    final skinToneResult = detectSkinTone(testImagePath);
+    // Skin tone now samples cheek/forehead landmarks instead of masking the
+    // whole image, so it needs the mesh. Fast enough that the "may be slow"
+    // warning above is obsolete — a few hundred reads, not a full scan.
+    final skinToneResult = detectSkinTone(
+      testImagePath,
+      meshResult.meshLandmarks,
+    );
     if (skinToneResult.hasError) {
       log("❌ ${skinToneResult.error}");
     } else {

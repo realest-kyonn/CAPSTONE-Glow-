@@ -97,24 +97,32 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
     FaceShapeDetector? faceShapeDetector;
 
     try {
-      // Step 1 — Skin Tone (undertone + Monk Scale)
+      // The mesh now runs FIRST, because skin tone depends on it: undertone
+      // is sampled from cheek and forehead landmarks rather than from an
+      // HSV mask over the whole frame. The on-screen step order is
+      // unchanged — only the computation was reordered.
       setState(() => _currentStep = 0);
-      final skinResult = detectSkinTone(widget.imagePath);
-      _completeStep(0);
-
-      // Step 2 — Facial Features: mesh/bounding box -> face shape -> eye shape
-      setState(() => _currentStep = 1);
       meshProvider = await MeshProvider.load();
       final meshResult = await meshProvider.analyzePhoto(widget.imagePath);
 
-      // DIAGNOSTIC — checking whether mesh/face detection is silently
-      // failing on real captured photos (would explain identical results
-      // across different people via fallback paths in both detectors).
       debugPrint('=== MESH DETECTION CHECK ===');
       debugPrint('  hasFace: ${meshResult.hasFace}');
       debugPrint('  boundingBox: ${meshResult.boundingBox}');
       debugPrint('  meshLandmarks count: ${meshResult.meshLandmarks.length}');
+      debugPrint('  irisLandmarks count: ${meshResult.irisLandmarks.length}');
       debugPrint('  mesh error: ${meshResult.error}');
+
+      // Step 1 — Skin Tone (undertone + Monk Scale) from cheek/forehead
+      // patches. Cheap now: a few hundred pixel reads rather than a
+      // full-resolution scan with an FFI call per pixel.
+      final skinResult = detectSkinTone(
+        widget.imagePath,
+        meshResult.meshLandmarks,
+      );
+      _completeStep(0);
+
+      // Step 2 — Facial Features: face shape -> eye shape
+      setState(() => _currentStep = 1);
 
       FaceShapeResult? faceResult;
       final bytes = await File(widget.imagePath).readAsBytes();
