@@ -144,26 +144,35 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
       );
       _completeStep(1);
 
+      // Resolve fallbacks ONCE, then use the same values for both scoring
+      // and display. Previously scoring used `?? 'Oval'` while the results
+      // map passed the raw (possibly null) faceShape — so on a detection
+      // failure the app scored as Oval but displayed null: two different
+      // answers from one analysis.
+      final resolvedFaceShape = faceResult?.faceShape ?? 'Oval';
+      final resolvedUndertone = skinResult.skinTone ?? 'neutral';
+
       // Step 3 — Recommendations: score all 15 styles against the
       // detected features, take the top 3.
       setState(() => _currentStep = 2);
       final topStyles = scoreStyles(
-        undertone: skinResult.skinTone ?? 'neutral',
-        faceShape: faceResult?.faceShape ?? 'Oval',
+        undertone: resolvedUndertone,
+        faceShape: resolvedFaceShape,
         eyeShape: eyeResult.eyeShape,
       );
       _completeStep(2);
 
       final Map<String, dynamic> analysisResults = {
-        'skinTone': skinResult.skinTone,
+        'skinTone': resolvedUndertone,
         // Python's own main.py treats undertone as the same value as
         // skin_tone (undertone = skin_result["skin_tone"]) — there's no
         // separate "undertone" concept in the detector, so we mirror that
         // here rather than inventing a value that doesn't exist upstream.
-        'undertone': skinResult.skinTone,
+        'undertone': resolvedUndertone,
         'monkScale': skinResult.monkScale,
         'skinConfidence': skinResult.confidence,
-        'faceShape': faceResult?.faceShape,
+        // Same resolved value scoring used — never the raw null.
+        'faceShape': resolvedFaceShape,
         'faceConfidence': faceResult?.confidence,
         'eyeShape': eyeResult.eyeShape,
         'eyeConfidence': eyeResult.confidence,

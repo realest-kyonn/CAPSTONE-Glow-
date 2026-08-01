@@ -205,9 +205,17 @@ List<StyleResult> scoreStyles({
     scores[style] = score;
   }
 
-  // Sort by score, highest first
+  // Sort by score (highest first), breaking ties by style key. The
+  // tie-break is load-bearing: scores are integers capped at 6 across 15
+  // styles, so ties for 3rd place are common, and Dart's List.sort is NOT
+  // stable. Without an explicit tie-break this could return a different 3rd
+  // recommendation than Python (whose sort is stable) for the same input.
+  // Matches Python's `key=lambda x: (-x[1], x[0])`.
   final sortedEntries = scores.entries.toList()
-    ..sort((a, b) => b.value.compareTo(a.value));
+    ..sort((a, b) {
+      final byScore = b.value.compareTo(a.value);
+      return byScore != 0 ? byScore : a.key.compareTo(b.key);
+    });
 
   // Top 3
   return sortedEntries.take(3).map((entry) {
