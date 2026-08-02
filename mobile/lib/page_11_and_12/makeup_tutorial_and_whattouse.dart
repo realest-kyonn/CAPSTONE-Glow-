@@ -106,19 +106,36 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
     );
     if (name == null || !mounted) return;
 
-    await SavedResultsStore.add(SavedResult(
-      savedName: name,
-      savedAt: DateTime.now(),
-      skinTone: _saveSkinTone,
-      faceShape: _saveFaceShape,
-      eyeShape: _saveEyeShape,
-      undertone: _saveUndertone,
-      monkScale: _saveMonkScale,
-      styleKey: styleKey,
-      styleName: widget.styleData['name'] as String? ?? '',
-      styleIndex: int.tryParse(_styleIndex) ?? 1,
-      matchPct: _matchPct,
-    ));
+    // Guard the save so a database error shows a message instead of
+    // crashing. The name dialog already blocks duplicates, so this is a
+    // backstop for the constraint and for any unexpected storage failure.
+    try {
+      await SavedResultsStore.add(SavedResult(
+        savedName: name,
+        savedAt: DateTime.now(),
+        skinTone: _saveSkinTone,
+        faceShape: _saveFaceShape,
+        eyeShape: _saveEyeShape,
+        undertone: _saveUndertone,
+        monkScale: _saveMonkScale,
+        styleKey: styleKey,
+        styleName: widget.styleData['name'] as String? ?? '',
+        styleIndex: int.tryParse(_styleIndex) ?? 1,
+        matchPct: _matchPct,
+      ));
+    } on DuplicateNameException {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You already have a saved look with that name.')),
+      );
+      return;
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Couldn't save your look. Please try again.")),
+      );
+      return;
+    }
 
     if (!mounted) return;
     Navigator.push(

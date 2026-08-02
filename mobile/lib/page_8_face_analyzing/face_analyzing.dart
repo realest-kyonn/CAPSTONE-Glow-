@@ -82,10 +82,11 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
   }
 
   // ─────────────────────────────────────────────────────────────
-  // Real analysis pipeline: skin tone -> mesh/landmarks -> face shape
-  // -> eye shape. Recommendation scoring (style_scorer.py /
-  // recommendations.py) has no Dart port yet, so Step 3 is a
-  // placeholder — wire it in once that port exists.
+  // Real analysis pipeline: mesh/landmarks -> skin tone + face shape
+  // + eye shape -> style scoring (top 3). style_scorer.dart is the
+  // Dart port of style_scorer.py and is wired in below as Step 3.
+  // The per-product shade lookup (recommendations.py) is a separate
+  // stage that runs on the "What To Use" screen, not here.
   // ─────────────────────────────────────────────────────────────
   Future<void> _startAnalysis() async {
     // Hoisted out of the try so the finally below can release them even if

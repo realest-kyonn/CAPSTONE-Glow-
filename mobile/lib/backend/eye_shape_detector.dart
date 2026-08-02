@@ -344,7 +344,7 @@ String _confidence(double ear, double angle, double mrd) {
 // ── MAIN ENTRY POINT ─────────────────────────────────────────────────
 /// Classifies eye shape given a face mesh point list from
 /// face_detection_tflite (face.mesh?.points — already pixel-space,
-/// confirmed against v4.0.0's real example code).
+/// confirmed against the installed 6.6.3 source).
 ///
 /// IMPORTANT: unlike Python's MediaPipe (normalized 0-1, needs
 /// imgW/imgH to convert to pixels), face_detection_tflite's mesh

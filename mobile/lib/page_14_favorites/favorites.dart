@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 import '../backend/database_helper.dart';
 import 'save_name_dialog.dart';
 import 'saved_result_detail.dart';
+
+/// Thrown when a save/rename would collide with an existing saved_name.
+/// The UI already blocks duplicates in SaveNameDialog, so this is a
+/// backstop — callers can catch it to show a clear message instead of
+/// letting a raw database exception crash the app.
+class DuplicateNameException implements Exception {
+  final String name;
+  const DuplicateNameException(this.name);
+  @override
+  String toString() => 'A saved look named "$name" already exists.';
+}
 
 // ─────────────────────────────────────────────────────────────
 // A single saved look. Deliberately thin — no tutorial/product
@@ -88,17 +100,33 @@ class SavedResultsStore {
 
   static Future<void> add(SavedResult result) async {
     final db = await DatabaseHelper.instance.database;
-    await db.insert('saved_results', result.toMap());
+    try {
+      await db.insert('saved_results', result.toMap());
+    } on DatabaseException catch (e) {
+      // Translate the UNIQUE(saved_name) violation into a typed error the
+      // UI can handle; let anything else propagate unchanged.
+      if (e.isUniqueConstraintError()) {
+        throw DuplicateNameException(result.savedName);
+      }
+      rethrow;
+    }
   }
 
   static Future<void> rename(int id, String newName) async {
     final db = await DatabaseHelper.instance.database;
-    await db.update(
-      'saved_results',
-      {'saved_name': newName},
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+    try {
+      await db.update(
+        'saved_results',
+        {'saved_name': newName},
+        where: 'id = ?',
+        whereArgs: [id],
+      );
+    } on DatabaseException catch (e) {
+      if (e.isUniqueConstraintError()) {
+        throw DuplicateNameException(newName);
+      }
+      rethrow;
+    }
   }
 
   static Future<void> delete(int id) async {
@@ -539,7 +567,23 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       ),
     );
     if (newName != null) {
-      await SavedResultsStore.rename(result.id!, newName);
+      // Backstop: the dialog blocks duplicates, but guard the DB write so a
+      // constraint or storage error surfaces as a message, not a crash.
+      try {
+        await SavedResultsStore.rename(result.id!, newName);
+      } on DuplicateNameException {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('You already have a saved look with that name.')),
+        );
+        return;
+      } catch (_) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Couldn't rename this look. Please try again.")),
+        );
+        return;
+      }
       await _load();
     }
   }
