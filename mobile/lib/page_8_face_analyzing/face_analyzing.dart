@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:image/image.dart' as img;
-import '../backend/mesh_provider.dart';
+import '../backend/detector_registry.dart';
 import '../backend/face_shape_detector.dart';
 import '../backend/eye_shape_detector.dart' as eyes;
 import '../backend/skin_tone_detector.dart';
@@ -89,21 +89,20 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
   // stage that runs on the "What To Use" screen, not here.
   // ─────────────────────────────────────────────────────────────
   Future<void> _startAnalysis() async {
-    // Hoisted out of the try so the finally below can release them even if
-    // analysis throws part-way. Previously both dispose() calls sat inline
-    // in the happy path, so any exception (the catch below swallows them)
-    // leaked a 130MB interpreter plus a detector and its isolate, for the
-    // remaining life of the process.
-    MeshProvider? meshProvider;
-    FaceShapeDetector? faceShapeDetector;
-
     try {
       // The mesh now runs FIRST, because skin tone depends on it: undertone
       // is sampled from cheek and forehead landmarks rather than from an
       // HSV mask over the whole frame. The on-screen step order is
       // unchanged — only the computation was reordered.
+      //
+      // Both detectors come from the shared DetectorRegistry: they load ONCE
+      // and are reused across every photo, instead of being rebuilt (a 130MB
+      // interpreter + a detector isolate) on each capture. They are NOT
+      // disposed here — the registry owns them for the app's lifetime. That
+      // is intentional and is not the per-photo leak fixed earlier: there is
+      // one shared instance, reused, not a new one dropped each time.
       setState(() => _currentStep = 0);
-      meshProvider = await MeshProvider.load();
+      final meshProvider = await DetectorRegistry.instance.meshProvider();
       final meshResult = await meshProvider.analyzePhoto(widget.imagePath);
 
       debugPrint('=== MESH DETECTION CHECK ===');
@@ -129,7 +128,8 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
       final bytes = await File(widget.imagePath).readAsBytes();
       final decoded = img.decodeImage(bytes);
       if (decoded != null) {
-        faceShapeDetector = await FaceShapeDetector.load();
+        final faceShapeDetector =
+            await DetectorRegistry.instance.faceShapeDetector();
         faceResult = faceShapeDetector.detectFaceShape(
           decoded,
           box: meshResult.boundingBox,
@@ -209,14 +209,11 @@ class _FaceAnalyzingScreenState extends State<FaceAnalyzingScreen>
     } catch (e) {
       debugPrint('Analysis pipeline error: $e');
       _onAnalysisComplete({'error': e.toString()});
-    } finally {
-      // Runs on every path, including the catch above. Both of these hold
-      // native resources Dart's GC will not reclaim: the face shape
-      // interpreter is ~130MB, and MeshProvider owns a detector plus a
-      // background isolate.
-      faceShapeDetector?.dispose();
-      await meshProvider?.dispose();
     }
+    // No dispose here: the mesh provider and face shape detector are owned
+    // by DetectorRegistry and shared across analyses. Disposing them per
+    // photo would force a reload on the next capture — the exact cost this
+    // change removes — and would hand the next analysis a closed interpreter.
   }
 
   // Marks one step's progress bar complete and updates the overall bar.
