@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../page_14_favorites/favorites.dart';
 import '../page_14_favorites/save_confirmation_dialog.dart';
 import '../page_14_favorites/save_name_dialog.dart';
+import '../page_14_favorites/feedback_popup.dart';
 
 // ─────────────────────────────────────────────────────────────
 // Makeup Tutorial + What To Use Screen — Page 11 & 12
@@ -136,6 +137,14 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
       );
       return;
     }
+
+    // Feedback popup — shown right after a successful save, before
+    // navigating away to Favorites.
+    if (!mounted) return;
+    await showDialog<void>(
+      context: context,
+      builder: (context) => const FeedbackPopup(),
+    );
 
     if (!mounted) return;
     Navigator.push(
