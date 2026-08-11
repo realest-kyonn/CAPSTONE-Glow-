@@ -33,6 +33,24 @@ subprojects {
     }
 }
 
+// camera_android_camerax's OWN compileDebugJavaWithJavac fails with "class
+// file for androidx.concurrent.futures.CallbackToFutureAdapter not found"
+// while attaching a @NonNull type annotation from camera-core 1.6.1's
+// SurfaceRequest.class. That class isn't on this module's own resolved
+// compile classpath (an AGP 9 "api jar" stub-transform gap in camera-core
+// 1.6.1, not a version conflict) — adding the dependency to :app doesn't
+// help because dependencies only flow app -> library, never the reverse,
+// and :app's own compile never touches SurfaceRequest.class directly. Must
+// be added to the project that actually compiles against camera-core.
+subprojects {
+    if (project.name != "camera_android_camerax") {
+        return@subprojects
+    }
+    plugins.withId("com.android.library") {
+        dependencies.add("implementation", "androidx.concurrent:concurrent-futures:1.2.0")
+    }
+}
+
 val newBuildDir: Directory =
     rootProject.layout.buildDirectory
         .dir("../../build")

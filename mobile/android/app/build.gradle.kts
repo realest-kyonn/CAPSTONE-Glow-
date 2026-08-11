@@ -40,6 +40,17 @@ kotlin {
     }
 }
 
+dependencies {
+    // camera_android_camerax pulls in androidx.camera:camera-core, whose
+    // SurfaceRequest class carries a @NonNull TYPE_USE annotation on a
+    // CallbackToFutureAdapter-typed field. javac must resolve that class to
+    // attach the annotation, but nothing in the plugin's own dependency
+    // chain puts it on this module's compile classpath — hence "class file
+    // for androidx.concurrent.futures.CallbackToFutureAdapter not found"
+    // during compileDebugJavaWithJavac. Adding it directly closes the gap.
+    implementation("androidx.concurrent:concurrent-futures:1.2.0")
+}
+
 flutter {
     source = "../.."
 }

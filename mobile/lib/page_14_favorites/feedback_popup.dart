@@ -62,7 +62,8 @@ class FeedbackPopup extends StatelessWidget {
               'Your look has been saved! We\'d love to hear your thoughts — '
               'tap below to answer a few quick questions about your '
               'experience with Glow. It only takes a minute and helps us '
-              'improve future updates.',
+              'improve future updates.\n\n'
+              'Please turn on your internet to be able to give feedback.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: contentWidth * 0.036,
