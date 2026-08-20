@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../page_5/page5.dart';
 import '../page_14_favorites/favorites.dart';
+import '../page_about/about_screen.dart';
+import '../page_settings/settings_screen.dart';
 
 class HomeDashboard extends StatelessWidget {
   const HomeDashboard({super.key});
@@ -51,7 +53,8 @@ class HomeDashboard extends StatelessWidget {
       backgroundColor: Colors.white,
       bottomNavigationBar: _buildBottomNav(context, contentWidth, screenWidth),
       body: SafeArea(
-        child: Center(
+        child: Align(
+          alignment: Alignment.topCenter,
           child: SizedBox(
             width: contentWidth,
             child: SingleChildScrollView(
@@ -438,7 +441,7 @@ class HomeDashboard extends StatelessWidget {
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.photo_rounded),
+              icon: Icon(Icons.help_outline_rounded),
               label: '',
             ),
             BottomNavigationBarItem(
@@ -461,6 +464,22 @@ class HomeDashboard extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ScanPrepScreen(),
+                ),
+              );
+            } else if (index == 3) {
+              // "?" button — navigate to About screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AboutScreen(),
+                ),
+              );
+            } else if (index == 4) {
+              // Gear button — navigate to Settings screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsScreen(),
                 ),
               );
             }

@@ -133,6 +133,12 @@ class SavedResultsStore {
     final db = await DatabaseHelper.instance.database;
     await db.delete('saved_results', where: 'id = ?', whereArgs: [id]);
   }
+
+  // Wipes every saved look — used by Settings > Data Management.
+  static Future<void> deleteAll() async {
+    final db = await DatabaseHelper.instance.database;
+    await db.delete('saved_results');
+  }
 }
 
 // Saved Results / Favorites Screen — Page 15

@@ -40,7 +40,8 @@ class RecommendationResultScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Center(
+        child: Align(
+          alignment: Alignment.topCenter,
           child: SizedBox(
             width: contentWidth,
             child: SingleChildScrollView(

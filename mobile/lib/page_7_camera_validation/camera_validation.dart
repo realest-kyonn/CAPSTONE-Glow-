@@ -186,7 +186,8 @@ class _ImageValidationScreenState extends State<ImageValidationScreen> {
 
     return Scaffold(
       backgroundColor: const Color(0xFFFF6EB4),
-      body: Center(
+      body: Align(
+        alignment: Alignment.topCenter,
         child: SizedBox(
           width: contentWidth,
           child: SafeArea(
