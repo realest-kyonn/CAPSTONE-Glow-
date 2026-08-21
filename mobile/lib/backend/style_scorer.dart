@@ -211,10 +211,30 @@ List<StyleResult> scoreStyles({
   // stable. Without an explicit tie-break this could return a different 3rd
   // recommendation than Python (whose sort is stable) for the same input.
   // Matches Python's `key=lambda x: (-x[1], x[0])`.
+  // Tie-break by SPECIFICITY, then alphabetically. Must match Python's
+  // `key=lambda x: (-x[1], _specificity(x[0]), x[0])` exactly.
+  //
+  // Scores are integers capped at 6 across 15 styles, so ties are common — for
+  // some feature combinations eight styles tie for third place. Alphabetical
+  // order alone is deterministic but systematically favours whatever style
+  // sits earliest in the alphabet, so one style won nearly every tie no matter
+  // what the user's features were.
+  //
+  // Specificity fixes that on a principle: a style whose compatibility lists
+  // are NARROWER was designed for a narrower set of faces, so when two styles
+  // match equally well the more specialised one is the better recommendation.
+  int specificity(String key) =>
+      (_faceShapeScores[key]?.length ?? 0) +
+      (_eyeShapeScores[key]?.length ?? 0) +
+      (_undertoneScores[key]?.length ?? 0);
+
   final sortedEntries = scores.entries.toList()
     ..sort((a, b) {
       final byScore = b.value.compareTo(a.value);
-      return byScore != 0 ? byScore : a.key.compareTo(b.key);
+      if (byScore != 0) return byScore;
+      final bySpecificity = specificity(a.key).compareTo(specificity(b.key));
+      if (bySpecificity != 0) return bySpecificity;
+      return a.key.compareTo(b.key);
     });
 
   // Top 3
