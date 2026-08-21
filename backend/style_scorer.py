@@ -120,9 +120,15 @@ def score_styles(undertone, face_shape, eye_shape):
         List of top 3 styles with scores and descriptions
     """
 
-    # Normalize long to long (same shape, different name)
-    if face_shape == "Long":
-        face_shape = "long"
+    # Every compatibility list below is lowercase, but the face shape model
+    # returns Title Case ("Heart", "Oval", ...) and the eye/skin detectors
+    # can too. Lowercase ALL THREE inputs, not just "Long" — otherwise a
+    # Title Case value silently matches nothing and scores 0 on its term.
+    # (This was masked in the live pipeline only because main.py happened to
+    # lowercase face_shape first; a direct caller got wrong results.)
+    face_shape = face_shape.lower()
+    eye_shape  = eye_shape.lower()
+    undertone  = undertone.lower()
 
     scores = {}
 
@@ -143,8 +149,12 @@ def score_styles(undertone, face_shape, eye_shape):
 
         scores[style] = score
 
-    # Sort by score (highest first)
-    sorted_styles = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    # Sort by score (highest first), breaking ties by style key so the order
+    # is deterministic and identical on both platforms. Scores are integers
+    # capped at 6 across 15 styles, so ties for 3rd place are common; without
+    # an explicit tie-break Python's stable sort and Dart's unstable sort can
+    # return a DIFFERENT 3rd recommendation for the same input.
+    sorted_styles = sorted(scores.items(), key=lambda x: (-x[1], x[0]))
 
     # Return top 3
     top_3 = []

@@ -40,7 +40,11 @@ def analyze_face(image_path):
     face_result = detect_face_shape(image_path)
     if face_result["error"]:
         print(f"[!] Face shape warning: {face_result['error']}")
-    face_shape       = face_result["face_shape"].lower()  # e.g. "oval"
+    # face_shape can be None (e.g. image not found) — guard before .lower(),
+    # falling back to "oval" (the detector's own default) so scoring still
+    # runs instead of crashing. Previously this only survived because the
+    # skin detector errored first on the same missing-image condition.
+    face_shape       = (face_result["face_shape"] or "oval").lower()
     face_confidence  = face_result["confidence"]
 
     # Step 3: Detect eye shape using MediaPipe FaceMesh
@@ -130,7 +134,7 @@ if __name__ == "__main__":
     import os
 
     BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
-    test_image = os.path.join(BASE_DIR, "..", "data", "images", "img001.jpg")
+    test_image = os.path.join(BASE_DIR, "..", "mobile", "assets", "test", "sample_face.jpg")
     test_image = os.path.abspath(test_image)
 
     print(f"[DEBUG] Looking for image at: {test_image}")

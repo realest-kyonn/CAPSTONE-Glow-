@@ -19,12 +19,22 @@ from mtcnn import MTCNN
 import tensorflow as tf
 
 # ── PATHS ──────────────────────────────────────────────────
-MODEL_PATH  = os.path.join(os.path.dirname(__file__), "models", "face_shape_model.tflite")
-LABELS_PATH = os.path.join(os.path.dirname(__file__), "models", "face_shape_model_labels.txt")
+# Can be overridden via environment variables — useful for testing an
+# alternate model (e.g. the quantized v11 export) without touching the
+# deployed face_shape_model.tflite. Defaults are unchanged for normal use.
+MODEL_PATH  = os.environ.get(
+    "GLOW_MODEL_PATH",
+    os.path.join(os.path.dirname(__file__), "models", "face_shape_model.tflite")
+)
+LABELS_PATH = os.environ.get(
+    "GLOW_LABELS_PATH",
+    os.path.join(os.path.dirname(__file__), "models", "face_shape_model_labels.txt")
+)
 
 # ── SETTINGS ───────────────────────────────────────────────
 IMAGE_SIZE = (224, 224)
-PADDING    = 0.3
+# NOTE: no PADDING constant anymore — crop logic now uses a fixed 10px
+# pad + forced square crop, matching v11's training (see _crop_face below)
 
 # ── LOAD MODEL & LABELS ONCE ───────────────────────────────
 def _load_model():
@@ -62,7 +72,22 @@ def _crop_face(image_path):
     """
     Detects and crops face from image using MTCNN.
     Returns PIL Image of cropped face.
-    Falls back to full image if no face detected.
+
+    IMPORTANT: This MUST match whatever crop logic the currently-
+    deployed model was actually trained with, or you get a silent
+    train/inference mismatch — the same class of bug as the
+    double-preprocessing issue, just in the cropping step instead.
+
+    This matches v11 (VGGFace)'s training crop, confirmed against the
+    reference paper's actual deploy-notebook code: small fixed 10px
+    padding, then FORCE a square crop (expand width to match height,
+    centered) before resizing — this preserves aspect ratio, unlike
+    the old 30%-padding + direct-resize approach (which could
+    stretch/squash non-square crops and was the cause of a ~40-point
+    accuracy drop when first tested against the real deployed pipeline).
+
+    Falls back to a center-square crop (not the unmodified full image)
+    if no face is detected — also matching v11's training logic.
     """
     try:
         img       = Image.open(image_path).convert("RGB")
@@ -77,23 +102,33 @@ def _crop_face(image_path):
         if results:
             x, y, fw, fh = results[0]["box"]
 
-            # Clamp negative values (MTCNN can return negatives)
-            x  = max(0, x)
-            y  = max(0, y)
+            # Expand top & bottom by a small fixed 10px (matches v11's
+            # training crop — NOT the old 30%-of-min-dimension padding)
+            y1 = max(0, y - 10)
+            y2 = min(h, y + fh + 10)
+            x1 = max(0, x)
+            x2 = min(w, x + fw)
 
-            # Add padding
-            pad = int(PADDING * min(fw, fh))
-            x1  = max(0, x - pad)
-            y1  = max(0, y - pad)
-            x2  = min(w, x + fw + pad)
-            y2  = min(h, y + fh + pad)
+            new_height = y2 - y1
+            width      = x2 - x1
 
-            cropped = img_array[y1:y2, x1:x2]
+            # Expand width to match height, centered — forces a SQUARE
+            # crop so the resize step doesn't distort the face
+            adj_w  = int((new_height - width) / 2)
+            new_x1 = max(0, x1 - adj_w)
+            new_x2 = min(w, x2 + adj_w)
+
+            cropped = img_array[y1:y2, new_x1:new_x2]
             if cropped.size > 0:
                 return Image.fromarray(cropped)
 
-        # No face detected — use full image
-        return img
+        # No face detected — center-crop to square (matches v11's
+        # training fallback), not the old "use the full image" approach
+        side = min(h, w)
+        top  = (h - side) // 2
+        left = (w - side) // 2
+        cropped = img_array[top:top + side, left:left + side]
+        return Image.fromarray(cropped)
 
     except Exception:
         return Image.open(image_path).convert("RGB")
@@ -103,17 +138,21 @@ def _preprocess(img):
     """
     Resize image and return raw RGB pixels for the model.
 
-    NOTE: The exported .tflite graph already includes VGG16's
-    preprocess_input step (RGB->BGR + ImageNet mean subtraction) as
-    part of the model itself — it was traced in from train_model.py's
-    `x = tf.keras.applications.vgg16.preprocess_input(x)` call inside
-    the Keras model definition. Confirmed by inspecting the graph ops
-    (STRIDED_SLICE x3 -> PACK -> ADD right after the input tensor).
+    NOTE: The exported .tflite graph already includes VGG-Face's own
+    preprocessing step as part of the model itself — RGB->BGR conversion,
+    then subtracting VGG-Face's per-channel training means (BGR order):
+        B -= 93.5940, G -= 104.7624, R -= 129.1863
+    This was traced in from train_vggface.py's `vggface_preprocess()`
+    function, applied via a `tf.keras.layers.Lambda` layer inside the
+    Keras model definition — confirmed against deepface's own source
+    (deepface/modules/preprocessing.py), not ImageNet's mean values.
 
     So this function must hand the model raw 0-255 RGB values.
-    Do NOT convert to BGR or subtract the mean here — the model does
+    Do NOT convert to BGR or subtract any mean here — the model does
     that internally, and doing it twice silently corrupts every
-    prediction (this was happening before this fix).
+    prediction (this was happening before this fix — do not reintroduce it
+    when swapping in a future model version; always check what
+    preprocessing THAT version's training script actually baked in).
     """
     img       = img.resize(IMAGE_SIZE, Image.BILINEAR)
     img_array = np.array(img, dtype=np.float32)

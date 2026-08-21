@@ -45,5 +45,14 @@
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
+        <!-- Required so url_launcher's canLaunchUrl()/launchUrl() can see a
+             browser on Android 11+ (API 30+) package-visibility rules —
+             without this, canLaunchUrl silently returns false even with a
+             browser installed and a valid URL, so the feedback button would
+             just do nothing when tapped. -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="https"/>
+        </intent>
     </queries>
 </manifest>

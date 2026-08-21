@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'page_1/page1.dart';
+import 'page_0_splashscreen/splash_screen.dart';
 
 void main() {
   runApp(const GlowApp());

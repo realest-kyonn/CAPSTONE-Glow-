@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../page_6_camera/camera.dart';
+import '../page_4/page4.dart'; // ← changed from camera.dart
 
 // Tutorial / Onboarding Screen — Page 2
 class TutorialScreen extends StatefulWidget {
@@ -19,18 +19,15 @@ class _TutorialScreenState extends State<TutorialScreen>
   void initState() {
     super.initState();
 
-    // Animation plays once when screen opens
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 800),
     );
 
-    // Cards fade in
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOut),
     );
 
-    // Cards slide up from below
     _slideAnimation = Tween<Offset>(
       begin: const Offset(0, 0.3),
       end: Offset.zero,
@@ -52,7 +49,6 @@ class _TutorialScreenState extends State<TutorialScreen>
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    // Limit max width for PC screens
     final double contentWidth = screenWidth > 420 ? 420 : screenWidth;
 
     return Scaffold(
@@ -69,7 +65,6 @@ class _TutorialScreenState extends State<TutorialScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title
                   Text(
                     'Welcome to Glow',
                     style: TextStyle(
@@ -81,7 +76,6 @@ class _TutorialScreenState extends State<TutorialScreen>
 
                   SizedBox(height: screenHeight * 0.008),
 
-                  // Subtitle
                   Text(
                     'Everything you need to know:',
                     style: TextStyle(
@@ -92,19 +86,16 @@ class _TutorialScreenState extends State<TutorialScreen>
 
                   SizedBox(height: screenHeight * 0.015),
 
-                  // Divider
                   const Divider(color: Color(0xFFFF6EB4), thickness: 1),
 
                   SizedBox(height: screenHeight * 0.02),
 
-                  // Animated feature cards
                   FadeTransition(
                     opacity: _fadeAnimation,
                     child: SlideTransition(
                       position: _slideAnimation,
                       child: Column(
                         children: [
-                          // Card 1 — AI Facial Analysis
                           _buildFeatureCard(
                             icon: Icons.face_retouching_natural,
                             title: 'AI Facial Analysis',
@@ -115,7 +106,6 @@ class _TutorialScreenState extends State<TutorialScreen>
 
                           SizedBox(height: screenHeight * 0.015),
 
-                          // Card 2 — Step-by-Step Tutorials
                           _buildFeatureCard(
                             icon: Icons.menu_book_rounded,
                             title: 'Step-by-Step Tutorials',
@@ -126,7 +116,6 @@ class _TutorialScreenState extends State<TutorialScreen>
 
                           SizedBox(height: screenHeight * 0.015),
 
-                          // Card 3 — Privacy Focused
                           _buildFeatureCard(
                             icon: Icons.lock_rounded,
                             title: 'Privacy-Focused',
@@ -141,17 +130,17 @@ class _TutorialScreenState extends State<TutorialScreen>
 
                   const Spacer(),
 
-                  // Get Started button
+                  // Get Started button → navigates to Home Dashboard (Page 4)
                   SizedBox(
                     width: double.infinity,
                     height: contentWidth * 0.14,
                     child: OutlinedButton(
                       onPressed: () {
-                        // TEMP: Navigate directly to Camera Screen for testing
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const CameraScreen(),
+                            builder: (context) => const HomeDashboard(), // ← changed
+                            settings: const RouteSettings(name: '/home'),
                           ),
                         );
                       },
@@ -184,7 +173,6 @@ class _TutorialScreenState extends State<TutorialScreen>
     );
   }
 
-  // Reusable feature card
   Widget _buildFeatureCard({
     required IconData icon,
     required String title,
@@ -201,7 +189,6 @@ class _TutorialScreenState extends State<TutorialScreen>
       ),
       child: Row(
         children: [
-          // Pink icon box
           Container(
             padding: EdgeInsets.all(contentWidth * 0.025),
             decoration: BoxDecoration(
@@ -217,7 +204,6 @@ class _TutorialScreenState extends State<TutorialScreen>
 
           SizedBox(width: contentWidth * 0.04),
 
-          // Card text
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

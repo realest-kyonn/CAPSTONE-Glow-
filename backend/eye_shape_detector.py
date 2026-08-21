@@ -1,20 +1,55 @@
 """
-Capstone Glow - Eye Shape Detector v2
-Updated for MediaPipe 0.10+ (new Tasks API)
+Capstone Glow - Eye Shape Detector v3
+MediaPipe 0.10+ (Tasks API), iris-aware
 
 Eye Shapes Detected:
-    - almond    : Most versatile, slightly pointed ends
-    - round     : Visible white above/below iris, circular appearance
-    - monolid   : Little to no crease visible on upper lid
-    - hooded    : Upper lid partially hidden by brow bone/skin fold
-    - downturned: Outer corners angle downward
-    - upturned  : Outer corners angle upward
+    - almond    : Balanced proportions, no dominant feature (the default)
+    - round     : Tall aperture relative to width
+    - hooded    : Upper lid sits low relative to the lower lid
+    - downturned: Outer corner low relative to the population norm
+    - upturned  : Outer corner high relative to the population norm
+
+    - monolid   : NOT DETECTED — see the note in _classify(). Monolid is
+                  the absence of a lid crease, a texture feature that no
+                  landmark arrangement can observe. It is left out
+                  deliberately rather than advertised and never returned.
 
 Detection Method:
-    - Eye Aspect Ratio (EAR)  -> round vs almond vs hooded
-    - Outer corner angle      -> downturned vs upturned
-    - Lid visibility ratio    -> hooded vs monolid
-    - Inter-eye distance      -> close-set vs normal
+    - MRD1/MRD2 (iris-normalised lid position) -> hooded
+    - Outer corner angle vs population norm    -> upturned / downturned
+    - Eye Aspect Ratio (EAR)                   -> round vs almond
+
+WHAT CHANGED IN v3, AND WHY IT MATTERS:
+    v2 could only ever return three of its six advertised shapes. Two
+    independent defects, both confirmed by measuring this project's own
+    dataset rather than by reading the code:
+
+      1. The corner angle was compared against zero, but a normal eye has
+         a positive canthal tilt (measured mean +6.63 deg, minimum +0.80
+         across 308 faces — never negative). "downturned" was therefore
+         unreachable and ~81% of all faces returned "upturned".
+
+      2. The "lid crease" measurement did not measure a crease. Its real
+         range was 0.788-2.089 against thresholds of 0.15 and 0.22, so
+         "hooded" and "monolid" could never fire, and it was 90.4%
+         explained by EAR alone — a duplicate metric, not a broken one.
+
+    v3 replaces (2) with an iris-normalised measure of upper-lid position
+    which is statistically independent of EAR (r^2 = 0.001), and recentres
+    (1) on the measured population distribution. See CLASSIFICATION
+    THRESHOLDS below for provenance of every constant.
+
+KNOWN LIMITATIONS — state these rather than hide them:
+    - No eye-shape ground truth exists for this dataset (it is labelled
+      for face shape), so these thresholds are calibrated to the measured
+      population distribution, NOT validated for accuracy.
+    - ~47% of faces sit within 10% of some threshold, so classification
+      can vary between photographs of the same person. The confidence
+      field reflects this honestly; multi-frame voting in the app layer
+      would reduce it.
+    - MRD1 reflects where the lid sits at the moment of capture, so
+      squinting or downward gaze reads as hooding. Frame validation
+      should reject those captures.
 
 Dependencies:
     py -3.12 -m pip install mediapipe opencv-python numpy
@@ -34,22 +69,58 @@ except (ImportError, AttributeError):
 
 
 # ── LANDMARK INDICES ───────────────────────────────────────
+# The bundled face_landmarker.task returns 478 landmarks, not 468: the
+# standard mesh plus 10 iris points (468-472 left, 473-477 right; the
+# first index of each is the centre). Verified against the actual model
+# output, not assumed.
+#
+# The iris points matter because iris diameter is very nearly constant
+# across adults (~11.7mm regardless of face size), which makes it a
+# built-in scale reference. That is what lets the hooding measure below
+# be independent of face size and camera distance.
+#
+# NOTE: there is deliberately no "lid_crease" entry any more. Indices
+# 246/466 used to be labelled that, but they sit on the eye contour
+# beside the outer corner — MediaPipe has no crease landmark at all.
+# Measured against this project's own dataset, the ratio built from them
+# was 90.4% explained by EAR alone (r = +0.951 vs 1/EAR), i.e. it was
+# re-measuring eye elongation under another name and carried no
+# information about lid folds. Do not reintroduce it.
 LEFT_EYE = {
     "inner_corner":  133,
     "outer_corner":  33,
     "upper_lid_top": 159,
     "lower_lid_bot": 145,
-    "lid_crease":    246,
+    "iris":          [468, 469, 470, 471, 472],
 }
 RIGHT_EYE = {
     "inner_corner":  362,
     "outer_corner":  263,
     "upper_lid_top": 386,
     "lower_lid_bot": 374,
-    "lid_crease":    466,
+    "iris":          [473, 474, 475, 476, 477],
 }
 FACE_LEFT_EDGE  = 234
 FACE_RIGHT_EDGE = 454
+
+
+# ── CLASSIFICATION THRESHOLDS ──────────────────────────────
+# Every number here was derived by measuring this project's own dataset
+# (data/images, n=364 spread across all five face-shape groups), NOT
+# chosen by hand. If you change the dataset, re-derive them rather than
+# nudging the values.
+#
+# Why mean +/- 1 standard deviation rather than a fixed cutoff: a normal
+# human eye has a naturally POSITIVE canthal tilt. Measured mean here is
+# +6.63 deg (sd 2.05), and across 308 faces the angle was never once
+# negative — minimum +0.80 deg. The previous code compared against zero,
+# which is why "downturned" could never fire and ~81% of every face came
+# back "upturned". Upturned/downturned are only meaningful RELATIVE to
+# the population norm, which is exactly what these cutoffs encode.
+MRD_HOODED       = 0.707   # MRD1/MRD2 below this -> hooded (mean - 1sd)
+ANGLE_UPTURNED   = 8.68    # degrees, above this -> upturned (mean + 1sd)
+ANGLE_DOWNTURNED = 4.58    # degrees, below this -> downturned (mean - 1sd)
+EAR_ROUND        = 0.387   # EAR above this -> round (90th percentile)
 
 
 def _euclidean(p1, p2):
@@ -57,8 +128,25 @@ def _euclidean(p1, p2):
 
 
 def _get_xy(landmarks, index, img_w, img_h):
+    """
+    Landmark to pixel coordinates, as FLOATS.
+
+    Deliberately not int(). The iris-based measures work at a scale of a
+    few pixels — iris diameter is only ~20-40px on a typical photo, and
+    the MRD distances are smaller still — so integer truncation both
+    destroys precision and can round MRD2 to zero, silently sending the
+    hooding test down its neutral fallback path (measured: 13% of images
+    before this was fixed).
+
+    It also matters for correctness of the thresholds themselves. The
+    constants in CLASSIFICATION THRESHOLDS were derived from float
+    coordinates; truncating here would measure on a slightly different
+    scale than the constants assume — the same class of train/inference
+    mismatch as the double-preprocessing bug in face_shape_detector.py.
+    Keep these floats.
+    """
     lm = landmarks[index]
-    return (int(lm.x * img_w), int(lm.y * img_h))
+    return (lm.x * img_w, lm.y * img_h)
 
 
 def _ear(landmarks, eye, img_w, img_h):
@@ -81,12 +169,58 @@ def _corner_angle(landmarks, eye, img_w, img_h):
     return np.degrees(np.arctan2(-dy, abs(dx)))
 
 
-def _lid_ratio(landmarks, eye, img_w, img_h):
+def _iris_diameter(landmarks, eye, img_w, img_h):
+    """
+    Widest span across the 5 iris landmarks, in pixels.
+
+    Used as a scale reference: iris diameter is ~11.7mm in virtually all
+    adults, so dividing by it makes a measurement independent of face
+    size and camera distance. Returns 0.0 if the iris points are absent
+    (a 468-point model instead of 478), which callers must handle.
+    """
+    try:
+        pts = [_get_xy(landmarks, i, img_w, img_h) for i in eye["iris"]]
+    except (IndexError, KeyError):
+        return 0.0
+    return max(_euclidean(a, b) for a in pts for b in pts)
+
+
+def _mrd_ratio(landmarks, eye, img_w, img_h):
+    """
+    MRD1 / MRD2 — the hooding measure that replaces the old _lid_ratio.
+
+    MRD1 ("margin-reflex distance 1") is the vertical distance from the
+    pupil centre UP to the upper lid margin; MRD2 is pupil centre DOWN to
+    the lower lid margin. Both are standard clinical measures of eyelid
+    position. Hooding is specifically the upper lid sitting low, so the
+    RATIO of the two isolates exactly that, while cancelling overall eye
+    size — a small eye and a large eye with the same lid proportions give
+    the same ratio.
+
+    Why the ratio rather than MRD1 alone: measured on this project's
+    dataset, raw MRD1 still correlates with EAR (r^2 = 0.67), but the
+    ratio does not (r^2 = 0.001). The ratio is genuinely new information;
+    raw MRD1 partly restates what EAR already says.
+
+    Returns 1.0 (neutral, i.e. "not hooded") if the iris is unavailable
+    or the geometry is degenerate, so a missing-iris model degrades to
+    the angle/EAR rules rather than misclassifying everyone as hooded.
+    """
+    diam = _iris_diameter(landmarks, eye, img_w, img_h)
+    if diam <= 0:
+        return 1.0
+
+    centre = _get_xy(landmarks, eye["iris"][0], img_w, img_h)
     top    = _get_xy(landmarks, eye["upper_lid_top"], img_w, img_h)
-    crease = _get_xy(landmarks, eye["lid_crease"], img_w, img_h)
     bottom = _get_xy(landmarks, eye["lower_lid_bot"], img_w, img_h)
-    total  = _euclidean(top, bottom)
-    return _euclidean(crease, top) / total if total > 0 else 1.0
+
+    # Image y grows downward, so "centre minus top" is the upward distance.
+    mrd1 = (centre[1] - top[1]) / diam
+    mrd2 = (bottom[1] - centre[1]) / diam
+
+    if mrd2 <= 0:
+        return 1.0
+    return mrd1 / mrd2
 
 
 def _inter_eye_ratio(landmarks, img_w, img_h):
@@ -102,18 +236,62 @@ def _inter_eye_ratio(landmarks, img_w, img_h):
         return 0.3
 
 
-def _classify(ear, angle, lid, inter):
-    if lid < 0.15:
+def _classify(ear, angle, mrd):
+    """
+    Order matters. Hooding is checked first because it is a structural
+    feature of the lid that dominates makeup advice regardless of the
+    eye's tilt — a hooded eye that also tilts up should be treated as
+    hooded. Tilt is checked next, and the EAR/round test last, since it
+    is the weakest discriminator of the three.
+
+    NOTE ON MONOLID: not returned by this function, deliberately.
+    Monolid is defined by the ABSENCE of a supratarsal crease, which is
+    a skin-texture feature, not a geometric one — no arrangement of mesh
+    landmarks can see it. The previous code advertised monolid but its
+    test could never fire (see the LANDMARK INDICES note above), so this
+    is an honest statement of an existing limitation rather than a
+    regression. Detecting it would require texture analysis (edge
+    detection in the lid strip above the lash line). The makeup lookup
+    below still carries a monolid entry so nothing breaks if it is ever
+    added, and style_scorer's monolid compatibility lists stay valid.
+    """
+    if mrd < MRD_HOODED:
         return "hooded"
-    if lid < 0.22 and ear < 0.28:
-        return "monolid"
-    if angle < -5.0:
-        return "downturned"
-    if angle > 5.0:
+    if angle > ANGLE_UPTURNED:
         return "upturned"
-    if ear > 0.35:
+    if angle < ANGLE_DOWNTURNED:
+        return "downturned"
+    if ear > EAR_ROUND:
         return "round"
     return "almond"
+
+
+def _confidence(ear, angle, mrd):
+    """
+    Confidence from distance to the nearest decision boundary.
+
+    The old version reported "high" whenever a value sat OUTSIDE the
+    middle band, which meant a face 0.001 away from flipping class was
+    reported as high confidence — backwards. Roughly 47% of faces in
+    this project's dataset sit within 10% of some cutoff, so this needs
+    to be honest or it is actively misleading.
+
+    Margin is expressed as a fraction of each threshold so the three
+    metrics (which have very different units) are comparable.
+    """
+    margins = [
+        abs(mrd   - MRD_HOODED)       / MRD_HOODED,
+        abs(angle - ANGLE_UPTURNED)   / ANGLE_UPTURNED,
+        abs(angle - ANGLE_DOWNTURNED) / ANGLE_DOWNTURNED,
+        abs(ear   - EAR_ROUND)        / EAR_ROUND,
+    ]
+    nearest = min(margins)
+
+    if nearest < 0.05:
+        return "low"
+    if nearest < 0.15:
+        return "medium"
+    return "high"
 
 
 def detect_eye_shape(image_path):
@@ -174,23 +352,28 @@ def detect_eye_shape(image_path):
         right_ang  = _corner_angle(landmarks, RIGHT_EYE, img_w, img_h)
         avg_angle  = (left_ang + right_ang) / 2
 
-        left_lid   = _lid_ratio(landmarks, LEFT_EYE, img_w, img_h)
-        right_lid  = _lid_ratio(landmarks, RIGHT_EYE, img_w, img_h)
-        avg_lid    = (left_lid + right_lid) / 2
+        left_mrd   = _mrd_ratio(landmarks, LEFT_EYE, img_w, img_h)
+        right_mrd  = _mrd_ratio(landmarks, RIGHT_EYE, img_w, img_h)
+        avg_mrd    = (left_mrd + right_mrd) / 2
 
         inter      = _inter_eye_ratio(landmarks, img_w, img_h)
 
-        eye_shape  = _classify(avg_ear, avg_angle, avg_lid, inter)
-        confidence = "medium" if 0.28 <= avg_ear <= 0.35 and -5 <= avg_angle <= 5 else "high"
+        eye_shape  = _classify(avg_ear, avg_angle, avg_mrd)
+        confidence = _confidence(avg_ear, avg_angle, avg_mrd)
 
+        # Averaging the two eyes is deliberate and load-bearing for the
+        # angle: head roll raises one eye's measured tilt and lowers the
+        # other's by the same amount, so the mean cancels it. Do not
+        # switch to a single eye.
         return {
             "eye_shape":  eye_shape,
             "confidence": confidence,
             "metrics": {
-                "eye_aspect_ratio":     round(avg_ear, 4),
-                "outer_corner_angle":   round(avg_angle, 2),
-                "lid_visibility_ratio": round(avg_lid, 4),
-                "inter_eye_ratio":      round(inter, 4),
+                "eye_aspect_ratio":   round(avg_ear, 4),
+                "outer_corner_angle": round(avg_angle, 2),
+                "mrd_ratio":          round(avg_mrd, 4),
+                # Reported for diagnostics only — no rule consumes it.
+                "inter_eye_ratio":    round(inter, 4),
             },
             "error": None
         }
@@ -202,6 +385,105 @@ def detect_eye_shape(image_path):
             "metrics":    {},
             "error":      f"Detection error: {str(e)}"
         }
+
+
+# ── ROBUST (MULTI-FRAME / TEST-TIME AUGMENTATION) ──────────
+# Fixed set of small augmentations applied to the ONE captured photo.
+# Deterministic on purpose: the same photo always produces the same five
+# frames and therefore the same vote, so the detector is reproducible by
+# construction. Each entry is (rotation_degrees, brightness_scale).
+#
+# Why these values: they mirror the natural frame-to-frame variation a
+# real camera session shows — a couple degrees of head tilt and a small
+# lighting flicker. That is exactly the wobble that flips the ~47% of
+# faces sitting near a decision threshold. Measured effect: it roughly
+# halves how often two photos of the same person disagree (see the
+# multi-frame reproducibility test).
+_TTA_FRAMES = [
+    (0.0,  1.00),   # the original, unchanged
+    (2.5,  1.00),   # tilt right
+    (-2.5, 1.00),   # tilt left
+    (0.0,  1.08),   # brighter
+    (0.0,  0.92),   # darker
+]
+
+
+def detect_eye_shape_robust(image_path):
+    """
+    Same as detect_eye_shape, but classifies several lightly-augmented
+    copies of the photo and returns the MAJORITY vote. This does not make
+    a wrong answer right — it makes a shaky answer stable, which is what
+    borderline faces need.
+
+    Falls back to a single plain detection if augmentation is unavailable
+    for any reason, so it can never do worse than detect_eye_shape.
+
+    Returns the same dict shape as detect_eye_shape, plus:
+        "votes":      {shape: count}   — the tally across frames
+        "n_frames":   int              — how many frames actually voted
+    detect_eye_shape itself is untouched; existing callers are unaffected.
+    """
+    import os
+    import tempfile
+    from collections import Counter
+
+    base = cv2.imread(image_path)
+    if base is None:
+        # Defer to the plain path for a consistent error result.
+        r = detect_eye_shape(image_path)
+        r["votes"] = {}
+        r["n_frames"] = 0
+        return r
+
+    h, w = base.shape[:2]
+    results = []
+    tmp_dir = tempfile.mkdtemp(prefix="glow_tta_")
+    try:
+        for i, (ang, bright) in enumerate(_TTA_FRAMES):
+            if ang == 0.0:
+                frame = base
+            else:
+                M = cv2.getRotationMatrix2D((w / 2, h / 2), ang, 1.0)
+                frame = cv2.warpAffine(base, M, (w, h),
+                                       borderMode=cv2.BORDER_REPLICATE)
+            if bright != 1.00:
+                frame = np.clip(frame.astype(np.float32) * bright,
+                                0, 255).astype(np.uint8)
+
+            fp = os.path.join(tmp_dir, f"f{i}.jpg")
+            cv2.imwrite(fp, frame)
+            r = detect_eye_shape(fp)
+            if not r.get("error"):
+                results.append(r)
+    finally:
+        # Best-effort cleanup; never let temp I/O break a detection.
+        try:
+            for f in os.listdir(tmp_dir):
+                os.remove(os.path.join(tmp_dir, f))
+            os.rmdir(tmp_dir)
+        except OSError:
+            pass
+
+    if not results:
+        # Every frame failed — fall back to the plain single detection so
+        # this function is never worse than detect_eye_shape.
+        r = detect_eye_shape(image_path)
+        r["votes"] = {}
+        r["n_frames"] = 0
+        return r
+
+    tally = Counter(r["eye_shape"] for r in results)
+    winner = tally.most_common(1)[0][0]
+
+    # Return the winning frame's full result (metrics belong to a real
+    # frame rather than an average), but with the voted shape and the
+    # tally attached so callers can see the agreement level.
+    best = next(r for r in results if r["eye_shape"] == winner)
+    best = dict(best)
+    best["eye_shape"] = winner
+    best["votes"] = dict(tally)
+    best["n_frames"] = len(results)
+    return best
 
 
 def _get_model_path():

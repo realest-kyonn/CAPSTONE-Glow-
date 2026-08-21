@@ -5,3 +5,5 @@
 # Xcode-related
 **/dgph
 **/xcuserdata/
+
+backend/models/*_keras.keras
