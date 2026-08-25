@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Glow — Annotator Feedback Form</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1a1a1a;
+    font-size: 11pt;
+    line-height: 1.45;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  h1 { font-size: 20pt; margin: 0 0 4px; }
+  h2 { font-size: 14pt; margin: 22px 0 6px; border-bottom: 1.5px solid #c2185b; padding-bottom: 3px; color: #c2185b; }
+  h3 { font-size: 12pt; margin: 16px 0 6px; }
+  .subtitle { font-size: 11pt; color: #555; margin-bottom: 18px; }
+  .cover { page-break-after: always; }
+  .box {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    background: #fafafa;
+  }
+  .box p { margin: 6px 0; }
+  ol, ul { margin: 6px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  table.legend { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 10.5pt; }
+  table.legend th, table.legend td { border: 1px solid #ccc; padding: 5px 8px; text-align: left; }
+  table.legend th { background: #f6d9e4; }
+
+  .sheet { page-break-before: always; padding-top: 4px; }
+  .sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #c2185b;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+  .sheet-header .pid { font-size: 15pt; font-weight: bold; color: #c2185b; }
+  .meta-row { display: flex; gap: 24px; margin-bottom: 14px; font-size: 10.5pt; }
+  .meta-row .field { flex: 1; }
+  .line {
+    display: inline-block;
+    border-bottom: 1px solid #888;
+    min-width: 100%;
+    height: 1.1em;
+  }
+  .step {
+    border: 1px solid #ddd;
+    border-left: 4px solid #c2185b;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 10px 0;
+  }
+  .step-title { font-weight: bold; font-size: 11.5pt; margin-bottom: 6px; }
+  .step-sub { font-size: 9.5pt; color: #666; font-weight: normal; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 6px 0; align-items: baseline; }
+  .attr { min-width: 200px; margin-bottom: 8px; }
+  .attr-label { font-weight: bold; font-size: 10pt; display: block; margin-bottom: 3px; }
+  .opts { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 10pt; }
+  .opt { white-space: nowrap; }
+  .opt .cb { display: inline-block; width: 11px; height: 11px; border: 1px solid #333; margin-right: 4px; vertical-align: middle; }
+  .writeline { border-bottom: 1px solid #888; display: inline-block; min-width: 60%; margin-left: 6px; }
+  .fullwrite { border-bottom: 1px solid #888; display: block; height: 1.3em; margin-top: 4px; }
+  .fullwrite.tall { height: 2.6em; border-bottom: none; }
+  .fullwrite.tall::after { content: ""; }
+  .likert-table { width: 100%; border-collapse: collapse; font-size: 10pt; margin-top: 6px; }
+  .likert-table th, .likert-table td { border: 1px solid #ccc; padding: 5px 6px; text-align: center; }
+  .likert-table th { background: #f6d9e4; font-weight: normal; }
+  .likert-table td:first-child { text-align: left; width: 46%; }
+  .likert-table .cb { display: inline-block; width: 11px; height: 11px; border: 1px solid #333; }
+  .notes-box { border: 1px solid #888; border-radius: 4px; height: 3.4em; margin-top: 4px; }
+  .agree-table { width: 100%; border-collapse: collapse; font-size: 10pt; margin-top: 4px; }
+  .agree-table th, .agree-table td { border: 1px solid #ccc; padding: 5px 6px; }
+  .agree-table th { background: #f6d9e4; font-weight: normal; text-align: center; }
+  .agree-table td:first-child { font-weight: bold; }
+  .agree-table td.match-cell { text-align: center; white-space: nowrap; }
+  .agree-table td.note-cell .line { min-width: 90%; }
+  .footer-note { font-size: 9pt; color: #888; margin-top: 20px; text-align: center; }
+  .summary-page { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER / INSTRUCTIONS ============ -->
+<div class="cover">
+  <h1>Glow — AI Detection &amp; Recommendation Accuracy Test</h1>
+  <div class="subtitle">Annotator Feedback Form — for completion by the participating Makeup Artist</div>
+
+  <div class="box">
+    <p><strong>Annotator name:</strong> <span class="line"></span></p>
+    <p><strong>Credentials / years of experience:</strong> <span class="line"></span></p>
+    <p><strong>Testing period:</strong> <span class="line"></span></p>
+  </div>
+
+  <h2>1. Purpose of this test</h2>
+  <p>
+    The Glow app uses an on-device AI model to analyze a user's selfie and detect their
+    <strong>face shape</strong>, <strong>eye shape</strong>, <strong>skin tone</strong>, and
+    <strong>undertone</strong>, then recommends a makeup look based on those results. This test asks a
+    professional makeup artist to independently evaluate the same participants, so we can measure:
+  </p>
+  <ol>
+    <li><strong>Detection accuracy</strong> — do the AI's face/eye-shape and skin-tone/undertone readings
+      match what a trained expert would conclude by eye?</li>
+    <li><strong>Recommendation appropriateness</strong> — does the makeup look the app suggests actually
+      suit that person, in the professional judgment of the makeup artist?</li>
+  </ol>
+  <p>
+    This test is being run against the <strong>ISO/IEC 25010</strong> software quality model, under the
+    <strong>Functional Suitability</strong> characteristic — specifically its <em>Functional Correctness</em>
+    (are the results right?) and <em>Functional Appropriateness</em> (do the results actually help the user
+    accomplish their goal?) sub-characteristics.
+  </p>
+
+  <h2>2. How to fill out each sheet</h2>
+  <p>There is one score sheet per participant (20 total). For each participant, please follow these steps
+    <strong>in order</strong> — this order matters, so that your judgment is recorded before you see the
+    app's answer, not influenced by it:</p>
+  <ol>
+    <li>The participant completes the in-app face scan.</li>
+    <li><strong>Before the app's result is shown to you</strong>, examine the participant in person and
+      fill in <em>Step 1</em> on the sheet: your own independent read of their face shape, eye shape, skin
+      tone, and undertone, plus the makeup look you would personally recommend for them.</li>
+    <li>Now reveal the app's result screen and copy its output into <em>Step 2</em>.</li>
+    <li>Compare your answers to the app's in <em>Step 3</em>, marking each attribute Match / Partial /
+      No Match, with a short note on anything that surprised you.</li>
+    <li>Look at the makeup look the app recommended and rate it in <em>Step 4</em> — would it actually
+      suit this person, in your professional opinion?</li>
+  </ol>
+
+  <h2>3. Rating legend</h2>
+  <table class="legend">
+    <tr><th>Match level</th><th>Meaning</th></tr>
+    <tr><td><strong>Match</strong></td><td>Your independent read and the app's result are the same category.</td></tr>
+    <tr><td><strong>Partial</strong></td><td>Close / borderline / adjacent category (e.g. you said Oval, app said Long).</td></tr>
+    <tr><td><strong>No Match</strong></td><td>Clearly different categories.</td></tr>
+  </table>
+  <table class="legend">
+    <tr><th>Suitability score</th><th>Meaning</th></tr>
+    <tr><td>1</td><td>Strongly disagree / not suitable at all</td></tr>
+    <tr><td>2</td><td>Disagree / mostly not suitable</td></tr>
+    <tr><td>3</td><td>Neutral / acceptable but not ideal</td></tr>
+    <tr><td>4</td><td>Agree / suitable</td></tr>
+    <tr><td>5</td><td>Strongly agree / very suitable, would use as-is on a client</td></tr>
+  </table>
+  <p style="font-size:10pt; color:#666;">
+    <strong>Note on lighting:</strong> skin tone and undertone perception change with lighting. Please note
+    the lighting condition for each session, and try to keep it consistent across participants where possible.
+  </p>
+</div>
+
+<!-- ============ PARTICIPANT SHEETS ============ -->
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #1</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #2</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #3</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #4</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #5</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #6</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #7</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #8</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #9</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #10</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #11</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #12</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #13</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #14</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #15</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #16</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #17</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #18</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #19</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="sheet">
+  <div class="sheet-header">
+    <div><strong>Score Sheet</strong> &mdash; Glow AI Detection &amp; Recommendation Accuracy Test</div>
+    <div class="pid">Participant #20</div>
+  </div>
+  <div class="meta-row">
+    <div class="field"><strong>Date:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Time:</strong> <span class="line"></span></div>
+    <div class="field"><strong>Lighting condition:</strong> <span class="line"></span></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1 &mdash; Your independent assessment <span class="step-sub">(fill in BEFORE viewing the app's result)</span></div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Face shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Oval</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Square</span>
+          <span class="opt"><span class="cb"></span>Heart</span>
+          <span class="opt"><span class="cb"></span>Long</span>
+        </div>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Eye shape</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Almond</span>
+          <span class="opt"><span class="cb"></span>Round</span>
+          <span class="opt"><span class="cb"></span>Monolid</span>
+          <span class="opt"><span class="cb"></span>Hooded</span>
+          <span class="opt"><span class="cb"></span>Downturned</span>
+          <span class="opt"><span class="cb"></span>Upturned</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="attr">
+        <span class="attr-label">Skin tone (Monk scale, 1 = lightest &ndash; 10 = deepest)</span>
+        <span class="writeline" style="min-width:80px;"></span>
+      </div>
+      <div class="attr">
+        <span class="attr-label">Undertone</span>
+        <div class="opts">
+          <span class="opt"><span class="cb"></span>Warm</span>
+          <span class="opt"><span class="cb"></span>Neutral</span>
+          <span class="opt"><span class="cb"></span>Cool</span>
+        </div>
+      </div>
+    </div>
+    <span class="attr-label">Makeup look you would personally recommend for this person</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2 &mdash; App's AI result <span class="step-sub">(copy in AFTER revealing)</span></div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Face shape</span><span class="writeline"></span></div>
+      <div class="attr"><span class="attr-label">Eye shape</span><span class="writeline"></span></div>
+    </div>
+    <div class="row">
+      <div class="attr"><span class="attr-label">Skin tone (Monk 1&ndash;10)</span><span class="writeline" style="min-width:80px;"></span></div>
+      <div class="attr"><span class="attr-label">Undertone</span><span class="writeline"></span></div>
+    </div>
+    <span class="attr-label">App's recommended makeup look</span>
+    <div class="fullwrite tall"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3 &mdash; Agreement check</div>
+    <table class="agree-table">
+      <tr><th style="text-align:left;">Attribute</th><th>Match</th><th>Partial</th><th>No Match</th><th>Notes</th></tr>
+      <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+      <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="note-cell"><span class="line"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4 &mdash; Recommendation suitability <span class="step-sub">(rate the app's suggested look &mdash; 1&ndash;5, see legend on cover page)</span></div>
+    <table class="likert-table">
+      <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Flatters this person's face shape</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>Suits this person's skin tone / undertone</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+      <tr><td>I would use this on a real client as-is</td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td></tr>
+    </table>
+    <span class="attr-label" style="margin-top:8px; display:block;">What would you have recommended instead, if different?</span>
+    <div class="fullwrite tall"></div>
+    <span class="attr-label" style="margin-top:8px; display:block;">Additional comments</span>
+    <div class="notes-box"></div>
+  </div>
+</div>
+<div class="summary-page">
+  <h2>Overall Summary &amp; Observations</h2>
+  <p style="font-size:10pt; color:#666;">Please complete this page after all 20 participant sessions.</p>
+
+  <h3>Rough tally (optional &mdash; a formal count will be done from the sheets, this is just your impression)</h3>
+  <table class="agree-table">
+    <tr><th style="text-align:left;">Attribute</th><th>Mostly matched</th><th>Mixed</th><th>Mostly mismatched</th></tr>
+    <tr><td>Face shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td></tr>
+    <tr><td>Eye shape</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td></tr>
+    <tr><td>Skin tone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td></tr>
+    <tr><td>Undertone</td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td><td class="match-cell"><span class="cb"></span></td></tr>
+  </table>
+
+  <h3>Did any pattern stand out?</h3>
+  <p style="font-size:10pt; color:#666;">e.g. a specific face shape the app kept confusing, a skin tone range it struggled with, lighting conditions that seemed to affect results, etc.</p>
+  <div class="notes-box" style="height:5em;"></div>
+
+  <h3>Overall, how confident are you in the app's face/skin analysis for professional use?</h3>
+  <div class="opts" style="font-size:11pt;">
+    <span class="opt"><span class="cb"></span>Very confident</span>
+    <span class="opt"><span class="cb"></span>Somewhat confident</span>
+    <span class="opt"><span class="cb"></span>Neutral</span>
+    <span class="opt"><span class="cb"></span>Somewhat doubtful</span>
+    <span class="opt"><span class="cb"></span>Not confident</span>
+  </div>
+
+  <h3>Any other feedback for the development team</h3>
+  <div class="notes-box" style="height:6em;"></div>
+
+  <p style="margin-top:24px;"><strong>Annotator signature:</strong> <span class="line" style="min-width:60%;"></span> &nbsp;&nbsp; <strong>Date:</strong> <span class="line" style="min-width:20%;"></span></p>
+
+  <p class="footer-note">Glow &mdash; AI Detection &amp; Recommendation Accuracy Test &middot; Annotator Feedback Form</p>
+</div>
+</body>
+</html>
