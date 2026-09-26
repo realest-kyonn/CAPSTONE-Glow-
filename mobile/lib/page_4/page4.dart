@@ -3,6 +3,7 @@ import '../page_5/page5.dart';
 import '../page_14_favorites/favorites.dart';
 import '../page_about/about_screen.dart';
 import '../page_settings/settings_screen.dart';
+import '../page_skin_quiz/bare_face_tutorial_screen.dart';
 
 class HomeDashboard extends StatelessWidget {
   const HomeDashboard({super.key});
@@ -69,6 +70,8 @@ class HomeDashboard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         _buildAnalysisCard(context, contentWidth, screenHeight),
+                        SizedBox(height: screenHeight * 0.02),
+                        _buildSkinQuizCard(context, contentWidth, screenHeight),
                         SizedBox(height: screenHeight * 0.03),
                         Text(
                           'How It Works',
@@ -237,6 +240,98 @@ class HomeDashboard extends StatelessWidget {
                 SizedBox(height: screenHeight * 0.007),
                 Text(
                   'Your photo is never shared',
+                  style: TextStyle(
+                    fontSize: contentWidth * 0.026,
+                    color: Colors.black38,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSkinQuizCard(
+      BuildContext context, double contentWidth, double screenHeight) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(contentWidth * 0.05),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF0F6),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.pink.withValues(alpha: 0.08),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: contentWidth * 0.3,
+            height: contentWidth * 0.3,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(
+              Icons.spa_rounded,
+              size: contentWidth * 0.16,
+              color: const Color(0xFFFFB6D9),
+            ),
+          ),
+          SizedBox(width: contentWidth * 0.04),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'What\'s your skin type?',
+                  style: TextStyle(
+                    fontSize: contentWidth * 0.04,
+                    fontStyle: FontStyle.italic,
+                    color: const Color(0xFFFF6EB4),
+                    fontWeight: FontWeight.w600,
+                    height: 1.3,
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.015),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BareFaceTutorialScreen(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black87,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: contentWidth * 0.02),
+                    ),
+                    child: Text(
+                      'Try this test',
+                      style: TextStyle(
+                        fontSize: contentWidth * 0.034,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.007),
+                Text(
+                  'A quick one-question skin type check',
                   style: TextStyle(
                     fontSize: contentWidth * 0.026,
                     color: Colors.black38,

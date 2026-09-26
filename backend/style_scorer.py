@@ -154,7 +154,32 @@ def score_styles(undertone, face_shape, eye_shape):
     # capped at 6 across 15 styles, so ties for 3rd place are common; without
     # an explicit tie-break Python's stable sort and Dart's unstable sort can
     # return a DIFFERENT 3rd recommendation for the same input.
-    sorted_styles = sorted(scores.items(), key=lambda x: (-x[1], x[0]))
+    # Tie-break by SPECIFICITY, then alphabetically.
+    #
+    # Scores are integers capped at 6 across 15 styles, so ties are common —
+    # for some feature combinations eight styles tie for third place. Breaking
+    # those alphabetically alone is deterministic (which is why it was added:
+    # Python's stable sort and Dart's unstable sort otherwise disagreed) but it
+    # systematically favours whatever style sits earliest in the alphabet, so
+    # the same style won nearly every tie regardless of the user's features.
+    #
+    # Specificity fixes that on a principle: a style whose compatibility lists
+    # are NARROWER was designed for a narrower set of faces, so when two styles
+    # match equally well the more specialised one is the better recommendation.
+    # A style accepting every undertone and six eye shapes is generic; one
+    # accepting two undertones and two face shapes is a targeted match.
+    #
+    # Alphabetical order remains the final tie-break so the result stays
+    # deterministic and identical across Python and Dart.
+    def _specificity(style_key):
+        return (len(FACE_SHAPE_SCORES.get(style_key, []))
+                + len(EYE_SHAPE_SCORES.get(style_key, []))
+                + len(UNDERTONE_SCORES.get(style_key, [])))
+
+    sorted_styles = sorted(
+        scores.items(),
+        key=lambda x: (-x[1], _specificity(x[0]), x[0])
+    )
 
     # Return top 3
     top_3 = []

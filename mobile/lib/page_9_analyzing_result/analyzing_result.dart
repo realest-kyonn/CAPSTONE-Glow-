@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'retakephoto.dart';
+import 'skin_tone_adjust.dart';
+import '../backend/style_scorer.dart';
 import '../page_10_recommendation_explanation/recommendation_result.dart';
 import '../widgets/analysis_card.dart';
 
@@ -32,16 +34,38 @@ import '../widgets/analysis_card.dart';
 // instead, since that's the real numeric detail the pipeline provides.
 // ─────────────────────────────────────────────────────────────
 
-class AnalyzingResultScreen extends StatelessWidget {
+class AnalyzingResultScreen extends StatefulWidget {
   // BACKEND TEAM: Pass real results from Page 8 here
   final Map<String, dynamic>? analysisResults;
 
   const AnalyzingResultScreen({super.key, this.analysisResults});
 
+  @override
+  State<AnalyzingResultScreen> createState() => _AnalyzingResultScreenState();
+}
+
+class _AnalyzingResultScreenState extends State<AnalyzingResultScreen> {
+  // User corrections to the detected skin tone, null until they change one.
+  //
+  // This exists because skin-depth estimation was MEASURED to perform at
+  // chance level against expert labels (13.9% vs MST-E, reading 1-2 tones too
+  // dark) — uncontrolled lighting makes it unreliable. Rather than present a
+  // number we know is wrong, we show it and let the user correct it against
+  // the official Monk swatches, which is what that scale is designed for.
+  String? _undertoneOverride;
+  int? _monkOverride;
+
+  // Styles re-scored after an undertone change. Null means "use what the
+  // pipeline produced". Only undertone triggers this: monk scale feeds the
+  // shade lookup only, while undertone is also worth 1 point in scoreStyles.
+  List<Map<String, String>>? _restyled;
+
+  Map<String, dynamic>? get analysisResults => widget.analysisResults;
+
   // ── DUMMY DATA — Replace with real backend results ──
 
   // BACKEND: Get this from skin_tone_detector.py → undertone classification
-  String get _skinTone => analysisResults?['skinTone'] ?? 'Warm Medium';
+  String get _skinTone => _undertoneOverride ?? analysisResults?['skinTone'] ?? 'Warm Medium';
 
   // BACKEND: Get this from face_shape_model.tflite → shape classification
   String get _faceShape => analysisResults?['faceShape'] ?? 'Oval';
@@ -51,15 +75,79 @@ class AnalyzingResultScreen extends StatelessWidget {
 
   // BACKEND: Same category as skinTone (see note at top of file) — the
   // pipeline has no separate "undertone" concept, so this mirrors it.
-  String get _undertone => analysisResults?['undertone'] ??
+  String get _undertone => _undertoneOverride ??
+      analysisResults?['undertone'] ??
       analysisResults?['skinTone'] ??
       'Golden Warm';
 
   // BACKEND: Get this from skin_tone_detector.py → Monk Scale (1-10)
-  int? get _monkScale => analysisResults?['monkScale'] as int?;
+  int? get _monkScale =>
+      _monkOverride ?? analysisResults?['monkScale'] as int?;
+
+  /// True when the user has corrected either value — drives the small
+  /// "adjusted by you" badge so the displayed result is never mistaken for
+  /// a pure detector output.
+  bool get _wasAdjusted => _undertoneOverride != null || _monkOverride != null;
+
+  /// Opens the correction screen and applies whatever comes back.
+  ///
+  /// Depth and undertone have different consequences, which is why they are
+  /// handled separately here:
+  ///   - monk scale feeds ONLY the shade lookup, so changing it needs no
+  ///     re-scoring; the same three styles simply resolve different shades.
+  ///   - undertone is ALSO worth 1 point in scoreStyles(), so changing it can
+  ///     change which styles are recommended — the top 3 are recomputed.
+  Future<void> _openAdjustSkinTone() async {
+    final result = await Navigator.push<SkinToneAdjustment>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => SkinToneAdjustScreen(
+          detectedMonk: _monkScale ?? 5,
+          detectedUndertone: _undertone,
+        ),
+      ),
+    );
+    if (result == null || !mounted) return;
+
+    setState(() {
+      if (result.monkChanged) _monkOverride = result.monkScale;
+
+      if (result.undertoneChanged) {
+        _undertoneOverride = result.undertone;
+        // Re-score against the corrected undertone, keeping the detected
+        // face and eye shapes. Mapped into the same {name, subtitle,
+        // description, matchPct, styleKey} shape the cards already expect.
+        final scored = scoreStyles(
+          undertone: result.undertone,
+          faceShape: _faceShape,
+          eyeShape: _eyeShape,
+        );
+        _restyled = scored
+            .map((s) => {
+                  'styleKey': s.styleKey,
+                  'name': s.styleName,
+                  'subtitle': s.description,
+                  'description': s.description,
+                  'matchPct': s.matchPct.toString(),
+                })
+            .toList();
+      }
+    });
+
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(result.undertoneChanged
+            ? 'Updated — your recommendations have been refreshed.'
+            : 'Skin tone updated.'),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
 
   // BACKEND: Get top 3 styles from style_scorer.py based on face+skin results
   List<Map<String, String>> get _recommendedStyles =>
+      _restyled ??
       (analysisResults?['recommendedStyles'] as List<Map<String, String>>?) ??
       [
         {
@@ -114,14 +202,67 @@ class AnalyzingResultScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // ── FACE ANALYSIS SECTION ──
-                        Text(
-                          'FACE ANALYSIS',
-                          style: TextStyle(
-                            fontSize: contentWidth * 0.032,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xFFFF6EB4),
-                            letterSpacing: 1.5,
-                          ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'FACE ANALYSIS',
+                              style: TextStyle(
+                                fontSize: contentWidth * 0.032,
+                                fontWeight: FontWeight.bold,
+                                color: const Color(0xFFFF6EB4),
+                                letterSpacing: 1.5,
+                              ),
+                            ),
+                            if (_wasAdjusted) ...[
+                              SizedBox(width: contentWidth * 0.02),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 7, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFFF6EB4)
+                                      .withValues(alpha: 0.12),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Text(
+                                  'adjusted by you',
+                                  style: TextStyle(
+                                    fontSize: contentWidth * 0.024,
+                                    color: const Color(0xFFFF6EB4),
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            const Spacer(),
+                            // Lets the user correct the skin tone. Present
+                            // because depth estimation is unreliable under
+                            // uncontrolled lighting — see skin_tone_adjust.
+                            InkWell(
+                              onTap: _openAdjustSkinTone,
+                              borderRadius: BorderRadius.circular(20),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.tune,
+                                        size: contentWidth * 0.038,
+                                        color: const Color(0xFFFF6EB4)),
+                                    SizedBox(width: contentWidth * 0.01),
+                                    Text(
+                                      'Adjust',
+                                      style: TextStyle(
+                                        fontSize: contentWidth * 0.030,
+                                        fontWeight: FontWeight.bold,
+                                        color: const Color(0xFFFF6EB4),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
 
                         SizedBox(height: screenHeight * 0.015),
