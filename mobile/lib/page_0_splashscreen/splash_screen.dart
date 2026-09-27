@@ -82,6 +82,14 @@ class _SplashScreenState extends State<SplashScreen>
     );
   }
 
+  // Lets an impatient user skip straight past the rise/reveal animation
+  // instead of waiting out the full ~13s sequence.
+  void _skipAnimation() {
+    _riseController.stop();
+    _revealController.stop();
+    _goToWelcome();
+  }
+
   @override
   void dispose() {
     _riseController.dispose();
@@ -104,50 +112,54 @@ class _SplashScreenState extends State<SplashScreen>
 
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          Positioned.fill(child: Container(color: Colors.black)),
+      body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: _skipAnimation,
+        child: Stack(
+          children: [
+            Positioned.fill(child: Container(color: Colors.black)),
 
-          // Sunrise flash — expands from the sun's resting position and
-          // brightens the screen from black to white.
-          AnimatedBuilder(
-            animation: _revealAnimation,
-            builder: (context, child) => Positioned.fill(
-              child: CustomPaint(
-                painter: SunriseRevealPainter(
-                  center: sunCenter,
-                  radius: _revealAnimation.value * revealMaxRadius,
+            // Sunrise flash — expands from the sun's resting position and
+            // brightens the screen from black to white.
+            AnimatedBuilder(
+              animation: _revealAnimation,
+              builder: (context, child) => Positioned.fill(
+                child: CustomPaint(
+                  painter: SunriseRevealPainter(
+                    center: sunCenter,
+                    radius: _revealAnimation.value * revealMaxRadius,
+                  ),
                 ),
               ),
             ),
-          ),
 
-          // The rising sun.
-          AnimatedBuilder(
-            animation: Listenable.merge([_riseAnimation, _bounceScale]),
-            builder: (context, child) {
-              final top = _lerp(
-                screenHeight + sunSize,
-                sunRestTop,
-                _riseAnimation.value,
-              );
-              return Positioned(
-                top: top,
-                left: (screenWidth - sunSize) / 2,
-                child: Transform.scale(
-                  scale: _bounceScale.value,
-                  child: AnimatedBuilder(
-                    animation: _raysAnimation,
-                    builder: (context, child) => CustomPaint(
-                      size: Size(sunSize, sunSize),
-                      painter: SunPainter(_raysAnimation.value),
+            // The rising sun.
+            AnimatedBuilder(
+              animation: Listenable.merge([_riseAnimation, _bounceScale]),
+              builder: (context, child) {
+                final top = _lerp(
+                  screenHeight + sunSize,
+                  sunRestTop,
+                  _riseAnimation.value,
+                );
+                return Positioned(
+                  top: top,
+                  left: (screenWidth - sunSize) / 2,
+                  child: Transform.scale(
+                    scale: _bounceScale.value,
+                    child: AnimatedBuilder(
+                      animation: _raysAnimation,
+                      builder: (context, child) => CustomPaint(
+                        size: Size(sunSize, sunSize),
+                        painter: SunPainter(_raysAnimation.value),
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
-          ),
-        ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

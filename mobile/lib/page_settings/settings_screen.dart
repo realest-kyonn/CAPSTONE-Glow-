@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../page_14_favorites/favorites.dart';
+import '../backend/feedback.dart';
 
 // ─────────────────────────────────────────────────────────────
 // Settings Screen
@@ -138,6 +139,18 @@ class _SettingsScreenState extends State<SettingsScreen>
     );
   }
 
+  Future<void> _onGiveFeedbackPressed() async {
+    final opened = await openFeedbackForm();
+    if (opened || !mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          "Couldn't open the feedback form. Check your connection and try again.",
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -200,6 +213,26 @@ class _SettingsScreenState extends State<SettingsScreen>
                           title: 'Delete saved results',
                           subtitle: 'Remove all scan history',
                           onTap: _onDeleteAllPressed,
+                          contentWidth: contentWidth,
+                        ),
+
+                        SizedBox(height: screenHeight * 0.035),
+
+                        Text(
+                          'SUPPORT',
+                          style: TextStyle(
+                            fontSize: contentWidth * 0.032,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFFFF6EB4),
+                            letterSpacing: 1.5,
+                          ),
+                        ),
+                        SizedBox(height: screenHeight * 0.012),
+                        _buildNavRow(
+                          icon: Icons.chat_bubble_outline_rounded,
+                          title: 'Give Feedback',
+                          subtitle: 'Share your thoughts about Glow',
+                          onTap: _onGiveFeedbackPressed,
                           contentWidth: contentWidth,
                         ),
                       ],
