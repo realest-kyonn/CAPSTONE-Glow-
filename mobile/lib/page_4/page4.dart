@@ -9,21 +9,142 @@ class HomeDashboard extends StatelessWidget {
   const HomeDashboard({super.key});
 
   static const List<Map<String, String>> _styles = [
-    {'name': 'Clean Girl Makeup', 'desc': 'Effortless, skin-first glow'},
-    {'name': 'No-Makeup Makeup', 'desc': 'Invisible enhancement'},
-    {'name': 'Fresh Dewy Makeup', 'desc': 'Glass skin, lit-from-within radiance'},
-    {'name': 'Soft Glam Everyday', 'desc': 'Polished, wearable glam'},
-    {'name': 'Korean Daily Makeup', 'desc': 'Youthful, dewy, and cute'},
-    {'name': 'Peach Makeup', 'desc': 'Warm, sun-kissed, peachy-sweet'},
-    {'name': 'Soft Contour Makeup', 'desc': 'Subtle reshaping, natural finish'},
-    {'name': 'Lifted Makeup', 'desc': 'Visually lift and elongate eyes'},
-    {'name': 'Snatched Everyday', 'desc': 'Defined, sculpted, sharp'},
-    {'name': 'Igari-Inspired', 'desc': 'Japanese hangover blush'},
-    {'name': 'Douyin Natural', 'desc': 'Porcelain skin meets soft detail'},
-    {'name': 'Strawberry Makeup', 'desc': 'Red-toned, rosy, sweetly flushed'},
-    {'name': 'Office Makeup', 'desc': 'Professional and polished'},
-    {'name': 'Neutral Glam', 'desc': 'Understated timeless glamour'},
-    {'name': 'Corporate Clean', 'desc': 'Minimalist, refined, powerful'},
+    {
+      'name': 'Clean Girl Makeup',
+      'desc': 'Effortless, skin-first glow',
+      'detail':
+          'Clean Girl Makeup is all about looking like the best, most '
+              'polished version of your bare face. Popularized on social '
+              'media, this trend champions glowing, hydrated skin, groomed '
+              'brows, and barely-there color — as if you woke up naturally '
+              'radiant. Think glass skin, fluffy brows, and a subtle flush.',
+    },
+    {
+      'name': 'No-Makeup Makeup',
+      'desc': 'Invisible enhancement',
+      'detail':
+          'No-Makeup Makeup is the art of looking completely natural while '
+              'subtly correcting and enhancing your features. The goal is '
+              "for no one to be able to tell you're wearing anything — just "
+              'a better, more even version of you.',
+    },
+    {
+      'name': 'Fresh Dewy Makeup',
+      'desc': 'Glass skin, lit-from-within radiance',
+      'detail':
+          'Fresh Dewy Makeup turns up the glow dial several notches. '
+              "It's a full-coverage-meets-glassy-skin look where luminosity "
+              'is the star. Every product amplifies light reflection — from '
+              'a glowing foundation to cream blush to a dab of highlighter.',
+    },
+    {
+      'name': 'Soft Glam Everyday',
+      'desc': 'Polished, wearable glam',
+      'detail':
+          'Soft Glam Everyday bridges the gap between natural and '
+              'glamorous — a subtle smoky eye in neutral tones, defined '
+              'lashes, a sculpted cheek, and a satin lip. It elevates a '
+              'daily look without feeling overdressed.',
+    },
+    {
+      'name': 'Korean Daily Makeup',
+      'desc': 'Youthful, dewy, and cute',
+      'detail':
+          'Korean Daily Makeup (K-Beauty everyday) is defined by '
+              'cushion-soft skin, straight or softly rounded brows, a '
+              'gradient lip, and a focus on eye-brightening. It values a '
+              'youthful, natural freshness with carefully chosen pops of '
+              'color.',
+    },
+    {
+      'name': 'Peach Makeup',
+      'desc': 'Warm, sun-kissed, peachy-sweet',
+      'detail':
+          'Peach Makeup is a monochromatic warm look that ties everything '
+              'together in soft peach, coral, and golden tones. Eyes, '
+              'cheeks, and lips all speak the same warm language, creating '
+              'a cohesive, sun-kissed flush.',
+    },
+    {
+      'name': 'Soft Contour Makeup',
+      'desc': 'Subtle reshaping, natural finish',
+      'detail':
+          'Soft Contour Makeup focuses on dimensionality without drama. '
+              'Unlike full contouring, soft contour uses slightly deeper '
+              'and lighter shades to add structure where the face '
+              'naturally has shadows and light.',
+    },
+    {
+      'name': 'Lifted Makeup',
+      'desc': 'Visually lift and elongate eyes',
+      'detail':
+          'Lifted Makeup is a technique-focused style specifically '
+              'designed to create the visual illusion of eyes that are '
+              'lifted, elongated, and upturned. It works by extending '
+              'liner and shadow upward at the outer corner.',
+    },
+    {
+      'name': 'Snatched Everyday',
+      'desc': 'Defined, sculpted, sharp',
+      'detail':
+          'Snatched Everyday Makeup combines a full, even base with '
+              'sculpted contour, defined brows, striking eyes, and a '
+              'prominent lip — but keeps the execution clean enough to '
+              'wear to work, school, or brunch.',
+    },
+    {
+      'name': 'Igari-Inspired',
+      'desc': 'Japanese hangover blush',
+      'detail':
+          'Igari makeup (from Japanese meaning hangover) is characterized '
+              'by its distinctive blushy nose-bridge and under-eye area — '
+              'mimicking flushed, rosy skin. Named after Japanese makeup '
+              "artist Igari Shinobu, it's youthful, romantic, and playful.",
+    },
+    {
+      'name': 'Douyin Natural',
+      'desc': 'Porcelain skin meets soft detail',
+      'detail':
+          'Douyin Makeup features flawlessly smooth, porcelain-like skin, '
+              'straight brows, soft feathered lashes, a carefully shaped '
+              'bow-shaped lip, and subtle color. It balances precision '
+              'with a soft, dreamy quality.',
+    },
+    {
+      'name': 'Strawberry Makeup',
+      'desc': 'Red-toned, rosy, sweetly flushed',
+      'detail':
+          'Strawberry Makeup is inspired by the colors of the fruit — '
+              'red-tinged cheeks, rosy lips, peachy-warm eyes, and '
+              'optionally faux freckles. Everything leans red and pink '
+              'rather than cool or neutral.',
+    },
+    {
+      'name': 'Office Makeup',
+      'desc': 'Professional and polished',
+      'detail':
+          'Office Makeup is defined by being neat, appropriate, and '
+              'confidence-boosting without being distracting. It favors '
+              'polished neutral tones, well-groomed features, and a clean '
+              'base.',
+    },
+    {
+      'name': 'Neutral Glam',
+      'desc': 'Understated timeless glamour',
+      'detail':
+          'Neutral Glam is the elevated cousin of Soft Glam — still '
+              'wearable, but with more intention and drama. It lives in '
+              'the world of nudes, taupes, browns, and warm champagnes.',
+    },
+    {
+      'name': 'Corporate Clean',
+      'desc': 'Minimalist, refined, powerful',
+      'detail':
+          'Corporate Clean Makeup is the most stripped-back professional '
+              'look. It is about precision, immaculate skin, and quiet '
+              'confidence. Every product is purposeful and nothing is '
+              'excessive.',
+    },
   ];
 
   static final List<Map<String, dynamic>> _steps = [
@@ -444,8 +565,34 @@ class HomeDashboard extends StatelessWidget {
       itemBuilder: (context, index) {
         final style = _styles[index];
         final itemWidth = (contentWidth - contentWidth * 0.1 - 16) / 3;
-        return _buildStyleCard(style, itemWidth);
+        return GestureDetector(
+          onTap: () => _showStyleDetail(context, style),
+          child: _buildStyleCard(style, itemWidth),
+        );
       },
+    );
+  }
+
+  void _showStyleDetail(BuildContext context, Map<String, String> style) {
+    showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Text(
+          style['name']!,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Color(0xFFFF6EB4),
+          ),
+        ),
+        content: Text(style['detail'] ?? style['desc']!),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
     );
   }
 

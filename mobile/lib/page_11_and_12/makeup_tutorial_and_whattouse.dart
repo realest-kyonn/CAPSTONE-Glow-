@@ -3,6 +3,7 @@ import '../page_14_favorites/favorites.dart';
 import '../page_14_favorites/save_confirmation_dialog.dart';
 import '../page_14_favorites/save_name_dialog.dart';
 import '../page_14_favorites/feedback_popup.dart';
+import '../backend/feedback.dart';
 
 // ─────────────────────────────────────────────────────────────
 // Makeup Tutorial + What To Use Screen — Page 11 & 12
@@ -138,13 +139,17 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
       return;
     }
 
-    // Feedback popup — shown right after a successful save, before
-    // navigating away to Favorites.
+    // Feedback popup — shown only once, ever, right after the first
+    // successful save. After that, feedback is reachable from Settings.
     if (!mounted) return;
-    await showDialog<void>(
-      context: context,
-      builder: (context) => const FeedbackPopup(),
-    );
+    if (!await FeedbackPrefs.hasSeenPrompt()) {
+      if (!mounted) return;
+      await showDialog<void>(
+        context: context,
+        builder: (context) => const FeedbackPopup(),
+      );
+      await FeedbackPrefs.markPromptSeen();
+    }
 
     if (!mounted) return;
     Navigator.push(

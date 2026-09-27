@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../backend/feedback.dart';
 
 // ─────────────────────────────────────────────────────────────
-// Feedback Popup — shown after a successful save
+// Feedback Popup — shown once, after the first successful save
 // ─────────────────────────────────────────────────────────────
 
-class FeedbackPopup extends StatelessWidget {
+class FeedbackPopup extends StatefulWidget {
   const FeedbackPopup({super.key});
 
-  Future<void> _openFeedbackForm() async {
-    final uri = Uri.parse(
-      'https://docs.google.com/forms/d/e/1FAIpQLSds1RhMyPzYiSsRIs5AbOQBkWGwpxXOrRSIJpRj95qW8KwRRw/viewform',
-    );
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
+  @override
+  State<FeedbackPopup> createState() => _FeedbackPopupState();
+}
+
+class _FeedbackPopupState extends State<FeedbackPopup> {
+  bool _launchFailed = false;
+
+  Future<void> _onGiveFeedbackPressed() async {
+    final opened = await openFeedbackForm();
+    if (!mounted) return;
+    if (opened) {
+      Navigator.pop(context);
+    } else {
+      setState(() => _launchFailed = true);
     }
   }
 
@@ -74,14 +82,24 @@ class FeedbackPopup extends StatelessWidget {
 
             SizedBox(height: contentWidth * 0.06),
 
+            if (_launchFailed) ...[
+              Text(
+                "Couldn't open the feedback form. Check your connection "
+                'and try again.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: contentWidth * 0.032,
+                  color: Colors.red.shade400,
+                ),
+              ),
+              SizedBox(height: contentWidth * 0.03),
+            ],
+
             SizedBox(
               width: double.infinity,
               height: contentWidth * 0.13,
               child: ElevatedButton.icon(
-                onPressed: () {
-                  _openFeedbackForm();
-                  Navigator.pop(context);
-                },
+                onPressed: _onGiveFeedbackPressed,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFFF6EB4),
                   shape: RoundedRectangleBorder(
