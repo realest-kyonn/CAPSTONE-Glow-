@@ -169,7 +169,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     if (!mounted) return;
     setState(() {
       _results = results;
-      _isLoading = false;
+      _isLoading = false; 
     });
   }
 
@@ -414,7 +414,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: contentWidth * 0.03,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -442,7 +442,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     date,
                     style: TextStyle(
                       fontSize: contentWidth * 0.03,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -472,7 +472,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         style: TextStyle(
                           fontSize: contentWidth * 0.045,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ),

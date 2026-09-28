@@ -16,6 +16,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Clean Girl Makeup',
       'desc': 'Effortless, skin-first glow',
+      'image': 'assets/images/clean_girl_makeup.jpg',
       'detail':
           'Clean Girl Makeup is all about looking like the best, most '
           'polished version of your bare face. Popularized on social '
@@ -26,6 +27,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'No-Makeup Makeup',
       'desc': 'Invisible enhancement',
+      'image': 'assets/images/no-makeup-makeup.jpg',
       'detail':
           'No-Makeup Makeup is the art of looking completely natural while '
           'subtly correcting and enhancing your features. The goal is '
@@ -35,6 +37,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Fresh Dewy Makeup',
       'desc': 'Glass skin, lit-from-within radiance',
+      'image': 'assets/images/fresh-dewy-makeup.jpg',
       'detail':
           'Fresh Dewy Makeup turns up the glow dial several notches. '
           "It's a full-coverage-meets-glassy-skin look where luminosity "
@@ -44,6 +47,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Soft Glam Everyday',
       'desc': 'Polished, wearable glam',
+      'image': 'assets/images/soft-glam-everyday.jpg',
       'detail':
           'Soft Glam Everyday bridges the gap between natural and '
           'glamorous — a subtle smoky eye in neutral tones, defined '
@@ -53,6 +57,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Korean Daily Makeup',
       'desc': 'Youthful, dewy, and cute',
+      'image': 'assets/images/korean-daily-makeup.jpg',
       'detail':
           'Korean Daily Makeup (K-Beauty everyday) is defined by '
           'cushion-soft skin, straight or softly rounded brows, a '
@@ -63,6 +68,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Peach Makeup',
       'desc': 'Warm, sun-kissed, peachy-sweet',
+      'image': 'assets/images/peach-makeup.jpg',
       'detail':
           'Peach Makeup is a monochromatic warm look that ties everything '
           'together in soft peach, coral, and golden tones. Eyes, '
@@ -72,6 +78,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Soft Contour Makeup',
       'desc': 'Subtle reshaping, natural finish',
+      'image': 'assets/images/soft-contour-makeup.jpg', 
       'detail':
           'Soft Contour Makeup focuses on dimensionality without drama. '
           'Unlike full contouring, soft contour uses slightly deeper '
@@ -81,6 +88,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Lifted Makeup',
       'desc': 'Visually lift and elongate eyes',
+      'image': 'assets/images/lifted-makeup.jpg',
       'detail':
           'Lifted Makeup is a technique-focused style specifically '
           'designed to create the visual illusion of eyes that are '
@@ -90,6 +98,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Snatched Everyday',
       'desc': 'Defined, sculpted, sharp',
+      'image': 'assets/images/snatched-everyday-makeup.jpg',
       'detail':
           'Snatched Everyday Makeup combines a full, even base with '
           'sculpted contour, defined brows, striking eyes, and a '
@@ -99,6 +108,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Igari-Inspired',
       'desc': 'Japanese hangover blush',
+      'image': 'assets/images/igari-makeup.jpg',
       'detail':
           'Igari makeup (from Japanese meaning hangover) is characterized '
           'by its distinctive blushy nose-bridge and under-eye area — '
@@ -108,6 +118,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Douyin Natural',
       'desc': 'Porcelain skin meets soft detail',
+      'image': 'assets/images/douyin-natural-makeup.jpg',
       'detail':
           'Douyin Makeup features flawlessly smooth, porcelain-like skin, '
           'straight brows, soft feathered lashes, a carefully shaped '
@@ -117,6 +128,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Strawberry Makeup',
       'desc': 'Red-toned, rosy, sweetly flushed',
+      'image': 'assets/images/strawberry-makeup.jpg',
       'detail':
           'Strawberry Makeup is inspired by the colors of the fruit — '
           'red-tinged cheeks, rosy lips, peachy-warm eyes, and '
@@ -126,6 +138,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Office Makeup',
       'desc': 'Professional and polished',
+      'image': 'assets/images/office-makeup.jpg',
       'detail':
           'Office Makeup is defined by being neat, appropriate, and '
           'confidence-boosting without being distracting. It favors '
@@ -135,6 +148,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Neutral Glam',
       'desc': 'Understated timeless glamour',
+      'image': 'assets/images/neutral-glam-makeup.jpg',
       'detail':
           'Neutral Glam is the elevated cousin of Soft Glam — still '
           'wearable, but with more intention and drama. It lives in '
@@ -143,6 +157,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Corporate Clean',
       'desc': 'Minimalist, refined, powerful',
+      'image': 'assets/images/corporate-clean-makeup.jpg',
       'detail':
           'Corporate Clean Makeup is the most stripped-back professional '
           'look. It is about precision, immaculate skin, and quiet '
@@ -430,14 +445,33 @@ class HomeDashboard extends StatelessWidget {
           ),
           title: Text(
             style['name']!,
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: _pink,
             ),
           ),
-          content: Text(
-            style['detail'] ?? style['desc']!,
-            style: const TextStyle(height: 1.5),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: AspectRatio(
+                  aspectRatio: 4 / 3,
+                  child: Image.asset(
+                    style['image']!,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                   ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                style['detail'] ?? style['desc']!,
+                style: const TextStyle(height: 1.5),
+              ),
+            ],
           ),
           actions: [
             TextButton(
