@@ -138,13 +138,13 @@ packages:
     source: hosted
     version: "1.0.9"
   dartcv4:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: dartcv4
-      sha256: "5764d13550055da3bb35ca28e6866b837579dfb4b594582b7a7753785ca5dfef"
+      sha256: b2be1fd93df688079745b71601b3c959d8405a33ad72dcf8d892ec324318b9c1
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.1+4"
+    version: "2.2.2"
   face_detection_tflite:
     dependency: "direct main"
     description:
@@ -468,10 +468,10 @@ packages:
     dependency: transitive
     description:
       name: native_toolchain_cmake
-      sha256: de90e8952bad0684bdcff4d674c53d961f5cd1fdcf3a0255a669a35986c4ac1d
+      sha256: "8ba223410102665483e873b83d2156720233a6a0181c07f9dc41cb2e961336b0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.7"
+    version: "0.3.2"
   objective_c:
     dependency: transitive
     description:
