@@ -47,7 +47,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Soft Glam Everyday',
       'desc': 'Polished, wearable glam',
-      'image': 'assets/makeup_styles/soft-glam-everyday.jpg',
+      'image': 'assets/makeup_styles/soft-glam-everyday-makeup.jpg',
       'detail':
           'Soft Glam Everyday bridges the gap between natural and '
           'glamorous — a subtle smoky eye in neutral tones, defined '
