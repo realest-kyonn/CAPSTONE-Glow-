@@ -160,68 +160,85 @@ class _MakeupTutorialScreenState extends State<MakeupTutorialScreen>
     );
   }
 
-  // BACKEND: 'steps' from recommendations.json
-  // Each step has instruction, tip, and imagePath
-  List<Map<String, String>> get _steps =>
-      (widget.styleData['steps'] as List<Map<String, String>>?) ??
-      [
-        {
-          'instruction':
-              'Prep skin with a hydrating serum and moisturizer — the base is everything in this look.',
-          'tip':
-              'Skin prep is the most important step — exfoliate the night before for best results.',
-          'imagePath': '', // BACKEND: 'assets/steps/step1.jpg'
-        },
-        {
-          'instruction':
-              'Apply a light-coverage tinted moisturizer or skin tint with your fingers, blending outward.',
-          'tip':
-              'Choose cream or liquid products over powders to maintain that signature dewiness.',
-          'imagePath': '', // BACKEND: 'assets/steps/step2.jpg'
-        },
-        {
-          'instruction':
-              'Spot-conceal only where needed (under eyes, blemishes) — avoid heavy coverage.',
-          'tip': 'Less is more — build coverage only where you truly need it.',
-          'imagePath': '', // BACKEND: 'assets/steps/step3.jpg'
-        },
-        {
-          'instruction':
-              'Dust a small amount of translucent powder on the T-zone to set without mattifying.',
-          'tip': 'Only set where you get oily — let the rest stay dewy.',
-          'imagePath': '', // BACKEND: 'assets/steps/step4.jpg'
-        },
-        {
-          'instruction':
-              'Brush a soft warm coral blush high on the cheekbones and lightly on the nose bridge.',
-          'tip': 'Tap off excess before applying — a light hand gives the most natural flush.',
-          'imagePath': '', // BACKEND: 'assets/steps/step5.jpg'
-        },
-        {
-          'instruction':
-              'Apply a warm brown tinted brow gel, brushing hairs upward for a fluffy, laminated look.',
-          'tip': 'Use short upward strokes to mimic natural brow hairs.',
-          'imagePath': '', // BACKEND: 'assets/steps/step6.jpg'
-        },
-        {
-          'instruction':
-              'Curl lashes and apply one coat of brown-black mascara.',
-          'tip': 'Wiggle the wand at the root for maximum lift.',
-          'imagePath': '', // BACKEND: 'assets/steps/step7.jpg'
-        },
-        {
-          'instruction':
-              'Dab a warm coral lip oil on lips for a juicy, hydrated pout.',
-          'tip': 'Layer over a nude lip liner for longer-lasting color.',
-          'imagePath': '', // BACKEND: 'assets/steps/step8.jpg'
-        },
-        {
-          'instruction':
-              'Mist face lightly with a setting spray for a dewy, fresh finish.',
-          'tip': 'Hold spray 30cm away and use a cross pattern for even coverage.',
-          'imagePath': '', // BACKEND: 'assets/steps/step9.jpg'
-        },
-      ];
+// BACKEND: 'steps' extracted from tutorial -> makeup_application
+  List<Map<String, String>> get _steps {
+    final rawSteps = widget.styleData['steps'];
+    
+    // Safely parse the list to prevent Dart from triggering the dummy fallback
+    if (rawSteps is List) {
+      return rawSteps.map((step) {
+        if (step is Map) {
+          return {
+            'instruction': step['instruction']?.toString() ?? '',
+            'tip': step['tip']?.toString() ?? '',
+            'imagePath': step['imagePath']?.toString() ?? '',
+          };
+        }
+        // Catches any old plain-string steps you haven't updated in JSON yet
+        return {'instruction': step.toString(), 'tip': '', 'imagePath': ''};
+      }).toList();
+    }
+
+    // 4. Dummy fallback if no real data was passed
+    return [
+      {
+        'instruction':
+            'Prep skin with a hydrating serum and moisturizer — the base is everything in this look.',
+        'tip':
+            'Skin prep is the most important step — exfoliate the night before for best results.',
+        'imagePath': '',
+      },
+      {
+        'instruction':
+            'Apply a light-coverage tinted moisturizer or skin tint with your fingers, blending outward.',
+        'tip':
+            'Choose cream or liquid products over powders to maintain that signature dewiness.',
+        'imagePath': '',
+      },
+      {
+        'instruction':
+            'Spot-conceal only where needed (under eyes, blemishes) — avoid heavy coverage.',
+        'tip': 'Less is more — build coverage only where you truly need it.',
+        'imagePath': '',
+      },
+      {
+        'instruction':
+            'Dust a small amount of translucent powder on the T-zone to set without mattifying.',
+        'tip': 'Only set where you get oily — let the rest stay dewy.',
+        'imagePath': '',
+      },
+      {
+        'instruction':
+            'Brush a soft warm coral blush high on the cheekbones and lightly on the nose bridge.',
+        'tip': 'Tap off excess before applying — a light hand gives the most natural flush.',
+        'imagePath': '',
+      },
+      {
+        'instruction':
+            'Apply a warm brown tinted brow gel, brushing hairs upward for a fluffy, laminated look.',
+        'tip': 'Use short upward strokes to mimic natural brow hairs.',
+        'imagePath': '',
+      },
+      {
+        'instruction':
+            'Curl lashes and apply one coat of brown-black mascara.',
+        'tip': 'Wiggle the wand at the root for maximum lift.',
+        'imagePath': '',
+      },
+      {
+        'instruction':
+            'Dab a warm coral lip oil on lips for a juicy, hydrated pout.',
+        'tip': 'Layer over a nude lip liner for longer-lasting color.',
+        'imagePath': '',
+      },
+      {
+        'instruction':
+            'Mist face lightly with a setting spray for a dewy, fresh finish.',
+        'tip': 'Hold spray 30cm away and use a cross pattern for even coverage.',
+        'imagePath': '',
+      },
+    ];
+  }
 
   // BACKEND: 'products' from recommendations.json
   // Shades are matched to user's detected skin tone (monkScale + undertone)

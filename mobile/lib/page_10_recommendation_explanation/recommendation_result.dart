@@ -156,6 +156,7 @@ class RecommendationResultScreen extends StatelessWidget {
                                 'skinTone': style['skinTone'],
                                 'faceShape': style['faceShape'],
                                 'eyeShape': style['eyeShape'],
+                                'tutorial': style['tutorial']
                               };
                             } else {
                               // No styleKey available (e.g. dummy fallback

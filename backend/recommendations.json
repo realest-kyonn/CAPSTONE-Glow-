@@ -4605,18 +4605,54 @@
           "Smooth on a mineral sunscreen to protect your skin and create a silky, slightly blurred base for your makeup."
         ],
         "makeup_application": [
-          "Use a small, targeted amount of color corrector to neutralize any specific areas of discoloration.",
-          "Dab a concealer onto spots you want to cover, blending the edges carefully until it sits invisibly on the skin.",
-          "Apply a tiny amount of liquid blush to the apples of your cheeks and blend it upward for a soft, natural rosy flush.",
-          "Gently tap a matching powder blush over the liquid blush to set the color, which ensures it stays vibrant and long-lasting.",
-          "Use a soft brush to lightly dust a translucent setting powder only on areas that tend to get shiny or oily.",
-          "With a neutral contour or bronzer shade, lightly sweep the color into the crease of your eyelids to add subtle, natural dimension.",
-          "Use a deep brown eyeshadow to draw a soft wing, and if you want more intensity, carefully tight-line your lash base with a fine-tip eyeliner.",
-          "Apply your favorite mascara by wiggling the wand from the root to the tip of your lashes to lengthen them.",
-          "Fill in your brows with an ash-toned brow pencil using light, hair-like strokes, then comb through with a brow gel to set them in place.",
-          "Lightly sweep a warm-toned bronzer around the perimeter of your face to add a natural, sun-kissed warmth.",
-          "Gently tap a light golden highlighter onto your cheekbones using a soft brush for a natural, sophisticated glow.",
-          "Finish the look with a coat of nude pink lip gloss for a natural, plump, and shiny lip finish."
+         {
+            "instruction": "Use a small, targeted amount of color corrector to neutralize any specific areas of discoloration.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Dab a concealer onto spots you want to cover, blending the edges carefully until it sits invisibly on the skin.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Apply a tiny amount of liquid blush to the apples of your cheeks and blend it upward for a soft, natural rosy flush.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Gently tap a matching powder blush over the liquid blush to set the color, which ensures it stays vibrant and long-lasting.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Use a soft brush to lightly dust a translucent setting powder only on areas that tend to get shiny or oily.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step5.jpg"
+          },
+          {
+            "instruction": "With a neutral contour or bronzer shade, lightly sweep the color into the crease of your eyelids to add subtle, natural dimension.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Use a deep brown eyeshadow to draw a soft wing, and if you want more intensity, carefully tight-line your lash base with a fine-tip eyeliner.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Apply your favorite mascara by wiggling the wand from the root to the tip of your lashes to lengthen them.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Fill in your brows with an ash-toned brow pencil using light, hair-like strokes, then comb through with a brow gel to set them in place.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step9.jpg"
+          },
+          {
+            "instruction": "Lightly sweeep a warm-toned bronzer around the perimeter of your face to add a natural, sun-kissed warmth.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step10.jpg"
+          },
+          {
+            "instruction": "Gently tap a light golden highlighter onto your cheekbones using a soft brush for a natural, sophisticated glow.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step11.jpg"
+          },
+          {
+            "instruction": "Finish the look with a coat of nude pink lip gloss for a natural, plump, and shiny lip finish.",
+            "imagePath": "assets/makeup_steps/clean_girl_makeup/step12.jpg"
+          }
         ]
       },
       "tips": [
@@ -4660,14 +4696,42 @@
           "Start with a tone-up or tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use your fingers to spread it evenly across your face."
         ],
         "makeup_application": [
-          "Identify small spots or areas that need extra coverage. Apply a tiny amount of concealer and use your finger to gently dab (tap) it into the skin. Dabbing provides higher coverage than dragging. Leave it to dry slightly before blending further. For under-eyes, apply it just slightly below the actual under-eye area to prevent the product from settling into lines or creasing.",
-          "Apply a small amount of blush to your cheeks. If the product is highly pigmented, dot it on the back of your hand first, then pick it up to apply. Blend using your fingers by gently tapping or using a soft puff to diffuse the color so it looks seamless and natural.",
-          "To prevent looking oily, take a light amount of loose powder on your hand and gently pat it over your face. Focus on areas that tend to get shiny.",
-          "Use a light-colored contour product to subtly redefine your features. Apply it where you want gentle shadows, keeping the application light to maintain a natural look.",
-          "Use an eyebrow pencil to lightly fill in the ends of your brows. Avoid touching the front of the brow to keep it looking soft and not \"blocky.\" Use a spoolie brush to comb through the hairs; this softens any harsh pencil lines. Finish with a brow gel (colored or clear) to lift and set the hairs in place.",
-          "Curl your lashes first to open up your eyes. If you want more definition, take a light brown shadow and apply it to the under-eye area to make your eyes pop. For a subtle \"flick,\" use a thin brush with brown shadow to follow your natural lash line, extending it slightly outward, then connect it back to the lash line to blend it seamlessly.",
-          "Follow your natural lip line with a lip liner. For the bottom lip, draw slightly upwards into the lip line rather than directly on it to create a fuller, natural appearance. Blend the liner inward.",
-          "Apply a \"my lips but better\" shade (a nudy pink or soft neutral). If you prefer, add a touch of lip oil or gloss on top for a healthy, hydrated finish"
+          {
+            "instruction": "Identify small spots or areas that need extra coverage. Apply a tiny amount of concealer and use your finger to gently dab (tap) it into the skin. Dabbing provides higher coverage than dragging. Leave it to dry slightly before blending further. For under-eyes, apply it just slightly below the actual under-eye area to prevent the product from settling into lines or creasing.",
+            "imagePath": "assets/makeup_steps/no_makeup_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Identify small spots or areas that need extra coverage. Apply a tiny amount of concealer and use your finger to gently dab (tap) it into the skin. Dabbing provides higher coverage than dragging. Leave it to dry slightly before blending further. For under-eyes, apply it just slightly below the actual under-eye area to prevent the product from settling into lines or creasing.",
+            "imagePath": "assets/makeup_steps/no_makeup_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Apply a small amount of blush to your cheeks. If the product is highly pigmented, dot it on the back of your hand first, then pick it up to apply. Blend using your fingers by gently tapping or using a soft puff to diffuse the color so it looks seamless and natural.",
+            "imagePath": "assets/makeup_steps/no_makeup_makeup/step4.jpg"
+          },
+          { 
+            "instruction": "To prevent looking oily, take a light amount of loose powder on your hand and gently pat it over your face. Focus on areas that tend to get shiny.",
+            "imagePath": "assets/makeup_steps/no_makeup_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Use a light-colored contour product to subtly redefine your features. Apply it where you want gentle shadows, keeping the application light to maintain a natural look.",
+            "imagePath": "assets/makeup_steps/no_makeup_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Use an eyebrow pencil to lightly fill in the ends of your brows. Avoid touching the front of the brow to keep it looking soft and not \"blocky.\" Use a spoolie brush to comb through the hairs; this softens any harsh pencil lines. Finish with a brow gel (colored or clear) to lift and set the hairs in place.",
+            "imagePath": "assets/makeup_steps/no_makeup_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Curl your lashes first to open up your eyes. If you want more definition, take a light brown shadow and apply it to the under-eye area to make your eyes pop. For a subtle \"flick,\" use a thin brush with brown shadow to follow your natural lash line, extending it slightly outward, then connect it back to the lash line to blend it seamlessly.",
+            "imagePath": "assets/makeup_steps/no_makeup_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Follow your natural lip line with a lip liner. For the bottom lip, draw slightly upwards into the lip line rather than directly on it to create a fuller, natural appearance. Blend the liner inward.",
+            "imagePath": "assets/makeup_steps/no_makeup_makeup/step9.jpg"
+          },
+          {
+            "instruction": "Apply a \"my lips but better\" shade (a nudy pink or soft neutral). If you prefer, add a touch of lip oil or gloss on top for a healthy, hydrated finish",
+            "imagePath": "assets/makeup_steps/no_makeup_makeup/step10.jpg"
+          }
         ]
       },
       "tips": [
@@ -4707,15 +4771,42 @@
           "Apply a glow-boosting serum/primer: Pat a lightweight, illuminating serum or primer over your face. This provides a subtle radiance that acts as the foundation for your \"glowy\" look."
         ],
         "makeup_application": [
-          "Apply a glow enhancer: Use a liquid glow enhancer on your cheekbones, bridge of the nose, and chin. Blend this out with a brush to highlight the specific high points of your face before applying foundation.",
-          "Apply foundation: Use a light-to-medium coverage, dewy-finish foundation. Using a large foundation brush, buff the product onto the skin in thin layers. Avoid applying too much product on the nose and under the eyes to prevent caking.",
-          "Set the eye structure: Apply a neutral, peachy eyeshadow as a base, then use a slightly darker brown shade on the outer half of the lids to add dimension. Finish by using a dark brown shadow to softly outline your wing.",
-          "Define the eyes: Use a long-wear pencil to gently draw a small line under the eyes to emphasize the \"aegyo-sal\" (the fatty under-eye area). Use a brown mascara to define your lashes without creating harsh, black, clumpy lines.",
-          "Fill in brows: Use an eyebrow pencil to fill in gaps with soft, short strokes. Keep the color light and natural, matching the softness of your eye makeup.",
-          "Add color with blush: Use a liquid or cream blush. Apply it in small dots just under the eyes and blend upward toward the temples to create a youthful, dewy \"flushed\" look.",
-          "Define the lips: Use a lip liner to slightly overline the lips for fullness, then apply a glossy, melting-style lip balm to the center, blending outward with your fingers for a soft gradient effect.",
-          "Contour and mattify: Use a powder contour on the nose bridge and jawline to add shadow. Crucially, use a translucent setting powder only on the T-zone and smile lines to ensure the glow stays on the cheeks while keeping the rest of the face from looking oily.",
-          "Final touch: If you want extra intensity, tap a small amount of a multi-purpose glow balm onto the very top of your cheekbones and the inner corners of your eyes."
+          {
+            "instruction": "Apply a glow enhancer: Use a liquid glow enhancer on your cheekbones, bridge of the nose, and chin. Blend this out with a brush to highlight the specific high points of your face before applying foundation.",
+            "imagePath": "assets/makeup_steps/fresh_dewy_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Apply foundation: Use a light-to-medium coverage, dewy-finish foundation. Using a large foundation brush, buff the product onto the skin in thin layers. Avoid applying too much product on the nose and under the eyes to prevent caking.",
+            "imagePath": "assets/makeup_steps/fresh_dewy_makeup/step2.jpg"
+          }, 
+          {
+            "instruction": "Set the eye structure: Apply a neutral, peachy eyeshadow as a base, then use a slightly darker brown shade on the outer half of the lids to add dimension. Finish by using a dark brown shadow to softly outline your wing.",
+            "imagePath": "assets/makeup_steps/fresh_dewy_makeup/step3.jpg"
+          },
+          { 
+            "instruction": "Define the eyes: Use a long-wear pencil to gently draw a small line under the eyes to emphasize the \"aegyo-sal\" (the fatty under-eye area). Use a brown mascara to define your lashes without creating harsh, black, clumpy lines.",
+            "imagePath": "assets/makeup_steps/fresh_dewy_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Fill in brows: Use an eyebrow pencil to fill in gaps with soft, short strokes. Keep the color light and natural, matching the softness of your eye makeup.",
+            "imagePath": "assets/makeup_steps/fresh_dewy_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Add color with blush: Use a liquid or cream blush. Apply it in small dots just under the eyes and blend upward toward the temples to create a youthful, dewy \"flushed\" look.",
+            "imagePath": "assets/makeup_steps/fresh_dewy_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Define the lips: Use a lip liner to slightly overline the lips for fullness, then apply a glossy, melting-style lip balm to the center, blending outward with your fingers for a soft gradient effect.",
+            "imagePath": "assets/makeup_steps/fresh_dewy_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Contour and mattify: Use a powder contour on the nose bridge and jawline to add shadow. Crucially, use a translucent setting powder only on the T-zone and smile lines to ensure the glow stays on the cheeks while keeping the rest of the face from looking oily.",
+            "imagePath": "assets/makeup_steps/fresh_dewy_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Final touch: If you want extra intensity, tap a small amount of a multi-purpose glow balm onto the very top of your cheekbones and the inner corners of your eyes.",
+            "imagePath": "assets/makeup_steps/fresh_dewy_makeup/step9.jpg"
+          }
         ]
       },
       "tips": [
@@ -4762,17 +4853,51 @@
           "Prime: Apply a thin layer of primer based on your skin concerns (e.g., smoothing for texture or hydrating for dryness) to help your makeup last longer and apply more smoothly."
         ],
         "makeup_application": [
-          "Base: Start with a glow-enhancing liquid filter or a light coverage foundation. Using a damp blending sponge, gently tap the product onto your face to create an even, lightweight base that looks like skin.",
-          "Conceal: Apply a creamy concealer under your eyes, on your forehead, down the bridge of your nose, and on any blemishes. Use a brush to blend it out for full coverage, then lightly pat with a sponge to ensure a seamless finish.",
-          "Contour: Using a cream contour, apply lines along your cheekbones and the top of your forehead. Use a designated contour brush to blend the product upward and outward to add dimension to your face.",
-          "Nose Contour: With the remaining product left on your contour brush, gently trace two lines down the bridge of your nose to define its shape, then blend well with your sponge.",
-          "Blush: Apply liquid blush to the high points of your cheekbones and blend upward toward the temples to add a healthy pop of color and a lifted appearance.",
-          "Set: To lock your makeup in place, press a translucent setting powder onto the back of your hand, then use a puff or brush to gently apply it to your face, focusing especially on your T-zone to control oil.",
-          "Bronze: Use a powder bronzer to lightly sweep over the areas where you previously applied cream contour, adding extra warmth and depth to your complexion.",
-          "Bake (Optional): Apply a generous amount of powder under your cheekbones and let it sit for a few moments before dusting it off; this creates a sharp, defined line for a polished effect.",
-          "Eyes: Start by applying a warm, neutral brown shade into your crease to create depth. Follow with a soft pink or muted shade on the lid and outer corners. Use a precise brush to highlight the inner corners of your eyes with a shimmering shade for brightness.",
-          "Lashes: Curl your lashes and apply lengthening mascara. For an extra glam look, apply strip lashes specifically toward the outer edges of the eyes for a winged, cat-eye effect.",
-          "Lips: Outline your lips with a matte liner to define your shape, then fill in the center with a coordinating matte lipstick. Finish with a clear or lightly tinted lip oil for hydration and shine."
+          {
+            "instruction": "Start with a glow-enhancing liquid filter or a light coverage foundation. Using a damp blending sponge, gently tap the product onto your face to create an even, lightweight base that looks like skin.", 
+            "ImagePath": "assets/makeup_steps/soft_glam_everyday/step1.jpg"
+          },
+          {
+            "instruction": "Apply a creamy concealer under your eyes, on your forehead, down the bridge of your nose, and on any blemishes. Use a brush to blend it out for full coverage, then lightly pat with a sponge to ensure a seamless finish.",
+            "ImagePath": "assets/makeup_steps/soft_glam_everyday/step2.jpg"
+          },
+          {
+            "instruction": "Using a cream contour, apply lines along your cheekbones and the top of your forehead. Use a designated contour brush to blend the product upward and outward to add dimension to your face.",
+            "ImagePath": "assets/makeup_steps/soft_glam_everyday/step3.jpg"
+          },
+          {
+            "instruction": "With the remaining product left on your contour brush, gently trace two lines down the bridge of your nose to define its shape, then blend well with your sponge.",
+            "ImagePath": "assets/makeup_steps/soft_glam_everyday/step4.jpg"
+          }, 
+          {
+            "instruction": "Apply liquid blush to the high points of your cheekbones and blend upward toward the temples to add a healthy pop of color and a lifted appearance.",
+            "ImagePath": "assets/makeup_steps/soft_glam_everyday/step5.jpg"
+          },
+          {
+            "instruction": "To lock your makeup in place, press a translucent setting powder onto the back of your hand, then use a puff or brush to gently apply it to your face, focusing especially on your T-zone to control oil.",
+            "ImagePath": "assets/makeup_steps/soft_glam_everyday/step6.jpg"
+          },
+          {
+            "instruction": "Use a powder bronzer to lightly sweep over the areas where you previously applied cream contour, adding extra warmth and depth to your complexion.",
+            "ImagePath": "assets/makeup_steps/soft_glam_everyday/step7.jpg"
+          },
+          {
+            "instruction": "(Optional) Apply a generous amount of powder under your cheekbones and let it sit for a few moments before dusting it off; this creates a sharp, defined line for a polished effect.",
+            "ImagePath": "assets/makeup_steps/soft_glam_everyday/step8.jpg"
+          },
+          {
+            "instruction": "Start by applying a warm, neutral brown shade into your crease to create depth. Follow with a soft pink or muted shade on the lid and outer corners. Use a precise brush to highlight the inner corners of your eyes with a shimmering shade for brightness.",
+            "ImagePath": "assets/makeup_steps/soft_glam_everyday/step9.jpg"
+          },
+          {
+            "instruction": "Curl your lashes and apply lengthening mascara. For an extra glam look, apply strip lashes specifically toward the outer edges of the eyes for a winged, cat-eye effect.",
+            "ImagePath": "assets/makeup_steps/soft_glam_everyday/step10.jpg"
+          },
+          {
+            "instruction": "Outline your lips with a matte liner to define your shape, then fill in the center with a coordinating matte lipstick. Finish with a clear or lightly tinted lip oil for hydration and shine.",
+            "ImagePath": "assets/makeup_steps/soft_glam_everyday/step11.jpg"
+          }
+          
         ]
       },
       "tips": [
@@ -4821,15 +4946,42 @@
           "Apply an essence or light serum, then a hydrating moisturizer and SPF."
         ],
         "makeup_application": [
-          "Use a cushion foundation or light skin tint, blending with your fingers or a cushion puff.",
-          "Pat a peach-toned or skin-tone concealer under the eyes.",
-          "Apply a very light, barely-there blush on the cheeks and the tip of the nose.",
-          "Use an eyebrow pencil to draw short, hair-like strokes in a straight or mildly arched brow shape.",
-          "Brush brows into place with a spoolie or clear brow gel.",
-          "Apply a light champagne or peachy shimmer on the inner corner and center of the lid.",
-          "Line the inner waterline with a white or peach eyeliner to open and brighten the eyes.",
-          "Apply one coat of a curling or waterproof mascara, focusing on the roots.",
-          "Create a gradient lip: blot lips first, then dab a rosy or coral tint on the center only and blend outward."
+          {
+            "instruction": "Use a cushion foundation or light skin tint, blending with your fingers or a cushion puff.",
+            "imagePath": "assets/makeup_steps/korean_daily_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Pat a peach-toned or skin-tone concealer under the eyes.",
+            "imagePath": "assets/makeup_steps/korean_daily_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Apply a very light, barely-there blush on the cheeks and the tip of the nose.",
+            "imagePath": "assets/makeup_steps/korean_daily_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Use an eyebrow pencil to draw short, hair-like strokes in a straight or mildly arched brow shape.",
+            "imagePath": "assets/makeup_steps/korean_daily_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Brush brows into place with a spoolie or clear brow gel.",
+            "imagePath": "assets/makeup_steps/korean_daily_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Apply a light champagne or peachy shimmer on the inner corner and center of the lid.",
+            "imagePath": "assets/makeup_steps/korean_daily_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Line the inner waterline with a white or peach eyeliner to open and brighten the eyes.",
+            "imagePath": "assets/makeup_steps/korean_daily_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Apply one coat of a curling or waterproof mascara, focusing on the roots.",
+            "imagePath": "assets/makeup_steps/korean_daily_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Create a gradient lip: blot lips first, then dab a rosy or coral tint on the center only and blend outward.",
+            "imagePath": "assets/makeup_steps/korean_daily_makeup/step9.jpg"
+          }
         ]
       },
       "tips": [
@@ -4870,19 +5022,58 @@
           "Apply an eyeshadow primer across your eyelids and along your lower lash lines to prevent creasing and help your colorful shadows stay vibrant all day."
         ],
         "makeup_application": [
-          "Start with a peach or pink-tinted color corrector to address any dark circles under your eyes. This helps neutralize discoloration and makes your complexion appear healthier.",
-          "Apply a lightweight skin tint as your base. This provides a natural, breathable finish that evens out your skin tone without the heaviness of traditional foundation. Use your fingers to tap and blend it evenly across your face.",
-          "Use a high-coverage concealer for any remaining blemishes or spots. Apply it precisely to the affected areas using a small concealer brush, then blend the edges with your fingertips or small sponge.",
-          "Apply a light peach-brown eyeshadow all over your lids using a fluffy brush. This serves as your base color for the peach-inspired look.",
-          "Deepen the look by applying a reddish-brown shade to the outer corners of your eyes, blending it well to create depth and dimension.",
-          "Add a light peach shade to the inner corners of your eyes to instantly brighten your expression.",
-          "Use a brown eyebrow or eye pencil to tightline your upper lash line. This defines your eyes more naturally than traditional eyeliner.",
-          "Apply a volumizing mascara to your upper lashes and a precise, lengthening mascara to your lower lashes for a wide-eyed look.",
-          "Fill in your brows using a light brown eyeshadow for a soft, natural shape. If needed, use an eyebrow pencil to draw faint, hair-like strokes in sparse areas, then finish with a clear or tinted brow gel to keep them in place.",
-          "Add warmth to your complexion with a bronzer that has a neutral finish. Apply it lightly to your cheekbones and forehead to blend seamlessly with your skin tone.",
-          "Apply a peach-toned blush to the apples of your cheeks for a fresh, spring-inspired pop of color.",
-          "Add a subtle highlighter to the tops of your cheekbones and the bridge of your nose for a soft, luminous glow.",
-          "Define your lips with a peach-toned matte lip liner. Outline your lips and gently blend the lines with your fingers to ensure a natural, soft-edged finish."
+          {
+            "instruction": "Start with a peach or pink-tinted color corrector to address any dark circles under your eyes. This helps neutralize discoloration and makes your complexion appear healthier.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Apply a lightweight skin tint as your base. This provides a natural, breathable finish that evens out your skin tone without the heaviness of traditional foundation. Use your fingers to tap and blend it evenly across your face.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Use a high-coverage concealer for any remaining blemishes or spots. Apply it precisely to the affected areas using a small concealer brush, then blend the edges with your fingertips or small sponge.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Apply a light peach-brown eyeshadow all over your lids using a fluffy brush. This serves as your base color for the peach-inspired look.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Deepen the look by applying a reddish-brown shade to the outer corners of your eyes, blending it well to create depth and dimension.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Add a light peach shade to the inner corners of your eyes to instantly brighten your expression.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Use a brown eyebrow or eye pencil to tightline your upper lash line. This defines your eyes more naturally than traditional eyeliner.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Apply a volumizing mascara to your upper lashes and a precise, lengthening mascara to your lower lashes for a wide-eyed look.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Fill in your brows using a light brown eyeshadow for a soft, natural shape. If needed, use an eyebrow pencil to draw faint, hair-like strokes in sparse areas, then finish with a clear or tinted brow gel to keep them in place.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step9.jpg"
+          },
+          {
+            "instruction": "Add warmth to your complexion with a bronzer that has a neutral finish. Apply it lightly to your cheekbones and forehead to blend seamlessly with your skin tone.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step10.jpg"
+          },
+          {
+            "instruction": "Apply a peach-toned blush to the apples of your cheeks for a fresh, spring-inspired pop of color.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step11.jpg"
+          },
+          {
+            "instruction": "Add a subtle highlighter to the tops of your cheekbones and the bridge of your nose for a soft, luminous glow.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step12.jpg"
+          },
+          {
+            "instruction": "Define your lips with a peach-toned matte lip liner. Outline your lips and gently blend the lines with your fingers to ensure a natural, soft-edged finish.",
+            "imagePath": "assets/makeup_steps/peach_makeup/step13.jpg"
+          }
         ]
       },
       "tips": [
@@ -4929,15 +5120,42 @@
           "Combination Skin: Apply a hydrating moisturizer all over, but use a mattifying primer only on the T-zone (forehead, nose, and chin) to balance the skin."
         ],
         "makeup_application": [
-          "Apply a full-coverage or medium-coverage foundation and blend thoroughly.",
-          "Conceal and brighten under the eyes in an inverted triangle shape — blend upward.",
-          "Use a contour powder or cream 1-2 shades deeper than your skin tone along the hollows beneath the cheekbones, sides of the forehead, and jawline.",
-          "Blend contour thoroughly — use circular motions with a fluffy brush so no harsh lines remain.",
-          "Apply a subtle contour on the sides of the nose by blending two thin lines downward from the inner brow.",
-          "Apply a blush on top of or just above the contour on the cheeks in a circular or sweeping motion.",
-          "Add a subtle highlight on the tops of cheekbones, the center of the forehead, bridge of the nose, and cupid's bow.",
-          "Highlight the inner corner of the eyes and brow bone.",
-          "Complete with your chosen eye look, defined brows, and a neutral to medium-toned lip."
+          {
+            "instruction": "Apply a full-coverage or medium-coverage foundation and blend thoroughly.",
+            "imagePath": "assets/makeup_steps/soft_contour_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Conceal and brighten under the eyes in an inverted triangle shape — blend upward.",
+            "imagePath": "assets/makeup_steps/soft_contour_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Use a contour powder or cream 1-2 shades deeper than your skin tone along the hollows beneath the cheekbones, sides of the forehead, and jawline.",
+            "imagePath": "assets/makeup_steps/soft_contour_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Blend contour thoroughly — use circular motions with a fluffy brush so no harsh lines remain.",
+            "imagePath": "assets/makeup_steps/soft_contour_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Apply a subtle contour on the sides of the nose by blending two thin lines downward from the inner brow.",
+            "imagePath": "assets/makeup_steps/soft_contour_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Apply a blush on top of or just above the contour on the cheeks in a circular or sweeping motion.",
+            "imagePath": "assets/makeup_steps/soft_contour_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Add a subtle highlight on the tops of cheekbones, the center of the forehead, bridge of the nose, and cupid's bow.",
+            "imagePath": "assets/makeup_steps/soft_contour_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Highlight the inner corner of the eyes and brow bone.",
+            "imagePath": "assets/makeup_steps/soft_contour_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Complete with your chosen eye look, defined brows, and a neutral to medium-toned lip.",
+            "imagePath": "assets/makeup_steps/soft_contour_makeup/step9.jpg"
+          }
         ]
       },
       "tips": [
@@ -4980,16 +5198,46 @@
           "Combination Skin: Apply a hydrating moisturizer all over, but use a mattifying primer only on the T-zone (forehead, nose, and chin) to balance the skin."
         ],
         "makeup_application": [
-          "Apply skin-tone concealer on the lid to create a clean, even canvas.",
-          "Apply a matte transition shade slightly above the natural crease, angling it upward toward the tail of the brow.",
-          "Apply your mid-tone shadow on the lid, taking the outer edge upward diagonally — not horizontally.",
-          "Deepen the outer corner with a darker shadow, focusing the color pointing up and out.",
-          "Line the upper lash line starting from the inner corner, getting thicker toward the outer corner and flicking upward in an elongated wing.",
-          "Avoid dark liner on the lower waterline — use a nude or white liner instead to open and brighten.",
-          "If lining the lower lash line, line only the outer third and angle the liner up to meet the upper wing.",
-          "Curl lashes well, especially at the outer corners. Apply mascara focusing on outer lashes.",
-          "Apply a small dot of highlighter on the inner corner and brow bone to enhance the lifted effect.",
-          "Keep brows slightly lifted at the tail with a brow gel. Keep the rest of face simple — flushed cheek and neutral lip."
+          {
+            "instruction": "Apply skin-tone concealer on the lid to create a clean, even canvas.",
+            "imagePath": "assets/makeup_steps/lifted_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Apply a matte transition shade slightly above the natural crease, angling it upward toward the tail of the brow.",
+            "imagePath": "assets/makeup_steps/lifted_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Apply your mid-tone shadow on the lid, taking the outer edge upward diagonally — not horizontally.",
+            "imagePath": "assets/makeup_steps/lifted_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Deepen the outer corner with a darker shadow, focusing the color pointing up and out.",
+            "imagePath": "assets/makeup_steps/lifted_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Line the upper lash line starting from the inner corner, getting thicker toward the outer corner and flicking upward in an elongated wing.",
+            "imagePath": "assets/makeup_steps/lifted_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Avoid dark liner on the lower waterline — use a nude or white liner instead to open and brighten.",
+            "imagePath": "assets/makeup_steps/lifted_makeup/step6.jpg"
+          },
+          {
+            "instruction": "If lining the lower lash line, line only the outer third and angle the liner up to meet the upper wing.",
+            "imagePath": "assets/makeup_steps/lifted_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Curl lashes well, especially at the outer corners. Apply mascara focusing on outer lashes.",
+            "imagePath": "assets/makeup_steps/lifted_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Apply a small dot of highlighter on the inner corner and brow bone to enhance the lifted effect.",
+            "imagePath": "assets/makeup_steps/lifted_makeup/step9.jpg"
+          },
+          {
+            "instruction": "Keep brows slightly lifted at the tail with a brow gel. Keep the rest of face simple — flushed cheek and neutral lip.",
+            "imagePath": "assets/makeup_steps/lifted_makeup/step10.jpg"
+          }
         ]
       },
       "tips": [
@@ -5036,20 +5284,62 @@
           "Combination Skin: Apply a hydrating moisturizer all over, but use a mattifying primer only on the T-zone (forehead, nose, and chin) to balance the skin."
         ],
         "makeup_application": [
-          "Prepare your skin: Complete your full skincare routine, ensuring your face is hydrated and primed for your specific skin type to ensure the makeup lasts and sits smoothly.",
-          "Shape your brows: Brush your eyebrow hairs upward and outward. Use a brow gel or wax to lock them in this lifted position, then use small, hair-like strokes with a brow pencil to fill in any sparse areas for a defined, swooped look.",
-          "Create the guide: Place a small piece of tape at the outer corner of your eye, angling it upward toward the tail of your eyebrow. This acts as a guide to keep your eyeshadow and liner sharp and lifted.",
-          "Apply base eyeshadow: Using a neutral mid-tone transition shade, blend it across your eyelid. Keep the movement focused on sweeping the color outward to maintain the lifted shape.",
-          "Deepen the outer corner: Take a darker shade and lightly apply it only to the outer third of your eyelid. Focus on blending this color upward into the crease, ensuring you do not bring the dark pigment past the center of the pupil.",
-          "Highlight: Apply a lighter, shimmery shade or a bright matte powder to the center of your lid and the brow bone to brighten the eye and add dimension.",
-          "Define with liner: Draw a winged eyeliner starting from the outer corner of your eye, using the edge of the tape as your guide. Keep the line thin and angled upward.",
-          "Apply mascara: Curl your lashes, then apply mascara by pulling the brush upward and toward the outer corners of your eyes to achieve a cat-eye effect.",
-          "Even the complexion: Apply a lightweight skin tint or a glow-enhancing base product to even out your skin tone. If you have specific areas that need more coverage, use a small amount of concealer to spot-correct. Make sure you don’t use too much, just light.",
-          "Sculpt the face: Apply concealer in small dots under the eyes, moving toward the temples. Blend this upward and outward to lift the cheekbones.",
-          "Bronze and blush: Apply bronzer first and then blush to the high points of your cheekbones, rather than the apples of your cheeks. Blend everything in an upward, diagonal motion toward your hairline.",
-          "Set the look: Use a light dusting of translucent powder specifically under the eyes and on areas where you tend to get oily, leaving the rest of the face radiant.",
-          "Add finishing touches: Optionally, add small faux beauty marks using a brown pencil to create a natural, seamless look. Set your entire face with a setting spray to lock the look in place.",
-          "Finish with gloss: Complete the look with your favorite lip gloss for a fresh, hydrated finish."
+          {
+            "instruction": "Prepare your skin: Complete your full skincare routine, ensuring your face is hydrated and primed for your specific skin type to ensure the makeup lasts and sits smoothly.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Shape your brows: Brush your eyebrow hairs upward and outward. Use a brow gel or wax to lock them in this lifted position, then use small, hair-like strokes with a brow pencil to fill in any sparse areas for a defined, swooped look.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Create the guide: Place a small piece of tape at the outer corner of your eye, angling it upward toward the tail of your eyebrow. This acts as a guide to keep your eyeshadow and liner sharp and lifted.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Apply base eyeshadow: Using a neutral mid-tone transition shade, blend it across your eyelid. Keep the movement focused on sweeping the color outward to maintain the lifted shape.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Deepen the outer corner: Take a darker shade and lightly apply it only to the outer third of your eyelid. Focus on blending this color upward into the crease, ensuring you do not bring the dark pigment past the center of the pupil.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Highlight: Apply a lighter, shimmery shade or a bright matte powder to the center of your lid and the brow bone to brighten the eye and add dimension.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Define with liner: Draw a winged eyeliner starting from the outer corner of your eye, using the edge of the tape as your guide. Keep the line thin and angled upward.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Apply mascara: Curl your lashes, then apply mascara by pulling the brush upward and toward the outer corners of your eyes to achieve a cat-eye effect.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Even the complexion: Apply a lightweight skin tint or a glow-enhancing base product to even out your skin tone. If you have specific areas that need more coverage, use a small amount of concealer to spot-correct. Make sure you don’t use too much, just light.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step9.jpg"
+          },
+          {
+            "instruction": "Sculpt the face: Apply concealer in small dots under the eyes, moving toward the temples. Blend this upward and outward to lift the cheekbones.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step10.jpg"
+          },
+          {
+            "instruction": "Bronze and blush: Apply bronzer first and then blush to the high points of your cheekbones, rather than the apples of your cheeks. Blend everything in an upward, diagonal motion toward your hairline.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step11.jpg"
+          },
+          {
+            "instruction": "Set the look: Use a light dusting of translucent powder specifically under the eyes and on areas where you tend to get oily, leaving the rest of the face radiant.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step12.jpg"
+          },
+          {
+            "instruction": "Add finishing touches: Optionally, add small faux beauty marks using a brown pencil to create a natural, seamless look. Set your entire face with a setting spray to lock the look in place.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step13.jpg"
+          },
+          {
+            "instruction": "Finish with gloss: Complete the look with your favorite lip gloss for a fresh, hydrated finish.",
+            "imagePath": "assets/makeup_steps/snatched_everyday_makeup/step14.jpg"
+          }
         ]
       },
       "tips": [
@@ -5095,14 +5385,38 @@
           "Apply a broad-spectrum sunscreen to protect your skin from UV rays. This is essential regardless of skin type or tone."
         ],
         "makeup_application": [
-          "Apply a primer suitable for your skin type to smooth out your skin texture and help your makeup adhere better. Use your fingertips to gently massage it into the skin, focusing on areas where your makeup tends to fade.",
-          "Apply a tone-up or tinted sunscreen to act as your base. This will even out your complexion without the heavy coverage of foundation. Use your fingers or a dampened makeup sponge to spread it evenly across your face.",
-          "Apply an eyeshadow base or a neutral-toned eyeshadow to your lids to create a clean, uniform canvas.",
-          "Take a soft, blush-toned eyeshadow and blend it across the center of your eyelids and slightly outward to define the eye shape while keeping the look soft and cohesive.",
-          "Use an eyeliner pencil or liquid liner to draw a thin line along your upper lash line to define your eyes. You can flick the end slightly for a subtle wing if desired.",
-          "Curl your eyelashes using an eyelash curler, then apply a coat of mascara to lengthen and darken your lashes. Wiggle the wand at the roots to ensure even coverage.",
-          "Apply a blush stick to the apples of your cheeks. For an Igari (or 'hangover') look, blend the product slightly higher, just under your eyes and across the bridge of your nose, to create a natural, flushed appearance.",
-          "Finish with a velvet-finish liquid lipstick or a tinted lip gloss. Apply it to the center of your lips and blend it outward with your finger for a soft, diffused, and natural-looking stain."
+          {
+            "instruction": "Apply a primer suitable for your skin type to smooth out your skin texture and help your makeup adhere better. Use your fingertips to gently massage it into the skin, focusing on areas where your makeup tends to fade.",
+            "imagePath": "assets/makeup_steps/igari_inspired_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Apply a tone-up or tinted sunscreen to act as your base. This will even out your complexion without the heavy coverage of foundation. Use your fingers or a dampened makeup sponge to spread it evenly across your face.",
+            "imagePath": "assets/makeup_steps/igari_inspired_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Apply an eyeshadow base or a neutral-toned eyeshadow to your lids to create a clean, uniform canvas.",
+            "imagePath": "assets/makeup_steps/igari_inspired_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Take a soft, blush-toned eyeshadow and blend it across the center of your eyelids and slightly outward to define the eye shape while keeping the look soft and cohesive.",
+            "imagePath": "assets/makeup_steps/igari_inspired_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Use an eyeliner pencil or liquid liner to draw a thin line along your upper lash line to define your eyes. You can flick the end slightly for a subtle wing if desired.",
+            "imagePath": "assets/makeup_steps/igari_inspired_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Curl your eyelashes using an eyelash curler, then apply a coat of mascara to lengthen and darken your lashes. Wiggle the wand at the roots to ensure even coverage.",
+            "imagePath": "assets/makeup_steps/igari_inspired_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Apply a blush stick to the apples of your cheeks. For an Igari (or 'hangover') look, blend the product slightly higher, just under your eyes and across the bridge of your nose, to create a natural, flushed appearance.",
+            "imagePath": "assets/makeup_steps/igari_inspired_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Finish with a velvet-finish liquid lipstick or a tinted lip gloss. Apply it to the center of your lips and blend it outward with your finger for a soft, diffused, and natural-looking stain.",
+            "imagePath": "assets/makeup_steps/igari_inspired_makeup/step8.jpg"
+          }
         ]
       },
       "tips": [
@@ -5143,20 +5457,63 @@
           "Moisturize: Apply a moisturizer appropriate for your skin type to create a smooth canvas."
         ],
         "makeup_application": [
-          "Base: Start with a tone-up or tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use your fingers to spread it evenly across your face.",
-          "Conceal: Apply a small amount of concealer under the eyes, on the T-zone, and on any areas with redness or blemishes. Dab it into the skin using your ring finger or a damp sponge to ensure a seamless blend.",
-          "Brows: Brush your eyebrows upward and outward. Use an eyebrow pencil to fill in any sparse areas with light, hair-like strokes, then use an eyebrow powder to lock the color in place.",
-          "Cream Blush: Apply a cream blush to the apples of your cheeks and lightly dab a small amount on the tip of your nose and chin for a fresh, flushed look. Blend well with your fingers or a brush.",
-          "Set: Use a translucent setting powder to dust over your entire face, focusing specifically on your T-zone to lock in your base and prevent unwanted shine throughout the day.",
-          "Contour: Using a contour powder or cream, draw a soft \"C\" shape starting from the top of your temple down to your cheekbone, then add a small amount along your jawline. Blend thoroughly to create soft, natural-looking shadows.",
-          "Nose Contour: Apply a small amount of contour shade down the sides of the bridge of your nose to define its shape. Use a highlighter on the center of the bridge and the tip of the nose to brighten.",
-          "Eyeshadow: Apply a light, base-colored eyeshadow over your eyelids. Use a slightly darker shade starting from the outer corner, blending inward to create depth. Add a shimmer shade to the center of your eyelids for brightness.",
-          "Aegyo-sal: To create the under-eye puffiness, smile slightly and draw a very thin, light brown line beneath your lower lash line. Blend it gently, then apply a bit of highlighter or shimmer directly above that line.",
-          "Eyeliner: Apply a thin line of eyeliner along your upper lash line, extending just slightly at the outer corner for definition.",
-          "Mascara: Curl your eyelashes and apply mascara to both your upper and lower lashes to open up your eyes.",
-          "Falsies: Optionally, apply natural-looking false eyelashes to complete the soft, expressive eye look.",
-          "Final Blush: Add a light layer of powder blush over the center of your cheeks and forehead to harmonize your complexion.",
-          "Lips: Apply a lip tint to the center of your lips, blending it outward, and finish with a clear or tinted lip gloss for a hydrated, polished appearance."
+          {
+            "instruction": "Base: Start with a tone-up or tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use your fingers to spread it evenly across your face.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Conceal: Apply a small amount of concealer under the eyes, on the T-zone, and on any areas with redness or blemishes. Dab it into the skin using your ring finger or a damp sponge to ensure a seamless blend.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Brows: Brush your eyebrows upward and outward. Use an eyebrow pencil to fill in any sparse areas with light, hair-like strokes, then use an eyebrow powder to lock the color in place.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Cream Blush: Apply a cream blush to the apples of your cheeks and lightly dab a small amount on the tip of your nose and chin for a fresh, flushed look. Blend well with your fingers or a brush.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Set: Use a translucent setting powder to dust over your entire face, focusing specifically on your T-zone to lock in your base and prevent unwanted shine throughout the day.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Contour: Using a contour powder or cream, draw a soft \"C\" shape starting from the top of your temple down to your cheekbone, then add a small amount along your jawline. Blend thoroughly to create soft, natural-looking shadows.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Nose Contour: Apply a small amount of contour shade down the sides of the bridge of your nose to define its shape. Use a highlighter on the center of the bridge and the tip of the nose to brighten.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Eyeshadow: Apply a light, base-colored eyeshadow over your eyelids. Use a slightly darker shade starting from the outer corner, blending inward to create depth. Add a shimmer shade to the center of your eyelids for brightness.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Aegyo-sal: To create the under-eye puffiness, smile slightly and draw a very thin, light brown line beneath your lower lash line. Blend it gently, then apply a bit of highlighter or shimmer directly above that line.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step9.jpg"
+          },
+          {
+            "instruction": "Eyeliner: Apply a thin line of eyeliner along your upper lash line, extending just slightly at the outer corner for definition.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step10.jpg"
+          },
+          {
+            "instruction": "Mascara: Curl your eyelashes and apply mascara to both your upper and lower lashes to open up your eyes.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step11.jpg"
+          },
+          {
+            "instruction": "Falsies: Optionally, apply natural-looking false eyelashes to complete the soft, expressive eye look.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step12.jpg"
+          },
+          {
+            "instruction": "Final Blush: Add a light layer of powder blush over the center of your cheeks and forehead to harmonize your complexion.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step13.jpg"
+          },
+          {
+            "instruction": "Lips: Apply a lip tint to the center of your lips, blending it outward, and finish with a clear or tinted lip gloss for a hydrated, polished appearance.",
+            "imagePath": "assets/makeup_steps/douyin_natural_makeup/step14.jpg"
+          }
+          
         ]
       },
       "tips": [
@@ -5207,18 +5564,54 @@
           "Combination Skin: Apply a hydrating moisturizer on dry areas (typically cheeks) and a lighter, oil-free moisturizer on the T-zone (forehead, nose, and chin). Use a balanced, non-greasy sunscreen."
         ],
         "makeup_application": [
-          "Start with a tone-up or tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use your fingers to spread it evenly across your face.",
-          "Apply a color corrector to your under-eye dark circles and around the corners of your lips. This step is more efficient than concealer for brightening the face instantly without adding thick layers.",
-          "Use a lightweight, hydrating concealer only on specific areas that need extra coverage. Dab it gently with your fingertip or a small brush to keep the look natural and breathable.",
-          "Apply a cream or liquid blush generously across your cheeks and blend it lightly over the bridge of your nose for a sun-kissed, youthful effect.",
-          "If your skin is prone to excess shine, lightly dust a translucent setting powder over your T-zone or any areas where you will apply later powder products to ensure a smooth application and prevent a muddy finish.",
-          "For the eyes, apply a neutral, soft-toned eyeshadow across your eyelids and along the lower lash line to create a subtle, cohesive depth that matches your blush.",
-          "Use a thin eyeshadow brush to draw a faint guideline for a winged liner. Follow this by using a brown liquid eyeliner pen to create a soft, defined cat-eye shape, starting by tightlining and then extending the line slightly upward.",
-          "Apply a volumizing mascara to your upper lashes for definition, and use a mascara with a thinner wand to carefully coat your lower lashes.",
-          "Fill in your eyebrows using a brow powder that complements your hair color. Brush your brow hairs upward using a clear or tinted brow gel to create a fresh, lifted, and bushy appearance.",
-          "Add a neutral-toned bronzer to define the face. Since bronzer can sometimes soften the effect of your cream blush, re-apply a light layer of powder blush on top to ensure the pigment remains vibrant and lasts longer.",
-          "Use a lip liner to define the shape of your lips by following your natural lip line. You do not need to overline significantly; just focus on defining the edges.",
-          "Finish the look by applying a deep red or berry-toned lip tint. Blend the color with your fingertip for a soft, stained effect, and top it off with a clear or cherry-tinted lip oil to add a juicy, glossy shine."
+          {
+            "instruction": "Start with a tone-up or tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use your fingers to spread it evenly across your face.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Apply a color corrector to your under-eye dark circles and around the corners of your lips. This step is more efficient than concealer for brightening the face instantly without adding thick layers.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Use a lightweight, hydrating concealer only on specific areas that need extra coverage. Dab it gently with your fingertip or a small brush to keep the look natural and breathable.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Apply a cream or liquid blush generously across your cheeks and blend it lightly over the bridge of your nose for a sun-kissed, youthful effect.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step4.jpg"
+          },
+          {
+            "instruction": "If your skin is prone to excess shine, lightly dust a translucent setting powder over your T-zone or any areas where you will apply later powder products to ensure a smooth application and prevent a muddy finish.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step5.jpg"
+          },
+          {
+            "instruction": "For the eyes, apply a neutral, soft-toned eyeshadow across your eyelids and along the lower lash line to create a subtle, cohesive depth that matches your blush.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Use a thin eyeshadow brush to draw a faint guideline for a winged liner. Follow this by using a brown liquid eyeliner pen to create a soft, defined cat-eye shape, starting by tightlining and then extending the line slightly upward.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Apply a volumizing mascara to your upper lashes for definition, and use a mascara with a thinner wand to carefully coat your lower lashes.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Fill in your eyebrows using a brow powder that complements your hair color. Brush your brow hairs upward using a clear or tinted brow gel to create a fresh, lifted, and bushy appearance.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step9.jpg"
+          },
+          {
+            "instruction": "Add a neutral-toned bronzer to define the face. Since bronzer can sometimes soften the effect of your cream blush, re-apply a light layer of powder blush on top to ensure the pigment remains vibrant and lasts longer.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step10.jpg"
+          },
+          {
+            "instruction": "Use a lip liner to define the shape of your lips by following your natural lip line. You do not need to overline significantly; just focus on defining the edges.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step11.jpg"
+          },
+          {
+            "instruction": "Finish the look by applying a deep red or berry-toned lip tint. Blend the color with your fingertip for a soft, stained effect, and top it off with a clear or cherry-tinted lip oil to add a juicy, glossy shine.",
+            "imagePath": "assets/makeup_steps/strawberry_makeup/step12.jpg"
+          }
         ]
       },
       "tips": [
@@ -5263,17 +5656,50 @@
           "Apply a primer to smooth the skin and extend wear throughout the workday."
         ],
         "makeup_application": [
-          "Apply a medium-to-full coverage longwear foundation in your exact skin tone and blend well.",
-          "Conceal under eyes and any blemishes. Set with a light-to-medium press of powder.",
-          "Apply a matte or satin bronzer to warm up the complexion.",
-          "Sweep a natural rose, mauve, or nude-pink blush on the cheeks.",
-          "Add a subtle highlight on the cheekbones only — avoid very glittery formulas.",
-          "Fill brows neatly with a brow pencil. Keep them defined but not overdone.",
-          "Apply a neutral eyeshadow in taupe, beige, or soft brown tones across the lid.",
-          "Apply a thin, clean line of brown or soft black eyeliner on the upper lash line.",
-          "Apply one to two coats of black mascara.",
-          "Line and fill lips with a neutral-toned lip liner and apply a matte or satin lipstick.",
-          "Lock everything in with a longwear setting spray."
+          {
+            "instruction": "Apply a medium-to-full coverage longwear foundation in your exact skin tone and blend well.",
+            "imagePath": "assets/makeup_steps/office_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Conceal under eyes and any blemishes. Set with a light-to-medium press of powder.",
+            "imagePath": "assets/makeup_steps/office_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Apply a matte or satin bronzer to warm up the complexion.",
+            "imagePath": "assets/makeup_steps/office_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Sweep a natural rose, mauve, or nude-pink blush on the cheeks.",
+            "imagePath": "assets/makeup_steps/office_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Add a subtle highlight on the cheekbones only — avoid very glittery formulas.",
+            "imagePath": "assets/makeup_steps/office_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Fill brows neatly with a brow pencil. Keep them defined but not overdone.",
+            "imagePath": "assets/makeup_steps/office_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Apply a neutral eyeshadow in taupe, beige, or soft brown tones across the lid.",
+            "imagePath": "assets/makeup_steps/office_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Apply a thin, clean line of brown or soft black eyeliner on the upper lash line.",
+            "imagePath": "assets/makeup_steps/office_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Apply one to two coats of black mascara.",
+            "imagePath": "assets/makeup_steps/office_makeup/step9.jpg"
+          },
+          {
+            "instruction": "Line and fill lips with a neutral-toned lip liner and apply a matte or satin lipstick.",
+            "imagePath": "assets/makeup_steps/office_makeup/step10.jpg"
+          },
+          {
+            "instruction": "Lock everything in with a longwear setting spray.",
+            "imagePath": "assets/makeup_steps/office_makeup/step11.jpg"
+          }
         ]
       },
       "tips": [
@@ -5318,16 +5744,46 @@
           "For Combination Skin: Apply a hydrating moisturizer to your cheeks and a mattifying primer or oil-control product specifically on your T-zone (forehead, nose, and chin)."
         ],
         "makeup_application": [
-          "Base: Begin with a lightweight foundation or a skin tint that matches your complexion. Use a damp makeup sponge to bounce the product onto your skin for an even, natural-looking finish.",
-          "Conceal: Apply a small amount of concealer under the eyes and on any blemishes or areas needing extra coverage. Gently blend the edges with a tapping motion using your finger or a small brush until it seamlessly merges with your base.",
-          "Cream Color: Add warmth and dimension by applying a cream-based tint to your cheekbones and the high points of your face. Use your fingertips to blend it upward and outward to mimic a natural flush.",
-          "Set: Lightly dust a translucent or loose powder over your T-zone and under-eye area using a fluffy brush to lock everything in place without adding heavy layers.",
-          "Brows: Groom your eyebrows using a clear brow gel. Brush the hairs in an upward motion to create a defined but natural, feathery look.",
-          "Bronze: Use a powder bronzer to gently sweep warmth across your forehead, temples, and the hollows of your cheeks. Ensure you blend well to avoid any harsh lines.",
-          "Blush: Apply a powder blush to the apples of your cheeks. Blend it slightly back toward your temples to lift the face and create a soft, healthy glow.",
-          "Eyeshadow: Apply a soft, neutral-toned matte eyeshadow over your eyelids as a base. Follow this by blending a slightly darker, warm-toned shade into the outer corner and crease to add depth. Finish by dabbing a shimmery, light-reflecting shadow in the center of the lid for a pop of light.",
-          "Lashes: Use an eyelash curler to gently lift your lashes. Apply a lengthening or volumizing mascara from the root to the tip of your lashes, wiggling the wand to ensure even distribution.",
-          "Lips: Start with a moisturizing lip product in a natural, nude-like shade. For a polished finish, you can layer a slightly darker, warm-toned lip cream just in the center of your lips and blend it outward for a subtle, soft-gradient effect."
+          {
+            "instruction": "Begin with a lightweight foundation or a skin tint that matches your complexion. Use a damp makeup sponge to bounce the product onto your skin for an even, natural-looking finish.",
+            "imagePath": "assets/makeup_steps/neutral_glam_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Apply a small amount of concealer under the eyes and on any blemishes or areas needing extra coverage. Gently blend the edges with a tapping motion using your finger or a small brush until it seamlessly merges with your base.",
+            "imagePath": "assets/makeup_steps/neutral_glam_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Add warmth and dimension by applying a cream-based tint to your cheekbones and the high points of your face. Use your fingertips to blend it upward and outward to mimic a natural flush.",
+            "imagePath": "assets/makeup_steps/neutral_glam_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Lightly dust a translucent or loose powder over your T-zone and under-eye area using a fluffy brush to lock everything in place without adding heavy layers.",
+            "imagePath": "assets/makeup_steps/neutral_glam_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Groom your eyebrows using a clear brow gel. Brush the hairs in an upward motion to create a defined but natural, feathery look.",
+            "imagePath": "assets/makeup_steps/neutral_glam_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Use a powder bronzer to gently sweep warmth across your forehead, temples, and the hollows of your cheeks. Ensure you blend well to avoid any harsh lines.",
+            "imagePath": "assets/makeup_steps/neutral_glam_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Apply a powder blush to the apples of your cheeks. Blend it slightly back toward your temples to lift the face and create a soft, healthy glow.",
+            "imagePath": "assets/makeup_steps/neutral_glam_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Apply a soft, neutral-toned matte eyeshadow over your eyelids as a base. Follow this by blending a slightly darker, warm-toned shade into the outer corner and crease to add depth. Finish by dabbing a shimmery, light-reflecting shadow in the center of the lid for a pop of light.",
+            "imagePath": "assets/makeup_steps/neutral_glam_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Use an eyelash curler to gently lift your lashes. Apply a lengthening or volumizing mascara from the root to the tip of your lashes, wiggling the wand to ensure even distribution.",
+            "imagePath": "assets/makeup_steps/neutral_glam_makeup/step9.jpg"
+          },
+          {
+            "instruction": "Start with a moisturizing lip product in a natural, nude-like shade. For a polished finish, you can layer a slightly darker, warm-toned lip cream just in the center of your lips and blend it outward for a subtle, soft-gradient effect.",
+            "imagePath": "assets/makeup_steps/neutral_glam_makeup/step10.jpg"
+          }
         ]
       },
       "tips": [
@@ -5371,16 +5827,47 @@
           "Mist: Use a refreshing facial mist to prime the skin and lock in moisture, creating a smooth surface for your makeup."
         ],
         "makeup_application": [
-          "Apply Base: Use a skin tint or a tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use a damp microfiber sponge or your fingers to press and spread it evenly across your face for a skin-like finish.",
-          "Conceal: Apply a small amount of concealer under your eyes and on any specific blemishes. Use your ring finger or a makeup sponge to blend it gently, ensuring you blend upwards to give your face a lifted, refreshed appearance.",
-          "Define with Cream Contour: Take a cream contour product and apply it lightly to your cheekbones, temples, and jawline. Blend thoroughly using a brush or sponge, moving in an upward motion to sculpt the face naturally.",
-          "Set the T-Zone: Lightly dust an invisible setting powder over your T-zone (forehead, nose, and chin) and under the eyes to lock your cream products in place. Avoid over-powdering to maintain a natural glow.",
-          "Add Structure: Using a contour powder, lightly set your cream contour areas. You can also use a small brush to gently contour the sides of your nose for added dimension.",
-          "Fill Brows: Use a precision brow pen to fill in sparse areas with light, hair-like strokes. Focus on the tails and follow your natural growth pattern to keep them looking soft and realistic.",
-          "Add Color: Apply a cream blush to the high points of your cheeks, closer to your temples, to create a lifted effect. You can also dab a tiny amount on the bridge of your nose for a sun-kissed look.",
-          "Highlight and Shimmer: Dab a subtle metallic highlighter on your eyelids for a simple, shimmer-focused eye look. Then, apply the same highlighter to the high points of your face—the cheekbones, bridge of the nose, and cupid's bow.",
-          "Define Lashes: Use an eyelash curler to lift your lashes, then apply a coat of waterproof mascara. Don't forget to define your lower lashes to make your eyes look wider and more awake.",
-          "Set and Finish: Finish the look with a setting spray to keep everything in place, then complete the application with your favorite lipstick or lip tint."
+          {
+            "instruction": "Apply Base: Use a skin tint or a tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use a damp microfiber sponge or your fingers to press and spread it evenly across your face for a skin-like finish.",
+            "imagePath": "assets/makeup_steps/corporate_clean_makeup/step1.jpg"
+          },
+          {
+            "instruction": "Conceal: Apply a small amount of concealer under your eyes and on any specific blemishes. Use your ring finger or a makeup sponge to blend it gently, ensuring you blend upwards to give your face a lifted, refreshed appearance.",
+            "imagePath": "assets/makeup_steps/corporate_clean_makeup/step2.jpg"
+          },
+          {
+            "instruction": "Define with Cream Contour: Take a cream contour product and apply it lightly to your cheekbones, temples, and jawline. Blend thoroughly using a brush or sponge, moving in an upward motion to sculpt the face naturally.",
+            "imagePath": "assets/makeup_steps/corporate_clean_makeup/step3.jpg"
+          },
+          {
+            "instruction": "Set the T-Zone: Lightly dust an invisible setting powder over your T-zone (forehead, nose, and chin) and under the eyes to lock your cream products in place. Avoid over-powdering to maintain a natural glow.",
+            "imagePath": "assets/makeup_steps/corporate_clean_makeup/step4.jpg"
+          },
+          {
+            "instruction": "Add Structure: Using a contour powder, lightly set your cream contour areas. You can also use a small brush to gently contour the sides of your nose for added dimension.",
+            "imagePath": "assets/makeup_steps/corporate_clean_makeup/step5.jpg"
+          },
+          {
+            "instruction": "Fill Brows: Use a precision brow pen to fill in sparse areas with light, hair-like strokes. Focus on the tails and follow your natural growth pattern to keep them looking soft and realistic.",
+            "imagePath": "assets/makeup_steps/corporate_clean_makeup/step6.jpg"
+          },
+          {
+            "instruction": "Add Color: Apply a cream blush to the high points of your cheeks, closer to your temples, to create a lifted effect. You can also dab a tiny amount on the bridge of your nose for a sun-kissed look.",  
+          "imagePath": "assets/makeup_steps/corporate_clean_makeup/step7.jpg"
+          },
+          {
+            "instruction": "Highlight and Shimmer: Dab a subtle metallic highlighter on your eyelids for a simple, shimmer-focused eye look. Then, apply the same highlighter to the high points of your face—the cheekbones, bridge of the nose, and cupid's bow.",
+            "imagePath": "assets/makeup_steps/corporate_clean_makeup/step8.jpg"
+          },
+          {
+            "instruction": "Define Lashes: Use an eyelash curler to lift your lashes, then apply a coat of waterproof mascara. Don't forget to define your lower lashes to make your eyes look wider and more awake.",
+            "imagePath": "assets/makeup_steps/corporate_clean_makeup/step9.jpg"
+          },
+          {
+            "instruction": "Set and Finish: Finish the look with a setting spray to keep everything in place, then complete the application with your favorite lipstick or lip tint.",
+            "imagePath": "assets/makeup_steps/corporate_clean_makeup/step10.jpg"
+          } 
+          
         ]
       },
       "tips": [
