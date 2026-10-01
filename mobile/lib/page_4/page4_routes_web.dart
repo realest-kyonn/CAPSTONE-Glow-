@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../page_skin_quiz/bare_face_tutorial_screen.dart';
+
+// Real quiz screens: these use Flutter UI and static data.
+Widget skinQuizScreen() => const BareFaceTutorialScreen();
+
+// These destinations still need separate web-compatibility checks.
 Widget analysisScreen() => const _BrowserPreviewScreen(
       title: 'Begin Analysis',
       icon: Icons.face_retouching_natural,
-    );
-
-Widget skinQuizScreen() => const _BrowserPreviewScreen(
-      title: 'Skin Type Test',
-      icon: Icons.spa_rounded,
     );
 
 Widget shadeScreen() => const _BrowserPreviewScreen(
@@ -72,10 +73,11 @@ class _BrowserPreviewScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'The home-screen button for "$title" works.\n\n'
-                  'This preview intentionally does not load the real '
-                  'destination screen or native processing code.\n\n'
-                  'Run the Android app to test the actual feature.',
+                  '"$title" has not been connected for the browser yet.\n\n'
+                  'The Skin Type Test is now available from the home '
+                  'screen using "Try this test".\n\n'
+                  'Other features are being checked separately for '
+                  'web compatibility.',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 15,
