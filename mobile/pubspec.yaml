@@ -48,6 +48,20 @@ flutter:
 
   assets:
   - assets/makeup_styles/
+  - assets/makeup_steps/clean_girl_makeup/
+  - assets/makeup_steps/corporate_clean_makeup/
+  - assets/makeup_steps/douyin_natural_makeup/
+  - assets/makeup_steps/igari_inspired_makeup/
+  - assets/makeup_steps/korean_daily_makeup/
+  - assets/makeup_steps/lifted_makeup/
+  - assets/makeup_steps/neutral_glam_makeup/
+  - assets/makeup_steps/no_makeup_makeup/
+  - assets/makeup_steps/office_makeup/
+  - assets/makeup_steps/peach_makeup/
+  - assets/makeup_steps/snatched_everyday_makeup/
+  - assets/makeup_steps/soft_glam_everyday_makeup/
+  - assets/makeup_steps/soft_contour_makeup/
+  - assets/makeup_steps/strawberry_makeup/
   - assets/test/sample_face.jpg
   - assets/face_shape_model.tflite
   - assets/face_shape_model_labels.txt

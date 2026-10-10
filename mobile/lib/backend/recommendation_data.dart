@@ -33,15 +33,24 @@ class RecommendationData {
     }
 
     final tutorial = entry['tutorial'] as Map<String, dynamic>? ?? {};
-    final skinPrep = (tutorial['skin_prep'] as List?)?.cast<String>() ?? [];
-    final application =
-        (tutorial['makeup_application'] as List?)?.cast<String>() ?? [];
+    final application = tutorial['makeup_application'] as List<dynamic>? ?? [];
 
     final steps = <Map<String, String>>[
-      for (final instruction in [...skinPrep, ...application])
-        {'instruction': instruction, 'imagePath': ''},
-    ];
-
+      for (final step in application)
+        if (step is Map)
+          {
+            'instruction': step['instruction']?.toString() ?? '',
+            'imagePath': step['imagePath']?.toString() ?? '',
+            'tip': step['tip']?.toString() ?? '',
+          }
+        else
+          {
+            // Fallback for styles in your JSON that haven't been updated yet
+            'instruction': step.toString(),
+            'imagePath': '',
+            'tip': '',
+          }
+     ];
     final tips = <String>[
       ...((entry['tips'] as List?)?.cast<String>() ?? []),
       if (entry['general_tip'] is String) entry['general_tip'] as String,
