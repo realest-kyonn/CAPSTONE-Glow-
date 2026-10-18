@@ -4598,7 +4598,7 @@
       "name": "Clean Girl Makeup",
       "tagline": "Effortless, skin-first glow",
       "description": "Clean Girl Makeup is all about looking like the best, most polished version of your bare face. Popularized on social media, this trend champions glowing, hydrated skin, groomed brows, and barely-there color — as if you woke up naturally radiant. Think glass skin, fluffy brows, and a subtle flush.",
-      "imagePath": "assets/makeup_styles/clean_girl_makeup.jpg",
+      "imagePath": "assets/makeup_styles/clean-girl-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Start by soaking a cotton pad with a gentle toner and gently swipe it over your face to hydrate and prep your skin.",
@@ -4846,10 +4846,10 @@
       "general_tip": "Make sure to properly prep your face before putting on makeup."
     },
     "soft_glam": {
-      "imagePath": "assets/makeup_styles/soft-glam-everyday-makeup.jpg",
       "name": "Soft Glam Everyday",
       "tagline": "Polished, wearable glam for any occasion",
       "description": "Soft Glam Everyday bridges the gap between natural and glamorous — a subtle smoky eye in neutral tones, defined lashes, a sculpted cheek, and a satin lip. It elevates a daily look without feeling overdressed.",
+      "imagePath": "assets/makeup_styles/soft-glam-everyday-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Cleanse: Start with a clean canvas by washing your face with a gentle cleanser to remove any impurities or residual oils.",
@@ -5285,6 +5285,7 @@
       "name": "Snatched Everyday Makeup",
       "tagline": "Defined, sculpted, and effortlessly sharp",
       "description": "Snatched Everyday Makeup combines a full, even base with sculpted contour, defined brows, striking eyes, and a prominent lip — but keeps the execution clean enough to wear to work, school, or brunch.",
+      "imagePath": "assets/makeup_styles/snatched-everyday-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Oily Skin: Prioritize an oil-free, mattifying moisturizer and a pore-blurring primer to control shine and create a smooth canvas.",

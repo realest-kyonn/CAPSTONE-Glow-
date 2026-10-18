@@ -4598,6 +4598,7 @@
       "name": "Clean Girl Makeup",
       "tagline": "Effortless, skin-first glow",
       "description": "Clean Girl Makeup is all about looking like the best, most polished version of your bare face. Popularized on social media, this trend champions glowing, hydrated skin, groomed brows, and barely-there color — as if you woke up naturally radiant. Think glass skin, fluffy brows, and a subtle flush.",
+      "imagePath": "assets/makeup_styles/clean-girl-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Start by soaking a cotton pad with a gentle toner and gently swipe it over your face to hydrate and prep your skin.",
@@ -4691,6 +4692,7 @@
       "name": "No-Makeup Makeup",
       "tagline": "Invisible enhancement — look done without looking done up",
       "description": "No-Makeup Makeup is the art of looking completely natural while subtly correcting and enhancing your features. The goal is for no one to be able to tell you're wearing anything — just a better, more even version of you.",
+      "imagePath": "assets/makeup_styles/no-makeup-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Start with a tone-up or tinted sunscreen. This acts as your base, evening out your complexion without the heaviness of foundation. Use your fingers to spread it evenly across your face."
@@ -4764,6 +4766,7 @@
       "name": "Fresh Dewy Makeup",
       "tagline": "Glass skin, flushed cheeks, lit-from-within radiance",
       "description": "Fresh Dewy Makeup turns up the glow dial several notches. It's a full-coverage-meets-glassy-skin look where luminosity is the star. Every product amplifies light reflection — from a glowing foundation to cream blush to a dab of highlighter.",
+      "imagePath": "assets/makeup_styles/fresh-dewy-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Hydrate the skin: Use a hydrating skin pack or a generous layer of moisturizer. Leave it on for about 10–15 minutes to allow the moisture to fully absorb into your skin.",
@@ -4846,6 +4849,7 @@
       "name": "Soft Glam Everyday",
       "tagline": "Polished, wearable glam for any occasion",
       "description": "Soft Glam Everyday bridges the gap between natural and glamorous — a subtle smoky eye in neutral tones, defined lashes, a sculpted cheek, and a satin lip. It elevates a daily look without feeling overdressed.",
+      "imagePath": "assets/makeup_styles/soft-glam-everyday-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Cleanse: Start with a clean canvas by washing your face with a gentle cleanser to remove any impurities or residual oils.",
@@ -4941,6 +4945,7 @@
       "name": "Korean Daily Makeup",
       "tagline": "Youthful, dewy, and effortlessly cute",
       "description": "Korean Daily Makeup (K-Beauty everyday) is defined by cushion-soft skin, straight or softly rounded brows, a gradient lip, and a focus on eye-brightening. It values a youthful, natural freshness with carefully chosen pops of color.",
+      "imagePath": "assets/makeup_styles/korean-daily-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Apply an essence or light serum, then a hydrating moisturizer and SPF."
@@ -5015,6 +5020,7 @@
       "name": "Peach Makeup",
       "tagline": "Warm, sun-kissed, and peachy-sweet",
       "description": "Peach Makeup is a monochromatic warm look that ties everything together in soft peach, coral, and golden tones. Eyes, cheeks, and lips all speak the same warm language, creating a cohesive, sun-kissed flush.",
+      "imagePath": "assets/makeup_styles/peach-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Start by thoroughly cleansing your face to remove any impurities.",
@@ -5113,6 +5119,7 @@
       "name": "Soft Contour Makeup",
       "tagline": "Subtle reshaping with a natural finish",
       "description": "Soft Contour Makeup focuses on dimensionality without drama. Unlike full contouring, soft contour uses slightly deeper and lighter shades to add structure where the face naturally has shadows and light.",
+      "imagePath": "assets/makeup_styles/soft-contour-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Oily Skin: Prioritize an oil-free, mattifying moisturizer and a pore-blurring primer to control shine and create a smooth canvas.",
@@ -5191,6 +5198,7 @@
       "name": "Lifted Makeup",
       "tagline": "Visually lift and elongate the eyes",
       "description": "Lifted Makeup is a technique-focused style specifically designed to create the visual illusion of eyes that are lifted, elongated, and upturned. It works by extending liner and shadow upward at the outer corner.",
+      "imagePath": "assets/makeup_styles/lifted-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Oily Skin: Prioritize an oil-free, mattifying moisturizer and a pore-blurring primer to control shine and create a smooth canvas.",
@@ -5277,6 +5285,7 @@
       "name": "Snatched Everyday Makeup",
       "tagline": "Defined, sculpted, and effortlessly sharp",
       "description": "Snatched Everyday Makeup combines a full, even base with sculpted contour, defined brows, striking eyes, and a prominent lip — but keeps the execution clean enough to wear to work, school, or brunch.",
+      "imagePath": "assets/makeup_styles/snatched-everyday-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Oily Skin: Prioritize an oil-free, mattifying moisturizer and a pore-blurring primer to control shine and create a smooth canvas.",
@@ -5378,6 +5387,7 @@
       "name": "Igari-Inspired Makeup",
       "tagline": "The Japanese hangover blush — effortlessly dreamy",
       "description": "Igari makeup (from Japanese meaning hangover) is characterized by its distinctive blushy nose-bridge and under-eye area — mimicking flushed, rosy skin. Named after Japanese makeup artist Igari Shinobu, it's youthful, romantic, and playful.",
+      "imagePath": "assets/makeup_styles/igari-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Start by cleansing your face with a gentle cleanser to remove excess oil and impurities, then pat your skin dry with a clean towel.",
@@ -5451,6 +5461,7 @@
       "name": "Douyin Natural Makeup",
       "tagline": "Chinese social media beauty — porcelain skin meets soft detail",
       "description": "Douyin Makeup features flawlessly smooth, porcelain-like skin, straight brows, soft feathered lashes, a carefully shaped bow-shaped lip, and subtle color. It balances precision with a soft, dreamy quality.",
+      "imagePath": "assets/makeup_styles/douyin-natural-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Cleanse: Start with a gentle cleanser to remove impurities from the skin.",
@@ -5557,6 +5568,7 @@
       "name": "Strawberry Makeup",
       "tagline": "Red-toned, rosy, and sweetly flushed",
       "description": "Strawberry Makeup is inspired by the colors of the fruit — red-tinged cheeks, rosy lips, peachy-warm eyes, and optionally faux freckles. Everything leans red and pink rather than cool or neutral.",
+      "imagePath": "assets/makeup_styles/strawberry-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Oily Skin: Use a lightweight, oil-free moisturizer and a matte-finish or oil-control sunscreen to manage shine throughout the day.",
@@ -5651,6 +5663,7 @@
       "name": "Office Makeup",
       "tagline": "Professional, polished, and appropriate for the workplace",
       "description": "Office Makeup is defined by being neat, appropriate, and confidence-boosting without being distracting. It favors polished neutral tones, well-groomed features, and a clean base.",
+      "imagePath": "assets/makeup_styles/office-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Apply a primer to smooth the skin and extend wear throughout the workday."
@@ -5736,6 +5749,7 @@
       "name": "Neutral Glam",
       "tagline": "Understated glamour in a timeless palette",
       "description": "Neutral Glam is the elevated cousin of Soft Glam — still wearable, but with more intention and drama. It lives in the world of nudes, taupes, browns, and warm champagnes.",
+      "imagePath": "assets/makeup_styles/neutral-glam-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Before applying makeup, ensure your skin is prepped to help products last and blend smoothly:",
@@ -5821,6 +5835,7 @@
       "name": "Corporate Clean Makeup",
       "tagline": "Minimalist, refined, and quietly powerful",
       "description": "Corporate Clean Makeup is the most stripped-back professional look. It is about precision, immaculate skin, and quiet confidence. Every product is purposeful and nothing is excessive.",
+      "imagePath": "assets/makeup_styles/corporate-clean-makeup.jpg",
       "tutorial": {
         "skin_prep": [
           "Cleanse and Hydrate: Start with a clean face. Apply your appropriate serum to address your skin's specific needs (hydrating or soothing).",

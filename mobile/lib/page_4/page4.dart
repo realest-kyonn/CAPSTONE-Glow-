@@ -16,7 +16,7 @@ class HomeDashboard extends StatelessWidget {
     {
       'name': 'Clean Girl Makeup',
       'desc': 'Effortless, skin-first glow',
-      'image': 'assets/makeup_styles/clean_girl_makeup.jpg',
+      'image': 'assets/makeup_styles/clean-girl-makeup.jpg',
       'detail':
           'Clean Girl Makeup is all about looking like the best, most '
           'polished version of your bare face. Popularized on social '
