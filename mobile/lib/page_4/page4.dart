@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../widgets/floating_bottom_nav.dart';
 
 // Browser builds load preview destinations.
 // Android builds load the actual app screens.
@@ -198,7 +199,7 @@ class HomeDashboard extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: _buildBottomNav(context, contentWidth),
+      bottomNavigationBar: FloatingBottomNav(currentIndex: 0),
       body: SafeArea(
         child: Align(
           alignment: Alignment.topCenter,
@@ -483,73 +484,8 @@ class HomeDashboard extends StatelessWidget {
       },
     );
   }
+ }
 
-  Widget _buildBottomNav(BuildContext context, double width) {
-    return SafeArea(
-      top: false,
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: width * 0.05,
-          right: width * 0.05,
-          bottom: 12,
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(40),
-          child: BottomNavigationBar(
-            currentIndex: 0,
-            backgroundColor: _pink,
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.white,
-            type: BottomNavigationBarType.fixed,
-            iconSize: width * 0.065,
-            selectedFontSize: 0,
-            unselectedFontSize: 0,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_rounded),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_rounded),
-                label: 'Favorites',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.camera_alt_rounded),
-                label: 'Analysis',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.help_outline_rounded),
-                label: 'About',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings_rounded),
-                label: 'Settings',
-              ),
-            ],
-            onTap: (index) {
-              switch (index) {
-                case 1:
-                  _open(context, routes.favoritesScreen());
-                  break;
-                case 2:
-                  _open(context, routes.analysisScreen());
-                  break;
-                case 3:
-                  _open(context, routes.aboutScreen());
-                  break;
-                case 4:
-                  _open(context, routes.settingsScreen());
-                  break;
-              }
-            },
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class _HomeFeatureCarousel extends StatefulWidget {
   const _HomeFeatureCarousel();

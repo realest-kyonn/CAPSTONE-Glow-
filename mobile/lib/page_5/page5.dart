@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../page_6_camera/camera.dart';
+import '../widgets/floating_bottom_nav.dart';
 
 // Face Scan Preparation Screen — Page 5
 class ScanPrepScreen extends StatelessWidget {
@@ -13,6 +14,7 @@ class ScanPrepScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: FloatingBottomNav(currentIndex: 2),
       body: SafeArea(
         child: Center(
           child: SizedBox(

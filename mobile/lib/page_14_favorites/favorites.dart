@@ -3,6 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import '../backend/database_helper.dart';
 import 'save_name_dialog.dart';
 import 'saved_result_detail.dart';
+import '../widgets/floating_bottom_nav.dart';
 
 /// Thrown when a save/rename would collide with an existing saved_name.
 /// The UI already blocks duplicates in SaveNameDialog, so this is a
@@ -181,6 +182,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: FloatingBottomNav(currentIndex: 1),
       body: SafeArea(
         child: Center(
           child: SizedBox(

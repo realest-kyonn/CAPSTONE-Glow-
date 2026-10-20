@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/floating_bottom_nav.dart';
 
 // ─────────────────────────────────────────────────────────────
 // About Screen
@@ -24,6 +25,7 @@ class AboutScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: FloatingBottomNav(currentIndex: 3),
       body: SafeArea(
         child: Align(
           alignment: Alignment.topCenter,
@@ -135,47 +137,23 @@ class AboutScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.8),
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.keyboard_double_arrow_left_rounded,
-                    color: Colors.white,
-                  ),
-                  onPressed: () => Navigator.pop(context),
+              Text(
+                'About',
+                style: TextStyle(
+                  fontSize: contentWidth * 0.11,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  height: 1.1,
                 ),
               ),
-              SizedBox(width: contentWidth * 0.04),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'About',
-                      style: TextStyle(
-                        fontSize: contentWidth * 0.11,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        height: 1.1,
-                      ),
-                    ),
-                    Text(
-                      'Learn more about GLOW',
-                      style: TextStyle(
-                        fontSize: contentWidth * 0.036,
-                        color: Colors.white.withValues(alpha: 0.85),
-                      ),
-                    ),
-                  ],
+              Text(
+                'Learn more about GLOW',
+                style: TextStyle(
+                  fontSize: contentWidth * 0.036,
+                  color: Colors.white.withValues(alpha: 0.85),
                 ),
               ),
             ],
