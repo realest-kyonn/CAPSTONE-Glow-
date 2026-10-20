@@ -215,8 +215,19 @@ class RecommendationResultScreen extends StatelessWidget {
     required double contentWidth,
     required double screenHeight,
   }) {
-    // BACKEND: Check if imagePath is provided in recommendations.json
-    final imagePath = style['imagePath'];
+    // 1. Try to get it from the backend map first
+    String? imagePath = style['imagePath'];
+
+    // 2. If the backend didn't send it, generate the path automatically with hyphens
+    if (imagePath == null || imagePath.isEmpty) {
+      if (style['name'] != null) {
+        // This takes "Neutral Glam" and turns it into "neutral-glam"
+        final formattedName = style['name']!.toLowerCase().replaceAll(' ', '-');
+        
+        // Points to your working makeup_styles folder
+        imagePath = 'assets/makeup_styles/$formattedName.jpg';
+      }
+    }
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
@@ -228,24 +239,21 @@ class RecommendationResultScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         child: imagePath != null && imagePath.isNotEmpty
-            // BACKEND: Real image from assets/styles/ folder
-            // Add images to assets/styles/ and register in pubspec.yaml
             ? Image.asset(
                 imagePath,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
-                  // Falls back to placeholder if image file not found
-                  return _buildImagePlaceholder(contentWidth, screenHeight);
+                  // If the file is missing or misspelled, show exactly what path failed
+                  return _buildImagePlaceholder(contentWidth, screenHeight, imagePath!);
                 },
               )
-            // Placeholder shown until backend provides images
-            : _buildImagePlaceholder(contentWidth, screenHeight),
+            : _buildImagePlaceholder(contentWidth, screenHeight, 'assets/makeup_styles/missing.jpg'),
       ),
     );
   }
 
   // Placeholder shown when no image is available yet
-  Widget _buildImagePlaceholder(double contentWidth, double screenHeight) {
+  Widget _buildImagePlaceholder(double contentWidth, double screenHeight, String attemptedPath) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -256,7 +264,7 @@ class RecommendationResultScreen extends StatelessWidget {
         ),
         SizedBox(height: screenHeight * 0.01),
         Text(
-          'Style image coming soon',
+          'Style image missing',
           style: TextStyle(
             fontSize: contentWidth * 0.035,
             color: Colors.grey,
@@ -264,10 +272,8 @@ class RecommendationResultScreen extends StatelessWidget {
         ),
         SizedBox(height: screenHeight * 0.005),
         Text(
-          // Shows which image file to add
-          style['name'] != null
-              ? 'Add: assets/styles/${style['name']!.toLowerCase().replaceAll(' ', '_')}.jpg'
-              : '',
+          // Dynamically shows the EXACT file name the app is looking for
+          'Add: $attemptedPath',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: contentWidth * 0.025,
