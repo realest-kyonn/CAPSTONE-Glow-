@@ -129,6 +129,7 @@ class _AnalyzingResultScreenState extends State<AnalyzingResultScreen> {
                   'subtitle': s.description,
                   'description': s.description,
                   'matchPct': s.matchPct.toString(),
+                  'imagePath': 'assets/makeup_styles/${s.styleKey.replaceAll('_', '-')}-makeup.jpg',
                 })
             .toList();
       }
@@ -156,6 +157,7 @@ class _AnalyzingResultScreenState extends State<AnalyzingResultScreen> {
           'description':
               'Glowing, hydrated skin, groomed brows, and a subtle flush. '
                   'Glass skin meets fluffy brows and a juicy dewy pout.',
+          'imagePath': 'assets/makeup_styles/clean-girl-makeup.jpg',
         },
         {
           'name': 'Peach Makeup',
@@ -163,6 +165,7 @@ class _AnalyzingResultScreenState extends State<AnalyzingResultScreen> {
           'description':
               'Monochromatic warm look tying eyes, cheeks, and lips in peach, '
                   'coral, and golden copper — a cohesive sun-kissed flush.',
+          'imagePath': 'assets/makeup_styles/peach-makeup.jpg',
         },
         {
           'name': 'Soft Glam Everyday',
@@ -170,6 +173,7 @@ class _AnalyzingResultScreenState extends State<AnalyzingResultScreen> {
           'description':
               'Subtle smoky eye in warm neutrals, sculpted cheeks, defined '
                   'lashes, and a satin lip. Elevated but never overdressed.',
+          'imagePath': 'assets/makeup_styles/soft-glam-everyday.jpg',
         },
       ];
 
